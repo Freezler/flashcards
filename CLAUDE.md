@@ -93,3 +93,14 @@ A React 19 flashcard application built with TypeScript, Vite, and Tailwind CSS. 
 - **src/components/**: Component patterns, props, and styling approaches
 - **src/utils/**: Utility function patterns and shared logic
 - **src/types/**: TypeScript definitions and interfaces
+
+## Maintaining Context Files
+
+**Important**: These CLAUDE.md files should be updated whenever:
+- New components, utils, or types are added
+- Project structure changes
+- Dependencies or workflows are modified
+- Major features are implemented
+- Development practices evolve
+
+**Reminder**: Always ask Claude to update relevant CLAUDE.md files when making significant changes to maintain accurate project context.

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { getTestDeckStats } from '../data'
 
 interface DashboardStats {
   totalDecks: number
@@ -8,12 +9,7 @@ interface DashboardStats {
 }
 
 function Dashboard(): React.JSX.Element {
-  const stats: DashboardStats = {
-    totalDecks: 0,
-    totalCards: 0,
-    studyStreak: 0,
-    cardsToReview: 0,
-  }
+  const stats: DashboardStats = getTestDeckStats()
 
   return (
     <div className="dashboard-container">

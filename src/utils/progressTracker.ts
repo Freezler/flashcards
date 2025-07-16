@@ -1,7 +1,4 @@
-interface ProgressEntry {
-  task: string
-  date: Date
-}
+import { ProgressEntry } from '../types'
 
 const progress: ProgressEntry[] = []
 

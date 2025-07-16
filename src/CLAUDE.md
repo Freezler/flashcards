@@ -12,6 +12,9 @@ src/
 │   └── CLAUDE.md       # Component patterns and standards
 ├── types/
 │   └── CLAUDE.md       # TypeScript type definitions
+├── data/
+│   ├── testDecks.ts    # Sample flashcard decks for development
+│   └── CLAUDE.md       # Data documentation
 ├── App.css             # Component-specific styles
 └── index.css           # Global styles and Tailwind
 ```
@@ -37,10 +40,16 @@ src/
 
 ## Styling Approach
 
-- Primary: Tailwind CSS utility classes
-- Component styles: CSS modules or styled-components
-- Global styles: `index.css` for base styles
-- Use semantic class names for complex components
+- **Primary**: Modern CSS with CSS variables for consistency
+- **Layout**: CSS Grid and Flexbox for responsive layouts
+- **Variables**: Centralized design tokens in `:root` for:
+  - Colors (primary, secondary, surface, text, borders)
+  - Spacing (xs, sm, md, lg, xl, 2xl, 3xl)
+  - Border radius (sm, md, lg, xl, 2xl)
+  - Shadows and transitions
+- **Fallback**: Tailwind CSS utility classes where needed
+- **Component styles**: CSS modules or styled-components for complex components
+- **Global styles**: `index.css` for base styles and resets
 
 ## TypeScript Standards
 
@@ -54,6 +63,7 @@ src/
 - **App.tsx**: Main landing page with hero section and feature cards
 - **main.tsx**: Application entry point with root rendering
 - **progressTracker.ts**: Utility for tracking user progress
+- **testDecks.ts**: Sample flashcard data for development and testing
 
 ## Development Notes
 
@@ -64,3 +74,12 @@ src/
 - Git workflow with main/development branches established
 - Pre-commit hooks planned for quality gates
 - Component architecture ready for flashcard features
+
+## CSS Implementation
+
+- **Modern CSS**: Uses CSS Grid and Flexbox for layouts
+- **Design System**: Implemented comprehensive CSS variables system
+- **CSS Variables**: Centralized design tokens in App.css `:root`
+- **No Scroll Layout**: Landing page fits exactly in viewport (100vh)
+- **Responsive**: Mobile-first approach with breakpoints
+- **Performance**: Optimized with efficient selectors and transitions
