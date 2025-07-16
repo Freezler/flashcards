@@ -95,6 +95,7 @@ function Dashboard(): React.JSX.Element {
                 <span className="deck-count">{deck.totalCards} kaarten</span>
               </div>
               <p className="deck-description">{deck.description}</p>
+              <div className="deck-spacer"></div>
               <div className="deck-actions">
                 <Link to={`/deck/${deck.id}/study`} className="btn-primary">
                   Start studie

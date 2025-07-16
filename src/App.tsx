@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import './App.css'
 import Navigation from './components/Navigation'
 import Dashboard from './components/Dashboard'
 import { DecksPage, DeckPage, StudyPage } from './pages'
