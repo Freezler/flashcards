@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { getTestDeckStats } from '../data'
+import { getTestDeckStats, testDecks } from '../data'
 
 interface DashboardStats {
   totalDecks: number
@@ -86,15 +86,25 @@ function Dashboard(): React.JSX.Element {
       </section>
 
       <section className="recent-activity">
-        <h2 className="section-title">Recente activiteit</h2>
-        <div className="activity-placeholder">
-          <p className="placeholder-text">
-            Je hebt nog geen leeractiviteiten. Begin met het maken van je eerste
-            deck!
-          </p>
-          <Link to="/decks/new" className="btn-primary">
-            Maak je eerste deck
-          </Link>
+        <h2 className="section-title">Beschikbare Decks</h2>
+        <div className="deck-grid">
+          {testDecks.map(deck => (
+            <div key={deck.id} className="deck-card">
+              <div className="deck-header">
+                <h3 className="deck-title">{deck.name}</h3>
+                <span className="deck-count">{deck.totalCards} kaarten</span>
+              </div>
+              <p className="deck-description">{deck.description}</p>
+              <div className="deck-actions">
+                <Link to={`/deck/${deck.id}/study`} className="btn-primary">
+                  Start studie
+                </Link>
+                <Link to={`/deck/${deck.id}`} className="btn-secondary">
+                  Bekijk kaarten
+                </Link>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
     </div>
