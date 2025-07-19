@@ -7,7 +7,10 @@ import { FlashCard, Deck, DifficultyLevel } from '../types'
 
 // Utility function to generate UUIDs (simple version for testing)
 const generateId = (): string => {
-  return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+  return (
+    Math.random().toString(36).substring(2, 15) +
+    Math.random().toString(36).substring(2, 15)
+  )
 }
 
 // Helper function to create a FlashCard
@@ -30,7 +33,7 @@ const createFlashCard = (
   correctCount: 0,
   incorrectCount: 0,
   createdAt: new Date(),
-  updatedAt: new Date()
+  updatedAt: new Date(),
 })
 
 // React Fundamentals Deck
@@ -65,7 +68,7 @@ const reactFundamentalsCards: FlashCard[] = [
   ),
   createFlashCard(
     'What is React.memo()?',
-    'React.memo() is a higher-order component that memoizes the result of a component. It prevents unnecessary re-renders when props haven\'t changed.',
+    "React.memo() is a higher-order component that memoizes the result of a component. It prevents unnecessary re-renders when props haven't changed.",
     DifficultyLevel.HARD,
     'React',
     ['optimization', 'memo', 'performance']
@@ -76,7 +79,7 @@ const reactFundamentalsCards: FlashCard[] = [
     DifficultyLevel.MEDIUM,
     'React',
     ['keys', 'reconciliation', 'lists']
-  )
+  ),
 ]
 
 // TypeScript Basics Deck
@@ -104,7 +107,7 @@ const typescriptBasicsCards: FlashCard[] = [
   ),
   createFlashCard(
     'What is the never type?',
-    'The never type represents values that never occur. It\'s used for functions that never return (throw errors or infinite loops) or unreachable code.',
+    "The never type represents values that never occur. It's used for functions that never return (throw errors or infinite loops) or unreachable code.",
     DifficultyLevel.HARD,
     'TypeScript',
     ['never', 'types', 'advanced']
@@ -115,7 +118,7 @@ const typescriptBasicsCards: FlashCard[] = [
     DifficultyLevel.MEDIUM,
     'TypeScript',
     ['union', 'types', 'operators']
-  )
+  ),
 ]
 
 // JavaScript ES6+ Deck
@@ -154,7 +157,7 @@ const javascriptES6Cards: FlashCard[] = [
     DifficultyLevel.HARD,
     'JavaScript',
     ['closures', 'scope', 'functions']
-  )
+  ),
 ]
 
 // Web Development Fundamentals Deck
@@ -186,7 +189,7 @@ const webDevFundamentalsCards: FlashCard[] = [
     DifficultyLevel.MEDIUM,
     'Web Development',
     ['dom', 'html', 'manipulation']
-  )
+  ),
 ]
 
 // Create deck helper function
@@ -203,7 +206,7 @@ const createDeck = (
   updatedAt: new Date(),
   isActive: true,
   totalCards: cards.length,
-  reviewedCards: 0
+  reviewedCards: 0,
 })
 
 // Export test decks
@@ -227,7 +230,7 @@ export const testDecks: Deck[] = [
     'Web Development Fundamentals',
     'Core concepts every web developer should know',
     webDevFundamentalsCards
-  )
+  ),
 ]
 
 // Export individual decks for convenience
@@ -235,7 +238,7 @@ export const [
   reactFundamentalsDeck,
   typescriptBasicsDeck,
   javascriptES6Deck,
-  webDevFundamentalsDeck
+  webDevFundamentalsDeck,
 ] = testDecks
 
 // Export statistics for dashboard
@@ -243,11 +246,13 @@ export const getTestDeckStats = () => ({
   totalDecks: testDecks.length,
   totalCards: testDecks.reduce((sum, deck) => sum + deck.totalCards, 0),
   studyStreak: 0,
-  cardsToReview: testDecks.reduce((sum, deck) => sum + deck.totalCards, 0)
+  cardsToReview: testDecks.reduce((sum, deck) => sum + deck.totalCards, 0),
 })
 
 // Export cards by difficulty for testing
-export const getCardsByDifficulty = (difficulty: DifficultyLevel): FlashCard[] => {
+export const getCardsByDifficulty = (
+  difficulty: DifficultyLevel
+): FlashCard[] => {
   return testDecks
     .flatMap(deck => deck.cards)
     .filter(card => card.difficulty === difficulty)
