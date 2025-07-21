@@ -209,28 +209,40 @@ const createDeck = (
   reviewedCards: 0,
 })
 
-// Export test decks
+// Export test decks with consistent IDs
 export const testDecks: Deck[] = [
-  createDeck(
-    'React Fundamentals',
-    'Essential React concepts and patterns for building modern web applications',
-    reactFundamentalsCards
-  ),
-  createDeck(
-    'TypeScript Basics',
-    'Core TypeScript concepts for type-safe JavaScript development',
-    typescriptBasicsCards
-  ),
-  createDeck(
-    'JavaScript ES6+',
-    'Modern JavaScript features and syntax improvements',
-    javascriptES6Cards
-  ),
-  createDeck(
-    'Web Development Fundamentals',
-    'Core concepts every web developer should know',
-    webDevFundamentalsCards
-  ),
+  {
+    ...createDeck(
+      'React Fundamentals',
+      'Essential React concepts and patterns for building modern web applications',
+      reactFundamentalsCards
+    ),
+    id: 'react-fundamentals',
+  },
+  {
+    ...createDeck(
+      'TypeScript Basics',
+      'Core TypeScript concepts for type-safe JavaScript development',
+      typescriptBasicsCards
+    ),
+    id: 'typescript-basics',
+  },
+  {
+    ...createDeck(
+      'JavaScript ES6+',
+      'Modern JavaScript features and syntax improvements',
+      javascriptES6Cards
+    ),
+    id: 'javascript-es6',
+  },
+  {
+    ...createDeck(
+      'Web Development Fundamentals',
+      'Core concepts every web developer should know',
+      webDevFundamentalsCards
+    ),
+    id: 'web-dev-fundamentals',
+  },
 ]
 
 // Export individual decks for convenience

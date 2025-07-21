@@ -19,7 +19,7 @@ A React 19 flashcard application built with TypeScript, Vite, and Tailwind CSS. 
 
 - `npm run dev` - Start development server (Vite)
 - `npm run build` - Build for production
-- `npm run lint` - Run ESLint with TypeScript rules  
+- `npm run lint` - Run ESLint with TypeScript rules
 - `npm run preview` - Preview production build
 - `npx tsc --noEmit` - Type check without emitting files
 
@@ -33,6 +33,7 @@ A React 19 flashcard application built with TypeScript, Vite, and Tailwind CSS. 
 ## Git Workflow
 
 ### Branch Structure
+
 - **main**: Production-ready code, protected branch
 - **development**: Integration branch for features
 - **feature/***: Individual feature branches (e.g., `feature/flashcard-component`)
@@ -40,6 +41,7 @@ A React 19 flashcard application built with TypeScript, Vite, and Tailwind CSS. 
 - **hotfix/***: Critical production fixes
 
 ### Development Process
+
 1. Create feature branch from `development`
 2. Work on feature with regular commits
 3. Open PR to merge feature → `development`
@@ -48,13 +50,14 @@ A React 19 flashcard application built with TypeScript, Vite, and Tailwind CSS. 
 6. Merge release → `main` and tag version
 
 ### Branch Protection
+
 - **main**: Requires PR reviews, passing CI, up-to-date branch
 - **development**: Requires PR reviews, passing CI
 - No direct pushes to protected branches
 
 ## Project Architecture
 
-```
+``` project
 /
 ├── CLAUDE.md                    # Project-wide context (this file)
 ├── PROJECT_FLOWCHART.md         # Visual project structure
@@ -109,6 +112,7 @@ A React 19 flashcard application built with TypeScript, Vite, and Tailwind CSS. 
 ## Key Features (Current)
 
 ### ✅ Core Functionality
+
 - **Complete CRUD system** - Create, edit, delete cards and decks
 - **CardContext state management** - Optimized with useCallback/useMemo
 - **LocalStorage persistence** - Automatic data persistence with date parsing
@@ -117,6 +121,7 @@ A React 19 flashcard application built with TypeScript, Vite, and Tailwind CSS. 
 - **StudySession component** - Spaced repetition algorithm (SM-2)
 
 ### ✅ Performance Optimizations
+
 - **React.memo** on all major components to prevent unnecessary re-renders
 - **Memoized context values** and action functions
 - **Bundle size optimization** - 262KB (82KB gzipped)
@@ -124,6 +129,7 @@ A React 19 flashcard application built with TypeScript, Vite, and Tailwind CSS. 
 - **Component code splitting** ready for implementation
 
 ### ✅ UI/UX Features
+
 - **Modern responsive design** with OKLCH colors and CSS variables
 - **Empty states** and loading indicators
 - **Navigation system** with React Router
@@ -132,6 +138,7 @@ A React 19 flashcard application built with TypeScript, Vite, and Tailwind CSS. 
 - **Professional form styling** with real-time validation
 
 ### ✅ Developer Experience
+
 - **TypeScript strict mode** with comprehensive type safety
 - **ESLint + Prettier** with automated formatting
 - **Comprehensive test suite** for CardContext and components
@@ -141,18 +148,21 @@ A React 19 flashcard application built with TypeScript, Vite, and Tailwind CSS. 
 ## Next Steps / Roadmap
 
 ### High Priority (Performance & Polish)
+
 - [ ] **Code splitting** - Implement lazy loading for pages (262KB → ~200KB target)
 - [ ] **Advanced study analytics** - Visual progress charts and learning insights
 - [ ] **Deck import/export** - JSON/CSV data portability
 - [ ] **Offline support** - Service worker for offline functionality
 
 ### Medium Priority (Enhanced Features)
+
 - [ ] **Advanced study modes** - Review due cards, difficult cards only
 - [ ] **Deck organization** - Categories, tags, search functionality
 - [ ] **Study streaks** - Gamification and motivation features
 - [ ] **Multimedia cards** - Image and audio support
 
 ### Future Features
+
 - [ ] **User authentication** - Multi-user support with cloud sync
 - [ ] **Collaborative decks** - Sharing and community features
 - [ ] **Advanced spaced repetition** - Anki-style algorithms
@@ -181,6 +191,7 @@ A React 19 flashcard application built with TypeScript, Vite, and Tailwind CSS. 
 ## Maintaining Context Files
 
 **Important**: These CLAUDE.md files should be updated whenever:
+
 - New components, utils, or types are added
 - Project structure changes
 - Dependencies or workflows are modified

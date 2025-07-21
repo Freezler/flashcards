@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import StudySession, { StudySessionResults } from '../components/StudySession'
-import { testDecks } from '../data'
+import { useCards } from '../contexts/CardContext'
 import { StudyMode, FlashCard as FlashCardType } from '../types'
 
 function StudyPage(): React.JSX.Element {
   const { deckId } = useParams<{ deckId: string }>()
-  const deck = testDecks.find(d => d.id === deckId)
+  const { state } = useCards()
+  const deck = state.decks.find(d => d.id === deckId)
   const [studyMode] = useState<StudyMode>(StudyMode.SPACED)
 
   if (!deck) {

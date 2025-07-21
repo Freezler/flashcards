@@ -6,9 +6,7 @@ const LandingPage = React.memo(function LandingPage(): React.JSX.Element {
     <div className="landing-page">
       <div className="landing-container">
         <header className="landing-header">
-          <div className="landing-logo">
-            📚 FlashCards
-          </div>
+          <div className="landing-logo">📚 FlashCards</div>
           <nav className="landing-nav">
             <Link to="/login" className="btn-secondary">
               Inloggen
@@ -20,12 +18,12 @@ const LandingPage = React.memo(function LandingPage(): React.JSX.Element {
           <section className="hero-section">
             <div className="hero-content">
               <h1 className="hero-title">
-                Leer slimmer met 
+                Leer slimmer met
                 <span className="hero-highlight"> FlashCards</span>
               </h1>
               <p className="hero-subtitle">
-                Gebruik spaced repetition om effectiever te leren. 
-                Onthoud meer in minder tijd met onze intelligente flashcard app.
+                Gebruik spaced repetition om effectiever te leren. Onthoud meer
+                in minder tijd met onze intelligente flashcard app.
               </p>
               <div className="hero-actions">
                 <Link to="/login" className="btn-primary btn-large">
@@ -42,7 +40,9 @@ const LandingPage = React.memo(function LandingPage(): React.JSX.Element {
                   <h3>Wat is React?</h3>
                 </div>
                 <div className="demo-card-back">
-                  <p>Een JavaScript library voor het bouwen van user interfaces</p>
+                  <p>
+                    Een JavaScript library voor het bouwen van user interfaces
+                  </p>
                 </div>
               </div>
             </div>
@@ -54,7 +54,9 @@ const LandingPage = React.memo(function LandingPage(): React.JSX.Element {
               <div className="feature-card">
                 <div className="feature-icon">🧠</div>
                 <h3>Spaced Repetition</h3>
-                <p>Wetenschappelijk bewezen leeralgoritme voor optimaal geheugen</p>
+                <p>
+                  Wetenschappelijk bewezen leeralgoritme voor optimaal geheugen
+                </p>
               </div>
               <div className="feature-card">
                 <div className="feature-icon">📊</div>
@@ -77,7 +79,10 @@ const LandingPage = React.memo(function LandingPage(): React.JSX.Element {
           <section className="cta-section">
             <div className="cta-content">
               <h2>Klaar om te beginnen?</h2>
-              <p>Maak gratis een account aan en start vandaag nog met effectief leren</p>
+              <p>
+                Maak gratis een account aan en start vandaag nog met effectief
+                leren
+              </p>
               <Link to="/login" className="btn-primary btn-large">
                 Account aanmaken
               </Link>
@@ -86,7 +91,9 @@ const LandingPage = React.memo(function LandingPage(): React.JSX.Element {
         </main>
 
         <footer className="landing-footer">
-          <p>&copy; 2024 FlashCards. Gemaakt met ❤️ voor betere leerresultaten.</p>
+          <p>
+            &copy; 2024 FlashCards. Gemaakt met ❤️ voor betere leerresultaten.
+          </p>
         </footer>
       </div>
     </div>
