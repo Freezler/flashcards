@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { FlashCard as FlashCardType, DifficultyLevel } from '../types'
 
 interface FlashCardProps {
@@ -7,17 +7,26 @@ interface FlashCardProps {
   showActions?: boolean
   autoFlip?: boolean
   size?: 'small' | 'medium' | 'large'
+  key?: string // Add key prop to force reset when card changes
 }
 
-function FlashCard({ 
-  card, 
-  onAnswer, 
-  showActions = true, 
+function FlashCard({
+  card,
+  onAnswer,
+  showActions = true,
   autoFlip = false,
-  size = 'medium' 
+  size = 'medium',
 }: FlashCardProps): React.JSX.Element {
   const [isFlipped, setIsFlipped] = useState(false)
   const [isRevealing, setIsRevealing] = useState(false)
+  const [isTransitioning, setIsTransitioning] = useState(false)
+
+  // Reset flip state when card changes
+  useEffect(() => {
+    setIsFlipped(false)
+    setIsRevealing(false)
+    setIsTransitioning(false)
+  }, [card.id])
 
   const handleFlip = (): void => {
     if (autoFlip) return
@@ -36,9 +45,15 @@ function FlashCard({
     if (onAnswer) {
       onAnswer(card.id, isCorrect)
     }
+    // Start transitioning state to hide content
+    setIsTransitioning(true)
     // Reset card for next question
     setTimeout(() => {
       setIsFlipped(false)
+      // Clear transitioning state after flip completes
+      setTimeout(() => {
+        setIsTransitioning(false)
+      }, 600) // Wait for flip animation to complete
     }, 1000)
   }
 
@@ -67,14 +82,16 @@ function FlashCard({
   }
 
   return (
-    <div 
+    <div
       className={`flashcard ${getDifficultyClass(card.difficulty)} ${getSizeClass(size)} ${
         isFlipped ? 'flashcard--flipped' : ''
-      } ${isRevealing ? 'flashcard--revealing' : ''}`}
+      } ${isRevealing ? 'flashcard--revealing' : ''} ${
+        isTransitioning ? 'flashcard--transitioning' : ''
+      }`}
       onClick={handleFlip}
       role="button"
       tabIndex={0}
-      onKeyDown={(e) => {
+      onKeyDown={e => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault()
           handleFlip()
@@ -91,15 +108,11 @@ function FlashCard({
                 {card.difficulty}
               </span>
             </div>
-            <div className="flashcard__category">
-              {card.category}
-            </div>
+            <div className="flashcard__category">{card.category}</div>
           </div>
-          
+
           <div className="flashcard__content">
-            <div className="flashcard__question">
-              {card.front}
-            </div>
+            <div className="flashcard__question">{card.front}</div>
           </div>
 
           <div className="flashcard__footer">
@@ -111,9 +124,9 @@ function FlashCard({
               ))}
             </div>
             {!autoFlip && (
-              <button 
+              <button
                 className="flashcard__flip-hint"
-                onClick={(e) => {
+                onClick={e => {
                   e.stopPropagation()
                   handleReveal()
                 }}
@@ -134,22 +147,18 @@ function FlashCard({
                 {card.difficulty}
               </span>
             </div>
-            <div className="flashcard__category">
-              {card.category}
-            </div>
+            <div className="flashcard__category">{card.category}</div>
           </div>
 
           <div className="flashcard__content">
-            <div className="flashcard__answer">
-              {card.back}
-            </div>
+            <div className="flashcard__answer">{card.back}</div>
           </div>
 
           {showActions && (
             <div className="flashcard__actions">
-              <button 
+              <button
                 className="flashcard__action flashcard__action--incorrect"
-                onClick={(e) => {
+                onClick={e => {
                   e.stopPropagation()
                   handleAnswer(false)
                 }}
@@ -158,9 +167,9 @@ function FlashCard({
                 <span className="flashcard__action-icon">❌</span>
                 Incorrect
               </button>
-              <button 
+              <button
                 className="flashcard__action flashcard__action--correct"
-                onClick={(e) => {
+                onClick={e => {
                   e.stopPropagation()
                   handleAnswer(true)
                 }}

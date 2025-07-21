@@ -1,27 +1,14 @@
-import { useParams, Link } from 'react-router-dom'
 import { useState } from 'react'
-import { testDecks } from '../data'
-import FlashCard from '../components/FlashCard'
+import { Link, useParams } from 'react-router-dom'
+import StudySession, { StudySessionResults } from '../components/StudySession'
+import { useCards } from '../contexts/CardContext'
+import { StudyMode, FlashCard as FlashCardType } from '../types'
 
 function StudyPage(): React.JSX.Element {
   const { deckId } = useParams<{ deckId: string }>()
-  const deck = testDecks.find(d => d.id === deckId)
-  const [currentCardIndex, setCurrentCardIndex] = useState(0)
-  const [score, setScore] = useState({ correct: 0, incorrect: 0 })
-
-  const handleAnswer = (cardId: string, isCorrect: boolean): void => {
-    setScore(prev => ({
-      correct: prev.correct + (isCorrect ? 1 : 0),
-      incorrect: prev.incorrect + (isCorrect ? 0 : 1)
-    }))
-    
-    // Move to next card after a short delay
-    setTimeout(() => {
-      setCurrentCardIndex(prev => (prev + 1) % deck.cards.length)
-    }, 1200)
-  }
-
-  const currentCard = deck?.cards[currentCardIndex]
+  const { state } = useCards()
+  const deck = state.decks.find(d => d.id === deckId)
+  const [studyMode] = useState<StudyMode>(StudyMode.SPACED)
 
   if (!deck) {
     return (
@@ -37,69 +24,25 @@ function StudyPage(): React.JSX.Element {
     )
   }
 
+  const handleSessionComplete = (results: StudySessionResults) => {
+    console.log('Study session completed:', results)
+    // Here we could save results to local storage or send to a backend
+  }
+
+  const handleCardUpdate = (updatedCard: FlashCardType) => {
+    console.log('Card updated with spaced repetition data:', updatedCard)
+    // Here we could update the card in our data store
+  }
+
   return (
-    <div className="study-container">
-      <header className="study-header">
-        <div className="study-navigation">
-          <Link to="/decks" className="study-back-btn">
-            ← Terug
-          </Link>
-          <h1 className="study-title">{deck.name}</h1>
-          <div className="study-progress">
-            {currentCardIndex + 1} / {deck.cards.length}
-          </div>
-        </div>
-        
-        <div className="study-score">
-          <div className="score-item score-item--correct">
-            <span className="score-icon">✅</span>
-            <span className="score-count">{score.correct}</span>
-          </div>
-          <div className="score-item score-item--incorrect">
-            <span className="score-icon">❌</span>
-            <span className="score-count">{score.incorrect}</span>
-          </div>
-        </div>
-      </header>
-
-      <main className="study-main">
-        {currentCard && (
-          <FlashCard
-            card={currentCard}
-            onAnswer={handleAnswer}
-            showActions={true}
-            size="large"
-          />
-        )}
-      </main>
-
-      <footer className="study-footer">
-        <div className="study-controls">
-          <button 
-            className="study-control-btn study-control-btn--prev"
-            onClick={() => setCurrentCardIndex(prev => 
-              prev === 0 ? deck.cards.length - 1 : prev - 1
-            )}
-            disabled={deck.cards.length <= 1}
-          >
-            ← Vorige
-          </button>
-          <button 
-            className="study-control-btn study-control-btn--next"
-            onClick={() => setCurrentCardIndex(prev => 
-              (prev + 1) % deck.cards.length
-            )}
-            disabled={deck.cards.length <= 1}
-          >
-            Volgende →
-          </button>
-        </div>
-        
-        <div className="study-hint">
-          💡 Klik op de kaart om hem om te draaien, of gebruik de "Reveal" knop
-        </div>
-      </footer>
-    </div>
+    <StudySession
+      deck={deck}
+      studyMode={studyMode}
+      onSessionComplete={handleSessionComplete}
+      onCardUpdate={handleCardUpdate}
+      maxCards={20}
+      timeLimit={30}
+    />
   )
 }
 

@@ -6,7 +6,7 @@
 export enum Theme {
   LIGHT = 'light',
   DARK = 'dark',
-  SYSTEM = 'system'
+  SYSTEM = 'system',
 }
 
 export interface UserPreferences {

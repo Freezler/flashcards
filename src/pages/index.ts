@@ -1,3 +1,6 @@
+export { default as LandingPage } from './LandingPage'
 export { default as DecksPage } from './DecksPage'
 export { default as DeckPage } from './DeckPage'
 export { default as StudyPage } from './StudyPage'
+export { default as NewDeckPage } from './NewDeckPage'
+export { default as LoginPage } from './LoginPage'

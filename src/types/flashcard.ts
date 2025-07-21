@@ -7,12 +7,12 @@
 export enum DifficultyLevel {
   EASY = 'easy',
   MEDIUM = 'medium',
-  HARD = 'hard'
+  HARD = 'hard',
 }
 
 export enum StudyMode {
   SPACED = 'spaced',
-  RANDOM = 'random'
+  RANDOM = 'random',
 }
 
 // Core Flashcard Interface

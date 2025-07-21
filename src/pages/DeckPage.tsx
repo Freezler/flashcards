@@ -1,9 +1,16 @@
 import { useParams, Link } from 'react-router-dom'
-import { testDecks } from '../data'
+import { useState } from 'react'
+import { useCards } from '../contexts/CardContext'
+import CardList from '../components/CardList'
+import CardForm from '../components/CardForm'
+import { FlashCard } from '../types'
 
 function DeckPage(): React.JSX.Element {
   const { deckId } = useParams<{ deckId: string }>()
-  const deck = testDecks.find(d => d.id === deckId)
+  const { getDeck, addCard } = useCards()
+  const [showCreateForm, setShowCreateForm] = useState(false)
+
+  const deck = deckId ? getDeck(deckId) : undefined
 
   if (!deck) {
     return (
@@ -38,43 +45,42 @@ function DeckPage(): React.JSX.Element {
           </div>
           <div className="stat-item">
             <span className="stat-label">Gemaakt:</span>
-            <span className="stat-value">{deck.createdAt.toLocaleDateString('nl-NL')}</span>
+            <span className="stat-value">
+              {deck.createdAt.toLocaleDateString('nl-NL')}
+            </span>
           </div>
         </div>
-        
+
         <div className="deck-actions">
           <Link to={`/deck/${deck.id}/study`} className="btn-primary">
             🎯 Start studie
           </Link>
+          <button
+            className="btn-primary"
+            onClick={() => setShowCreateForm(true)}
+          >
+            ➕ Nieuwe kaart
+          </button>
           <Link to="/decks" className="btn-secondary">
             ← Terug naar decks
           </Link>
         </div>
       </div>
 
-      <section className="cards-list">
-        <h2 className="section-title">Kaarten in dit deck</h2>
-        <div className="cards-grid">
-          {deck.cards.map(card => (
-            <div key={card.id} className="card-preview">
-              <div className="card-front">
-                <h4>Voorkant</h4>
-                <p>{card.front}</p>
-              </div>
-              <div className="card-back">
-                <h4>Achterkant</h4>
-                <p>{card.back}</p>
-              </div>
-              <div className="card-meta">
-                <span className={`difficulty-badge difficulty-${card.difficulty}`}>
-                  {card.difficulty}
-                </span>
-                <span className="card-category">{card.category}</span>
-              </div>
-            </div>
-          ))}
-        </div>
+      <section className="cards-section">
+        <CardList deckId={deck.id} cards={deck.cards} />
       </section>
+
+      {showCreateForm && (
+        <CardForm
+          onSave={(cardData: Omit<FlashCard, 'id'>) => {
+            addCard(deck.id, cardData)
+            setShowCreateForm(false)
+          }}
+          onCancel={() => setShowCreateForm(false)}
+          isEditing={false}
+        />
+      )}
     </div>
   )
 }
