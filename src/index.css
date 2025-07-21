@@ -779,10 +779,10 @@ button:focus-visible {
 
 .mobile-menu {
   position: fixed;
-  top: 0;
+  top: 79px;
   right: 0;
   width: min(320px, 85vw);
-  height: 100vh;
+  height: calc(100vh - 79px);
   background: var(--surface-1);
   border-left: 1px solid var(--border-1);
   box-shadow: -8px 0 32px oklch(25% 0.03 240 / 0.15);
@@ -803,7 +803,7 @@ button:focus-visible {
 
 .mobile-menu-items {
   flex: 1;
-  padding: var(--space-l) 0;
+  padding: 0 0 var(--space-l) 0;
   display: flex;
   flex-direction: column;
   gap: var(--space-3xs);
@@ -1280,11 +1280,28 @@ button:focus-visible {
   border: 1px solid var(--border-1);
 }
 
+/* Mobile optimization for recent activity */
+@media (max-width: 768px) {
+  .recent-activity {
+    padding: var(--space-s);
+    margin: 0;
+  }
+}
+
 .deck-grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-s);
   align-items: start;
+  justify-items: center;
+}
+
+/* Mobile optimization for deck grid */
+@media (max-width: 768px) {
+  .deck-grid {
+    gap: var(--space-xs);
+    padding: 0;
+  }
 }
 
 @media (min-width: 768px) {
@@ -1309,19 +1326,13 @@ button:focus-visible {
   padding: var(--space-l);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
+  width: 100%;
+  max-width: 100%;
   overflow: hidden;
   animation: var(--animation-scale-up);
   animation-delay: calc(var(--index, 0) * 0.1s + 0.6s);
   animation-fill-mode: both;
-
-  /* Modern layered shadows */
-  box-shadow:
-    0 1px 0 oklch(100% 0 0 / 0.8) inset,
-    0 -1px 0 oklch(88% 0.01 240 / 0.1) inset,
-    0 2px 4px oklch(25% 0.03 240 / 0.04),
-    0 4px 12px oklch(25% 0.03 240 / 0.06),
-    0 8px 24px oklch(25% 0.03 240 / 0.04);
-
+  
   /* CSS Subgrid for perfect internal alignment */
   display: grid;
   grid-template-rows: subgrid;
@@ -1331,6 +1342,24 @@ button:focus-visible {
     'description'
     'spacer'
     'actions';
+  
+  /* Modern layered shadows */
+  box-shadow:
+    0 1px 0 oklch(100% 0 0 / 0.8) inset,
+    0 -1px 0 oklch(88% 0.01 240 / 0.1) inset,
+    0 2px 4px oklch(25% 0.03 240 / 0.04),
+    0 4px 12px oklch(25% 0.03 240 / 0.06),
+    0 8px 24px oklch(25% 0.03 240 / 0.04);
+}
+
+/* Mobile optimization for deck cards */
+@media (max-width: 768px) {
+  .deck-card {
+    padding: var(--space-s);
+    margin: 0 auto;
+    max-width: calc(100vw - 2rem);
+    box-sizing: border-box;
+  }
 }
 
 .deck-card::before {
@@ -1681,7 +1710,7 @@ button:focus-visible {
 /* === JHEY TOMPKINS SIGNATURE FLASHCARD COMPONENT === */
 .flashcard {
   --card-width: 350px;
-  --card-height: 480px;
+  --card-height: 520px;
   --card-perspective: 1000px;
   --flip-duration: 0.8s;
   --hover-lift: -8px;
@@ -1708,12 +1737,12 @@ button:focus-visible {
 /* Size Variants */
 .flashcard--small {
   --card-width: 280px;
-  --card-height: 380px;
+  --card-height: 420px;
 }
 
 .flashcard--large {
   --card-width: 420px;
-  --card-height: 580px;
+  --card-height: 620px;
 }
 
 /* Difficulty Variants with Jhey's signature color magic */
@@ -1751,19 +1780,7 @@ button:focus-visible {
 }
 
 .flashcard--revealing .flashcard__inner {
-  animation: revealFlip 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-}
-
-@keyframes revealFlip {
-  0% {
-    transform: rotateY(0deg) scale(1);
-  }
-  50% {
-    transform: rotateY(90deg) scale(1.05) rotateX(10deg);
-  }
-  100% {
-    transform: rotateY(180deg) scale(1);
-  }
+  transform: rotateY(180deg);
 }
 
 /* Hide content during card transitions */
@@ -1784,7 +1801,7 @@ button:focus-visible {
   height: 100%;
   backface-visibility: hidden;
   border-radius: var(--radius-4);
-  padding: var(--space-l);
+  padding: var(--space-l) var(--space-l) var(--space-xl) var(--space-l);
   display: flex;
   flex-direction: column;
   gap: var(--space-s);
@@ -1978,6 +1995,8 @@ button:focus-visible {
   display: flex;
   gap: var(--space-2xs);
   margin-top: var(--space-s);
+  margin-bottom: var(--space-s);
+  padding-bottom: var(--space-2xs);
 }
 
 .flashcard__action {
@@ -2105,12 +2124,12 @@ button:focus-visible {
 @media (max-width: 640px) {
   .flashcard {
     --card-width: 280px;
-    --card-height: 380px;
+    --card-height: 420px;
   }
 
   .flashcard__front,
   .flashcard__back {
-    padding: var(--space-s);
+    padding: var(--space-s) var(--space-s) var(--space-l) var(--space-s);
   }
 
   .flashcard__question,
@@ -2120,6 +2139,8 @@ button:focus-visible {
 
   .flashcard__actions {
     flex-direction: column;
+    margin-bottom: var(--space-s);
+    padding-bottom: var(--space-xs);
   }
 }
 
@@ -2398,7 +2419,13 @@ button:focus-visible {
 
 .session-progress {
   flex: 1;
-  max-width: 300px;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .session-progress {
+    max-width: 300px;
+  }
 }
 
 .progress-bar {
@@ -2449,14 +2476,32 @@ button:focus-visible {
 
 .session-stats {
   display: flex;
-  gap: var(--space-3xs);
-  flex-wrap: wrap;
+  gap: var(--space-2xs);
+  width: 100%;
+  justify-content: space-between;
+}
+
+.session-stats .stat {
+  flex: 1;
+  text-align: center;
+  min-width: 0;
 }
 
 @media (min-width: 480px) {
   .session-stats {
     gap: var(--space-s);
-    flex-wrap: nowrap;
+  }
+}
+
+@media (min-width: 768px) {
+  .session-stats {
+    justify-content: flex-end;
+    width: auto;
+  }
+  
+  .session-stats .stat {
+    flex: 0 0 auto;
+    text-align: left;
   }
 }
 
@@ -2502,17 +2547,26 @@ button:focus-visible {
   display: flex;
   gap: var(--space-s);
   justify-content: center;
-  margin-top: var(--space-l);
+  margin: var(--space-s) 0;
+  padding: var(--space-s);
   max-width: 100%;
   overflow-x: auto;
-  padding: 0 var(--space-s);
 }
 
 @media (max-width: 640px) {
   .study-session-controls {
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: var(--space-s);
     align-items: center;
     overflow-x: visible;
+  }
+  
+  /* Special layout for session control buttons on mobile */
+  .session-control-btn--wide {
+    grid-column: 1 / -1;
+    width: 100%;
   }
 }
 

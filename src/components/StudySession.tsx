@@ -467,7 +467,7 @@ function StudySession({
         </button>
 
         <button
-          className="session-control-btn session-control-btn--primary"
+          className="session-control-btn session-control-btn--primary session-control-btn--wide"
           onClick={handleSessionComplete}
         >
           Sessie Beëindigen
