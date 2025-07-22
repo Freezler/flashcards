@@ -10,6 +10,7 @@ Een moderne, intelligente flashcard applicatie gebouwd met React 19 en TypeScrip
 ## ✨ Features
 
 ### 🎯 Core Functionaliteit
+
 - **6 Uitgebreide Nederlandse Decks** - 94+ kaarten over grammatica, geschiedenis, geografie, cultuur, literatuur en sport
 - **Intelligente Spaced Repetition** - SM-2 algoritme voor optimaal geheugen
 - **Interactieve Flashcards** - 3D flip animaties met difficulty-based styling
@@ -17,6 +18,7 @@ Een moderne, intelligente flashcard applicatie gebouwd met React 19 en TypeScrip
 - **Complete CRUD Operations** - Maak, bewerk en verwijder je eigen kaarten en decks
 
 ### 🎨 User Experience
+
 - **Volledig Responsive Design** - Geoptimaliseerd voor mobile, tablet en desktop
 - **Moderne CSS met OKLCH Colors** - Fluid typography met CSS clamp() voor perfecte schaalbaarheid
 - **Professional UI/UX** - Material Design-inspired interface met smooth animations
@@ -24,6 +26,7 @@ Een moderne, intelligente flashcard applicatie gebouwd met React 19 en TypeScrip
 - **Offline-First** - LocalStorage persistence voor offline gebruik
 
 ### 🚀 Performance & Development
+
 - **React 19 Latest Features** - Met strict TypeScript en moderne hooks
 - **Optimized Bundle Size** - 262KB (82KB gzipped) met code splitting ready
 - **Comprehensive Test Suite** - Vitest met Testing Library
@@ -33,6 +36,7 @@ Een moderne, intelligente flashcard applicatie gebouwd met React 19 en TypeScrip
 ## 📚 Nederlandse Content
 
 ### 🇳🇱 Beschikbare Decks
+
 1. **Nederlandse Grammatica** (18 kaarten) - Woordsoorten, spelling, werkwoorden
 2. **Geschiedenis van Nederland** (18 kaarten) - Van Gouden Eeuw tot moderne tijd
 3. **Nederlandse Geografie** (18 kaarten) - Provincies, steden, natuurgebieden
@@ -41,6 +45,7 @@ Een moderne, intelligente flashcard applicatie gebouwd met React 19 en TypeScrip
 6. **Nederlandse Sport** (10 kaarten) - Sporters, prestaties en geschiedenis
 
 ### 📊 Leerstatistieken
+
 - **94 Totale Kaarten** verdeeld over 3 moeilijkheidsgraden
 - **Balanced Content** - Van basis grammatica tot gevorderde cultuurkennis
 - **Educational Quality** - Nauwkeurige, feitelijk correcte Nederlandse inhoud
@@ -48,18 +53,21 @@ Een moderne, intelligente flashcard applicatie gebouwd met React 19 en TypeScrip
 ## 🛠️ Tech Stack
 
 ### Frontend
+
 - **React 19.1.0** - Latest React with concurrent features
 - **TypeScript 5.8** - Strict mode voor type safety
 - **Vite 7.0** - Modern build tool met HMR
 - **React Router 7.6** - Client-side routing met SPA support
 
 ### Styling & Design
+
 - **Tailwind CSS 4.1** - Utility-first CSS framework
 - **Custom CSS Variables** - OKLCH colors en design tokens
 - **Fluid Typography** - CSS clamp() voor responsive text
 - **Inter Font** - Professional typography
 
 ### Development & Testing
+
 - **Vitest 3.2** - Fast unit testing
 - **Testing Library** - React component testing
 - **ESLint 9.30** - Code linting met TypeScript rules
@@ -68,10 +76,12 @@ Een moderne, intelligente flashcard applicatie gebouwd met React 19 en TypeScrip
 ## 🚀 Quick Start
 
 ### Prerequisites
-- Node.js 18+ 
+
+- Node.js 18+
 - npm of yarn
 
 ### Installatie
+
 ```bash
 # Clone het project
 git clone https://github.com/FREEZLER/react19-flash-cards.git
@@ -82,9 +92,10 @@ npm install
 
 # Start development server
 npm run dev
-```
+```bash
 
 ### Development Scripts
+
 ```bash
 # Development server met HMR
 npm run dev
@@ -113,7 +124,7 @@ npm run format
 
 ## 🏗️ Project Architectuur
 
-```
+``` Project Architectuur
 flash-cards/
 ├── src/
 │   ├── components/          # React components
@@ -144,6 +155,7 @@ flash-cards/
 ## 📱 Responsive Design
 
 ### Breakpoint Strategy
+
 - **Mobile First** - 320px+ basis design
 - **Small Tablet** - 480px+ verbeterde spacing
 - **Tablet** - 768px+ 3-column layouts
@@ -151,6 +163,7 @@ flash-cards/
 - **Large Desktop** - 1200px+ maximum comfort
 
 ### Study Stats Layout
+
 - **Mobile**: 2×3 grid voor portrait-vriendelijke weergave
 - **Desktop**: 3×2 grid voor landscape-optimale layout
 - **Fluid Typography**: CSS clamp() voor perfecte schaalbaarheid
@@ -169,6 +182,7 @@ npm run test:ui
 ```
 
 ### Test Coverage
+
 - **CardContext** - State management tests
 - **FlashCard Component** - User interaction tests
 - **StudySession** - Spaced repetition algorithm tests
@@ -183,6 +197,7 @@ npm run test:ui
 5. Open een Pull Request
 
 ### Development Guidelines
+
 - Gebruik **TypeScript strict mode**
 - Volg **conventional commit** messages
 - Schrijf **tests** voor nieuwe features
