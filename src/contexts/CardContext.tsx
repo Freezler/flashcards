@@ -171,7 +171,15 @@ export function CardProvider({
   useEffect(() => {
     try {
       const savedDecks = localStorage.getItem('flashcard-decks')
-      if (savedDecks) {
+      const dataVersion = localStorage.getItem('flashcard-data-version')
+      const currentVersion = '2.0-nl' // Nederlandse content versie
+      
+      // Als er geen versie is of het is een oude versie, gebruik nieuwe Nederlandse data
+      if (!dataVersion || dataVersion !== currentVersion) {
+        console.log('Migratie naar Nederlandse content...')
+        dispatch({ type: 'SET_DECKS', payload: testDecks })
+        localStorage.setItem('flashcard-data-version', currentVersion)
+      } else if (savedDecks) {
         const decks = JSON.parse(savedDecks)
         const parsedDecks = parseDatesInDecks(decks)
         dispatch({ type: 'SET_DECKS', payload: parsedDecks })
