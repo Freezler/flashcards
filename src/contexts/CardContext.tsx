@@ -128,31 +128,6 @@ const generateId = (): string => {
   return Date.now().toString(36) + Math.random().toString(36).substring(2)
 }
 
-// Convert date strings back to Date objects when loading from localStorage
-const parseDatesInDecks = (decks: unknown[]): Deck[] => {
-  return decks.map((deck: unknown) => {
-    const deckObj = deck as Record<string, unknown>
-    return {
-      ...deckObj,
-      createdAt: new Date(deckObj.createdAt as string),
-      updatedAt: new Date(deckObj.updatedAt as string),
-      cards: (deckObj.cards as unknown[]).map((card: unknown) => {
-        const cardObj = card as Record<string, unknown>
-        return {
-          ...cardObj,
-          createdAt: new Date(cardObj.createdAt as string),
-          updatedAt: new Date(cardObj.updatedAt as string),
-          lastReviewed: cardObj.lastReviewed
-            ? new Date(cardObj.lastReviewed as string)
-            : null,
-          nextReview: cardObj.nextReview
-            ? new Date(cardObj.nextReview as string)
-            : null,
-        } as FlashCard
-      }),
-    } as Deck
-  })
-}
 
 interface CardProviderProps {
   children: React.ReactNode
@@ -170,24 +145,15 @@ export function CardProvider({
   // Load data from localStorage or use test data
   useEffect(() => {
     try {
-      const savedDecks = localStorage.getItem('flashcard-decks')
-      const dataVersion = localStorage.getItem('flashcard-data-version')
-      const currentVersion = '2.0-nl' // Nederlandse content versie
+      // Force clear all localStorage and load fresh Dutch data
+      localStorage.removeItem('flashcard-decks')
+      localStorage.removeItem('flashcard-data-version')
       
-      // Als er geen versie is of het is een oude versie, gebruik nieuwe Nederlandse data
-      if (!dataVersion || dataVersion !== currentVersion) {
-        console.log('Migratie naar Nederlandse content...')
-        dispatch({ type: 'SET_DECKS', payload: testDecks })
-        localStorage.setItem('flashcard-data-version', currentVersion)
-      } else if (savedDecks) {
-        const decks = JSON.parse(savedDecks)
-        const parsedDecks = parseDatesInDecks(decks)
-        dispatch({ type: 'SET_DECKS', payload: parsedDecks })
-      } else {
-        dispatch({ type: 'SET_DECKS', payload: testDecks })
-      }
+      console.log('Loading fresh Dutch flashcard data...')
+      dispatch({ type: 'SET_DECKS', payload: testDecks })
+      localStorage.setItem('flashcard-data-version', '2.1-nl')
     } catch (error) {
-      console.error('Failed to load decks from localStorage:', error)
+      console.error('Failed to load decks:', error)
       dispatch({ type: 'SET_ERROR', payload: 'Failed to load data' })
       dispatch({ type: 'SET_DECKS', payload: testDecks })
     }

@@ -1,77 +1,77 @@
-# Test Data Context
+# Nederlandse Test Data Context
 
-## Overview
+## Overzicht
 
-This directory contains sample data for development and testing purposes. All data uses the TypeScript interfaces defined in `../types/`.
+Deze map bevat Nederlandse voorbeelddata voor ontwikkeling en testen. Alle data gebruikt de TypeScript interfaces gedefinieerd in `../types/`.
 
-## Current Data Files
+## Huidige Data Bestanden
 
 ### testDecks.ts
 
-- **Purpose**: Provides realistic flashcard decks for development and testing
-- **Content**: 4 comprehensive decks covering web development topics
-- **Total Cards**: 20+ flashcards across different difficulty levels
+- **Doel**: Biedt realistische Nederlandse flashcard decks voor ontwikkeling en testen
+- **Inhoud**: 4 uitgebreide decks over Nederlandse onderwerpen
+- **Totaal Kaarten**: 20+ flashcards verdeeld over verschillende moeilijkheidsgraden
 
-#### Available Decks:
+#### Beschikbare Decks:
 
-1. **React Fundamentals** (6 cards)
-   - JSX, state vs props, event handling
-   - useEffect, React.memo, keys
-   - Difficulty: Easy to Hard
+1. **Nederlandse Grammatica** (6 kaarten)
+   - Zelfstandige naamwoorden, lidwoorden, werkwoorden
+   - Spelling regels, dt-regel, hoofdletters
+   - Moeilijkheid: Makkelijk tot Moeilijk
 
-2. **TypeScript Basics** (5 cards)
-   - TypeScript intro, interfaces vs types
-   - Generics, never type, union types
-   - Difficulty: Easy to Hard
+2. **Geschiedenis van Nederland** (5 kaarten)
+   - Gouden Eeuw, Willem van Oranje, VOC
+   - Tweede Wereldoorlog, Watersnoodramp
+   - Moeilijkheid: Makkelijk tot Moeilijk
 
-3. **JavaScript ES6+** (5 cards)
-   - Destructuring, spread operator, promises
-   - async/await, closures
-   - Difficulty: Easy to Hard
+3. **Nederlandse Geografie** (5 kaarten)
+   - Hoofdstad, provincies, Waddeneilanden
+   - Hoogste punt, rivieren
+   - Moeilijkheid: Makkelijk tot Moeilijk
 
-4. **Web Development Fundamentals** (4 cards)
-   - HTTP vs HTTPS, status codes
-   - CORS, DOM manipulation
-   - Difficulty: Easy to Hard
+4. **Nederlandse Cultuur** (4 kaarten)
+   - Rembrandt, typisch Nederlands eten
+   - Koningsdag, nationale sport
+   - Moeilijkheid: Makkelijk tot Moeilijk
 
-## Exported Functions
+## Geëxporteerde Functies
 
-### Core Data
-- `testDecks`: Array of all sample decks
-- `reactFundamentalsDeck`, `typescriptBasicsDeck`, etc.: Individual decks
+### Basis Data
+- `testDecks`: Array van alle voorbeeld decks
+- `nederlandseGrammaticaDeck`, `geschiedenisNederlandDeck`, etc.: Individuele decks
 
-### Statistics
-- `getTestDeckStats()`: Returns dashboard statistics object
-- `getCardsByDifficulty(difficulty)`: Filter cards by difficulty level
-- `getCardsByCategory(category)`: Filter cards by category
+### Statistieken
+- `getTestDeckStats()`: Retourneert dashboard statistieken object
+- `getCardsByDifficulty(difficulty)`: Filter kaarten op moeilijkheidsgraad
+- `getCardsByCategory(category)`: Filter kaarten op categorie
 
-## Usage Examples
+## Gebruik Voorbeelden
 
 ```typescript
 import { testDecks, getTestDeckStats, getCardsByDifficulty } from '../data'
 
-// Get all decks
-const allDecks = testDecks
+// Krijg alle decks
+const alleDecks = testDecks
 
-// Get dashboard stats
+// Krijg dashboard stats
 const stats = getTestDeckStats()
 
-// Get only hard cards
-const hardCards = getCardsByDifficulty(DifficultyLevel.HARD)
+// Krijg alleen moeilijke kaarten
+const moeilijkeKaarten = getCardsByDifficulty(DifficultyLevel.HARD)
 ```
 
-## Data Quality
+## Data Kwaliteit
 
-- All flashcards follow proper TypeScript interfaces
-- Realistic content covering actual web development concepts
-- Balanced difficulty distribution
-- Proper categorization and tagging
-- Timestamps and metadata included
+- Alle flashcards volgen juiste TypeScript interfaces
+- Realistische Nederlandse educatieve inhoud
+- Gebalanceerde moeilijkheidsverdeling
+- Juiste categorisering en tagging
+- Timestamps en metadata inbegrepen
 
-## Future Enhancements
+## Toekomstige Verbeteringen
 
-- [ ] Add more diverse topics (algorithms, databases, etc.)
-- [ ] Include multimedia content (images, code snippets)
-- [ ] Add spaced repetition scheduling data
-- [ ] Include user interaction history
-- [ ] Add deck sharing and community features
+- [ ] Voeg meer diverse onderwerpen toe (wiskunde, natuurkunde, etc.)
+- [ ] Inclusief multimedia inhoud (afbeeldingen, voorbeelden)
+- [ ] Voeg spaced repetition planning data toe
+- [ ] Inclusief gebruikersinteractie geschiedenis
+- [ ] Voeg deck delen en community functies toe
