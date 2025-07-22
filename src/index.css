@@ -376,6 +376,19 @@ body {
   --gradient-accent: oklch(14% 0.02 220);         /* Purple-tinted dark blue */
 }
 
+/* Force navigation blur globally */
+.navigation {
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+}
+
+/* Dark mode navigation background override */
+@media (prefers-color-scheme: dark) {
+  .navigation {
+    background: rgba(18, 18, 25, 0.75) !important;
+  }
+}
+
 /* === AUTO DARK MODE (FALLBACK) === */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
@@ -661,9 +674,9 @@ button:focus-visible {
   flex-direction: column;
   gap: var(--space-2xs);
   padding: var(--space-2xs) var(--space-s);
-  background: transparent;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
   border-bottom: 1px solid oklch(70% 0.02 240 / 0.3);
   position: sticky;
   top: 0;
