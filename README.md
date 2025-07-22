@@ -124,7 +124,7 @@ npm run format
 
 ## 🏗️ Project Architectuur
 
-``` Project Architectuur
+``` Project
 flash-cards/
 ├── src/
 │   ├── components/          # React components
