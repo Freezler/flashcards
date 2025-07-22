@@ -5,11 +5,13 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  height: 100%;
 }
 
 body {
   overflow-x: hidden;
   max-width: 100vw;
+  height: 100%;
 }
 
 * {
@@ -441,6 +443,41 @@ body {
     --gradient-to: oklch(16% 0.025 240);            /* Slightly lighter dark blue */
     --gradient-accent: oklch(14% 0.02 220);         /* Purple-tinted dark blue */
   }
+
+  /* Dark mode navigation transparency - only apply to dark mode */
+  :root:not([data-theme]) .navigation {
+    background: oklch(12% 0.02 240 / 0.65) !important;
+    border-bottom: 1px solid oklch(40% 0.02 240 / 0.3) !important;
+    box-shadow: 0 4px 24px oklch(10% 0.03 240 / 0.2) !important;
+  }
+
+  @media (max-width: 1024px) {
+    :root:not([data-theme]) .navigation {
+      background: oklch(12% 0.02 240 / 0.65) !important;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 4px 32px oklch(10% 0.03 240 / 0.25) !important;
+    }
+  }
+}
+
+/* Light mode navigation transparency - explicit light mode */
+.light-theme .navigation,
+:root:not(.dark-theme):not([data-theme='dark']) .navigation {
+  background: oklch(98% 0.008 240 / 0.65) !important;
+  border-bottom: 1px solid oklch(70% 0.02 240 / 0.3) !important;
+  box-shadow: 0 4px 20px oklch(25% 0.03 240 / 0.05) !important;
+}
+
+@media (max-width: 1024px) {
+  .light-theme .navigation,
+  :root:not(.dark-theme):not([data-theme='dark']) .navigation {
+    background: oklch(98% 0.008 240 / 0.65) !important;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid oklch(70% 0.02 240 / 0.25) !important;
+    box-shadow: 0 4px 28px oklch(25% 0.03 240 / 0.1) !important;
+  }
 }
 
 :root {
@@ -597,24 +634,26 @@ button:focus-visible {
 /* === FLASH CARDS COMPONENTS === */
 .app-container {
   min-height: 100vh;
-  display: grid;
-  grid-template-rows: auto 1fr;
-  grid-template-areas:
-    'nav'
-    'main';
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow-y: auto;
 }
 
 .navigation {
-  grid-area: nav;
   display: flex;
   flex-direction: column;
   gap: var(--space-2xs);
   padding: var(--space-2xs) var(--space-s);
-  background: var(--surface-1);
-  border-bottom: 1px solid var(--border-1);
+  background: transparent;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid oklch(70% 0.02 240 / 0.3);
   position: sticky;
   top: 0;
   z-index: 1003;
+  transition: all 0.3s var(--ease-out-2);
+  box-shadow: 0 4px 20px oklch(25% 0.03 240 / 0.05);
 }
 
 /* Mobile-first navigation using modern CSS */  
@@ -633,6 +672,11 @@ button:focus-visible {
     width: 100%;
     max-width: 100vw;
     box-sizing: border-box;
+    background: transparent;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid oklch(70% 0.02 240 / 0.25);
+    box-shadow: 0 4px 28px oklch(25% 0.03 240 / 0.1);
   }
   
   .nav-brand {
@@ -986,10 +1030,10 @@ button:focus-visible {
 }
 
 .main-content {
-  grid-area: main;
+  flex: 1;
   padding: var(--space-s);
   background: var(--surface-2);
-  min-height: 100vh;
+  min-height: 0;
 }
 
 @media (min-width: 768px) {
