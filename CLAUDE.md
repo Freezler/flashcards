@@ -1,34 +1,40 @@
-# Flash Cards App - Project Context
+# Nederlandse Flashcards App - Project Context
 
 ## Project Overview
 
-A React 19 flashcard application built with TypeScript, Vite, and Tailwind CSS. The app helps users learn through intelligent flashcard systems with spaced repetition and progress tracking.
+Een moderne, intelligente React 19 flashcard applicatie gebouwd met TypeScript, Vite en Tailwind CSS. De app helpt gebruikers leren door middel van intelligente flashcard systemen met spaced repetition en progress tracking, specifiek gericht op Nederlandse educatieve content.
 
 ## Tech Stack
 
-- **Frontend**: React 19 with TypeScript <https://react.dev/learn>
-- **Build Tool**: Vite with modern Tailwind v4 integration
-- **Styling**: Custom CSS with OKLCH colors + Tailwind CSS utilities
-- **Routing**: React Router for client-side navigation
-- **Linting**: ESLint with TypeScript rules
-- **Type Checking**: TypeScript with strict mode
-- **Fonts**: Inter font family for modern typography
-- **Design System**: CSS variables with fluid typography and spacing
+- **Frontend**: React 19.1.0 with TypeScript 5.8 <https://react.dev/learn>
+- **Build Tool**: Vite 7.0 met moderne Tailwind v4 integration
+- **Styling**: Custom CSS met OKLCH colors + Tailwind CSS utilities
+- **Routing**: React Router 7.6 voor client-side navigation
+- **Linting**: ESLint 9.30 met TypeScript rules
+- **Testing**: Vitest 3.2 met Testing Library
+- **Type Checking**: TypeScript strict mode
+- **Fonts**: Inter font family voor moderne typography
+- **Design System**: CSS variables met fluid typography en clamp() scaling
 
 ## Development Commands
 
-- `npm run dev` - Start development server (Vite)
+- `npm run dev` - Start development server (Vite HMR)
 - `npm run build` - Build for production
-- `npm run lint` - Run ESLint with TypeScript rules
+- `npm run lint` - Run ESLint met TypeScript rules
+- `npm run lint:fix` - Fix linting issues automatisch
+- `npm run format` - Format code met Prettier
 - `npm run preview` - Preview production build
+- `npm run test` - Run unit tests met Vitest
+- `npm run test:ui` - Interactive test UI
 - `npx tsc --noEmit` - Type check without emitting files
 
-## Current Git State
+## Current Project State
 
-- **Branch**: `feature/study-session-component` (working on optimization)
-- **Status**: Complete CRUD functionality, performance optimizations implemented
-- **Completed**: CardContext optimization, React.memo implementation, common components
-- **Bundle Size**: 262KB (82KB gzipped) - optimized from previous version
+- **Branch**: `main` (production ready)
+- **Status**: Complete CRUD functionaliteit, performance optimizations, responsive design
+- **Completed**: Nederlandse content migration, React.memo optimization, responsive layouts
+- **Bundle Size**: 262KB (82KB gzipped) - geoptimaliseerd en performance-ready
+- **Features**: 6 Nederlandse decks, 94+ kaarten, spaced repetition, mobile-first design
 
 ## Git Workflow
 
@@ -111,6 +117,13 @@ A React 19 flashcard application built with TypeScript, Vite, and Tailwind CSS. 
 
 ## Key Features (Current)
 
+### ✅ Nederlandse Content & Education
+
+- **6 Uitgebreide Nederlandse Decks** - 94+ kaarten over grammatica, geschiedenis, geografie, cultuur, literatuur en sport
+- **Educatieve Kwaliteit** - Nauwkeurige, feitelijk correcte Nederlandse inhoud
+- **Balanced Content** - Van basis grammatica tot gevorderde cultuurkennis
+- **3 Moeilijkheidsgraden** - Easy, Medium, Hard voor progressive learning
+
 ### ✅ Core Functionality
 
 - **Complete CRUD system** - Create, edit, delete cards and decks
@@ -130,19 +143,21 @@ A React 19 flashcard application built with TypeScript, Vite, and Tailwind CSS. 
 
 ### ✅ UI/UX Features
 
-- **Modern responsive design** with OKLCH colors and CSS variables
+- **Volledig Responsive Design** - Mobile-first met clamp() fluid typography
+- **Study Stats Layouts** - 2×3 mobile grid, 3×2 desktop grid
+- **Modern CSS met OKLCH colors** and design tokens
 - **Empty states** and loading indicators
-- **Navigation system** with React Router
-- **Dashboard** with deck statistics
-- **Confirmation modals** for destructive actions
-- **Professional form styling** with real-time validation
+- **Navigation system** met React Router
+- **Dashboard** met deck statistics
+- **Confirmation modals** voor destructive actions
+- **Professional form styling** met real-time validation
 
 ### ✅ Developer Experience
 
 - **TypeScript strict mode** with comprehensive type safety
 - **ESLint + Prettier** with automated formatting
 - **Comprehensive test suite** for CardContext and components
-- **CLAUDE.md documentation** for all major modules
+- **Professional documentation** - README, CLAUDE.md, PROJECT_FLOWCHART
 - **Git workflow** with feature branches and protected main
 
 ## Next Steps / Roadmap
