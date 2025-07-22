@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { getTestDeckStats, testDecks } from '../data'
+import { useAuth } from '../contexts/AuthContext'
 
 interface DashboardStats {
   totalDecks: number
@@ -10,15 +11,20 @@ interface DashboardStats {
 
 function Dashboard(): React.JSX.Element {
   const stats: DashboardStats = getTestDeckStats()
+  const { isFirstLogin } = useAuth()
 
   return (
     <div className="dashboard-container">
       <header className="dashboard-header">
         <h1 className="dashboard-title">
-          Welkom terug bij <span className="gradient-text">FlashCards</span>
+          {isFirstLogin ? 'Welkom bij' : 'Welkom terug bij'}{' '}
+          <span className="gradient-text">FlashCards</span>
         </h1>
         <p className="dashboard-subtitle">
-          Klaar om je kennis te vergroten? Start vandaag met leren!
+          {isFirstLogin 
+            ? 'Klaar om je kennis te vergroten? Start vandaag met leren!'
+            : 'Klaar om verder te gaan met leren? Zet je studie voort!'
+          }
         </p>
       </header>
 

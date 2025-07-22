@@ -21,6 +21,12 @@ const DecksPage = React.memo(function DecksPage(): React.JSX.Element {
         </p>
       </header>
 
+      <div className="page-actions-top">
+        <Link to="/decks/new" className="btn-primary">
+          ➕ Nieuw Deck Maken
+        </Link>
+      </div>
+
       <LoadingBoundary loading={loading} error={error}>
         {decks.length === 0 ? (
           <EmptyState
@@ -63,12 +69,6 @@ const DecksPage = React.memo(function DecksPage(): React.JSX.Element {
           </div>
         )}
       </LoadingBoundary>
-
-      <div className="page-actions">
-        <Link to="/decks/new" className="btn-primary">
-          ➕ Nieuw Deck Maken
-        </Link>
-      </div>
     </div>
   )
 })

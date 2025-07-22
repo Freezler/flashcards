@@ -161,8 +161,10 @@ function CardForm({
               onChange={e => handleInputChange('front', e.target.value)}
               placeholder="Vraag of term..."
               rows={3}
+              aria-describedby={errors.front ? 'front-error' : undefined}
+              aria-invalid={errors.front ? 'true' : 'false'}
             />
-            {errors.front && <span className="form-error">{errors.front}</span>}
+            {errors.front && <span className="form-error" id="front-error" role="alert">{errors.front}</span>}
           </div>
 
           <div className="form-group">
@@ -176,8 +178,10 @@ function CardForm({
               onChange={e => handleInputChange('back', e.target.value)}
               placeholder="Antwoord of definitie..."
               rows={3}
+              aria-describedby={errors.back ? 'back-error' : undefined}
+              aria-invalid={errors.back ? 'true' : 'false'}
             />
-            {errors.back && <span className="form-error">{errors.back}</span>}
+            {errors.back && <span className="form-error" id="back-error" role="alert">{errors.back}</span>}
           </div>
 
           <div className="form-row">
@@ -192,9 +196,11 @@ function CardForm({
                 value={formData.category}
                 onChange={e => handleInputChange('category', e.target.value)}
                 placeholder="bijv. Nederlands, Wiskunde..."
+                aria-describedby={errors.category ? 'category-error' : undefined}
+                aria-invalid={errors.category ? 'true' : 'false'}
               />
               {errors.category && (
-                <span className="form-error">{errors.category}</span>
+                <span className="form-error" id="category-error" role="alert">{errors.category}</span>
               )}
             </div>
 

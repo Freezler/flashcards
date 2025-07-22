@@ -10,12 +10,14 @@ interface User {
   id: string
   name: string
   email: string
+  isFirstLogin?: boolean
 }
 
 interface AuthContextType {
   user: User | null
   isAuthenticated: boolean
   isLoading: boolean
+  isFirstLogin: boolean
   login: (userData: User) => void
   logout: () => void
 }
@@ -48,8 +50,32 @@ export const AuthProvider = React.memo(function AuthProvider({
   }, [])
 
   const login = (userData: User) => {
-    setUser(userData)
-    localStorage.setItem('user', JSON.stringify(userData))
+    // Check if this user has logged in before by checking existing users storage
+    const existingUsers = localStorage.getItem('flashcards-users') || '[]'
+    let userList: string[] = []
+    
+    try {
+      userList = JSON.parse(existingUsers)
+    } catch (error) {
+      console.error('Error parsing users list:', error)
+    }
+
+    // Check if user ID already exists in the list
+    const isFirstLogin = !userList.includes(userData.id)
+    
+    if (isFirstLogin) {
+      // Add user to the list of users who have logged in
+      userList.push(userData.id)
+      localStorage.setItem('flashcards-users', JSON.stringify(userList))
+    }
+
+    const userWithLoginStatus = {
+      ...userData,
+      isFirstLogin,
+    }
+
+    setUser(userWithLoginStatus)
+    localStorage.setItem('user', JSON.stringify(userWithLoginStatus))
   }
 
   const logout = () => {
@@ -61,6 +87,7 @@ export const AuthProvider = React.memo(function AuthProvider({
     user,
     isAuthenticated: !!user,
     isLoading,
+    isFirstLogin: user?.isFirstLogin ?? false,
     login,
     logout,
   }
