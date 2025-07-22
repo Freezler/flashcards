@@ -1,6 +1,6 @@
 /**
  * Test Deck Data
- * Sample flashcard decks for development and testing
+ * Nederlandse flashcard decks voor ontwikkeling en testen
  */
 
 import { FlashCard, Deck, DifficultyLevel } from '../types'
@@ -36,159 +36,159 @@ const createFlashCard = (
   updatedAt: new Date(),
 })
 
-// React Fundamentals Deck
-const reactFundamentalsCards: FlashCard[] = [
+// Nederlandse Grammatica Deck
+const nederlandseGrammaticaCards: FlashCard[] = [
   createFlashCard(
-    'What is JSX?',
-    'JSX is a syntax extension for JavaScript that allows you to write HTML-like code in your JavaScript files. It gets transpiled to React.createElement() calls.',
+    'Wat is een zelfstandig naamwoord?',
+    'Een zelfstandig naamwoord is een woord dat een persoon, dier, ding of begrip benoemt. Bijvoorbeeld: hond, tafel, liefde, Maria.',
     DifficultyLevel.EASY,
-    'React',
-    ['jsx', 'syntax', 'fundamentals']
+    'Nederlands',
+    ['grammatica', 'woordsoorten', 'basis']
   ),
   createFlashCard(
-    'What is the difference between state and props?',
-    'Props are read-only data passed from parent to child components. State is mutable data that belongs to a component and can be changed using setState or useState.',
+    'Wat is het verschil tussen "de" en "het"?',
+    '"De" wordt gebruikt bij mannelijke en vrouwelijke woorden, "het" bij onzijdige woorden. Bijvoorbeeld: de man, de vrouw, het huis.',
     DifficultyLevel.MEDIUM,
-    'React',
-    ['state', 'props', 'data-flow']
+    'Nederlands',
+    ['lidwoorden', 'de', 'het']
   ),
   createFlashCard(
-    'How do you handle events in React?',
-    'React uses SyntheticEvents, which are wrappers around native events. You pass event handlers as props: onClick={handleClick}. Use arrow functions or bind to preserve context.',
-    DifficultyLevel.MEDIUM,
-    'React',
-    ['events', 'handlers', 'synthetic-events']
-  ),
-  createFlashCard(
-    'What is the useEffect hook used for?',
-    'useEffect allows you to perform side effects in functional components. It runs after every render by default, but you can control when it runs with a dependency array.',
+    'Wanneer gebruik je "dt" bij werkwoorden?',
+    'Je gebruikt "dt" bij de 2e en 3e persoon enkelvoud als de stam eindigt op een t-klank: jij werkt, hij/zij werkt.',
     DifficultyLevel.HARD,
-    'React',
-    ['hooks', 'useEffect', 'side-effects']
+    'Nederlands',
+    ['spelling', 'werkwoorden', 'dt']
   ),
   createFlashCard(
-    'What is React.memo()?',
-    "React.memo() is a higher-order component that memoizes the result of a component. It prevents unnecessary re-renders when props haven't changed.",
-    DifficultyLevel.HARD,
-    'React',
-    ['optimization', 'memo', 'performance']
+    'Wat is een bijvoeglijk naamwoord?',
+    'Een bijvoeglijk naamwoord beschrijft eigenschappen van een zelfstandig naamwoord. Bijvoorbeeld: groot, mooi, interessant.',
+    DifficultyLevel.EASY,
+    'Nederlands',
+    ['woordsoorten', 'bijvoeglijk', 'eigenschappen']
   ),
   createFlashCard(
-    'What are React Keys?',
-    'Keys help React identify which items have changed, added, or removed. They should be unique among siblings and stable across re-renders.',
+    'Wanneer gebruik je een hoofdletter?',
+    'Gebruik een hoofdletter aan het begin van een zin, bij eigennamen, aan het begin van directe rede, en bij de aanhef van een brief.',
     DifficultyLevel.MEDIUM,
-    'React',
-    ['keys', 'reconciliation', 'lists']
+    'Nederlands',
+    ['spelling', 'hoofdletters', 'regels']
+  ),
+  createFlashCard(
+    'Wat is de verleden tijd van "lopen"?',
+    'De verleden tijd van "lopen" is "liep" (enkelvoud) en "liepen" (meervoud). Voltooid deelwoord: gelopen.',
+    DifficultyLevel.MEDIUM,
+    'Nederlands',
+    ['werkwoorden', 'verleden-tijd', 'vervoeging']
   ),
 ]
 
-// TypeScript Basics Deck
-const typescriptBasicsCards: FlashCard[] = [
+// Geschiedenis van Nederland Deck
+const geschiedenisNederlandCards: FlashCard[] = [
   createFlashCard(
-    'What is TypeScript?',
-    'TypeScript is a superset of JavaScript that adds static type definitions. It helps catch errors at compile time and provides better IDE support.',
+    'Wanneer begon de Gouden Eeuw?',
+    'De Gouden Eeuw begon rond 1600 en duurde tot ongeveer 1700. Dit was de bloeitijd van de Nederlandse Republiek.',
     DifficultyLevel.EASY,
-    'TypeScript',
-    ['basics', 'types', 'javascript']
+    'Geschiedenis',
+    ['gouden-eeuw', '17e-eeuw', 'bloei']
   ),
   createFlashCard(
-    'What is the difference between interface and type?',
-    'Interfaces can be extended and merged, while types are more flexible and can represent unions, intersections, and computed types. Both can describe object shapes.',
+    'Wie was Willem van Oranje?',
+    'Willem van Oranje (1533-1584) was een Nederlandse edelman die leidde in de opstand tegen de Spaanse overheersing. Hij wordt ook wel "Vader des Vaderlands" genoemd.',
     DifficultyLevel.MEDIUM,
-    'TypeScript',
-    ['interface', 'type', 'definitions']
+    'Geschiedenis',
+    ['willem-oranje', 'opstand', 'vader-vaderland']
   ),
   createFlashCard(
-    'What are generic types?',
-    'Generics allow you to create reusable components that work with multiple types. They use angle brackets: function identity<T>(arg: T): T { return arg; }',
-    DifficultyLevel.HARD,
-    'TypeScript',
-    ['generics', 'reusability', 'functions']
-  ),
-  createFlashCard(
-    'What is the never type?',
-    "The never type represents values that never occur. It's used for functions that never return (throw errors or infinite loops) or unreachable code.",
-    DifficultyLevel.HARD,
-    'TypeScript',
-    ['never', 'types', 'advanced']
-  ),
-  createFlashCard(
-    'What are union types?',
-    'Union types allow a value to be one of several types: string | number. Use the pipe symbol (|) to separate types.',
+    'Wat was de VOC?',
+    'De VOC (Vereenigde Oost-Indische Compagnie) was een handelscompagnie opgericht in 1602 die handel dreef met Azië en een belangrijke rol speelde in de Gouden Eeuw.',
     DifficultyLevel.MEDIUM,
-    'TypeScript',
-    ['union', 'types', 'operators']
+    'Geschiedenis',
+    ['voc', 'handel', 'oost-indië']
+  ),
+  createFlashCard(
+    'Wanneer werd Nederland bevrijd in de Tweede Wereldoorlog?',
+    'Nederland werd grotendeels bevrijd op 5 mei 1945. Deze datum wordt jaarlijks gevierd als Bevrijdingsdag.',
+    DifficultyLevel.EASY,
+    'Geschiedenis',
+    ['bevrijding', 'wo2', '5-mei']
+  ),
+  createFlashCard(
+    'Wat was de Watersnoodramp?',
+    'De Watersnoodramp vond plaats op 1 februari 1953 toen dijken in Zeeland, Zuid-Holland en Noord-Brabant doorbraken. Dit leidde tot de Deltawerken.',
+    DifficultyLevel.HARD,
+    'Geschiedenis',
+    ['watersnood', '1953', 'deltawerken']
   ),
 ]
 
-// JavaScript ES6+ Deck
-const javascriptES6Cards: FlashCard[] = [
+// Nederlandse Geografie Deck
+const geografieNederlandCards: FlashCard[] = [
   createFlashCard(
-    'What is destructuring?',
-    'Destructuring allows you to extract values from arrays or objects into distinct variables: const {name, age} = person; const [first, second] = array;',
+    'Wat is de hoofdstad van Nederland?',
+    'Amsterdam is de hoofdstad van Nederland, maar Den Haag is de regeringszetel waar het parlement en de regering zetelen.',
     DifficultyLevel.EASY,
-    'JavaScript',
-    ['destructuring', 'es6', 'syntax']
+    'Geografie',
+    ['hoofdstad', 'amsterdam', 'den-haag']
   ),
   createFlashCard(
-    'What is the spread operator?',
-    'The spread operator (...) expands elements of an iterable (array, string, object) into individual elements. Used for copying and merging.',
+    'Welke provincies grenzen aan Duitsland?',
+    'De provincies die grenzen aan Duitsland zijn: Groningen, Drenthe, Overijssel, Gelderland en Limburg.',
     DifficultyLevel.MEDIUM,
-    'JavaScript',
-    ['spread', 'operator', 'arrays']
+    'Geografie',
+    ['provincies', 'duitsland', 'grenzen']
   ),
   createFlashCard(
-    'What is a Promise?',
-    'A Promise represents an asynchronous operation that will eventually complete or fail. It has three states: pending, fulfilled, or rejected.',
+    'Wat zijn de Waddeneilanden?',
+    'De Waddeneilanden zijn een keten van eilanden in de Waddenzee: Texel, Vlieland, Terschelling, Ameland en Schiermonnikoog.',
     DifficultyLevel.MEDIUM,
-    'JavaScript',
-    ['promises', 'async', 'asynchronous']
+    'Geografie',
+    ['waddeneilanden', 'waddenzee', 'eilanden']
   ),
   createFlashCard(
-    'What is the difference between async/await and Promises?',
-    'async/await is syntactic sugar over Promises. It makes asynchronous code look and behave more like synchronous code, making it easier to read and debug.',
+    'Wat is het hoogste punt van Nederland?',
+    'De Vaalserberg in Limburg is met 322,7 meter het hoogste punt van Nederland. Het ligt in de Drielandenpunt.',
     DifficultyLevel.HARD,
-    'JavaScript',
-    ['async', 'await', 'promises']
+    'Geografie',
+    ['vaalserberg', 'hoogste-punt', 'limburg']
   ),
   createFlashCard(
-    'What is a closure?',
-    'A closure is when a function retains access to variables from its outer scope even after the outer function has returned. It "closes over" the variables.',
-    DifficultyLevel.HARD,
-    'JavaScript',
-    ['closures', 'scope', 'functions']
+    'Welke rivieren stromen door Nederland?',
+    'De belangrijkste rivieren zijn de Rijn, Maas, IJssel en Schelde. Deze rivieren vormen de Nederlandse delta.',
+    DifficultyLevel.MEDIUM,
+    'Geografie',
+    ['rivieren', 'rijn', 'maas', 'ijssel']
   ),
 ]
 
-// Web Development Fundamentals Deck
-const webDevFundamentalsCards: FlashCard[] = [
+// Nederlandse Cultuur Deck
+const cultuurNederlandCards: FlashCard[] = [
   createFlashCard(
-    'What is the difference between HTTP and HTTPS?',
-    'HTTP is unsecured, while HTTPS (HTTP Secure) uses SSL/TLS encryption to secure data transmission between client and server.',
+    'Wie schilderde "De Nachtwacht"?',
+    'Rembrandt van Rijn schilderde "De Nachtwacht" in 1642. Het schilderij hangt in het Rijksmuseum in Amsterdam.',
     DifficultyLevel.EASY,
-    'Web Development',
-    ['http', 'https', 'security']
+    'Cultuur',
+    ['rembrandt', 'nachtwacht', 'schilderkunst']
   ),
   createFlashCard(
-    'What are HTTP status codes?',
-    'HTTP status codes indicate the result of an HTTP request: 2xx (success), 3xx (redirection), 4xx (client error), 5xx (server error).',
+    'Wat is typisch Nederlands eten?',
+    'Typisch Nederlands eten includes stroopwafels, bitterballen, erwtensoep, stamppot, haring en poffertjes.',
+    DifficultyLevel.EASY,
+    'Cultuur',
+    ['eten', 'stroopwafels', 'bitterballen']
+  ),
+  createFlashCard(
+    'Wanneer is Koningsdag?',
+    'Koningsdag wordt gevierd op 27 april, de verjaardag van Koning Willem-Alexander. Het was voorheen Koninginnedag op 30 april.',
     DifficultyLevel.MEDIUM,
-    'Web Development',
-    ['http', 'status-codes', 'api']
+    'Cultuur',
+    ['koningsdag', '27-april', 'feestdag']
   ),
   createFlashCard(
-    'What is CORS?',
-    'Cross-Origin Resource Sharing (CORS) is a mechanism that allows restricted resources on a web page to be requested from another domain.',
-    DifficultyLevel.HARD,
-    'Web Development',
-    ['cors', 'security', 'api']
-  ),
-  createFlashCard(
-    'What is the DOM?',
-    'The Document Object Model (DOM) is a programming interface for HTML documents. It represents the page as a tree of nodes that can be manipulated.',
+    'Wat is de nationale sport van Nederland?',
+    'Voetbal is de meest populaire sport, maar schaatsen wordt vaak gezien als de nationale sport vanwege de Elfstedentocht.',
     DifficultyLevel.MEDIUM,
-    'Web Development',
-    ['dom', 'html', 'manipulation']
+    'Cultuur',
+    ['sport', 'voetbal', 'schaatsen']
   ),
 ]
 
@@ -213,44 +213,44 @@ const createDeck = (
 export const testDecks: Deck[] = [
   {
     ...createDeck(
-      'React Fundamentals',
-      'Essential React concepts and patterns for building modern web applications',
-      reactFundamentalsCards
+      'Nederlandse Grammatica',
+      'Essentiële grammaticaregels en spelling voor correct Nederlands',
+      nederlandseGrammaticaCards
     ),
-    id: 'react-fundamentals',
+    id: 'nederlandse-grammatica',
   },
   {
     ...createDeck(
-      'TypeScript Basics',
-      'Core TypeScript concepts for type-safe JavaScript development',
-      typescriptBasicsCards
+      'Geschiedenis van Nederland',
+      'Belangrijke gebeurtenissen en figuren uit de Nederlandse geschiedenis',
+      geschiedenisNederlandCards
     ),
-    id: 'typescript-basics',
+    id: 'geschiedenis-nederland',
   },
   {
     ...createDeck(
-      'JavaScript ES6+',
-      'Modern JavaScript features and syntax improvements',
-      javascriptES6Cards
+      'Nederlandse Geografie',
+      'Kennis over de geografie, provincies en steden van Nederland',
+      geografieNederlandCards
     ),
-    id: 'javascript-es6',
+    id: 'geografie-nederland',
   },
   {
     ...createDeck(
-      'Web Development Fundamentals',
-      'Core concepts every web developer should know',
-      webDevFundamentalsCards
+      'Nederlandse Cultuur',
+      'Cultuur, tradities en typisch Nederlandse gewoonten',
+      cultuurNederlandCards
     ),
-    id: 'web-dev-fundamentals',
+    id: 'cultuur-nederland',
   },
 ]
 
 // Export individual decks for convenience
 export const [
-  reactFundamentalsDeck,
-  typescriptBasicsDeck,
-  javascriptES6Deck,
-  webDevFundamentalsDeck,
+  nederlandseGrammaticaDeck,
+  geschiedenisNederlandDeck,
+  geografieNederlandDeck,
+  cultuurNederlandDeck,
 ] = testDecks
 
 // Export statistics for dashboard
