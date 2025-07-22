@@ -447,9 +447,14 @@ body {
   /* Dark mode navigation transparency - only apply to dark mode */
   :root:not([data-theme]) .navigation {
     background: oklch(12% 0.02 240 / 0.75) !important;
+    /* Multiple backdrop-filter declarations for maximum compatibility */
     backdrop-filter: blur(20px) !important;
     -webkit-backdrop-filter: blur(20px) !important;
-    filter: blur(0px); /* Fallback for older browsers */
+    -moz-backdrop-filter: blur(20px) !important;
+    -ms-backdrop-filter: blur(20px) !important;
+    -o-backdrop-filter: blur(20px) !important;
+    /* Ensure the blur is always applied */
+    backdrop-filter: blur(20px) saturate(180%) !important;
     border-bottom: 1px solid oklch(40% 0.02 240 / 0.3) !important;
     box-shadow: 0 4px 24px oklch(10% 0.03 240 / 0.2) !important;
   }
@@ -468,9 +473,14 @@ body {
 .light-theme .navigation,
 :root:not(.dark-theme):not([data-theme='dark']) .navigation {
   background: oklch(98% 0.008 240 / 0.85) !important;
+  /* Multiple backdrop-filter declarations for maximum compatibility */
   backdrop-filter: blur(16px) !important;
   -webkit-backdrop-filter: blur(16px) !important;
-  filter: blur(0px); /* Fallback for older browsers */
+  -moz-backdrop-filter: blur(16px) !important;
+  -ms-backdrop-filter: blur(16px) !important;
+  -o-backdrop-filter: blur(16px) !important;
+  /* Ensure the blur is always applied */
+  backdrop-filter: blur(16px) saturate(180%) !important;
   border-bottom: 1px solid oklch(70% 0.02 240 / 0.3) !important;
   box-shadow: 0 4px 20px oklch(25% 0.03 240 / 0.05) !important;
 }
