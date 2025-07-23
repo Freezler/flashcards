@@ -1800,7 +1800,7 @@ button:focus-visible {
     oklch(92% 0.01 240) 100%
   );
   color: var(--btn-color);
-  border: 2px solid var(--btn-border);
+  border: 1px solid var(--btn-border);
   padding: var(--space-2xs) var(--space-s);
   border-radius: var(--radius-3);
   font-weight: 700;
@@ -1862,7 +1862,7 @@ button:focus-visible {
 .btn-secondary::after {
   content: '';
   position: absolute;
-  inset: 2px;
+  inset: 1px;
   background: var(--btn-bg);
   border-radius: var(--radius-3);
   z-index: -1;
