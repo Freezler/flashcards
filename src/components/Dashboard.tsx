@@ -308,9 +308,7 @@ function Dashboard(): React.JSX.Element {
                 <div className="deck-stats">
                   <div className="deck-stat">
                     <span className="stat-icon">🎯</span>
-                    <span>
-                      Accuratie: {accuracy}%
-                    </span>
+                    <span>{accuracy}%</span>
                   </div>
                   <div className="deck-stat">
                     <span className="stat-icon">⏱️</span>
@@ -319,7 +317,7 @@ function Dashboard(): React.JSX.Element {
                         ? 'Vandaag'
                         : lastStudied === 1
                           ? 'Gisteren'
-                          : `${lastStudied} dagen geleden`}
+                          : `${lastStudied}d geleden`}
                     </span>
                   </div>
                 </div>

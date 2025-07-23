@@ -1402,7 +1402,7 @@ button:focus-visible {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-s);
-  align-items: start;
+  align-items: stretch;
   justify-items: center;
 }
 
@@ -1422,8 +1422,19 @@ button:focus-visible {
 
 @media (min-width: 1200px) {
   .deck-grid {
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
     gap: var(--space-l);
+  }
+}
+
+/* Better desktop layout for deck stats */
+@media (min-width: 768px) {
+  .deck-stats {
+    gap: var(--space-m);
+  }
+  
+  .deck-stat {
+    font-size: var(--step--1);
   }
 }
 
@@ -1469,6 +1480,68 @@ button:focus-visible {
     margin: 0 auto;
     max-width: calc(100vw - 2rem);
     box-sizing: border-box;
+  }
+  
+  /* Stack deck stats vertically on mobile */
+  .deck-stats {
+    flex-direction: column;
+    gap: var(--space-xs);
+    padding: var(--space-xs);
+  }
+  
+  .deck-stat {
+    justify-content: flex-start;
+    font-size: var(--step--2);
+  }
+  
+  /* Reduce padding for enhanced deck cards on mobile */
+  .deck-card--enhanced {
+    padding: var(--space-m);
+    gap: var(--space-s);
+  }
+}
+
+/* Extra small mobile screens */
+@media (max-width: 480px) {
+  .deck-card {
+    padding: var(--space-xs);
+    max-width: calc(100vw - 1rem);
+  }
+  
+  .deck-card--enhanced {
+    padding: var(--space-s);
+    gap: var(--space-xs);
+  }
+  
+  .deck-stats {
+    padding: var(--space-2xs);
+  }
+  
+  .deck-stat {
+    font-size: var(--step--3);
+  }
+  
+  /* Make deck actions stack better on very small screens */
+  .deck-actions {
+    gap: var(--space-xs);
+  }
+  
+  .deck-actions .btn-primary,
+  .deck-actions .btn-secondary {
+    font-size: var(--step--2);
+    padding: var(--space-xs) var(--space-s);
+  }
+  
+  /* Wrap deck meta on very small screens */
+  .deck-meta {
+    flex-wrap: wrap;
+    gap: var(--space-2xs);
+    font-size: var(--step--3);
+  }
+  
+  .deck-category {
+    flex-basis: 100%;
+    margin-top: var(--space-2xs);
   }
 }
 
@@ -3830,6 +3903,8 @@ button:focus-visible {
   display: flex;
   flex-direction: column;
   gap: var(--space-m);
+  min-height: 280px;
+  height: 100%;
 }
 
 .deck-card--enhanced:hover {
@@ -3881,11 +3956,12 @@ button:focus-visible {
 
 .deck-stats {
   display: flex;
-  gap: var(--space-l);
+  gap: var(--space-s);
   padding: var(--space-s);
   background: var(--surface-2);
   border-radius: var(--radius-2);
   border: 1px solid var(--border-1);
+  flex-wrap: wrap;
 }
 
 .deck-stat {
@@ -3894,6 +3970,11 @@ button:focus-visible {
   gap: var(--space-xs);  
   font-size: var(--step--2);
   color: var(--text-2);
+  flex: 1;
+  min-width: 0; /* Allow text to shrink */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .stat-icon {
