@@ -3,7 +3,9 @@
 ## Performance Optimizations
 
 ### React.memo Usage
+
 All major components are wrapped with React.memo for performance:
+
 - `CardItem` - Memoized with custom comparison for card updates
 - `CardList` - Memoized with useCallback handlers
 - `DecksPage` - Memoized to prevent unnecessary re-renders
@@ -11,6 +13,7 @@ All major components are wrapped with React.memo for performance:
 - `LoadingBoundary` - Memoized loading/error boundary
 
 ### useCallback & useMemo Patterns
+
 ```typescript
 // Always memoize event handlers in list components
 const handleEdit = useCallback((card: FlashCard): void => {
@@ -32,6 +35,7 @@ const contextValue = useMemo((): CardContextType => ({
 ### `/components/common/` - Reusable UI Components
 
 **EmptyState** - Standardized empty states
+
 ```typescript
 interface EmptyStateProps {
   icon: string
@@ -46,6 +50,7 @@ interface EmptyStateProps {
 ```
 
 **LoadingBoundary** - Universal loading/error handling
+
 ```typescript
 interface LoadingBoundaryProps {
   loading: boolean
@@ -59,6 +64,7 @@ interface LoadingBoundaryProps {
 ### `/hooks/` - Custom Hooks
 
 **useFormValidation** - Reusable form validation logic
+
 ```typescript
 const { formData, errors, updateField, validateAll } = useFormValidation(
   initialData,
@@ -202,10 +208,10 @@ export default ComponentName
 
 ```typescript
 interface FlashCardProps {
-  card: FlashCardType          // The flashcard data
+  card: FlashCardType // The flashcard data
   onAnswer?: (cardId: string, isCorrect: boolean) => void
-  showActions?: boolean        // Show correct/incorrect buttons
-  autoFlip?: boolean          // Disable manual flipping
+  showActions?: boolean // Show correct/incorrect buttons
+  autoFlip?: boolean // Disable manual flipping
   size?: 'small' | 'medium' | 'large'
 }
 ```
@@ -237,22 +243,22 @@ interface FlashCardProps {
 
 ```typescript
 interface StudySessionProps {
-  deck: Deck                    // The deck to study
-  studyMode?: StudyMode        // SPACED or RANDOM
+  deck: Deck // The deck to study
+  studyMode?: StudyMode // SPACED or RANDOM
   onSessionComplete?: (results: StudySessionResults) => void
   onCardUpdate?: (card: FlashCardType) => void
-  maxCards?: number            // Max cards per session (default: 20)
-  timeLimit?: number           // Time limit in minutes (default: 30)
+  maxCards?: number // Max cards per session (default: 20)
+  timeLimit?: number // Time limit in minutes (default: 30)
 }
 
 interface StudySessionResults {
   cardsStudied: number
   correctAnswers: number
   incorrectAnswers: number
-  sessionDuration: number      // in seconds
+  sessionDuration: number // in seconds
   averageResponseTime: number
-  cardsGraduated: number      // cards that improved
-  perfectCards: number        // cards answered very easily
+  cardsGraduated: number // cards that improved
+  perfectCards: number // cards answered very easily
 }
 ```
 

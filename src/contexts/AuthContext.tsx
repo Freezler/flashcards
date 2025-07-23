@@ -35,16 +35,13 @@ export const AuthProvider = React.memo(function AuthProvider({
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    console.log('AuthProvider initializing...')
     // Check if user is logged in on app start
     const storedUser = localStorage.getItem('user')
     if (storedUser) {
       try {
         const userData = JSON.parse(storedUser)
-        console.log('Found stored user:', userData)
         setUser(userData)
       } catch (error) {
-        console.error('Error parsing stored user data:', error)
         localStorage.removeItem('user')
       }
     } else {
@@ -55,12 +52,10 @@ export const AuthProvider = React.memo(function AuthProvider({
         email: 'test@example.com',
         isFirstLogin: false,
       }
-      console.log('Creating test user:', testUser)
       setUser(testUser)
       localStorage.setItem('user', JSON.stringify(testUser))
     }
     setIsLoading(false)
-    console.log('AuthProvider initialization complete')
   }, [])
 
   const login = (userData: User) => {
@@ -70,8 +65,8 @@ export const AuthProvider = React.memo(function AuthProvider({
 
     try {
       userList = JSON.parse(existingUsers)
-    } catch (error) {
-      console.error('Error parsing users list:', error)
+    } catch {
+      // Handle JSON parsing error silently
     }
 
     // Check if user ID already exists in the list

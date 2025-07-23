@@ -74,14 +74,16 @@ export const shuffleArray = <T>(array: T[]): T[] => {
   - `updateCardWithSpacedRepetition()` - Update card with algorithm results
 
 **Features**:
+
 - ✅ **SM-2 Algorithm**: Proven spaced repetition with ease factors (1.3-2.5)
 - ✅ **Response Time Analysis**: Quality grading based on answer speed and difficulty
-- ✅ **Intelligent Scheduling**: Cards scheduled optimally for memory retention  
+- ✅ **Intelligent Scheduling**: Cards scheduled optimally for memory retention
 - ✅ **Priority Sorting**: Overdue cards first, then by difficulty for efficient learning
 - ✅ **Session Analytics**: Comprehensive stats and time estimation
 - ✅ **Difficulty Integration**: Initial ease factors based on card difficulty level
 
 **Interfaces**:
+
 ```typescript
 interface SpacedRepetitionResult {
   nextReviewDate: Date

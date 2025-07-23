@@ -25,8 +25,8 @@ interface ProgressEntry {
 ```typescript
 enum DifficultyLevel {
   EASY = 'easy',
-  MEDIUM = 'medium', 
-  HARD = 'hard'
+  MEDIUM = 'medium',
+  HARD = 'hard',
 }
 
 interface FlashCard {
@@ -88,7 +88,7 @@ interface StudyResult {
 enum Theme {
   LIGHT = 'light',
   DARK = 'dark',
-  SYSTEM = 'system'
+  SYSTEM = 'system',
 }
 
 interface User {

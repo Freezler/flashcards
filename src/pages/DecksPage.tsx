@@ -1,19 +1,32 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useCards } from '../contexts/CardContext'
 import { LoadingBoundary, EmptyState } from '../components/common'
 
 const DecksPage = React.memo(function DecksPage(): React.JSX.Element {
-  const { state } = useCards()
+  const { state, deleteDeck } = useCards()
   const { decks, loading, error } = state
   const navigate = useNavigate()
-  
-  // Debug logging
-  console.log('DecksPage - loading:', loading, 'error:', error, 'decks:', decks.length)
+  const [deckToDelete, setDeckToDelete] = useState<string | null>(null)
 
   const handleCreateNewDeck = useCallback(() => {
     navigate('/decks/new')
   }, [navigate])
+
+  const handleDeleteDeck = useCallback((deckId: string) => {
+    setDeckToDelete(deckId)
+  }, [])
+
+  const confirmDelete = useCallback(() => {
+    if (deckToDelete) {
+      deleteDeck(deckToDelete)
+      setDeckToDelete(null)
+    }
+  }, [deckToDelete, deleteDeck])
+
+  const cancelDelete = useCallback(() => {
+    setDeckToDelete(null)
+  }, [])
 
   return (
     <div className="dashboard-container">
@@ -66,12 +79,48 @@ const DecksPage = React.memo(function DecksPage(): React.JSX.Element {
                   <Link to={`/deck/${deck.id}`} className="btn-secondary">
                     Bekijk kaarten
                   </Link>
+                  <button
+                    onClick={() => handleDeleteDeck(deck.id)}
+                    className="btn-danger btn-danger--outline"
+                    title="Dit deck verwijderen"
+                  >
+                    🗑️
+                  </button>
                 </div>
               </div>
             ))}
           </div>
         )}
       </LoadingBoundary>
+
+      {/* Delete Confirmation Modal */}
+      {deckToDelete && (
+        <>
+          <div className="modal-overlay" onClick={cancelDelete} />
+          <div className="modal-content">
+            <div className="modal-header">
+              <h3 className="modal-title">Deck verwijderen</h3>
+            </div>
+            <div className="modal-body">
+              <p>
+                Weet je zeker dat je dit deck wilt verwijderen? Deze actie kan
+                niet ongedaan worden gemaakt.
+              </p>
+              <p className="modal-warning">
+                Alle kaarten in dit deck worden permanent verwijderd.
+              </p>
+            </div>
+            <div className="modal-actions">
+              <button onClick={cancelDelete} className="btn-secondary">
+                Annuleren
+              </button>
+              <button onClick={confirmDelete} className="btn-danger">
+                🗑️ Verwijderen
+              </button>
+            </div>
+          </div>
+        </>
+      )}
     </div>
   )
 })

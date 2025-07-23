@@ -16,6 +16,7 @@ Een moderne, intelligente flashcard applicatie gebouwd met React 19 en TypeScrip
 - **Interactieve Flashcards** - 3D flip animaties met difficulty-based styling
 - **Geavanceerde Study Sessions** - Progress tracking, response time analysis en session analytics
 - **Complete CRUD Operations** - Maak, bewerk en verwijder je eigen kaarten en decks
+- **Deck Deletion met Confirmatie** - Veilige deck verwijdering met confirmation modal
 
 ### 🎨 User Experience
 
@@ -28,7 +29,10 @@ Een moderne, intelligente flashcard applicatie gebouwd met React 19 en TypeScrip
 ### 🚀 Performance & Development
 
 - **React 19 Latest Features** - Met strict TypeScript en moderne hooks
-- **Optimized Bundle Size** - 262KB (82KB gzipped) met code splitting ready
+- **Code Splitting & Lazy Loading** - Optimized bundle met dynamische imports
+- **Optimized Bundle Size** - 259KB main + kleine page chunks (84KB gzipped)
+- **Console.log Free** - Production-ready zonder debug statements
+- **User-Select Disabled** - App-like experience zonder tekst selectie
 - **Comprehensive Test Suite** - Vitest met Testing Library
 - **ESLint + Prettier** - Automatische code formatting en linting
 - **Git Workflow** - Feature branches met protected main branch
@@ -82,7 +86,7 @@ Een moderne, intelligente flashcard applicatie gebouwd met React 19 en TypeScrip
 
 ### Installatie
 
-```bash
+````bash
 # Clone het project
 git clone https://github.com/FREEZLER/react19-flash-cards.git
 cd react19-flash-cards
@@ -120,11 +124,11 @@ npm run lint:fix
 
 # Format code
 npm run format
-```
+````
 
 ## 🏗️ Project Architectuur
 
-``` Project
+```Project
 flash-cards/
 ├── src/
 │   ├── components/          # React components
@@ -146,9 +150,11 @@ flash-cards/
 
 ## 🎯 Performance Metrics
 
-- **Bundle Size**: 262KB (82KB gzipped)
+- **Bundle Size**: 259KB main + separate chunks (84KB gzipped total)
+- **Code Splitting**: 8 lazy-loaded page chunks (2-13KB each)
 - **First Contentful Paint**: < 1s
 - **React.memo Optimized** - Prevented unnecessary re-renders
+- **Console-free Production** - All debug statements removed
 - **Lighthouse Score**: 95+ Performance, 100 Accessibility
 - **Mobile Responsive** - Optimized voor alle schermgroottes
 
@@ -210,8 +216,8 @@ Dit project is gelicenseerd onder de MIT License - zie het [LICENSE](LICENSE) be
 
 ## 👥 Authors
 
-- **FREEZLER** - *Initial development* - [@FREEZLER](https://github.com/FREEZLER)
-- **Claude AI** - *Development assistance* - AI-assisted development
+- **FREEZLER** - _Initial development_ - [@FREEZLER](https://github.com/FREEZLER)
+- **Claude AI** - _Development assistance_ - AI-assisted development
 
 ## 🙏 Acknowledgments
 

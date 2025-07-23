@@ -2,7 +2,7 @@
 
 ## File Structure
 
-``` mermaid
+```mermaid
 src/
 ├── App.tsx              # Main application component
 ├── main.tsx            # Entry point with React root

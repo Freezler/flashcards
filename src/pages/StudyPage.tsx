@@ -24,13 +24,11 @@ function StudyPage(): React.JSX.Element {
     )
   }
 
-  const handleSessionComplete = (results: StudySessionResults) => {
-    console.log('Study session completed:', results)
+  const handleSessionComplete = (_results: StudySessionResults) => {
     // Here we could save results to local storage or send to a backend
   }
 
-  const handleCardUpdate = (updatedCard: FlashCardType) => {
-    console.log('Card updated with spaced repetition data:', updatedCard)
+  const handleCardUpdate = (_updatedCard: FlashCardType) => {
     // Here we could update the card in our data store
   }
 

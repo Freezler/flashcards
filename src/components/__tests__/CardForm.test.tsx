@@ -1,9 +1,9 @@
-import { describe, it, expect, vi } from 'vitest'
 import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { render } from '../../test/test-utils'
-import CardForm from '../CardForm'
 import { DifficultyLevel } from '../../types'
+import CardForm from '../CardForm'
 
 const mockCard = {
   id: '1',
@@ -18,6 +18,10 @@ const mockCard = {
   repetitions: 0,
   easeFactor: 2.5,
   interval: 0,
+  timesReviewed: 0,
+  correctCount: 0,
+  incorrectCount: 0,
+  updatedAt: new Date(),
 }
 
 describe('CardForm', () => {

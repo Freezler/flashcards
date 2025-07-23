@@ -148,11 +148,11 @@ export function CardProvider({
       localStorage.removeItem('flashcard-decks')
       localStorage.removeItem('flashcard-data-version')
 
-      console.log('Loading fresh Dutch flashcard data...', testDecks.length, 'decks')
+      // Loading fresh Dutch flashcard data
       dispatch({ type: 'SET_DECKS', payload: testDecks })
       localStorage.setItem('flashcard-data-version', '2.1-nl')
-    } catch (error) {
-      console.error('Failed to load decks:', error)
+    } catch (_error) {
+      // Failed to load decks - handle error silently
       dispatch({ type: 'SET_ERROR', payload: 'Failed to load data' })
       dispatch({ type: 'SET_DECKS', payload: testDecks })
     }
@@ -163,8 +163,8 @@ export function CardProvider({
     if (!state.loading && state.decks.length > 0) {
       try {
         localStorage.setItem('flashcard-decks', JSON.stringify(state.decks))
-      } catch (error) {
-        console.error('Failed to save decks to localStorage:', error)
+      } catch (_error) {
+        // Failed to save decks to localStorage - continue silently
         dispatch({ type: 'SET_ERROR', payload: 'Failed to save data' })
       }
     }

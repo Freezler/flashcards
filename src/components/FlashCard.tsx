@@ -48,7 +48,6 @@ const FlashCard = function FlashCard({
     // Optional sound feedback
     if (enableSound && !isFlipped) {
       // Could integrate with Web Audio API for card flip sound
-      console.log('🔊 Card flip sound')
     }
   }, [autoFlip, isFlipped, flipStartTime, enableSound])
 
@@ -63,7 +62,6 @@ const FlashCard = function FlashCard({
 
     // Optional sound feedback
     if (enableSound) {
-      console.log('🔊 Card reveal sound')
     }
   }, [enableSound])
 
@@ -92,7 +90,6 @@ const FlashCard = function FlashCard({
 
       // Optional sound feedback
       if (enableSound) {
-        console.log(`🔊 ${isCorrect ? 'Success' : 'Error'} sound`)
       }
 
       // Start transitioning state to hide content

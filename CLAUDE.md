@@ -33,7 +33,7 @@ Een moderne, intelligente React 19 flashcard applicatie gebouwd met TypeScript, 
 - **Branch**: `main` (production ready)
 - **Status**: Complete CRUD functionaliteit, performance optimizations, responsive design
 - **Completed**: Nederlandse content migration, React.memo optimization, responsive layouts
-- **Bundle Size**: 262KB (82KB gzipped) - geoptimaliseerd en performance-ready
+- **Bundle Size**: 259KB main + separate chunks (84KB gzipped total) - code splitting implemented
 - **Features**: 6 Nederlandse decks, 94+ kaarten, spaced repetition, mobile-first design
 
 ## Git Workflow
@@ -42,9 +42,9 @@ Een moderne, intelligente React 19 flashcard applicatie gebouwd met TypeScript, 
 
 - **main**: Production-ready code, protected branch
 - **development**: Integration branch for features
-- **feature/***: Individual feature branches (e.g., `feature/flashcard-component`)
-- **release/***: Release preparation branches
-- **hotfix/***: Critical production fixes
+- **feature/\***: Individual feature branches (e.g., `feature/flashcard-component`)
+- **release/\***: Release preparation branches
+- **hotfix/\***: Critical production fixes
 
 ### Development Process
 
@@ -63,7 +63,7 @@ Een moderne, intelligente React 19 flashcard applicatie gebouwd met TypeScript, 
 
 ## Project Architecture
 
-``` project
+```project
 /
 ├── CLAUDE.md                    # Project-wide context (this file)
 ├── PROJECT_FLOWCHART.md         # Visual project structure

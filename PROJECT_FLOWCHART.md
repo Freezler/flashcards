@@ -156,18 +156,18 @@ graph TD
 
 ## 🎯 Feature Completion Matrix
 
-| Feature Category | Status | Progress | Notes |
-|------------------|---------|----------|-------|
-| **Core Flashcards** | ✅ Complete | 100% | 3D animations, difficulty styling |
-| **Nederlandse Content** | ✅ Complete | 100% | 6 decks, 94+ kaarten |
-| **Spaced Repetition** | ✅ Complete | 100% | SM-2 algorithm implemented |
-| **Responsive Design** | ✅ Complete | 100% | Mobile-first, clamp() typography |
-| **CRUD Operations** | ✅ Complete | 100% | Create, edit, delete cards/decks |
-| **Study Analytics** | ✅ Complete | 100% | Progress tracking, session results |
-| **Performance Opt** | ✅ Complete | 100% | React.memo, bundle optimization |
-| **Testing Suite** | 🔄 Partial | 70% | Core components tested |
-| **PWA Features** | ❌ Planned | 0% | Service worker, offline support |
-| **Advanced Analytics** | ❌ Planned | 0% | Visual charts, learning insights |
+| Feature Category        | Status      | Progress | Notes                              |
+| ----------------------- | ----------- | -------- | ---------------------------------- |
+| **Core Flashcards**     | ✅ Complete | 100%     | 3D animations, difficulty styling  |
+| **Nederlandse Content** | ✅ Complete | 100%     | 6 decks, 94+ kaarten               |
+| **Spaced Repetition**   | ✅ Complete | 100%     | SM-2 algorithm implemented         |
+| **Responsive Design**   | ✅ Complete | 100%     | Mobile-first, clamp() typography   |
+| **CRUD Operations**     | ✅ Complete | 100%     | Create, edit, delete cards/decks   |
+| **Study Analytics**     | ✅ Complete | 100%     | Progress tracking, session results |
+| **Performance Opt**     | ✅ Complete | 100%     | React.memo, bundle optimization    |
+| **Testing Suite**       | 🔄 Partial  | 70%      | Core components tested             |
+| **PWA Features**        | ❌ Planned  | 0%       | Service worker, offline support    |
+| **Advanced Analytics**  | ❌ Planned  | 0%       | Visual charts, learning insights   |
 
 ## 🛣️ Development Milestones
 
@@ -215,15 +215,15 @@ graph TD
 
 ## 📈 Performance Benchmarks
 
-| Metric | Target | Current | Status |
-|---------|---------|---------|---------|
-| Bundle Size | < 300KB | 262KB | ✅ Excellent |
-| Gzipped Size | < 100KB | 82KB | ✅ Excellent |
-| First Paint | < 1.5s | < 1s | ✅ Excellent |
-| Lighthouse Performance | > 90 | 95+ | ✅ Excellent |
-| Lighthouse Accessibility | 100 | 100 | ✅ Perfect |
-| Mobile Responsive | 100% | 100% | ✅ Perfect |
+| Metric                   | Target  | Current | Status       |
+| ------------------------ | ------- | ------- | ------------ |
+| Bundle Size              | < 300KB | 262KB   | ✅ Excellent |
+| Gzipped Size             | < 100KB | 82KB    | ✅ Excellent |
+| First Paint              | < 1.5s  | < 1s    | ✅ Excellent |
+| Lighthouse Performance   | > 90    | 95+     | ✅ Excellent |
+| Lighthouse Accessibility | 100     | 100     | ✅ Perfect   |
+| Mobile Responsive        | 100%    | 100%    | ✅ Perfect   |
 
 ---
 
-- *Last Updated: January 2025 - Nederlandse Flashcards App v1.0*
+- _Last Updated: January 2025 - Nederlandse Flashcards App v1.0_

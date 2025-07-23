@@ -37,10 +37,12 @@ Deze map bevat Nederlandse voorbeelddata voor ontwikkeling en testen. Alle data 
 ## Geëxporteerde Functies
 
 ### Basis Data
+
 - `testDecks`: Array van alle voorbeeld decks
 - `nederlandseGrammaticaDeck`, `geschiedenisNederlandDeck`, etc.: Individuele decks
 
 ### Statistieken
+
 - `getTestDeckStats()`: Retourneert dashboard statistieken object
 - `getCardsByDifficulty(difficulty)`: Filter kaarten op moeilijkheidsgraad
 - `getCardsByCategory(category)`: Filter kaarten op categorie
