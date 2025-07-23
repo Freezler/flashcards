@@ -2026,7 +2026,6 @@ button:focus-visible {
 /* Hide content during card transitions */
 .flashcard--transitioning .flashcard__content,
 .flashcard--transitioning .flashcard__question,
-.flashcard--transitioning .flashcard__answer,
 .flashcard--transitioning .flashcard__tags,
 .flashcard--transitioning .flashcard__category {
   opacity: 0;
