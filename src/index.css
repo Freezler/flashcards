@@ -2032,6 +2032,14 @@ button:focus-visible {
   transition: opacity 0.2s ease-out;
 }
 
+/* Ensure back side content is visible and properly styled */
+.flashcard--transitioning .flashcard__back .flashcard__content,
+.flashcard--transitioning .flashcard__back .flashcard__answer {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+}
+
 /* Card sides with Jhey's depth mastery */
 .flashcard__front,
 .flashcard__back {
@@ -2070,10 +2078,60 @@ button:focus-visible {
   overflow: hidden;
 }
 
+.flashcard__front {
+  transform: rotateY(0deg);
+}
+
 .flashcard__back {
   transform: rotateY(180deg);
   background: var(--surface-1);
   border: 1px solid var(--border-1);
+}
+
+/* Force show correct side regardless of 3D math */
+.flashcard:not(.flashcard--flipped):not(.flashcard--revealing) .flashcard__front {
+  display: block;
+  opacity: 1;
+  z-index: 2;
+}
+
+.flashcard:not(.flashcard--flipped):not(.flashcard--revealing) .flashcard__back {
+  display: none;
+}
+
+.flashcard.flashcard--flipped .flashcard__front,
+.flashcard.flashcard--revealing .flashcard__front {
+  display: none;
+}
+
+.flashcard.flashcard--flipped .flashcard__back,
+.flashcard.flashcard--revealing .flashcard__back {
+  display: block !important;
+  opacity: 1 !important;
+  z-index: 2;
+  transform: rotateY(0deg) scaleX(-1) !important;
+}
+
+/* Strengthen back side text visibility */
+.flashcard__back .flashcard__answer {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  color: var(--difficulty-color, var(--text-1)) !important;
+  font-weight: 600 !important;
+}
+
+/* Ensure back side answer is always visible regardless of state */
+.flashcard--flipped .flashcard__back .flashcard__answer,
+.flashcard--revealing .flashcard__back .flashcard__answer,
+.flashcard--transitioning .flashcard__back .flashcard__answer,
+.flashcard--hovered .flashcard__back .flashcard__answer {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  /* Force hardware acceleration and proper rendering */
+  transform: translateZ(0);
+  will-change: auto;
 }
 
 /* Header with floating difficulty badge */
@@ -2147,9 +2205,27 @@ button:focus-visible {
 
 .flashcard__answer {
   font-weight: 600;
-  color: var(--difficulty-color, var(--text-1));
+  color: var(--difficulty-color, #333333) !important;
   opacity: 1 !important;
   display: block !important;
+  font-size: var(--step-1) !important;
+  line-height: 1.4 !important;
+}
+
+/* Ensure back side answer is always visible regardless of state */
+.flashcard--flipped .flashcard__back .flashcard__answer,
+.flashcard--revealing .flashcard__back .flashcard__answer,
+.flashcard--transitioning .flashcard__back .flashcard__answer,
+.flashcard--hovered .flashcard__back .flashcard__answer,
+.flashcard__back .flashcard__answer {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  color: var(--difficulty-color, var(--text-1)) !important;
+  font-weight: 600 !important;
+  /* Force hardware acceleration and proper rendering */
+  transform: translateZ(0);
+  will-change: auto;
 }
 
 /* Footer with tags and actions */

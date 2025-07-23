@@ -100,10 +100,7 @@ const FlashCard = function FlashCard({
       setTimeout(() => {
         setIsFlipped(false)
         setFlipStartTime(null)
-        // Clear transitioning state after flip completes
-        setTimeout(() => {
-          setIsTransitioning(false)
-        }, 600) // Wait for flip animation to complete
+        setIsTransitioning(false)
       }, 1000)
     },
     [card.id, onAnswer, flipStartTime, enableSound]

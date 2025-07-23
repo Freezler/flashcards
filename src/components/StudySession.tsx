@@ -442,12 +442,14 @@ function StudySession({
       </div>
 
       <div className="study-session-main">
-        <FlashCard
-          card={currentCard}
-          onAnswer={handleAnswer}
-          showActions={true}
-          size="large"
-        />
+        {currentCard && (
+          <FlashCard
+            card={currentCard}
+            onAnswer={handleAnswer}
+            showActions={true}
+            size="large"
+          />
+        )}
       </div>
 
       <div className="study-session-controls">
