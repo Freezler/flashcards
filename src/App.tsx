@@ -1,10 +1,10 @@
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import { lazy, Suspense } from 'react'
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
+import Dashboard from './components/Dashboard'
 import Navigation from './components/Navigation'
 import { ScrollToTop } from './components/common'
 import { AuthProvider, useAuth } from './contexts/AuthContext'
 import { CardProvider } from './contexts/CardContext'
-import Dashboard from './components/Dashboard'
 
 // Lazy load non-critical components for better performance
 const DeckPage = lazy(() => import('./pages/DeckPage'))
