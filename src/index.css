@@ -42,8 +42,15 @@
 }
 
 /* Specific elements that benefit most from pretty text wrapping */
-h1, h2, h3, h4, h5, h6,
-p, blockquote, li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+li,
 .flashcard__question,
 .flashcard__answer,
 .nav-label,
@@ -56,7 +63,8 @@ p, blockquote, li,
 }
 
 /* Prevent text-wrap on elements where it's not needed */
-code, pre, 
+code,
+pre,
 .nav-icon,
 .stat-number,
 .flashcard__difficulty,
@@ -112,7 +120,7 @@ select:focus,
 .stat-card:focus-visible,
 .action-card:focus-visible {
   transform: translateY(-2px);
-  box-shadow: 
+  box-shadow:
     0 0 0 4px oklch(from var(--primary-500) l c h / 0.2),
     0 8px 25px oklch(from var(--surface-1) l c h / 0.15),
     0 4px 10px oklch(from var(--surface-1) l c h / 0.1);
@@ -124,8 +132,8 @@ select:focus,
   cursor: pointer;
 }
 
-.stat-card[role="button"],
-.action-card[role="button"] {
+.stat-card[role='button'],
+.action-card[role='button'] {
   background: transparent;
   border: none;
   font: inherit;
@@ -135,7 +143,7 @@ select:focus,
 }
 
 /* Hide decorative elements from screen readers */
-[aria-hidden="true"] {
+[aria-hidden='true'] {
   pointer-events: none;
 }
 
@@ -146,11 +154,11 @@ select:focus,
     transform: none;
     transition: none;
   }
-  
+
   .skip-link {
     transition: none;
   }
-  
+
   /* Disable all animations for users who prefer reduced motion */
   *,
   *::before,
@@ -163,7 +171,7 @@ select:focus,
 }
 
 /* Focus management for dynamic content */
-[role="alert"][aria-live="assertive"] {
+[role='alert'][aria-live='assertive'] {
   position: relative;
 }
 
@@ -173,10 +181,10 @@ input,
 select,
 textarea,
 a,
-[tabindex="0"],
-[role="button"],
-[role="tab"],
-[role="menuitem"] {
+[tabindex='0'],
+[role='button'],
+[role='tab'],
+[role='menuitem'] {
   position: relative;
 }
 
@@ -190,36 +198,43 @@ a,
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
-  button, 
-  input, 
-  textarea, 
+  button,
+  input,
+  textarea,
   select {
     border: 2px solid;
   }
-  
+
   /* Ensure high contrast for interactive elements */
   button {
     background: ButtonFace;
     color: ButtonText;
     border-color: ButtonBorder;
   }
-  
-  button:hover, button:focus {
+
+  button:hover,
+  button:focus {
     background: Highlight;
     color: HighlightText;
   }
-  
-  a:link { color: LinkText; }
-  a:visited { color: VisitedText; }
-  a:active { color: ActiveText; }
-  
+
+  a:link {
+    color: LinkText;
+  }
+  a:visited {
+    color: VisitedText;
+  }
+  a:active {
+    color: ActiveText;
+  }
+
   /* Force high contrast for custom elements */
   .flashcard {
     border: 2px solid;
     background: Canvas;
     color: CanvasText;
   }
-  
+
   .nav-item.active {
     background: Highlight;
     color: HighlightText;
@@ -260,7 +275,8 @@ a {
   color: oklch(40% 0.15 240); /* High contrast blue */
 }
 
-a:hover, a:focus {
+a:hover,
+a:focus {
   color: oklch(30% 0.18 240); /* Darker on hover */
   text-decoration: underline;
 }
@@ -520,21 +536,23 @@ body {
   /* === PROFESSIONAL OKLCH THEMING SYSTEM === */
 
   /* Beautiful Light Theme Gradients */
-  --surface-1: linear-gradient(135deg, 
-    oklch(100% 0 0) 0%, 
+  --surface-1: linear-gradient(
+    135deg,
+    oklch(100% 0 0) 0%,
     oklch(98% 0.008 240) 25%,
     oklch(99% 0.005 260) 50%,
     oklch(97% 0.012 220) 75%,
     oklch(98.5% 0.006 250) 100%
   ); /* Subtle blue-white gradient */
-  
-  --surface-2: linear-gradient(135deg,
+
+  --surface-2: linear-gradient(
+    135deg,
     oklch(98% 0.005 240) 0%,
     oklch(96% 0.012 260) 30%,
     oklch(97% 0.008 220) 70%,
     oklch(95% 0.015 240) 100%
   ); /* Whisper blue-gray gradient */
-  
+
   --surface-3: oklch(96% 0.01 240); /* Light blue-gray */
   --surface-4: oklch(94% 0.015 240); /* Soft blue-gray */
   --surface-raised: oklch(100% 0 0); /* Elevated elements */
@@ -574,7 +592,9 @@ body {
   /* Semantic colors - Success, Warning, Error */
   --success-50: oklch(97% 0.02 160);
   --success-100: oklch(93% 0.05 160);
-  --success-500: oklch(45% 0.15 160); /* Success green - darker for better contrast */
+  --success-500: oklch(
+    45% 0.15 160
+  ); /* Success green - darker for better contrast */
   --success-600: oklch(55% 0.17 160);
   --success-700: oklch(45% 0.18 160);
 
@@ -631,21 +651,23 @@ body {
 [data-theme='dark'],
 .dark-theme {
   /* Beautiful Dark Theme Gradients */
-  --surface-1: linear-gradient(135deg,
+  --surface-1: linear-gradient(
+    135deg,
     oklch(15% 0.01 240) 0%,
     oklch(17% 0.015 260) 25%,
     oklch(16% 0.012 220) 50%,
     oklch(18% 0.018 250) 75%,
     oklch(16.5% 0.013 240) 100%
   ); /* Deep blue-dark gradient */
-  
-  --surface-2: linear-gradient(135deg,
+
+  --surface-2: linear-gradient(
+    135deg,
     oklch(18% 0.015 240) 0%,
     oklch(20% 0.02 260) 30%,
     oklch(19% 0.017 220) 70%,
     oklch(21% 0.022 240) 100%
   ); /* Slightly lighter dark gradient */
-  
+
   --surface-3: oklch(22% 0.02 240); /* Card backgrounds */
   --surface-4: oklch(26% 0.025 240); /* Elevated elements */
   --surface-raised: oklch(20% 0.015 240); /* Modals, dropdowns */
@@ -749,21 +771,23 @@ body {
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
     /* Beautiful Auto Dark Theme Gradients */
-    --surface-1: linear-gradient(135deg,
+    --surface-1: linear-gradient(
+      135deg,
       oklch(15% 0.01 240) 0%,
       oklch(17% 0.015 260) 25%,
       oklch(16% 0.012 220) 50%,
       oklch(18% 0.018 250) 75%,
       oklch(16.5% 0.013 240) 100%
     ); /* Deep blue-dark gradient */
-    
-    --surface-2: linear-gradient(135deg,
+
+    --surface-2: linear-gradient(
+      135deg,
       oklch(18% 0.015 240) 0%,
       oklch(20% 0.02 260) 30%,
       oklch(19% 0.017 220) 70%,
       oklch(21% 0.022 240) 100%
     ); /* Slightly lighter dark gradient */
-    
+
     --surface-3: oklch(22% 0.02 240); /* Card backgrounds */
     --surface-4: oklch(26% 0.025 240); /* Elevated elements */
     --surface-raised: oklch(20% 0.015 240); /* Modals, dropdowns */
@@ -2264,7 +2288,7 @@ button:focus-visible {
   min-height: auto !important;
   text-align: center;
   border-radius: var(--radius-3) !important;
-  
+
   /* Subtle styling - just border, no background */
   background: transparent !important;
   color: var(--text-3) !important;
@@ -2409,12 +2433,12 @@ button:focus-visible {
     radial-gradient(
       ellipse at top left,
       var(--difficulty-bg) 0%,
-      var(--surface-1) 40%
+      oklch(11.481% 0.02207 331.711) 40%
     ),
     linear-gradient(
       135deg,
-      var(--gradient-from) 0%,
-      var(--gradient-accent) 100%
+      oklch(8.011% 0.01642 326.946) 0%,
+      oklch(98% 0.008 240) 100%
     );
 
   border: 2px solid var(--difficulty-color) / 0.2;
@@ -2476,12 +2500,16 @@ button:focus-visible {
 }
 
 /* Back→Front flip: smooth content transition */
-.flashcard:not(.flashcard--flipped):not(.flashcard--revealing) .flashcard__back .flashcard__content {
+.flashcard:not(.flashcard--flipped):not(.flashcard--revealing)
+  .flashcard__back
+  .flashcard__content {
   opacity: 0;
   transition-delay: 0.35s; /* Hide back content when card is edge-on */
 }
 
-.flashcard:not(.flashcard--flipped):not(.flashcard--revealing) .flashcard__front .flashcard__content {
+.flashcard:not(.flashcard--flipped):not(.flashcard--revealing)
+  .flashcard__front
+  .flashcard__content {
   opacity: 1;
   transition-delay: 0.45s; /* Show front content when flip is mostly complete */
 }
@@ -3326,7 +3354,7 @@ button:focus-visible {
     padding: var(--space-s) var(--space-xs);
     gap: var(--space-s);
   }
-  
+
   .card-counter {
     font-size: var(--step--1);
     padding: var(--space-2xs) var(--space-xs);
@@ -5681,7 +5709,6 @@ textarea,
   background: var(--surface-1);
   border: 1px solid var(--border-1);
 }
-
 
 /* Modal Styles */
 .modal-overlay {

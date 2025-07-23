@@ -3,6 +3,7 @@ import { getTestDeckStats } from '../data'
 import { useAuth } from '../contexts/AuthContext'
 import { useCards } from '../contexts/CardContext'
 import { useState, useEffect, useMemo } from 'react'
+import { useSEO } from '../hooks/useSEO'
 
 interface DashboardStats {
   totalDecks: number
@@ -76,6 +77,14 @@ function Dashboard(): React.JSX.Element {
     if (hour < 17) return 'Goedemiddag'
     return 'Goedenavond'
   }
+
+  // SEO optimalisatie voor homepage
+  useSEO({
+    title: 'Dashboard',
+    description: `Persoonlijk dashboard voor Nederlandse flashcards. ${stats.totalDecks} decks beschikbaar met ${stats.totalCards} kaarten. Start je leertraject vandaag!`,
+    keywords: 'dashboard, persoonlijk, leren, voortgang, nederlandse flashcards, spaced repetition',
+    url: 'https://nederlandse-flashcards.vercel.app/'
+  })
 
   return (
     <main className="dashboard-container" role="main" aria-labelledby="dashboard-title">

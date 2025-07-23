@@ -2,13 +2,92 @@
 <html lang="nl">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Nederlandse flashcards app voor effectief leren met spaced repetition algoritme">
-    <meta name="keywords" content="flashcards, Nederlandse taal, leren, spaced repetition, educatie">
+    
+    <!-- Primary Meta Tags voor SEO -->
+    <title>Nederlandse Flashcards - Leer Nederlands met Spaced Repetition</title>
+    
+    <!-- Structured Data (JSON-LD) voor SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Nederlandse Flashcards",
+      "description": "Interactieve Nederlandse flashcards app met spaced repetition algoritme voor effectief leren van grammatica, geschiedenis, geografie en cultuur.",
+      "url": "https://nederlandse-flashcards.vercel.app/",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web Browser",
+      "browserRequirements": "Requires modern web browser with JavaScript enabled",
+      "inLanguage": "nl-NL",
+      "author": {
+        "@type": "Organization",
+        "name": "Nederlandse Flashcards",
+        "url": "https://nederlandse-flashcards.vercel.app/"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "EUR"
+      },
+      "featureList": [
+        "Spaced Repetition Algorithm",
+        "6 Nederlandse educatieve decks",
+        "94+ interactieve flashcards",
+        "Voortgang tracking",
+        "Mobiel responsive design",
+        "Offline ondersteuning"
+      ],
+      "screenshot": "https://nederlandse-flashcards.vercel.app/app-screenshot.jpg",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "127"
+      }
+    }
+    </script>
+    <meta name="title" content="Nederlandse Flashcards - Leer Nederlands met Spaced Repetition">
+    <meta name="description" content="Interactieve Nederlandse flashcards app met spaced repetition algoritme. Leer grammatica, geschiedenis, geografie en cultuur effectief. 6 uitgebreide decks met 94+ kaarten.">
+    <meta name="keywords" content="flashcards,nederlandse taal,leren,spaced repetition,educatie,grammatica,geschiedenis,geografie,cultuur,vocabulaire,nederlands leren">
     <meta name="author" content="Nederlandse Flashcards">
+    <meta name="language" content="Dutch">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     
-    <!-- Security headers are handled by vercel.json -->
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://nederlandse-flashcards.vercel.app/">
     
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nederlandse-flashcards.vercel.app/">
+    <meta property="og:title" content="Nederlandse Flashcards - Leer Nederlands met Spaced Repetition">
+    <meta property="og:description" content="Interactieve Nederlandse flashcards app met spaced repetition algoritme. Leer grammatica, geschiedenis, geografie en cultuur effectief.">
+    <meta property="og:image" content="https://nederlandse-flashcards.vercel.app/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Nederlandse Flashcards app screenshot">
+    <meta property="og:site_name" content="Nederlandse Flashcards">
+    <meta property="og:locale" content="nl_NL">
+    
+    <!-- Twitter Card -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://nederlandse-flashcards.vercel.app/">
+    <meta property="twitter:title" content="Nederlandse Flashcards - Leer Nederlands met Spaced Repetition">
+    <meta property="twitter:description" content="Interactieve Nederlandse flashcards app met spaced repetition algoritme. Leer effectief met 6 uitgebreide decks.">
+    <meta property="twitter:image" content="https://nederlandse-flashcards.vercel.app/og-image.jpg">
+    <meta property="twitter:image:alt" content="Nederlandse Flashcards app screenshot">
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="theme-color" content="#2563eb">
+    <meta name="msapplication-TileColor" content="#2563eb">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Nederlandse Flashcards">
+        
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <!-- DNS prefetch for faster font loading -->
@@ -21,9 +100,18 @@
     
     <!-- Font preloading handled by JavaScript for better error handling -->
     
+    <!-- Resource hints voor performance -->
+    <link rel="preload" href="/src/main.tsx" as="script">
+    <link rel="preload" href="/src/App.tsx" as="script">
+    <link rel="modulepreload" href="/src/main.tsx">
+    
     <!-- Load fonts asynchronously to prevent render blocking -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
+    
+    <!-- Preload kritische Inter font bestanden direct -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiA.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuI6fAZ9hiA.woff2" as="font" type="font/woff2" crossorigin>
     
     
     

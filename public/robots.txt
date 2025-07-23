@@ -1,0 +1,28 @@
+# Robots.txt voor Nederlandse Flashcards
+# https://nederlandse-flashcards.vercel.app/robots.txt
+
+User-agent: *
+Allow: /
+
+# Sitemap locatie
+Sitemap: https://nederlandse-flashcards.vercel.app/sitemap.xml
+
+# Crawl delay (optioneel - 1 seconde tussen requests)
+Crawl-delay: 1
+
+# Specifieke regelgeving voor verschillende bots
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Blokkeer toegang tot admin/test directories (indien van toepassing)
+# User-agent: *
+# Disallow: /admin/
+# Disallow: /test/
+
+# Host specificatie (optioneel)
+Host: https://nederlandse-flashcards.vercel.app

@@ -10,6 +10,12 @@ export default defineConfig({
     tailwindcss()
   ],
   
+  // SEO optimalisaties
+  define: {
+    'process.env.VITE_SITE_URL': JSON.stringify('https://nederlandse-flashcards.vercel.app'),
+    'process.env.VITE_SITE_NAME': JSON.stringify('Nederlandse Flashcards'),
+  },
+  
   // Performance optimizations
   build: {
     // Enable CSS code splitting
