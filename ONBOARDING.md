@@ -192,6 +192,7 @@ const NewPage = lazy(() => import('./pages/NewPage'))
 ```
 
 **Add Navigation** (`src/components/Navigation.tsx`)
+11
 
 ### Task 3: Style a Component
 

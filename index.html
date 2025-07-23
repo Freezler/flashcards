@@ -17,22 +17,86 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
+    <!-- DNS prefetch for faster font loading -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <!-- Load fonts directly in HTML for better performance -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Preload font files directly for instant loading -->
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuI6fAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin>
+    
+    <!-- Load fonts asynchronously to prevent render blocking -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
     
     <!-- Preload critical assets for faster LCP -->
     <link rel="modulepreload" href="/src/main.tsx">
     <link rel="modulepreload" href="/src/App.tsx">
     <link rel="modulepreload" href="/src/components/Dashboard.tsx">
+    <link rel="modulepreload" href="/src/contexts/CardContext.tsx">
+    <link rel="modulepreload" href="/src/contexts/AuthContext.tsx">
+    
+    <!-- Preload critical CSS -->
+    <link rel="preload" href="/src/index.css" as="style">
+    
+    <!-- Inline critical CSS for above-the-fold content -->
+    <style>
+      /* Critical CSS for instant loading */
+      *,*::before,*::after{box-sizing:border-box}
+      html{scroll-behavior:smooth}
+      body{margin:0;font-family:'Inter',system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background:linear-gradient(135deg,oklch(100% 0 0) 0%,oklch(98% 0.008 240) 25%,oklch(99% 0.005 260) 50%,oklch(97% 0.012 220) 75%,oklch(98.5% 0.006 250) 100%);min-height:100vh}
+      #root{min-height:100vh;background:inherit}
+      .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+      .navigation{position:sticky;top:0;z-index:100;background:oklch(100% 0 0);border-bottom:1px solid oklch(90% 0.01 240);backdrop-filter:blur(10px)}
+    </style>
     
     <title>Nederlandse Flashcards - Leer Nederlands met Spaced Repetition</title>
   </head>
   <body>
+    <!-- Loading indicator for better perceived performance -->
+    <div id="loading-indicator" style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;font-family:'Inter',sans-serif;color:oklch(60% 0.05 240);z-index:9999">
+      <div style="width:40px;height:40px;border:3px solid oklch(90% 0.05 240);border-top:3px solid oklch(60% 0.15 240);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 16px"></div>
+      <div>Loading Nederlandse Flashcards...</div>
+    </div>
+    <style>
+      @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+      #loading-indicator{opacity:1;transition:opacity 0.3s ease-out}
+      #loading-indicator.hidden{opacity:0;pointer-events:none}
+    </style>
+    
     <div id="root" role="application" aria-label="Nederlandse Flashcards Applicatie"></div>
+    
+    <!-- Load main script with high priority -->
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Performance optimization script -->
+    <script>
+      // Hide loading indicator when app loads
+      window.addEventListener('load', function() {
+        const loader = document.getElementById('loading-indicator');
+        if (loader) {
+          loader.classList.add('hidden');
+          setTimeout(() => loader.remove(), 300);
+        }
+      });
+      
+      // Performance monitoring
+      if ('performance' in window) {
+        window.addEventListener('load', function() {
+          setTimeout(function() {
+            const perf = performance.getEntriesByType('navigation')[0];
+            console.log('🚀 Performance metrics:', {
+              'DOM Content Loaded': Math.round(perf.domContentLoadedEventEnd - perf.domContentLoadedEventStart) + 'ms',
+              'Load Complete': Math.round(perf.loadEventEnd - perf.loadEventStart) + 'ms',
+              'First Contentful Paint': Math.round(performance.getEntriesByName('first-contentful-paint')[0]?.startTime || 0) + 'ms'
+            });
+          }, 0);
+        });
+      }
+    </script>
   </body>
 </html>
