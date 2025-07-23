@@ -7,7 +7,9 @@ src/
 ├── App.tsx              # Main application component
 ├── main.tsx            # Entry point with React root
 ├── utils/
-│   └── progressTracker.ts  # Progress tracking utilities
+│   ├── security.ts         # Input sanitization and XSS protection
+│   ├── secureStorage.ts    # Secure localStorage wrapper
+│   └── csrf.ts             # CSRF protection utilities
 ├── components/
 │   └── CLAUDE.md       # Component patterns and standards
 ├── types/
@@ -60,26 +62,31 @@ src/
 
 ## Current Components
 
-- **App.tsx**: Main landing page with hero section and feature cards
+- **App.tsx**: Main application component with security headers and accessibility
 - **main.tsx**: Application entry point with root rendering
-- **progressTracker.ts**: Utility for tracking user progress
+- **security.ts**: Comprehensive input sanitization and validation utilities
+- **secureStorage.ts**: Secure localStorage wrapper with encryption
+- **csrf.ts**: CSRF protection with token management
 - **testDecks.ts**: Sample flashcard data for development and testing
 
 ## Development Notes
 
-- Recently converted from JavaScript to TypeScript
+- Security-first development approach implemented
+- All user input sanitized and validated
+- CSRF protection on all forms
+- Comprehensive accessibility compliance (WCAG AA)
 - All files follow strict TypeScript patterns
 - ESLint configured with TypeScript rules
 - Vite handles TypeScript compilation automatically
 - Git workflow with main/development branches established
-- Pre-commit hooks planned for quality gates
-- Component architecture ready for flashcard features
+- Security hardening with CSP headers and input validation
 
 ## CSS Implementation
 
-- **Modern CSS**: Uses CSS Grid and Flexbox for layouts
-- **Design System**: Implemented comprehensive CSS variables system
-- **CSS Variables**: Centralized design tokens in App.css `:root`
-- **No Scroll Layout**: Landing page fits exactly in viewport (100vh)
-- **Responsive**: Mobile-first approach with breakpoints
-- **Performance**: Optimized with efficient selectors and transitions
+- **Modern CSS**: Uses CSS Grid and Flexbox for layouts with accessibility focus
+- **Design System**: Comprehensive CSS variables with OKLCH colors and gradients
+- **Accessibility**: Screen reader support, high contrast mode, reduced motion
+- **Security**: Content Security Policy compatible styling
+- **Responsive**: Mobile-first approach with fluid typography
+- **Performance**: Optimized with efficient selectors and smooth transitions
+- **WCAG Compliance**: Color contrast ratios meet AA standards

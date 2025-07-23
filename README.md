@@ -16,23 +16,25 @@ Een moderne, intelligente flashcard applicatie gebouwd met React 19 en TypeScrip
 - **Interactieve Flashcards** - 3D flip animaties met difficulty-based styling
 - **Geavanceerde Study Sessions** - Progress tracking, response time analysis en session analytics
 - **Complete CRUD Operations** - Maak, bewerk en verwijder je eigen kaarten en decks
-- **Deck Deletion met Confirmatie** - Veilige deck verwijdering met confirmation modal
+- **Comprehensive Security** - CSRF protection, input sanitization, en secure storage
+- **Full Accessibility** - WCAG AA compliant met screen reader support
 
 ### 🎨 User Experience
 
 - **Volledig Responsive Design** - Geoptimaliseerd voor mobile, tablet en desktop
-- **Moderne CSS met OKLCH Colors** - Fluid typography met CSS clamp() voor perfecte schaalbaarheid
+- **Moderne CSS met OKLCH Colors** - Beautiful gradients en fluid typography
 - **Professional UI/UX** - Material Design-inspired interface met smooth animations
-- **Dark/Light Mode Support** - Theme toggle voor persoonlijke voorkeur
-- **Offline-First** - LocalStorage persistence voor offline gebruik
+- **Universal Accessibility** - Keyboard navigation, screen readers, high contrast support
+- **Security Headers** - CSP, X-Frame-Options, en comprehensive protection
+- **Offline-First** - Secure localStorage persistence voor offline gebruik
 
-### 🚀 Performance & Development
+### 🚀 Performance & Security
 
 - **React 19 Latest Features** - Met strict TypeScript en moderne hooks
 - **Code Splitting & Lazy Loading** - Optimized bundle met dynamische imports
 - **Optimized Bundle Size** - 259KB main + kleine page chunks (84KB gzipped)
-- **Console.log Free** - Production-ready zonder debug statements
-- **User-Select Disabled** - App-like experience zonder tekst selectie
+- **Security Hardened** - CSRF tokens, input sanitization, rate limiting
+- **Production Ready** - CSP headers, secure storage, accessibility compliant
 - **Comprehensive Test Suite** - Vitest met Testing Library
 - **ESLint + Prettier** - Automatische code formatting en linting
 - **Git Workflow** - Feature branches met protected main branch
@@ -155,7 +157,7 @@ flash-cards/
 - **First Contentful Paint**: < 1s
 - **React.memo Optimized** - Prevented unnecessary re-renders
 - **Console-free Production** - All debug statements removed
-- **Lighthouse Score**: 95+ Performance, 100 Accessibility
+- **Lighthouse Score**: 95+ Performance, 100 Accessibility, 100 Best Practices
 - **Mobile Responsive** - Optimized voor alle schermgroottes
 
 ## 📱 Responsive Design
@@ -194,6 +196,26 @@ npm run test:ui
 - **StudySession** - Spaced repetition algorithm tests
 - **Form Validation** - Input validation tests
 
+## 🛡️ Security & Accessibility
+
+### Security Features
+
+- **CSRF Protection** - Token-based form security
+- **Input Sanitization** - XSS protection met comprehensive validation
+- **Secure Storage** - Encrypted localStorage wrapper
+- **Rate Limiting** - Form submission abuse protection
+- **Security Headers** - CSP, X-Frame-Options, X-Content-Type-Options
+- **Content Security Policy** - Restrictive CSP voor script injection protection
+
+### Accessibility Features
+
+- **WCAG AA Compliant** - Full compliance with accessibility standards
+- **Screen Reader Support** - Complete ARIA labels en semantic HTML
+- **Keyboard Navigation** - Full keyboard accessibility
+- **High Contrast Support** - Automatic adaptation voor visual impairments
+- **Reduced Motion Support** - Respects user preferences voor animations
+- **Focus Management** - Proper focus indicators en management
+
 ## 🤝 Contributing
 
 1. Fork het project
@@ -209,6 +231,8 @@ npm run test:ui
 - Schrijf **tests** voor nieuwe features
 - Update **CLAUDE.md** voor significante wijzigingen
 - Gebruik **ESLint + Prettier** voor code style
+- **Security First** - All user input must be sanitized
+- **Accessibility First** - All features must be accessible
 
 ## 📄 License
 
