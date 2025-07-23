@@ -137,6 +137,11 @@ export const optimizeFontLoading = async (): Promise<void> => {
       font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     }
   `
+  // Add nonce for CSP if available
+  const nonce = document.querySelector('meta[name="csp-nonce"]')?.getAttribute('content')
+  if (nonce) {
+    style.setAttribute('nonce', nonce)
+  }
   document.head.appendChild(style)
 
   // Add font-loading class initially
@@ -229,6 +234,11 @@ export const injectCriticalCSS = (): void => {
 
   const style = document.createElement('style')
   style.textContent = criticalCSS
+  // Add nonce for CSP if available
+  const nonce = document.querySelector('meta[name="csp-nonce"]')?.getAttribute('content')
+  if (nonce) {
+    style.setAttribute('nonce', nonce)
+  }
   document.head.appendChild(style)
 }
 

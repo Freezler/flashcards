@@ -138,27 +138,9 @@ export const preloadCriticalResources = async (): Promise<void> => {
     }
   ]
 
-  // Critical JavaScript modules
-  const criticalModules: PreloadResource[] = [
-    {
-      url: '/src/contexts/CardContext.tsx',
-      as: 'script',
-      type: 'module',
-      priority: 'high'
-    },
-    {
-      url: '/src/contexts/AuthContext.tsx', 
-      as: 'script',
-      type: 'module',
-      priority: 'high'
-    },
-    {
-      url: '/src/components/Navigation.tsx',
-      as: 'script', 
-      type: 'module',
-      priority: 'high'
-    }
-  ]
+  // Skip module preloading for now to avoid MIME type issues
+  // These will be loaded naturally by Vite's import system
+  const criticalModules: PreloadResource[] = []
 
   // Critical images (if any)
   const criticalImages: PreloadResource[] = [

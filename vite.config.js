@@ -57,7 +57,11 @@ export default defineConfig({
     // Enable HTTP/2
     http2: true,
     // Preload modules
-    preTransformRequests: true
+    preTransformRequests: true,
+    // Fix MIME types for modules
+    headers: {
+      'Content-Type': 'application/javascript; charset=utf-8'
+    }
   },
   
   // Dependency optimization

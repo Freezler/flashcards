@@ -6,13 +6,14 @@
     <meta name="keywords" content="flashcards, Nederlandse taal, leren, spaced repetition, educatie">
     <meta name="author" content="Nederlandse Flashcards">
     
-    <!-- Security Headers -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+    <!-- 
+      Security Headers Note:
+      - CSP, X-Frame-Options moved to vercel.json for proper HTTP header delivery
+      - Meta tags for CSP and X-Frame-Options are ignored by browsers
+      - Server headers provide better security and compatibility
+    -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
     <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
-    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
     
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -33,12 +34,8 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
     
-    <!-- Preload critical assets for faster LCP -->
-    <link rel="modulepreload" href="/src/main.tsx">
-    <link rel="modulepreload" href="/src/App.tsx">
-    <link rel="modulepreload" href="/src/components/Dashboard.tsx">
-    <link rel="modulepreload" href="/src/contexts/CardContext.tsx">
-    <link rel="modulepreload" href="/src/contexts/AuthContext.tsx">
+    <!-- Meta tag to help with CSP nonce if needed -->
+    <meta name="csp-nonce" content="" style="display: none;">
     
     <!-- Preload critical CSS -->
     <link rel="preload" href="/src/index.css" as="style">
@@ -52,6 +49,9 @@
       #root{min-height:100vh;background:inherit}
       .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
       .navigation{position:sticky;top:0;z-index:100;background:oklch(100% 0 0);border-bottom:1px solid oklch(90% 0.01 240);backdrop-filter:blur(10px)}
+      @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+      #loading-indicator{opacity:1;transition:opacity 0.3s ease-out}
+      #loading-indicator.hidden{opacity:0;pointer-events:none}
     </style>
     
     <title>Nederlandse Flashcards - Leer Nederlands met Spaced Repetition</title>
@@ -62,11 +62,6 @@
       <div style="width:40px;height:40px;border:3px solid oklch(90% 0.05 240);border-top:3px solid oklch(60% 0.15 240);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 16px"></div>
       <div>Loading Nederlandse Flashcards...</div>
     </div>
-    <style>
-      @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
-      #loading-indicator{opacity:1;transition:opacity 0.3s ease-out}
-      #loading-indicator.hidden{opacity:0;pointer-events:none}
-    </style>
     
     <div id="root" role="application" aria-label="Nederlandse Flashcards Applicatie"></div>
     
