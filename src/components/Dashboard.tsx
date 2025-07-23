@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { getTestDeckStats, testDecks } from '../data'
 import { useAuth } from '../contexts/AuthContext'
+import { useState, useEffect } from 'react'
 
 interface DashboardStats {
   totalDecks: number
@@ -9,62 +10,179 @@ interface DashboardStats {
   cardsToReview: number
 }
 
+interface StudyReminder {
+  id: string
+  message: string
+  type: 'streak' | 'overdue' | 'daily'
+  priority: 'high' | 'medium' | 'low'
+}
+
 function Dashboard(): React.JSX.Element {
   const stats: DashboardStats = getTestDeckStats()
-  const { isFirstLogin } = useAuth()
+  const { isFirstLogin, user } = useAuth()
+  const [currentTime, setCurrentTime] = useState(new Date())
+  const [studyReminders, setStudyReminders] = useState<StudyReminder[]>([])
+
+  // Update time every minute for fresh greeting
+  useEffect(() => {
+    const timer = setInterval(() => setCurrentTime(new Date()), 60000)
+    return () => clearInterval(timer)
+  }, [])
+
+  // Generate study reminders based on stats
+  useEffect(() => {
+    const reminders: StudyReminder[] = []
+    
+    if (stats.cardsToReview > 0) {
+      reminders.push({
+        id: 'overdue',
+        message: `${stats.cardsToReview} kaarten wachten op herhaling`,
+        type: 'overdue',
+        priority: 'high'
+      })
+    }
+    
+    if (stats.studyStreak >= 7) {
+      reminders.push({
+        id: 'streak',
+        message: `Geweldig! ${stats.studyStreak} dagen op rij gestudeerd!`,
+        type: 'streak', 
+        priority: 'medium'
+      })
+    }
+
+    setStudyReminders(reminders)
+  }, [stats])
+
+  const getTimeBasedGreeting = (): string => {
+    const hour = currentTime.getHours()
+    if (hour < 12) return 'Goedemorgen'
+    if (hour < 17) return 'Goedemiddag' 
+    return 'Goedenavond'
+  }
 
   return (
     <div className="dashboard-container">
       <header className="dashboard-header">
-        <h1 className="dashboard-title">
-          {isFirstLogin ? 'Welkom bij' : 'Welkom terug bij'}{' '}
-          <span className="gradient-text">FlashCards</span>
-        </h1>
-        <p className="dashboard-subtitle">
-          {isFirstLogin 
-            ? 'Klaar om je kennis te vergroten? Start vandaag met leren!'
-            : 'Klaar om verder te gaan met leren? Zet je studie voort!'
-          }
-        </p>
+        <div className="dashboard-greeting">
+          <h1 className="dashboard-title">
+            {getTimeBasedGreeting()}, {user?.name || 'Student'}! 👋
+          </h1>
+          <h2 className="dashboard-subtitle-main">
+            {isFirstLogin ? 'Welkom bij' : 'Welkom terug bij'}{' '}
+            <span className="gradient-text">FlashCards</span>
+          </h2>
+          <p className="dashboard-subtitle">
+            {isFirstLogin 
+              ? 'Klaar om je kennis te vergroten? Start vandaag met leren!'
+              : 'Klaar om verder te gaan met leren? Zet je studie voort!'
+            }
+          </p>
+        </div>
+
+        {/* Study Reminders */}
+        {studyReminders.length > 0 && (
+          <div className="study-reminders">
+            {studyReminders.map(reminder => (
+              <div 
+                key={reminder.id} 
+                className={`study-reminder study-reminder--${reminder.type}`}
+              >
+                <div className="reminder-icon">
+                  {reminder.type === 'overdue' && '⏰'}
+                  {reminder.type === 'streak' && '🔥'}
+                  {reminder.type === 'daily' && '📚'}
+                </div>
+                <span className="reminder-message">{reminder.message}</span>
+                {reminder.type === 'overdue' && (
+                  <Link to="/decks" className="reminder-action">
+                    Ga studeren →
+                  </Link>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
       </header>
 
       <section className="stats-grid">
-        <div className="stat-card">
+        <Link to="/decks" className="stat-card stat-card--interactive">
           <div className="stat-icon">📚</div>
           <div className="stat-content">
             <h3 className="stat-number">{stats.totalDecks}</h3>
             <p className="stat-label">Decks</p>
+            <div className="stat-detail">Alle collecties</div>
           </div>
-        </div>
+          <div className="stat-trend stat-trend--neutral">→</div>
+        </Link>
 
         <div className="stat-card">
           <div className="stat-icon">🎯</div>
           <div className="stat-content">
             <h3 className="stat-number">{stats.totalCards}</h3>
             <p className="stat-label">Kaarten</p>
+            <div className="stat-detail">Totaal beschikbaar</div>
+          </div>
+          <div className="stat-progress">
+            <div 
+              className="stat-progress-bar" 
+              style={{ '--progress': `${Math.min((stats.totalCards / 100) * 100, 100)}%` } as React.CSSProperties}
+            />
           </div>
         </div>
 
-        <div className="stat-card">
+        <div className={`stat-card ${stats.studyStreak >= 7 ? 'stat-card--highlight' : ''}`}>
           <div className="stat-icon">🔥</div>
           <div className="stat-content">
             <h3 className="stat-number">{stats.studyStreak}</h3>
             <p className="stat-label">Dag streak</p>
+            <div className="stat-detail">
+              {stats.studyStreak === 0 ? 'Start je streak!' : 
+               stats.studyStreak < 7 ? 'Ga zo door!' : 'Fantastisch! 🎉'}
+            </div>
           </div>
+          {stats.studyStreak >= 7 && (
+            <div className="stat-badge">Hot streak!</div>
+          )}
         </div>
 
-        <div className="stat-card">
+        <Link 
+          to="/decks" 
+          className={`stat-card stat-card--interactive ${stats.cardsToReview > 0 ? 'stat-card--urgent' : ''}`}
+        >
           <div className="stat-icon">⏰</div>
           <div className="stat-content">
             <h3 className="stat-number">{stats.cardsToReview}</h3>
             <p className="stat-label">Te herhalen</p>
+            <div className="stat-detail">
+              {stats.cardsToReview === 0 ? 'Alles bijgewerkt!' : 'Wacht op jou'}
+            </div>
           </div>
-        </div>
+          {stats.cardsToReview > 0 && (
+            <div className="stat-pulse"></div>
+          )}
+        </Link>
       </section>
 
       <section className="quick-actions">
-        <h2 className="section-title">Snelle acties</h2>
+        <div className="section-header">
+          <h2 className="section-title">Snelle acties</h2>
+          <div className="section-subtitle">Start direct met leren</div>
+        </div>
+        
         <div className="actions-grid">
+          {/* Quick Study - Featured Action */}
+          {stats.cardsToReview > 0 && (
+            <Link to="/decks" className="action-card action-card--featured">
+              <div className="action-icon action-icon--pulse">⚡</div>
+              <h3 className="action-title">Snelle Studie</h3>
+              <p className="action-description">
+                {stats.cardsToReview} kaarten klaar voor herhaling
+              </p>
+              <div className="action-badge">Urgent</div>
+            </Link>
+          )}
+
           <Link to="/decks/new" className="action-card">
             <div className="action-icon">➕</div>
             <h3 className="action-title">Nieuw Deck</h3>
@@ -79,6 +197,7 @@ function Dashboard(): React.JSX.Element {
             <p className="action-description">
               Bekijk en beheer al je bestaande decks
             </p>
+            <div className="action-meta">{stats.totalDecks} decks</div>
           </Link>
 
           <Link to="/progress" className="action-card">
@@ -92,26 +211,92 @@ function Dashboard(): React.JSX.Element {
       </section>
 
       <section className="recent-activity">
-        <h2 className="section-title">Beschikbare Decks</h2>
+        <div className="section-header">
+          <h2 className="section-title">Beschikbare Decks</h2>
+          <div className="section-subtitle">Kies een deck om mee te starten</div>
+        </div>
+        
         <div className="deck-grid">
-          {testDecks.map(deck => (
-            <div key={deck.id} className="deck-card">
-              <div className="deck-header">
-                <h3 className="deck-title">{deck.name}</h3>
-                <span className="deck-count">{deck.totalCards} kaarten</span>
+          {testDecks.map((deck) => {
+            const completionRate = Math.floor(Math.random() * 100) // Mock progress
+            const lastStudied = Math.floor(Math.random() * 7) // Days ago
+            
+            return (
+              <div key={deck.id} className="deck-card deck-card--enhanced">
+                <div className="deck-header">
+                  <div className="deck-info">
+                    <h3 className="deck-title">{deck.name}</h3>
+                    <div className="deck-meta">
+                      <span className="deck-count">{deck.totalCards} kaarten</span>
+                      <span className="deck-dot">•</span>
+                      <span className="deck-category">
+                        {deck.name.includes('Grammatica') ? '📝 Grammatica' :
+                         deck.name.includes('Geschiedenis') ? '🏛️ Geschiedenis' :  
+                         deck.name.includes('Geografie') ? '🌍 Geografie' :
+                         deck.name.includes('Cultuur') ? '🎭 Cultuur' :
+                         deck.name.includes('Literatuur') ? '📚 Literatuur' : 
+                         '⚽ Sport'}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="deck-progress-ring">
+                    <svg width="40" height="40" viewBox="0 0 40 40">
+                      <circle 
+                        cx="20" cy="20" r="16" 
+                        fill="none" 
+                        stroke="var(--border-2)" 
+                        strokeWidth="3"
+                      />
+                      <circle 
+                        cx="20" cy="20" r="16" 
+                        fill="none" 
+                        stroke="var(--brand-500)" 
+                        strokeWidth="3"
+                        strokeDasharray={`${completionRate} 100`}
+                        strokeDashoffset="25"
+                        strokeLinecap="round"
+                        transform="rotate(-90 20 20)"
+                      />
+                    </svg>
+                    <span className="progress-text">{completionRate}%</span>
+                  </div>
+                </div>
+                
+                <p className="deck-description">{deck.description}</p>
+                
+                <div className="deck-stats">
+                  <div className="deck-stat">
+                    <span className="stat-icon">🎯</span>
+                    <span>Accuratie: {85 + Math.floor(Math.random() * 15)}%</span>
+                  </div>
+                  <div className="deck-stat">
+                    <span className="stat-icon">⏱️</span>
+                    <span>
+                      {lastStudied === 0 ? 'Vandaag' : 
+                       lastStudied === 1 ? 'Gisteren' : 
+                       `${lastStudied} dagen geleden`}
+                    </span>
+                  </div>
+                </div>
+                
+                <div className="deck-actions">
+                  <Link 
+                    to={`/deck/${deck.id}/study`} 
+                    className="btn-primary btn-primary--full"
+                  >
+                    <span className="btn-icon">🚀</span>
+                    Start studie
+                  </Link>
+                  <Link 
+                    to={`/deck/${deck.id}`} 
+                    className="btn-secondary btn-secondary--outline"
+                  >
+                    Bekijk kaarten
+                  </Link>
+                </div>
               </div>
-              <p className="deck-description">{deck.description}</p>
-              <div className="deck-spacer"></div>
-              <div className="deck-actions">
-                <Link to={`/deck/${deck.id}/study`} className="btn-primary">
-                  Start studie
-                </Link>
-                <Link to={`/deck/${deck.id}`} className="btn-secondary">
-                  Bekijk kaarten
-                </Link>
-              </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
       </section>
     </div>

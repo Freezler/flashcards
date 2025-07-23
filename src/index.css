@@ -3620,6 +3620,309 @@ button:focus-visible {
   }
 }
 
+/* === ENHANCED DASHBOARD === */
+
+/* Dashboard Header Improvements */
+.dashboard-greeting {
+  text-align: center;
+  margin-bottom: var(--space-l);
+}
+
+.dashboard-subtitle-main {
+  font-size: var(--step-2);
+  margin: var(--space-xs) 0 var(--space-s);
+  font-weight: 600;
+}
+
+/* Study Reminders */
+.study-reminders {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+  margin-top: var(--space-l);
+}
+
+.study-reminder {
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
+  padding: var(--space-s) var(--space-m);
+  border-radius: var(--radius-3);
+  border-left: 4px solid var(--brand-500);
+  background: var(--surface-1);
+  transition: all 0.2s var(--ease-out-2);
+}
+
+.study-reminder--overdue {
+  border-left-color: var(--error-500);
+  background: oklch(from var(--error-500) l c h / 0.05);
+}
+
+.study-reminder--streak {
+  border-left-color: var(--success-500);
+  background: oklch(from var(--success-500) l c h / 0.05);
+}
+
+.reminder-icon {
+  font-size: var(--step-0);
+}
+
+.reminder-message {
+  flex: 1;
+  font-weight: 500;
+  color: var(--text-1);
+}
+
+.reminder-action {
+  color: var(--brand-500);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: var(--step--1);
+  transition: color 0.2s var(--ease-out-2);
+}
+
+.reminder-action:hover {
+  color: var(--brand-600);
+}
+
+/* Enhanced Stat Cards */
+.stat-card--interactive {
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+.stat-card--interactive:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.stat-card--highlight {
+  background: linear-gradient(135deg, 
+    oklch(from var(--success-500) l c h / 0.1),
+    oklch(from var(--brand-500) l c h / 0.05)
+  );
+  border-color: var(--success-500);
+}
+
+.stat-card--urgent {
+  border-color: var(--error-500);
+  background: oklch(from var(--error-500) l c h / 0.03);
+}
+
+.stat-detail {
+  font-size: var(--step--2);
+  color: var(--text-3);
+  margin-top: var(--space-2xs);
+}
+
+.stat-trend {
+  position: absolute;
+  top: var(--space-s);
+  right: var(--space-s);
+  font-size: var(--step-0);
+  color: var(--text-3);
+}
+
+.stat-progress {
+  height: 4px;
+  background: var(--border-2);
+  border-radius: var(--radius-pill);
+  margin-top: var(--space-s);
+  overflow: hidden;
+}
+
+.stat-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--brand-500), var(--accent-500));
+  border-radius: var(--radius-pill);
+  width: var(--progress, 0%);
+  transition: width 1s var(--ease-out-2);
+}
+
+.stat-badge {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: var(--success-500);
+  color: white;
+  font-size: var(--step--2);
+  padding: var(--space-2xs) var(--space-xs);
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  transform: rotate(12deg);
+}
+
+.stat-pulse {
+  position: absolute;
+  top: var(--space-s);
+  right: var(--space-s);
+  width: 12px;
+  height: 12px;
+  background: var(--error-500);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.2); }
+}
+
+/* Section Headers */
+.section-header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  margin-bottom: var(--space-l);
+}
+
+.section-subtitle {
+  font-size: var(--step--1);
+  color: var(--text-3);
+}
+
+/* Enhanced Action Cards */
+.action-card--featured {
+  position: relative;
+  background: linear-gradient(135deg, 
+    oklch(from var(--brand-500) l c h / 0.1),
+    oklch(from var(--accent-500) l c h / 0.05)
+  );
+  border-color: var(--brand-500);
+  order: -1;
+}
+
+.action-icon--pulse {
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.action-badge {
+  position: absolute;
+  top: var(--space-s);
+  right: var(--space-s);
+  background: var(--error-500);
+  color: white;
+  font-size: var(--step--2);
+  padding: var(--space-2xs) var(--space-xs);
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+}
+
+.action-meta {
+  position: absolute;
+  bottom: var(--space-s);
+  right: var(--space-s);
+  font-size: var(--step--2);
+  color: var(--text-3);
+  font-weight: 500;
+}
+
+/* Enhanced Deck Cards */
+.deck-card--enhanced {
+  position: relative;
+  padding: var(--space-l);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-m);
+}
+
+.deck-card--enhanced:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+}
+
+.deck-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-m);
+}
+
+.deck-info {
+  flex: 1;
+}
+
+.deck-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-top: var(--space-2xs);
+  font-size: var(--step--2);
+  color: var(--text-3);
+}
+
+.deck-dot {
+  color: var(--border-2);
+}
+
+.deck-category {
+  font-weight: 500;
+}
+
+.deck-progress-ring {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-text {
+  position: absolute;
+  font-size: var(--step--2);
+  font-weight: 600;
+  color: var(--brand-500);
+}
+
+.deck-stats {
+  display: flex;
+  gap: var(--space-l);
+  padding: var(--space-s);
+  background: var(--surface-2);
+  border-radius: var(--radius-2);
+  border: 1px solid var(--border-1);
+}
+
+.deck-stat {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);  
+  font-size: var(--step--2);
+  color: var(--text-2);
+}
+
+.stat-icon {
+  font-size: var(--step--1);
+}
+
+.btn-primary--full {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+}
+
+.btn-secondary--outline {
+  background: transparent;
+  border: 1px solid var(--border-2);
+  color: var(--text-2);
+}
+
+.btn-secondary--outline:hover {
+  background: var(--brand-500);
+  border-color: var(--brand-500);
+  color: white;
+}
+
+.btn-icon {
+  font-size: var(--step--1);
+}
+
 /* === DECKS PAGE === */
 .page-actions-top {
   display: flex;
