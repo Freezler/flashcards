@@ -2148,26 +2148,40 @@ button:focus-visible {
 }
 
 /* Fix layout issues caused by scaleX(-1) */
+.flashcard--flipped .flashcard__back,
+.flashcard--revealing .flashcard__back {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .flashcard--flipped .flashcard__back .flashcard__content,
 .flashcard--revealing .flashcard__back .flashcard__content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   word-wrap: break-word;
   overflow-wrap: break-word;
-  hyphens: auto;
   max-width: 100%;
+  padding: var(--space-s) 0;
 }
 
 .flashcard--flipped .flashcard__back .flashcard__answer,
 .flashcard--revealing .flashcard__back .flashcard__answer {
   font-size: var(--step-0);
-  line-height: 1.5;
-  margin-bottom: var(--space-m);
+  line-height: 1.4;
   text-align: center;
+  max-width: 100%;
 }
 
 .flashcard--flipped .flashcard__back .flashcard__actions,
 .flashcard--revealing .flashcard__back .flashcard__actions {
   margin-top: auto;
+  display: flex;
   gap: var(--space-xs);
+  justify-content: center;
+  flex-shrink: 0;
 }
 
 /* Clean back side text */
@@ -2291,8 +2305,22 @@ button:focus-visible {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  gap: var(--space-2xs);
+  gap: var(--space-xs);
   margin-top: auto;
+  min-height: 60px; /* Ensure space for reveal button */
+}
+
+.flashcard__meta {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  max-width: 60%; /* Prevent overlap with reveal button */
+}
+
+.flashcard__flip-hint {
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .flashcard__tags {
@@ -2499,17 +2527,31 @@ button:focus-visible {
   }
 }
 
-/* Mobile optimizations */
-@media (max-width: 640px) {
+/* Mobile responsive design */
+@media (max-width: 768px) {
   .flashcard {
-    --card-width: 280px;
-    --card-height: 420px;
+    --card-width: min(320px, 90vw);
+    --card-height: min(480px, 70vh);
+    margin: 0 auto;
   }
 
   .flashcard__front,
   .flashcard__back {
-    padding: var(--space-s) var(--space-s) var(--space-l) var(--space-s);
+    padding: var(--space-s);
   }
+}
+
+@media (max-width: 480px) {
+  .flashcard {
+    --card-width: min(280px, 85vw);
+    --card-height: min(420px, 65vh);
+  }
+
+  .flashcard__front,
+  .flashcard__back {
+    padding: var(--space-xs) var(--space-s);
+  }
+}
 
   .flashcard__question,
   .flashcard__answer {
@@ -2914,11 +2956,45 @@ button:focus-visible {
 .study-session-main {
   grid-area: main;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: var(--space-l) 0;
   max-width: 100%;
   overflow: hidden;
+  gap: var(--space-m);
+}
+
+.card-counter {
+  font-size: var(--step-0);
+  font-weight: 600;
+  color: var(--text-2);
+  text-align: center;
+  padding: var(--space-xs) var(--space-s);
+  background: var(--surface-1);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 2px 4px var(--shadow-1);
+}
+
+/* Mobile adjustments for study session */
+@media (max-width: 768px) {
+  .study-session-main {
+    padding: var(--space-s) var(--space-xs);
+    gap: var(--space-s);
+  }
+  
+  .card-counter {
+    font-size: var(--step--1);
+    padding: var(--space-2xs) var(--space-xs);
+  }
+}
+
+@media (max-width: 480px) {
+  .study-session-main {
+    padding: var(--space-xs);
+    gap: var(--space-xs);
+  }
 }
 
 .study-session-controls {

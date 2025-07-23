@@ -410,9 +410,6 @@ function StudySession({
           <div className="progress-bar">
             <div className="progress-fill" style={{ width: `${progress}%` }} />
           </div>
-          <div className="progress-text">
-            {sessionState.currentCardIndex + 1} van {sessionState.cards.length}
-          </div>
         </div>
 
         <div className="session-stats">
@@ -442,6 +439,9 @@ function StudySession({
       </div>
 
       <div className="study-session-main">
+        <div className="card-counter">
+          {sessionState.currentCardIndex + 1} van {sessionState.cards.length}
+        </div>
         {currentCard && (
           <FlashCard
             card={currentCard}
