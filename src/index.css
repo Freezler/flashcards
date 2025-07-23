@@ -2092,7 +2092,7 @@ button:focus-visible {
   border: 1px solid var(--border-1);
 }
 
-/* Start with standard 3D card setup */
+/* Dead simple, bulletproof card flip */
 .flashcard__front {
   transform: rotateY(0deg);
 }
@@ -2103,40 +2103,71 @@ button:focus-visible {
   border: 1px solid var(--border-1);
 }
 
-/* Buttery smooth transitions */
-.flashcard__front {
+/* Keep card structure visible, only fade text content */
+.flashcard__front .flashcard__content,
+.flashcard__back .flashcard__content {
+  transition: opacity 0.15s ease-in-out;
+}
+
+/* Show front content by default, hide back content */
+.flashcard__front .flashcard__content {
   opacity: 1;
-  transition: opacity 0.08s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.flashcard__back {
+.flashcard__back .flashcard__content {
   opacity: 0;
-  transition: opacity 0.08s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Smooth back→front flip */
-.flashcard:not(.flashcard--flipped):not(.flashcard--revealing) .flashcard__front {
-  opacity: 1;
-  transition-delay: 0.4s;
-}
-
-.flashcard:not(.flashcard--flipped):not(.flashcard--revealing) .flashcard__back {
+/* Front→Back flip: fade content at the right time */
+.flashcard--flipped .flashcard__front .flashcard__content,
+.flashcard--revealing .flashcard__front .flashcard__content {
   opacity: 0;
-  transition-delay: 0.38s; /* Slightly earlier to prevent gap */
-}
-
-/* Smooth front→back flip */
-.flashcard--flipped .flashcard__front,
-.flashcard--revealing .flashcard__front {
-  opacity: 0;
-  transition-delay: 0.4s;
+  transition-delay: 0.35s; /* Hide front content when card is edge-on */
 }
 
 .flashcard--flipped .flashcard__back,
 .flashcard--revealing .flashcard__back {
-  opacity: 1 !important;
-  transform: rotateY(0deg) scaleX(-1) !important;
-  transition-delay: 0.4s;
+  transform: rotateY(0deg) scaleX(-1);
+}
+
+.flashcard--flipped .flashcard__back .flashcard__content,
+.flashcard--revealing .flashcard__back .flashcard__content {
+  opacity: 1;
+  transition-delay: 0.45s; /* Show back content when flip is mostly complete */
+}
+
+/* Back→Front flip: smooth content transition */
+.flashcard:not(.flashcard--flipped):not(.flashcard--revealing) .flashcard__back .flashcard__content {
+  opacity: 0;
+  transition-delay: 0.35s; /* Hide back content when card is edge-on */
+}
+
+.flashcard:not(.flashcard--flipped):not(.flashcard--revealing) .flashcard__front .flashcard__content {
+  opacity: 1;
+  transition-delay: 0.45s; /* Show front content when flip is mostly complete */
+}
+
+/* Fix layout issues caused by scaleX(-1) */
+.flashcard--flipped .flashcard__back .flashcard__content,
+.flashcard--revealing .flashcard__back .flashcard__content {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  max-width: 100%;
+}
+
+.flashcard--flipped .flashcard__back .flashcard__answer,
+.flashcard--revealing .flashcard__back .flashcard__answer {
+  font-size: var(--step-0);
+  line-height: 1.5;
+  margin-bottom: var(--space-m);
+  text-align: center;
+}
+
+.flashcard--flipped .flashcard__back .flashcard__actions,
+.flashcard--revealing .flashcard__back .flashcard__actions {
+  margin-top: auto;
+  gap: var(--space-xs);
 }
 
 /* Clean back side text */
