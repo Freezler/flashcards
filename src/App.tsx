@@ -40,8 +40,11 @@ function AppContent(): React.JSX.Element {
             </Routes>
           ) : (
             <div className="app-container">
+              <a href="#main-content" className="skip-link">
+                Ga naar hoofdinhoud
+              </a>
               <Navigation />
-              <main className="main-content">
+              <main id="main-content" className="main-content">
                 <Routes>
                   <Route path="/" element={<Dashboard />} />
                   <Route path="/decks" element={<DecksPage />} />

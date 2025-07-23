@@ -175,7 +175,13 @@ function Dashboard(): React.JSX.Element {
             </div>
           </div>
           {stats.studyStreak >= 7 && (
-            <div className="stat-badge">Hot streak!</div>
+            <div 
+              className="stat-badge"
+              role="status"
+              aria-label={`Prestatie badge: Hot streak! Je hebt ${stats.studyStreak} dagen op rij gestudeerd`}
+            >
+              Hot streak!
+            </div>
           )}
         </div>
 
@@ -195,9 +201,9 @@ function Dashboard(): React.JSX.Element {
         </Link>
       </section>
 
-      <section className="quick-actions">
+      <section className="quick-actions" aria-labelledby="actions-title">
         <div className="section-header">
-          <h2 className="section-title">Snelle acties</h2>
+          <h2 id="actions-title" className="section-title">Snelle acties</h2>
           <div className="section-subtitle">Start direct met leren</div>
         </div>
 
@@ -210,7 +216,13 @@ function Dashboard(): React.JSX.Element {
               <p className="action-description">
                 {stats.cardsToReview} kaarten klaar voor herhaling
               </p>
-              <div className="action-badge">Urgent</div>
+              <div 
+                className="action-badge"
+                role="status"
+                aria-label={`Urgentie indicator: ${stats.cardsToReview} kaarten wachten op herhaling`}
+              >
+                Urgent
+              </div>
             </Link>
           )}
 
@@ -241,9 +253,9 @@ function Dashboard(): React.JSX.Element {
         </div>
       </section>
 
-      <section className="recent-activity">
+      <section className="recent-activity" aria-labelledby="activity-title" role="region">
         <div className="section-header">
-          <h2 className="section-title">Beschikbare Decks</h2>
+          <h2 id="activity-title" className="section-title">Beschikbare Decks</h2>
           <div className="section-subtitle">
             Kies een deck om mee te starten
           </div>

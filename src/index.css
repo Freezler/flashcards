@@ -1,5 +1,39 @@
 @import 'tailwindcss';
 
+/* === ACCESSIBILITY & SKIP LINKS === */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--primary-500, #2563eb);
+  color: white;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 600;
+  z-index: 9999;
+  transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+  top: 6px;
+  outline: 2px solid white;
+  outline-offset: 2px;
+}
+
+/* Screen reader only content */
+.sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
 /* === TEXT WRAP OPTIMIZATION === */
 
 /* Apply text-wrap: pretty globally for better typography */
@@ -57,10 +91,101 @@ a:focus,
 input:focus,
 textarea:focus,
 select:focus,
-[tabindex]:focus {
-  outline: 2px solid var(--color-blue-600, #2563eb);
+[tabindex]:focus,
+.stat-card:focus,
+.action-card:focus,
+.flashcard:focus {
+  outline: 2px solid var(--primary-500, #2563eb);
   outline-offset: 2px;
-  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+  box-shadow: 0 0 0 4px oklch(from var(--primary-500, #2563eb) l c h / 0.2);
+}
+
+/* Focus styles for badge elements */
+.stat-badge:focus,
+.action-badge:focus {
+  outline: 2px solid var(--text-1);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px oklch(from var(--text-1) l c h / 0.2);
+}
+
+/* Keyboard navigation improvements */
+.stat-card:focus-visible,
+.action-card:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 0 0 4px oklch(from var(--primary-500) l c h / 0.2),
+    0 8px 25px oklch(from var(--surface-1) l c h / 0.15),
+    0 4px 10px oklch(from var(--surface-1) l c h / 0.1);
+}
+
+/* Ensure interactive elements are properly focusable */
+.stat-card,
+.action-card {
+  cursor: pointer;
+}
+
+.stat-card[role="button"],
+.action-card[role="button"] {
+  background: transparent;
+  border: none;
+  font: inherit;
+  text-align: inherit;
+  padding: 0;
+  width: 100%;
+}
+
+/* Hide decorative elements from screen readers */
+[aria-hidden="true"] {
+  pointer-events: none;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .stat-card:focus-visible,
+  .action-card:focus-visible {
+    transform: none;
+    transition: none;
+  }
+  
+  .skip-link {
+    transition: none;
+  }
+  
+  /* Disable all animations for users who prefer reduced motion */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Focus management for dynamic content */
+[role="alert"][aria-live="assertive"] {
+  position: relative;
+}
+
+/* Ensure proper focus indication for all interactive elements */
+button,
+input,
+select,
+textarea,
+a,
+[tabindex="0"],
+[role="button"],
+[role="tab"],
+[role="menuitem"] {
+  position: relative;
+}
+
+/* Better focus indication for dark backgrounds */
+.stat-badge:focus,
+.action-badge:focus {
+  background: oklch(from var(--success-500) calc(l + 0.1) c h);
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
 }
 
 /* High contrast mode support */
@@ -449,7 +574,7 @@ body {
   /* Semantic colors - Success, Warning, Error */
   --success-50: oklch(97% 0.02 160);
   --success-100: oklch(93% 0.05 160);
-  --success-500: oklch(65% 0.15 160); /* Success green */
+  --success-500: oklch(45% 0.15 160); /* Success green - darker for better contrast */
   --success-600: oklch(55% 0.17 160);
   --success-700: oklch(45% 0.18 160);
 
@@ -461,7 +586,7 @@ body {
 
   --error-50: oklch(98% 0.02 20);
   --error-100: oklch(94% 0.05 20);
-  --error-500: oklch(65% 0.18 20); /* Error red */
+  --error-500: oklch(45% 0.18 20); /* Error red - darker for better contrast */
   --error-600: oklch(55% 0.2 20);
   --error-700: oklch(45% 0.2 20);
 
@@ -558,9 +683,9 @@ body {
   --accent-900: oklch(95% 0.05 165);
 
   /* Dark mode semantic colors */
-  --success-500: oklch(70% 0.15 160);
-  --warning-500: oklch(80% 0.12 80);
-  --error-500: oklch(70% 0.18 20);
+  --success-500: oklch(45% 0.15 160);
+  --warning-500: oklch(45% 0.12 80);
+  --error-500: oklch(45% 0.18 20);
 
   /* Dark mode borders */
   --border-1: oklch(30% 0.01 240); /* Subtle dark borders */
@@ -676,9 +801,9 @@ body {
     --accent-900: oklch(95% 0.05 165);
 
     /* Dark mode semantic colors */
-    --success-500: oklch(70% 0.15 160);
-    --warning-500: oklch(80% 0.12 80);
-    --error-500: oklch(70% 0.18 20);
+    --success-500: oklch(45% 0.15 160);
+    --warning-500: oklch(45% 0.12 80);
+    --error-500: oklch(45% 0.18 20);
 
     /* Dark mode borders */
     --border-1: oklch(30% 0.01 240); /* Subtle dark borders */
