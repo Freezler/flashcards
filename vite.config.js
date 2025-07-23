@@ -6,12 +6,7 @@ import tailwindcss from '@tailwindcss/vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
-    react({
-      // Enable fast refresh
-      fastRefresh: true,
-      // Optimize JSX runtime
-      jsxRuntime: 'automatic'
-    }),
+    react(),
     tailwindcss()
   ],
   
@@ -54,26 +49,11 @@ export default defineConfig({
   
   // Development server optimizations
   server: {
-    // Enable HTTP/2
-    http2: true,
-    // Preload modules
-    preTransformRequests: true,
-    // Fix MIME types for modules
-    headers: {
-      'Content-Type': 'application/javascript; charset=utf-8'
-    }
+    // Keep it simple for development
+    port: 5173,
+    open: true
   },
   
-  // Dependency optimization
-  optimizeDeps: {
-    include: [
-      'react',
-      'react-dom',
-      'react-router-dom'
-    ],
-    // Force re-optimization of deps
-    force: false
-  },
   
   test: {
     globals: true,
