@@ -16,42 +16,12 @@ interface FontLoadingOptions {
  * Preload font files directly for instant rendering
  */
 export const preloadFonts = async (): Promise<void> => {
-  const fontsToPreload = [
-    // Inter Regular (400) - most common weight
-    {
-      url: 'https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuI6fAZ9hiJ-Ek-_EeA.woff2',
-      weight: '400'
-    },
-    // Inter Medium (500) - for headings and emphasis
-    {
-      url: 'https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2', 
-      weight: '500'
-    }
-  ]
-
-  const preloadPromises = fontsToPreload.map(font => {
-    return new Promise<void>((resolve, reject) => {
-      const link = document.createElement('link')
-      link.rel = 'preload'
-      link.as = 'font'
-      link.type = 'font/woff2'
-      link.crossOrigin = 'anonymous'
-      link.href = font.url
-      
-      link.onload = () => resolve()
-      link.onerror = () => reject(new Error(`Failed to preload font: ${font.url}`))
-      
-      document.head.appendChild(link)
-    })
-  })
-
-  try {
-    await Promise.all(preloadPromises)
-    console.log('✅ All critical fonts preloaded successfully')
-  } catch (error) {
-    console.warn('⚠️ Some fonts failed to preload:', error)
-  }
+  // Skip direct font file preloading to avoid CORS issues
+  // Let the browser handle font loading through CSS
+  console.log('Skipping direct font preloading - using CSS loading instead')
+  return Promise.resolve()
 }
+
 
 /**
  * Load fonts asynchronously without blocking render

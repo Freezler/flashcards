@@ -120,23 +120,9 @@ export class ResourcePreloader {
 export const preloadCriticalResources = async (): Promise<void> => {
   const preloader = new ResourcePreloader()
 
-  // Critical font files (Inter Regular and Medium)
-  const criticalFonts: PreloadResource[] = [
-    {
-      url: 'https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuI6fAZ9hiJ-Ek-_EeA.woff2',
-      as: 'font',
-      type: 'font/woff2',
-      crossOrigin: 'anonymous',
-      priority: 'high'
-    },
-    {
-      url: 'https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2',
-      as: 'font',
-      type: 'font/woff2',
-      crossOrigin: 'anonymous',
-      priority: 'high'
-    }
-  ]
+  // Skip font preloading to avoid CORS and URL issues
+  // Fonts are loaded via CSS which handles fallbacks better
+  const criticalFonts: PreloadResource[] = []
 
   // Skip module preloading for now to avoid MIME type issues
   // These will be loaded naturally by Vite's import system
@@ -152,14 +138,9 @@ export const preloadCriticalResources = async (): Promise<void> => {
   ]
 
   try {
-    // Preload all critical resources in parallel
-    await Promise.all([
-      preloader.preloadAll(criticalFonts),
-      preloader.preloadAll(criticalModules),
-      preloader.preloadAll(criticalImages)
-    ])
-
-    console.log('✅ All critical resources preloaded')
+    // Preload only images and other working resources
+    await preloader.preloadAll(criticalImages)
+    console.log('✅ Critical resources preloaded')
   } catch (error) {
     console.warn('⚠️ Some critical resources failed to preload:', error)
   }
@@ -179,10 +160,9 @@ export const setupResourceHints = (): void => {
   preloader.preconnect('https://fonts.googleapis.com')
   preloader.preconnect('https://fonts.gstatic.com', true)
 
-  // Prefetch likely next pages
-  preloader.prefetch('/src/pages/DecksPage.tsx')
-  preloader.prefetch('/src/pages/DeckPage.tsx')
-  preloader.prefetch('/src/components/StudySession.tsx')
+  // Skip module prefetching to avoid MIME type issues
+  // Vite handles module loading and chunking automatically
+  console.log('Skipping module prefetching - handled by Vite')
 }
 
 /**

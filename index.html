@@ -6,14 +6,7 @@
     <meta name="keywords" content="flashcards, Nederlandse taal, leren, spaced repetition, educatie">
     <meta name="author" content="Nederlandse Flashcards">
     
-    <!-- 
-      Security Headers Note:
-      - CSP, X-Frame-Options moved to vercel.json for proper HTTP header delivery
-      - Meta tags for CSP and X-Frame-Options are ignored by browsers
-      - Server headers provide better security and compatibility
-    -->
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <!-- Security headers are handled by vercel.json -->
     
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -26,19 +19,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <!-- Preload font files directly for instant loading -->
-    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v18/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuI6fAZ9hiJ-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin>
+    <!-- Font preloading handled by JavaScript for better error handling -->
     
     <!-- Load fonts asynchronously to prevent render blocking -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"></noscript>
     
-    <!-- Meta tag to help with CSP nonce if needed -->
-    <meta name="csp-nonce" content="" style="display: none;">
     
-    <!-- Preload critical CSS -->
-    <link rel="preload" href="/src/index.css" as="style">
     
     <!-- Inline critical CSS for above-the-fold content -->
     <style>
