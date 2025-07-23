@@ -5114,54 +5114,6 @@ textarea,
   border: 1px solid var(--border-1);
 }
 
-/* Danger Button Styles */
-.btn-danger {
-  --btn-bg: oklch(55% 0.15 15);
-  --btn-bg-hover: oklch(50% 0.18 15);
-  --btn-text: white;
-  --btn-border: oklch(55% 0.15 15);
-  --btn-border-hover: oklch(50% 0.18 15);
-
-  background: var(--btn-bg);
-  color: var(--btn-text);
-  border: 1px solid var(--btn-border);
-  padding: var(--space-xs) var(--space-s);
-  border-radius: var(--radius-2);
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s var(--ease-out-2);
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-xs);
-  text-decoration: none;
-  font-size: var(--text-sm);
-  min-height: 36px;
-}
-
-.btn-danger:hover {
-  background: var(--btn-bg-hover);
-  border-color: var(--btn-border-hover);
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-sm);
-}
-
-.btn-danger:active {
-  transform: translateY(0);
-  box-shadow: none;
-}
-
-/* Outline variant */
-.btn-danger--outline {
-  background: transparent;
-  color: oklch(55% 0.15 15);
-  border: 1px solid oklch(55% 0.15 15);
-}
-
-.btn-danger--outline:hover {
-  background: oklch(55% 0.15 15 / 0.1);
-  color: oklch(50% 0.18 15);
-  border-color: oklch(50% 0.18 15);
-}
 
 /* Modal Styles */
 .modal-overlay {
