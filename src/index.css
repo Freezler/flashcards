@@ -2024,8 +2024,8 @@ button:focus-visible {
 }
 
 /* Hide content during card transitions */
-.flashcard--transitioning .flashcard__content,
-.flashcard--transitioning .flashcard__question,
+.flashcard--transitioning .flashcard__front .flashcard__content,
+.flashcard--transitioning .flashcard__front .flashcard__question,
 .flashcard--transitioning .flashcard__tags,
 .flashcard--transitioning .flashcard__category {
   opacity: 0;
@@ -2147,7 +2147,9 @@ button:focus-visible {
 
 .flashcard__answer {
   font-weight: 600;
-  color: var(--difficulty-color);
+  color: var(--difficulty-color, var(--text-1));
+  opacity: 1 !important;
+  display: block !important;
 }
 
 /* Footer with tags and actions */
