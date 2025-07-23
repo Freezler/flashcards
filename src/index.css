@@ -1,5 +1,35 @@
 @import 'tailwindcss';
 
+/* === TEXT WRAP OPTIMIZATION === */
+
+/* Apply text-wrap: pretty globally for better typography */
+* {
+  text-wrap: pretty;
+}
+
+/* Specific elements that benefit most from pretty text wrapping */
+h1, h2, h3, h4, h5, h6,
+p, blockquote, li,
+.flashcard__question,
+.flashcard__answer,
+.nav-label,
+.stat-label,
+.study-reminder,
+.form-label,
+.dashboard-title,
+.dashboard-subtitle {
+  text-wrap: pretty;
+}
+
+/* Prevent text-wrap on elements where it's not needed */
+code, pre, 
+.nav-icon,
+.stat-number,
+.flashcard__difficulty,
+.flashcard__tag {
+  text-wrap: nowrap;
+}
+
 /* === ACCESSIBILITY STYLES === */
 
 /* Screen reader only content */
@@ -1239,6 +1269,8 @@ button:focus-visible {
   transition: all 0.2s var(--ease-out-2);
   position: relative;
   min-width: fit-content;
+  text-wrap: pretty;
+  text-align: center;
 }
 
 .nav-item::before {
@@ -1329,6 +1361,8 @@ button:focus-visible {
   animation-delay: 0.2s;
   animation-fill-mode: both;
   text-align: center;
+  text-wrap: balance;
+  hyphens: auto;
 }
 
 @media (min-width: 768px) {
@@ -1473,6 +1507,8 @@ button:focus-visible {
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.05em;
+  text-wrap: pretty;
+  text-align: center;
 }
 
 .quick-actions {
@@ -2451,6 +2487,12 @@ button:focus-visible {
   color: var(--text-1);
   max-width: 100%;
   word-wrap: break-word;
+  text-wrap: pretty;
+  hyphens: auto;
+  overflow-wrap: break-word;
+  text-align: center;
+  /* Better text balance for flashcard content */
+  text-wrap: balance;
 }
 
 .flashcard__answer {
@@ -3773,6 +3815,8 @@ button:focus-visible {
   font-weight: 600;
   color: var(--text-1);
   margin-bottom: var(--space-3xs);
+  text-wrap: pretty;
+  text-align: left;
 }
 
 .form-input,

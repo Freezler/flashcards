@@ -30,12 +30,13 @@
     <!-- Inline critical CSS for above-the-fold content -->
     <style>
       /* Critical CSS for instant loading */
-      *,*::before,*::after{box-sizing:border-box}
+      *,*::before,*::after{box-sizing:border-box;text-wrap:pretty}
       html{scroll-behavior:smooth}
-      body{margin:0;font-family:'Inter',system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background:linear-gradient(135deg,oklch(100% 0 0) 0%,oklch(98% 0.008 240) 25%,oklch(99% 0.005 260) 50%,oklch(97% 0.012 220) 75%,oklch(98.5% 0.006 250) 100%);min-height:100vh}
+      body{margin:0;font-family:'Inter',system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background:linear-gradient(135deg,oklch(100% 0 0) 0%,oklch(98% 0.008 240) 25%,oklch(99% 0.005 260) 50%,oklch(97% 0.012 220) 75%,oklch(98.5% 0.006 250) 100%);min-height:100vh;text-wrap:pretty}
       #root{min-height:100vh;background:inherit}
       .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
       .navigation{position:sticky;top:0;z-index:100;background:oklch(100% 0 0);border-bottom:1px solid oklch(90% 0.01 240);backdrop-filter:blur(10px)}
+      h1,h2,h3,h4,h5,h6,p{text-wrap:balance;hyphens:auto}
       @keyframes spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
       #loading-indicator{opacity:1;transition:opacity 0.3s ease-out}
       #loading-indicator.hidden{opacity:0;pointer-events:none}
