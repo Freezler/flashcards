@@ -2023,6 +2023,10 @@ button:focus-visible {
   transform: rotateY(180deg);
 }
 
+.flashcard--transitioning .flashcard__inner {
+  transform: rotateY(180deg);
+}
+
 /* Hide content during card transitions */
 .flashcard--transitioning .flashcard__front .flashcard__content,
 .flashcard--transitioning .flashcard__front .flashcard__question,
@@ -2088,31 +2092,54 @@ button:focus-visible {
   border: 1px solid var(--border-1);
 }
 
-/* Force show correct side regardless of 3D math */
-.flashcard:not(.flashcard--flipped):not(.flashcard--revealing) .flashcard__front {
-  display: block;
+/* Start with standard 3D card setup */
+.flashcard__front {
+  transform: rotateY(0deg);
+}
+
+.flashcard__back {
+  transform: rotateY(180deg);
+  background: var(--surface-1);
+  border: 1px solid var(--border-1);
+}
+
+/* Buttery smooth transitions */
+.flashcard__front {
   opacity: 1;
-  z-index: 2;
+  transition: opacity 0.08s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.flashcard__back {
+  opacity: 0;
+  transition: opacity 0.08s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Smooth back→front flip */
+.flashcard:not(.flashcard--flipped):not(.flashcard--revealing) .flashcard__front {
+  opacity: 1;
+  transition-delay: 0.4s;
 }
 
 .flashcard:not(.flashcard--flipped):not(.flashcard--revealing) .flashcard__back {
-  display: none;
+  opacity: 0;
+  transition-delay: 0.38s; /* Slightly earlier to prevent gap */
 }
 
-.flashcard.flashcard--flipped .flashcard__front,
-.flashcard.flashcard--revealing .flashcard__front {
-  display: none;
+/* Smooth front→back flip */
+.flashcard--flipped .flashcard__front,
+.flashcard--revealing .flashcard__front {
+  opacity: 0;
+  transition-delay: 0.4s;
 }
 
-.flashcard.flashcard--flipped .flashcard__back,
-.flashcard.flashcard--revealing .flashcard__back {
-  display: block !important;
+.flashcard--flipped .flashcard__back,
+.flashcard--revealing .flashcard__back {
   opacity: 1 !important;
-  z-index: 2;
   transform: rotateY(0deg) scaleX(-1) !important;
+  transition-delay: 0.4s;
 }
 
-/* Strengthen back side text visibility */
+/* Clean back side text */
 .flashcard__back .flashcard__answer {
   opacity: 1 !important;
   visibility: visible !important;
