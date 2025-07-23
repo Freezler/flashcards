@@ -8,8 +8,3 @@ export * from './flashcard'
 export * from './user'
 export * from './common'
 
-// Legacy support - keep existing types working
-export interface ProgressEntry {
-  task: string
-  date: Date
-}

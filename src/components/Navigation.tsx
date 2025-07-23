@@ -124,38 +124,41 @@ const Navigation = function Navigation(): React.JSX.Element {
 
   return (
     <>
-      <nav className="navigation">
+      <nav className="navigation" role="navigation" aria-label="Hoofdnavigatie">
         <div className="nav-brand">
-          <Link to="/" className="brand-link">
+          <Link to="/" className="brand-link" aria-label="FlashCards - Ga naar dashboard">
             <img
               src="/brainBulb.svg"
               className="nav-logo"
-              alt="FlashCards logo"
+              alt=""
+              role="presentation"
             />
             <span className="nav-title">FlashCards</span>
           </Link>
         </div>
 
         {/* Desktop Navigation */}
-        <div className="nav-items desktop-nav">
+        <ul className="nav-items desktop-nav" role="menubar">
           {navItems.map(item => (
-            <Link
-              key={item.path}
-              to={item.path}
-              className={`nav-item ${location.pathname === item.path ? 'active' : ''}`}
-              title={item.tooltip}
-              aria-label={item.tooltip}
-            >
-              <span className="nav-icon">{item.icon}</span>
-              <span className="nav-label">{item.name}</span>
-              {item.badge !== undefined && item.badge > 0 && (
-                <span className="nav-badge" aria-label={`${item.badge} items`}>
-                  {item.badge > 99 ? '99+' : item.badge}
-                </span>
-              )}
-            </Link>
+            <li key={item.path} role="none">
+              <Link
+                to={item.path}
+                className={`nav-item ${location.pathname === item.path ? 'active' : ''}`}
+                role="menuitem"
+                aria-label={item.tooltip}
+                aria-current={location.pathname === item.path ? 'page' : undefined}
+              >
+                <span className="nav-icon" aria-hidden="true">{item.icon}</span>
+                <span className="nav-label">{item.name}</span>
+                {item.badge !== undefined && item.badge > 0 && (
+                  <span className="nav-badge" role="status" aria-label={`${item.badge} items`}>
+                    {item.badge > 99 ? '99+' : item.badge}
+                  </span>
+                )}
+              </Link>
+            </li>
           ))}
-        </div>
+        </ul>
 
         <div className="nav-user desktop-nav">
           {/* Search functionality */}

@@ -2,6 +2,7 @@ import React, { useState, useCallback } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useFormValidation, validationRules } from '../hooks'
 import { useAuth } from '../contexts/AuthContext'
+import { isValidEmail, validateUserInput, loginAttemptLimiter, generateSecureToken } from '../utils/security'
 
 interface LoginFormData {
   email: string
@@ -24,10 +25,14 @@ const LoginPage = React.memo(function LoginPage(): React.JSX.Element {
   const loginValidationRules = {
     email: (value: string) => {
       if (!value?.trim()) return 'E-mail is verplicht'
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-      return !emailRegex.test(value) ? 'Ongeldig e-mailadres' : undefined
+      if (!validateUserInput(value)) return 'E-mail bevat niet-toegestane tekens'
+      return !isValidEmail(value) ? 'Ongeldig e-mailadres' : undefined
     },
-    password: validationRules.required('Wachtwoord'),
+    password: (value: string) => {
+      if (!value?.trim()) return 'Wachtwoord is verplicht'
+      if (!validateUserInput(value)) return 'Wachtwoord bevat niet-toegestane tekens'
+      return undefined
+    },
   }
 
   // Validation rules voor registratie
@@ -75,6 +80,13 @@ const LoginPage = React.memo(function LoginPage(): React.JSX.Element {
       e.preventDefault()
       setAuthError(null)
 
+      // Rate limiting protection
+      const clientIdentifier = 'login-' + (localStorage.getItem('client-id') || generateSecureToken())
+      if (!loginAttemptLimiter.isAllowed(clientIdentifier)) {
+        setAuthError('Te veel inlogpogingen. Probeer over 5 minuten opnieuw.')
+        return
+      }
+
       if (!validateLogin()) return
 
       setIsLoading(true)
@@ -88,7 +100,7 @@ const LoginPage = React.memo(function LoginPage(): React.JSX.Element {
           loginData.password === 'demo123'
         ) {
           const userData = {
-            id: '1',
+            id: generateSecureToken(16),
             name: 'Demo Gebruiker',
             email: loginData.email,
           }
@@ -173,6 +185,8 @@ const LoginPage = React.memo(function LoginPage(): React.JSX.Element {
         <form
           onSubmit={isRegister ? handleRegister : handleLogin}
           className="login-form"
+          noValidate
+          aria-labelledby="login-title"
         >
           {isRegister && (
             <div className="form-group">
@@ -187,9 +201,14 @@ const LoginPage = React.memo(function LoginPage(): React.JSX.Element {
                 onChange={e => updateRegisterField('name', e.target.value)}
                 placeholder="Je naam"
                 disabled={isLoading}
+                required
+                aria-invalid={!!registerErrors.name}
+                aria-describedby={registerErrors.name ? "name-error" : undefined}
               />
               {registerErrors.name && (
-                <span className="form-error">{registerErrors.name}</span>
+                <span id="name-error" className="form-error" role="alert" aria-live="polite">
+                  {registerErrors.name}
+                </span>
               )}
             </div>
           )}

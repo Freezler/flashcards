@@ -1,7 +1,19 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="nl">
   <head>
     <meta charset="UTF-8" />
+    <meta name="description" content="Nederlandse flashcards app voor effectief leren met spaced repetition algoritme">
+    <meta name="keywords" content="flashcards, Nederlandse taal, leren, spaced repetition, educatie">
+    <meta name="author" content="Nederlandse Flashcards">
+    
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self';">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=()">
+    
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
@@ -9,10 +21,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
-    <title>Nederlandse Flashcards - Learn Dutch</title>
+    <!-- Load fonts directly in HTML for better performance -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Preload critical assets for faster LCP -->
+    <link rel="modulepreload" href="/src/main.tsx">
+    <link rel="modulepreload" href="/src/App.tsx">
+    <link rel="modulepreload" href="/src/components/Dashboard.tsx">
+    
+    <title>Nederlandse Flashcards - Leer Nederlands met Spaced Repetition</title>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root" role="application" aria-label="Nederlandse Flashcards Applicatie"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

@@ -78,11 +78,11 @@ function Dashboard(): React.JSX.Element {
   }
 
   return (
-    <div className="dashboard-container">
+    <main className="dashboard-container" role="main" aria-labelledby="dashboard-title">
       <header className="dashboard-header">
         <div className="dashboard-greeting">
-          <h1 className="dashboard-title">
-            {getTimeBasedGreeting()}, {user?.name || 'Student'}! 👋
+          <h1 id="dashboard-title" className="dashboard-title">
+            {getTimeBasedGreeting()}, {user?.name || 'Student'}! <span aria-hidden="true">👋</span>
           </h1>
           <h2 className="dashboard-subtitle-main">
             {isFirstLogin ? 'Welkom bij' : 'Welkom terug bij'}{' '}
@@ -97,48 +97,57 @@ function Dashboard(): React.JSX.Element {
 
         {/* Study Reminders */}
         {studyReminders.length > 0 && (
-          <div className="study-reminders">
+          <section className="study-reminders" aria-labelledby="reminders-title">
+            <h3 id="reminders-title" className="sr-only">Studie herinneringen</h3>
             {studyReminders.map(reminder => (
               <div
                 key={reminder.id}
                 className={`study-reminder study-reminder--${reminder.type}`}
+                role={reminder.priority === 'high' ? 'alert' : 'status'}
+                aria-live={reminder.priority === 'high' ? 'assertive' : 'polite'}
               >
-                <div className="reminder-icon">
+                <div className="reminder-icon" aria-hidden="true">
                   {reminder.type === 'overdue' && '⏰'}
                   {reminder.type === 'streak' && '🔥'}
                   {reminder.type === 'daily' && '📚'}
                 </div>
                 <span className="reminder-message">{reminder.message}</span>
                 {reminder.type === 'overdue' && (
-                  <Link to="/decks" className="reminder-action">
+                  <Link to="/decks" className="reminder-action" aria-label="Ga naar decks om te studeren">
                     Ga studeren →
                   </Link>
                 )}
               </div>
             ))}
-          </div>
+          </section>
         )}
       </header>
 
-      <section className="stats-grid">
-        <Link to="/decks" className="stat-card stat-card--interactive">
-          <div className="stat-icon">📚</div>
+      <section className="stats-grid" aria-labelledby="stats-title">
+        <h3 id="stats-title" className="sr-only">Studie statistieken</h3>
+        
+        <Link 
+          to="/decks" 
+          className="stat-card stat-card--interactive"
+          aria-label={`${stats.totalDecks} decks beschikbaar. Klik om alle decks te bekijken.`}
+        >
+          <div className="stat-icon" aria-hidden="true">📚</div>
           <div className="stat-content">
-            <h3 className="stat-number">{stats.totalDecks}</h3>
-            <p className="stat-label">Decks</p>
+            <div className="stat-number" role="text">{stats.totalDecks}</div>
+            <div className="stat-label">Decks</div>
             <div className="stat-detail">Alle collecties</div>
           </div>
-          <div className="stat-trend stat-trend--neutral">→</div>
+          <div className="stat-trend stat-trend--neutral" aria-hidden="true">→</div>
         </Link>
 
-        <div className="stat-card">
-          <div className="stat-icon">🎯</div>
+        <div className="stat-card" role="status" aria-label={`${stats.totalCards} kaarten totaal beschikbaar`}>
+          <div className="stat-icon" aria-hidden="true">🎯</div>
           <div className="stat-content">
-            <h3 className="stat-number">{stats.totalCards}</h3>
-            <p className="stat-label">Kaarten</p>
+            <div className="stat-number" role="text">{stats.totalCards}</div>
+            <div className="stat-label">Kaarten</div>
             <div className="stat-detail">Totaal beschikbaar</div>
           </div>
-          <div className="stat-progress">
+          <div className="stat-progress" role="progressbar" aria-valuenow={stats.totalCards} aria-valuemax={100} aria-label="Voortgang kaarten collectie">
             <div
               className="stat-progress-bar"
               style={
@@ -342,7 +351,7 @@ function Dashboard(): React.JSX.Element {
           })}
         </div>
       </section>
-    </div>
+    </main>
   )
 }
 

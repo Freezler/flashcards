@@ -1,5 +1,13 @@
 import { useState, useEffect } from 'react'
 import { FlashCard, DifficultyLevel } from '../types'
+import { 
+  sanitizeFlashcardContent, 
+  sanitizeCategory, 
+  sanitizeTags, 
+  validateUserInput,
+  formSubmissionLimiter
+} from '../utils/security'
+import { useCSRF } from '../utils/csrf'
 
 interface CardFormProps {
   card?: FlashCard
@@ -22,6 +30,7 @@ function CardForm({
   onCancel,
   isEditing = false,
 }: CardFormProps): React.JSX.Element {
+  const { getToken, validateToken } = useCSRF()
   const [formData, setFormData] = useState<CardFormData>({
     front: '',
     back: '',
@@ -50,14 +59,28 @@ function CardForm({
 
     if (!formData.front.trim()) {
       newErrors.front = 'Voorkant is verplicht'
+    } else if (!validateUserInput(formData.front)) {
+      newErrors.front = 'Voorkant bevat niet-toegestane inhoud'
     }
 
     if (!formData.back.trim()) {
       newErrors.back = 'Achterkant is verplicht'
+    } else if (!validateUserInput(formData.back)) {
+      newErrors.back = 'Achterkant bevat niet-toegestane inhoud'
     }
 
     if (!formData.category.trim()) {
       newErrors.category = 'Categorie is verplicht'
+    } else if (!validateUserInput(formData.category)) {
+      newErrors.category = 'Categorie bevat niet-toegestane inhoud'
+    }
+
+    // Validate tags
+    for (const tag of formData.tags) {
+      if (!validateUserInput(tag)) {
+        newErrors.tags = ['Een of meer tags bevatten niet-toegestane inhoud']
+        break
+      }
     }
 
     setErrors(newErrors)
@@ -67,16 +90,24 @@ function CardForm({
   const handleSubmit = (e: React.FormEvent): void => {
     e.preventDefault()
 
+    // Rate limiting protection
+    const userIdentifier = `form-${Date.now()}`
+    if (!formSubmissionLimiter.isAllowed(userIdentifier)) {
+      setErrors({ front: 'Te veel pogingen. Probeer over een minuut opnieuw.' })
+      return
+    }
+
     if (!validateForm()) {
       return
     }
 
+    // Sanitize all user input before saving
     const cardData: Omit<FlashCard, 'id'> = {
       ...formData,
-      front: formData.front.trim(),
-      back: formData.back.trim(),
-      category: formData.category.trim(),
-      tags: formData.tags.filter(tag => tag.trim() !== ''),
+      front: sanitizeFlashcardContent(formData.front),
+      back: sanitizeFlashcardContent(formData.back),
+      category: sanitizeCategory(formData.category),
+      tags: sanitizeTags(formData.tags),
       createdAt: card?.createdAt || new Date(),
       lastReviewed: card?.lastReviewed || null,
       nextReview: card?.nextReview || null,
@@ -150,6 +181,8 @@ function CardForm({
         </div>
 
         <form onSubmit={handleSubmit} className="card-form__form">
+          {/* CSRF Protection */}
+          <input type="hidden" name="csrf_token" value={getToken()} />
           <div className="form-group">
             <label htmlFor="front" className="form-label">
               Voorkant *

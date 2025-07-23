@@ -4,9 +4,9 @@ import Navigation from './components/Navigation'
 import { ScrollToTop } from './components/common'
 import { AuthProvider, useAuth } from './contexts/AuthContext'
 import { CardProvider } from './contexts/CardContext'
+import Dashboard from './components/Dashboard'
 
-// Lazy load components for better performance
-const Dashboard = lazy(() => import('./components/Dashboard'))
+// Lazy load non-critical components for better performance
 const DeckPage = lazy(() => import('./pages/DeckPage'))
 const DecksPage = lazy(() => import('./pages/DecksPage'))
 const LandingPage = lazy(() => import('./pages/LandingPage'))

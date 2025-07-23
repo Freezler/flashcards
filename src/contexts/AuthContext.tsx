@@ -5,6 +5,7 @@ import React, {
   useEffect,
   ReactNode,
 } from 'react'
+import { secureStorage } from '../utils/secureStorage'
 
 interface User {
   id: string
@@ -36,14 +37,9 @@ export const AuthProvider = React.memo(function AuthProvider({
 
   useEffect(() => {
     // Check if user is logged in on app start
-    const storedUser = localStorage.getItem('user')
-    if (storedUser) {
-      try {
-        const userData = JSON.parse(storedUser)
-        setUser(userData)
-      } catch (_error) {
-        localStorage.removeItem('user')
-      }
+    const userData = secureStorage.getJSON<User>('user')
+    if (userData) {
+      setUser(userData)
     } else {
       // For development, auto-login a test user
       const testUser = {
@@ -53,21 +49,14 @@ export const AuthProvider = React.memo(function AuthProvider({
         isFirstLogin: false,
       }
       setUser(testUser)
-      localStorage.setItem('user', JSON.stringify(testUser))
+      secureStorage.setItem('user', testUser)
     }
     setIsLoading(false)
   }, [])
 
   const login = (userData: User) => {
     // Check if this user has logged in before by checking existing users storage
-    const existingUsers = localStorage.getItem('flashcards-users') || '[]'
-    let userList: string[] = []
-
-    try {
-      userList = JSON.parse(existingUsers)
-    } catch {
-      // Handle JSON parsing error silently
-    }
+    const userList = secureStorage.getJSON<string[]>('flashcards-users') || []
 
     // Check if user ID already exists in the list
     const isFirstLogin = !userList.includes(userData.id)
@@ -75,7 +64,7 @@ export const AuthProvider = React.memo(function AuthProvider({
     if (isFirstLogin) {
       // Add user to the list of users who have logged in
       userList.push(userData.id)
-      localStorage.setItem('flashcards-users', JSON.stringify(userList))
+      secureStorage.setItem('flashcards-users', userList)
     }
 
     const userWithLoginStatus = {
@@ -84,12 +73,12 @@ export const AuthProvider = React.memo(function AuthProvider({
     }
 
     setUser(userWithLoginStatus)
-    localStorage.setItem('user', JSON.stringify(userWithLoginStatus))
+    secureStorage.setItem('user', userWithLoginStatus)
   }
 
   const logout = () => {
     setUser(null)
-    localStorage.removeItem('user')
+    secureStorage.removeItem('user')
   }
 
   const value: AuthContextType = {
