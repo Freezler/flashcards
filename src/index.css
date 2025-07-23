@@ -1862,7 +1862,7 @@ button:focus-visible {
 .btn-secondary::after {
   content: '';
   position: absolute;
-  inset: 0;
+  inset: 2px;
   background: var(--btn-bg);
   border-radius: var(--radius-3);
   z-index: -1;
