@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Fade as Hamburger } from 'hamburger-react'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
