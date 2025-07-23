@@ -35,25 +35,39 @@ export const AuthProvider = React.memo(function AuthProvider({
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
+    console.log('AuthProvider initializing...')
     // Check if user is logged in on app start
     const storedUser = localStorage.getItem('user')
     if (storedUser) {
       try {
         const userData = JSON.parse(storedUser)
+        console.log('Found stored user:', userData)
         setUser(userData)
       } catch (error) {
         console.error('Error parsing stored user data:', error)
         localStorage.removeItem('user')
       }
+    } else {
+      // For development, auto-login a test user
+      const testUser = {
+        id: 'test-user-1',
+        name: 'Test Gebruiker',
+        email: 'test@example.com',
+        isFirstLogin: false,
+      }
+      console.log('Creating test user:', testUser)
+      setUser(testUser)
+      localStorage.setItem('user', JSON.stringify(testUser))
     }
     setIsLoading(false)
+    console.log('AuthProvider initialization complete')
   }, [])
 
   const login = (userData: User) => {
     // Check if this user has logged in before by checking existing users storage
     const existingUsers = localStorage.getItem('flashcards-users') || '[]'
     let userList: string[] = []
-    
+
     try {
       userList = JSON.parse(existingUsers)
     } catch (error) {
@@ -62,7 +76,7 @@ export const AuthProvider = React.memo(function AuthProvider({
 
     // Check if user ID already exists in the list
     const isFirstLogin = !userList.includes(userData.id)
-    
+
     if (isFirstLogin) {
       // Add user to the list of users who have logged in
       userList.push(userData.id)

@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Navigation from './components/Navigation'
 import Dashboard from './components/Dashboard'
+import { ScrollToTop } from './components/common'
 import {
   DecksPage,
   DeckPage,
@@ -13,7 +14,9 @@ import { CardProvider } from './contexts/CardContext'
 import { AuthProvider, useAuth } from './contexts/AuthContext'
 
 function AppContent(): React.JSX.Element {
-  const { isAuthenticated, isLoading } = useAuth()
+  const { isAuthenticated, isLoading, user } = useAuth()
+
+  console.log('AppContent render - isAuthenticated:', isAuthenticated, 'isLoading:', isLoading, 'user:', user)
 
   if (isLoading) {
     return <div>Loading...</div>
@@ -22,6 +25,7 @@ function AppContent(): React.JSX.Element {
   return (
     <CardProvider>
       <Router>
+        <ScrollToTop />
         {!isAuthenticated ? (
           <Routes>
             <Route path="/" element={<LandingPage />} />

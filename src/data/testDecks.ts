@@ -5,15 +5,12 @@
 
 import { FlashCard, Deck, DifficultyLevel } from '../types'
 
-// Utility function to generate UUIDs (simple version for testing)
-const generateId = (): string => {
-  return (
-    Math.random().toString(36).substring(2, 15) +
-    Math.random().toString(36).substring(2, 15)
-  )
-}
+// Utility function removed - now using static IDs for consistent data
 
 // Helper function to create a FlashCard
+// Counter for creating unique but static IDs
+let cardIdCounter = 1
+
 const createFlashCard = (
   front: string,
   back: string,
@@ -21,7 +18,7 @@ const createFlashCard = (
   category: string,
   tags: string[] = []
 ): FlashCard => ({
-  id: generateId(),
+  id: `card-${cardIdCounter++}`,
   front,
   back,
   difficulty,
@@ -32,8 +29,8 @@ const createFlashCard = (
   timesReviewed: 0,
   correctCount: 0,
   incorrectCount: 0,
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  createdAt: new Date('2024-01-01T10:00:00.000Z'),
+  updatedAt: new Date('2024-01-01T10:00:00.000Z'),
 })
 
 // Nederlandse Grammatica Deck
@@ -164,7 +161,7 @@ const nederlandseGrammaticaCards: FlashCard[] = [
     DifficultyLevel.MEDIUM,
     'Nederlands',
     ['werkwoorden', 'voltooide-tijd', 'vervoegingen']
-  )
+  ),
 ]
 
 // Geschiedenis van Nederland Deck
@@ -295,7 +292,7 @@ const geschiedenisNederlandCards: FlashCard[] = [
     DifficultyLevel.MEDIUM,
     'Geschiedenis',
     ['vrouwenkiesrecht', '1919', 'emancipatie']
-  )
+  ),
 ]
 
 // Nederlandse Geografie Deck
@@ -426,7 +423,7 @@ const geografieNederlandCards: FlashCard[] = [
     DifficultyLevel.MEDIUM,
     'Geografie',
     ['nationale-parken', 'hoge-veluwe', 'natuurgebieden']
-  )
+  ),
 ]
 
 // Nederlandse Cultuur Deck
@@ -564,7 +561,7 @@ const cultuurNederlandCards: FlashCard[] = [
     DifficultyLevel.MEDIUM,
     'Cultuur',
     ['johan-cruijff', 'vliegende-hollander', 'voetbal']
-  )
+  ),
 ]
 
 // Nederlandse Literatuur Deck
@@ -638,7 +635,7 @@ const nederlandseLiteratuurCards: FlashCard[] = [
     DifficultyLevel.MEDIUM,
     'Literatuur',
     ['hella-haasse', 'historische-romans', 'woud-verwachting']
-  )
+  ),
 ]
 
 // Nederlandse Sport Deck
@@ -712,21 +709,22 @@ const nederlandseSportCards: FlashCard[] = [
     DifficultyLevel.EASY,
     'Sport',
     ['max-verstappen', 'zandvoort', 'formule-1']
-  )
+  ),
 ]
 
-// Create deck helper function
+// Create deck helper function with static dates
 const createDeck = (
   name: string,
   description: string,
-  cards: FlashCard[]
+  cards: FlashCard[],
+  id: string
 ): Deck => ({
-  id: generateId(),
+  id,
   name,
   description,
   cards,
-  createdAt: new Date(),
-  updatedAt: new Date(),
+  createdAt: new Date('2024-01-01T10:00:00.000Z'),
+  updatedAt: new Date('2024-01-01T10:00:00.000Z'),
   isActive: true,
   totalCards: cards.length,
   reviewedCards: 0,
@@ -734,54 +732,42 @@ const createDeck = (
 
 // Export test decks with consistent IDs
 export const testDecks: Deck[] = [
-  {
-    ...createDeck(
-      'Nederlandse Grammatica',
-      'Essentiële grammaticaregels en spelling voor correct Nederlands',
-      nederlandseGrammaticaCards
-    ),
-    id: 'nederlandse-grammatica',
-  },
-  {
-    ...createDeck(
-      'Geschiedenis van Nederland',
-      'Belangrijke gebeurtenissen en figuren uit de Nederlandse geschiedenis',
-      geschiedenisNederlandCards
-    ),
-    id: 'geschiedenis-nederland',
-  },
-  {
-    ...createDeck(
-      'Nederlandse Geografie',
-      'Kennis over de geografie, provincies en steden van Nederland',
-      geografieNederlandCards
-    ),
-    id: 'geografie-nederland',
-  },
-  {
-    ...createDeck(
-      'Nederlandse Cultuur',
-      'Cultuur, tradities en typisch Nederlandse gewoonten',
-      cultuurNederlandCards
-    ),
-    id: 'cultuur-nederland',
-  },
-  {
-    ...createDeck(
-      'Nederlandse Literatuur',
-      'Belangrijke Nederlandse schrijvers en literaire werken',
-      nederlandseLiteratuurCards
-    ),
-    id: 'literatuur-nederland',
-  },
-  {
-    ...createDeck(
-      'Nederlandse Sport',
-      'Nederlandse sporters, prestaties en sportgeschiedenis',
-      nederlandseSportCards
-    ),
-    id: 'sport-nederland',
-  },
+  createDeck(
+    'Nederlandse Grammatica',
+    'Essentiële grammaticaregels en spelling voor correct Nederlands',
+    nederlandseGrammaticaCards,
+    'nederlandse-grammatica'
+  ),
+  createDeck(
+    'Geschiedenis van Nederland',
+    'Belangrijke gebeurtenissen en figuren uit de Nederlandse geschiedenis',
+    geschiedenisNederlandCards,
+    'geschiedenis-nederland'
+  ),
+  createDeck(
+    'Nederlandse Geografie',
+    'Kennis over de geografie, provincies en steden van Nederland',
+    geografieNederlandCards,
+    'geografie-nederland'
+  ),
+  createDeck(
+    'Nederlandse Cultuur',
+    'Cultuur, tradities en typisch Nederlandse gewoonten',
+    cultuurNederlandCards,
+    'cultuur-nederland'
+  ),
+  createDeck(
+    'Nederlandse Literatuur',
+    'Belangrijke Nederlandse schrijvers en literaire werken',
+    nederlandseLiteratuurCards,
+    'literatuur-nederland'
+  ),
+  createDeck(
+    'Nederlandse Sport',
+    'Nederlandse sporters, prestaties en sportgeschiedenis',
+    nederlandseSportCards,
+    'sport-nederland'
+  ),
 ]
 
 // Export individual decks for convenience
@@ -798,8 +784,8 @@ export const [
 export const getTestDeckStats = () => ({
   totalDecks: testDecks.length,
   totalCards: testDecks.reduce((sum, deck) => sum + deck.totalCards, 0),
-  studyStreak: 0,
-  cardsToReview: testDecks.reduce((sum, deck) => sum + deck.totalCards, 0),
+  studyStreak: 8, // Mock 8-day study streak to showcase feature
+  cardsToReview: 12, // Some cards to review to showcase reminder system
 })
 
 // Export cards by difficulty for testing

@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom'
-import { getTestDeckStats, testDecks } from '../data'
+import { getTestDeckStats } from '../data'
 import { useAuth } from '../contexts/AuthContext'
-import { useState, useEffect } from 'react'
+import { useCards } from '../contexts/CardContext'
+import { useState, useEffect, useMemo } from 'react'
 
 interface DashboardStats {
   totalDecks: number
@@ -18,10 +19,17 @@ interface StudyReminder {
 }
 
 function Dashboard(): React.JSX.Element {
-  const stats: DashboardStats = getTestDeckStats()
   const { isFirstLogin, user } = useAuth()
+  const { state } = useCards()
   const [currentTime, setCurrentTime] = useState(new Date())
-  const [studyReminders, setStudyReminders] = useState<StudyReminder[]>([])
+
+  // Memoize stats to prevent infinite re-renders
+  const stats: DashboardStats = useMemo(() => getTestDeckStats(), [])
+
+  // Ensure dashboard always starts at top when mounted
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
 
   // Update time every minute for fresh greeting
   useEffect(() => {
@@ -29,35 +37,43 @@ function Dashboard(): React.JSX.Element {
     return () => clearInterval(timer)
   }, [])
 
-  // Generate study reminders based on stats
-  useEffect(() => {
+  // Generate study reminders based on stats (no dependencies since stats is memoized)
+  const studyReminders = useMemo(() => {
     const reminders: StudyReminder[] = []
-    
+
     if (stats.cardsToReview > 0) {
       reminders.push({
         id: 'overdue',
         message: `${stats.cardsToReview} kaarten wachten op herhaling`,
         type: 'overdue',
-        priority: 'high'
+        priority: 'high',
       })
     }
-    
+
     if (stats.studyStreak >= 7) {
       reminders.push({
         id: 'streak',
         message: `Geweldig! ${stats.studyStreak} dagen op rij gestudeerd!`,
-        type: 'streak', 
-        priority: 'medium'
+        type: 'streak',
+        priority: 'medium',
       })
     }
 
-    setStudyReminders(reminders)
-  }, [stats])
+    // Always show daily encouragement
+    reminders.push({
+      id: 'daily',
+      message: '🎯 Tijd om te studeren! Start je dagelijkse sessie',
+      type: 'daily',
+      priority: 'medium',
+    })
+
+    return reminders
+  }, [])
 
   const getTimeBasedGreeting = (): string => {
     const hour = currentTime.getHours()
     if (hour < 12) return 'Goedemorgen'
-    if (hour < 17) return 'Goedemiddag' 
+    if (hour < 17) return 'Goedemiddag'
     return 'Goedenavond'
   }
 
@@ -73,10 +89,9 @@ function Dashboard(): React.JSX.Element {
             <span className="gradient-text">FlashCards</span>
           </h2>
           <p className="dashboard-subtitle">
-            {isFirstLogin 
+            {isFirstLogin
               ? 'Klaar om je kennis te vergroten? Start vandaag met leren!'
-              : 'Klaar om verder te gaan met leren? Zet je studie voort!'
-            }
+              : 'Klaar om verder te gaan met leren? Zet je studie voort!'}
           </p>
         </div>
 
@@ -84,8 +99,8 @@ function Dashboard(): React.JSX.Element {
         {studyReminders.length > 0 && (
           <div className="study-reminders">
             {studyReminders.map(reminder => (
-              <div 
-                key={reminder.id} 
+              <div
+                key={reminder.id}
                 className={`study-reminder study-reminder--${reminder.type}`}
               >
                 <div className="reminder-icon">
@@ -124,21 +139,30 @@ function Dashboard(): React.JSX.Element {
             <div className="stat-detail">Totaal beschikbaar</div>
           </div>
           <div className="stat-progress">
-            <div 
-              className="stat-progress-bar" 
-              style={{ '--progress': `${Math.min((stats.totalCards / 100) * 100, 100)}%` } as React.CSSProperties}
+            <div
+              className="stat-progress-bar"
+              style={
+                {
+                  '--progress': `${Math.min((stats.totalCards / 100) * 100, 100)}%`,
+                } as React.CSSProperties
+              }
             />
           </div>
         </div>
 
-        <div className={`stat-card ${stats.studyStreak >= 7 ? 'stat-card--highlight' : ''}`}>
+        <div
+          className={`stat-card ${stats.studyStreak >= 7 ? 'stat-card--highlight' : ''}`}
+        >
           <div className="stat-icon">🔥</div>
           <div className="stat-content">
             <h3 className="stat-number">{stats.studyStreak}</h3>
             <p className="stat-label">Dag streak</p>
             <div className="stat-detail">
-              {stats.studyStreak === 0 ? 'Start je streak!' : 
-               stats.studyStreak < 7 ? 'Ga zo door!' : 'Fantastisch! 🎉'}
+              {stats.studyStreak === 0
+                ? 'Start je streak!'
+                : stats.studyStreak < 7
+                  ? 'Ga zo door!'
+                  : 'Fantastisch! 🎉'}
             </div>
           </div>
           {stats.studyStreak >= 7 && (
@@ -146,8 +170,8 @@ function Dashboard(): React.JSX.Element {
           )}
         </div>
 
-        <Link 
-          to="/decks" 
+        <Link
+          to="/decks"
           className={`stat-card stat-card--interactive ${stats.cardsToReview > 0 ? 'stat-card--urgent' : ''}`}
         >
           <div className="stat-icon">⏰</div>
@@ -158,9 +182,7 @@ function Dashboard(): React.JSX.Element {
               {stats.cardsToReview === 0 ? 'Alles bijgewerkt!' : 'Wacht op jou'}
             </div>
           </div>
-          {stats.cardsToReview > 0 && (
-            <div className="stat-pulse"></div>
-          )}
+          {stats.cardsToReview > 0 && <div className="stat-pulse"></div>}
         </Link>
       </section>
 
@@ -169,7 +191,7 @@ function Dashboard(): React.JSX.Element {
           <h2 className="section-title">Snelle acties</h2>
           <div className="section-subtitle">Start direct met leren</div>
         </div>
-        
+
         <div className="actions-grid">
           {/* Quick Study - Featured Action */}
           {stats.cardsToReview > 0 && (
@@ -213,44 +235,63 @@ function Dashboard(): React.JSX.Element {
       <section className="recent-activity">
         <div className="section-header">
           <h2 className="section-title">Beschikbare Decks</h2>
-          <div className="section-subtitle">Kies een deck om mee te starten</div>
+          <div className="section-subtitle">
+            Kies een deck om mee te starten
+          </div>
         </div>
-        
+
         <div className="deck-grid">
-          {testDecks.map((deck) => {
-            const completionRate = Math.floor(Math.random() * 100) // Mock progress
-            const lastStudied = Math.floor(Math.random() * 7) // Days ago
-            
+          {state.decks.map(deck => {
+            // Create stable mock data based on deck ID to prevent constant updates
+            const deckHash = deck.id.split('').reduce((a, b) => {
+              a = (a << 5) - a + b.charCodeAt(0)
+              return a & a
+            }, 0)
+            const completionRate = Math.abs(deckHash % 100) // Stable progress percentage
+            const lastStudied = Math.abs(deckHash % 7) // Stable days ago
+            const accuracy = 85 + Math.abs(deckHash % 15) // Stable accuracy percentage
+
             return (
               <div key={deck.id} className="deck-card deck-card--enhanced">
                 <div className="deck-header">
                   <div className="deck-info">
                     <h3 className="deck-title">{deck.name}</h3>
                     <div className="deck-meta">
-                      <span className="deck-count">{deck.totalCards} kaarten</span>
+                      <span className="deck-count">
+                        {deck.totalCards} kaarten
+                      </span>
                       <span className="deck-dot">•</span>
                       <span className="deck-category">
-                        {deck.name.includes('Grammatica') ? '📝 Grammatica' :
-                         deck.name.includes('Geschiedenis') ? '🏛️ Geschiedenis' :  
-                         deck.name.includes('Geografie') ? '🌍 Geografie' :
-                         deck.name.includes('Cultuur') ? '🎭 Cultuur' :
-                         deck.name.includes('Literatuur') ? '📚 Literatuur' : 
-                         '⚽ Sport'}
+                        {deck.name.includes('Grammatica')
+                          ? '📝 Grammatica'
+                          : deck.name.includes('Geschiedenis')
+                            ? '🏛️ Geschiedenis'
+                            : deck.name.includes('Geografie')
+                              ? '🌍 Geografie'
+                              : deck.name.includes('Cultuur')
+                                ? '🎭 Cultuur'
+                                : deck.name.includes('Literatuur')
+                                  ? '📚 Literatuur'
+                                  : '⚽ Sport'}
                       </span>
                     </div>
                   </div>
                   <div className="deck-progress-ring">
                     <svg width="40" height="40" viewBox="0 0 40 40">
-                      <circle 
-                        cx="20" cy="20" r="16" 
-                        fill="none" 
-                        stroke="var(--border-2)" 
+                      <circle
+                        cx="20"
+                        cy="20"
+                        r="16"
+                        fill="none"
+                        stroke="var(--border-2)"
                         strokeWidth="3"
                       />
-                      <circle 
-                        cx="20" cy="20" r="16" 
-                        fill="none" 
-                        stroke="var(--brand-500)" 
+                      <circle
+                        cx="20"
+                        cy="20"
+                        r="16"
+                        fill="none"
+                        stroke="var(--brand-500)"
                         strokeWidth="3"
                         strokeDasharray={`${completionRate} 100`}
                         strokeDashoffset="25"
@@ -261,34 +302,38 @@ function Dashboard(): React.JSX.Element {
                     <span className="progress-text">{completionRate}%</span>
                   </div>
                 </div>
-                
+
                 <p className="deck-description">{deck.description}</p>
-                
+
                 <div className="deck-stats">
                   <div className="deck-stat">
                     <span className="stat-icon">🎯</span>
-                    <span>Accuratie: {85 + Math.floor(Math.random() * 15)}%</span>
+                    <span>
+                      Accuratie: {accuracy}%
+                    </span>
                   </div>
                   <div className="deck-stat">
                     <span className="stat-icon">⏱️</span>
                     <span>
-                      {lastStudied === 0 ? 'Vandaag' : 
-                       lastStudied === 1 ? 'Gisteren' : 
-                       `${lastStudied} dagen geleden`}
+                      {lastStudied === 0
+                        ? 'Vandaag'
+                        : lastStudied === 1
+                          ? 'Gisteren'
+                          : `${lastStudied} dagen geleden`}
                     </span>
                   </div>
                 </div>
-                
+
                 <div className="deck-actions">
-                  <Link 
-                    to={`/deck/${deck.id}/study`} 
+                  <Link
+                    to={`/deck/${deck.id}/study`}
                     className="btn-primary btn-primary--full"
                   >
                     <span className="btn-icon">🚀</span>
                     Start studie
                   </Link>
-                  <Link 
-                    to={`/deck/${deck.id}`} 
+                  <Link
+                    to={`/deck/${deck.id}`}
                     className="btn-secondary btn-secondary--outline"
                   >
                     Bekijk kaarten

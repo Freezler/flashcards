@@ -1,31 +1,112 @@
+import React from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect, useMemo } from 'react'
 import { Fade as Hamburger } from 'hamburger-react'
 import ThemeToggle from './ThemeToggle'
 import { useAuth } from '../contexts/AuthContext'
+import { getTestDeckStats } from '../data'
 
 interface NavItem {
   name: string
   path: string
   icon: string
+  badge?: number
+  tooltip?: string
 }
 
-function Navigation(): React.JSX.Element {
+interface BreadcrumbItem {
+  name: string
+  path: string
+}
+
+const Navigation = function Navigation(): React.JSX.Element {
   const location = useLocation()
   const { user, logout } = useAuth()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isSearchOpen, setIsSearchOpen] = useState(false)
+  const [searchQuery, setSearchQuery] = useState('')
+  
+  // Memoize stats to prevent unnecessary re-renders
+  const stats = useMemo(() => getTestDeckStats(), [])
 
-  const navItems: NavItem[] = [
-    { name: 'Dashboard', path: '/', icon: '🏠' },
-    { name: 'Mijn Decks', path: '/decks', icon: '📚' },
-    { name: 'Voortgang', path: '/progress', icon: '📊' },
-    { name: 'Instellingen', path: '/settings', icon: '⚙️' },
-  ]
+  const navItems: NavItem[] = useMemo(() => [
+    { name: 'Dashboard', path: '/', icon: '🏠', tooltip: 'Ga naar dashboard' },
+    { 
+      name: 'Mijn Decks', 
+      path: '/decks', 
+      icon: '📚', 
+      badge: stats.totalDecks,
+      tooltip: `${stats.totalDecks} decks beschikbaar`
+    },
+    { 
+      name: 'Nieuw Deck', 
+      path: '/decks/new', 
+      icon: '➕', 
+      tooltip: 'Maak een nieuw deck aan'
+    },
+  ], [stats])
 
   const handleLogout = useCallback(() => {
     logout()
     setIsMobileMenuOpen(false)
   }, [logout])
+
+  // Generate breadcrumbs based on current path
+  const breadcrumbs = useMemo((): BreadcrumbItem[] => {
+    const pathSegments = location.pathname.split('/').filter(Boolean)
+    const crumbs: BreadcrumbItem[] = [{ name: 'Dashboard', path: '/' }]
+    
+    if (pathSegments.length > 0) {
+      const segment = pathSegments[0]
+      switch (segment) {
+        case 'decks':
+          crumbs.push({ name: 'Mijn Decks', path: '/decks' })
+          if (pathSegments[1] === 'new') {
+            crumbs.push({ name: 'Nieuw Deck', path: '/decks/new' })
+          }
+          break
+        case 'deck':
+          if (pathSegments[1]) {
+            crumbs.push({ name: 'Mijn Decks', path: '/decks' })
+            crumbs.push({ name: 'Deck Details', path: `/deck/${pathSegments[1]}` })
+            if (pathSegments[2] === 'study') {
+              crumbs.push({ name: 'Studie Sessie', path: location.pathname })
+            }
+          }
+          break
+        default:
+          break
+      }
+    }
+    
+    return crumbs
+  }, [location.pathname])
+
+  // Close search when clicking outside
+  useEffect(() => {
+    const handleClickOutside = () => {
+      if (isSearchOpen) {
+        setIsSearchOpen(false)
+        setSearchQuery('')
+      }
+    }
+    
+    if (isSearchOpen) {
+      document.addEventListener('click', handleClickOutside)
+      return () => document.removeEventListener('click', handleClickOutside)
+    }
+  }, [isSearchOpen])
+
+  const handleSearchToggle = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation()
+    setIsSearchOpen(!isSearchOpen)
+    if (!isSearchOpen) {
+      // Focus search input after animation
+      setTimeout(() => {
+        document.getElementById('nav-search-input')?.focus()
+      }, 100)
+    }
+  }, [isSearchOpen])
 
   return (
     <>
@@ -48,14 +129,61 @@ function Navigation(): React.JSX.Element {
               key={item.path}
               to={item.path}
               className={`nav-item ${location.pathname === item.path ? 'active' : ''}`}
+              title={item.tooltip}
+              aria-label={item.tooltip}
+              onClick={() => console.log('Navigation clicked:', item.path)}
             >
               <span className="nav-icon">{item.icon}</span>
               <span className="nav-label">{item.name}</span>
+              {item.badge !== undefined && item.badge > 0 && (
+                <span className="nav-badge" aria-label={`${item.badge} items`}>
+                  {item.badge > 99 ? '99+' : item.badge}
+                </span>
+              )}
             </Link>
           ))}
         </div>
 
         <div className="nav-user desktop-nav">
+          {/* Search functionality */}
+          <div className={`nav-search ${isSearchOpen ? 'nav-search--open' : ''}`}>
+            <button
+              className="search-toggle"
+              onClick={handleSearchToggle}
+              aria-label="Toggle search"
+              title="Zoeken"
+            >
+              🔍
+            </button>
+            {isSearchOpen && (
+              <div className="search-input-container" onClick={e => e.stopPropagation()}>
+                <input
+                  id="nav-search-input"
+                  type="text"
+                  className="search-input"
+                  placeholder="Zoek in decks..."
+                  value={searchQuery}
+                  onChange={e => setSearchQuery(e.target.value)}
+                  onKeyDown={e => {
+                    if (e.key === 'Escape') {
+                      setIsSearchOpen(false)
+                      setSearchQuery('')
+                    }
+                  }}
+                />
+                {searchQuery && (
+                  <button
+                    className="search-clear"
+                    onClick={() => setSearchQuery('')}
+                    aria-label="Clear search"
+                  >
+                    ✕
+                  </button>
+                )}
+              </div>
+            )}
+          </div>
+          
           <div className="desktop-theme-toggle">
             <ThemeToggle />
           </div>
@@ -154,8 +282,34 @@ function Navigation(): React.JSX.Element {
           </div>
         </>
       )}
+
+      {/* Breadcrumb Navigation */}
+      {breadcrumbs.length > 1 && (
+        <div className="breadcrumb-container">
+          <nav className="breadcrumb" aria-label="Breadcrumb navigation">
+            {breadcrumbs.map((crumb, index) => (
+              <span key={crumb.path} className="breadcrumb-item">
+                {index < breadcrumbs.length - 1 ? (
+                  <>
+                    <Link to={crumb.path} className="breadcrumb-link">
+                      {crumb.name}
+                    </Link>
+                    <span className="breadcrumb-separator" aria-hidden="true">
+                      →
+                    </span>
+                  </>
+                ) : (
+                  <span className="breadcrumb-current" aria-current="page">
+                    {crumb.name}
+                  </span>
+                )}
+              </span>
+            ))}
+          </nav>
+        </div>
+      )}
     </>
   )
 }
 
-export default Navigation
+export default React.memo(Navigation)

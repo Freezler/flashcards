@@ -1,25 +1,32 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { FlashCard as FlashCardType, DifficultyLevel } from '../types'
 
 interface FlashCardProps {
   card: FlashCardType
-  onAnswer?: (cardId: string, isCorrect: boolean) => void
+  onAnswer?: (cardId: string, isCorrect: boolean, responseTime?: number) => void
   showActions?: boolean
   autoFlip?: boolean
   size?: 'small' | 'medium' | 'large'
+  enableSound?: boolean
+  showStats?: boolean
   key?: string // Add key prop to force reset when card changes
 }
 
-function FlashCard({
+const FlashCard = function FlashCard({
   card,
   onAnswer,
   showActions = true,
   autoFlip = false,
   size = 'medium',
+  enableSound = false,
+  showStats = false,
 }: FlashCardProps): React.JSX.Element {
   const [isFlipped, setIsFlipped] = useState(false)
   const [isRevealing, setIsRevealing] = useState(false)
   const [isTransitioning, setIsTransitioning] = useState(false)
+  const [flipStartTime, setFlipStartTime] = useState<number | null>(null)
+  const [isHovered, setIsHovered] = useState(false)
+  const cardRef = useRef<HTMLDivElement>(null)
 
   // Reset flip state when card changes
   useEffect(() => {
@@ -28,34 +35,80 @@ function FlashCard({
     setIsTransitioning(false)
   }, [card.id])
 
-  const handleFlip = (): void => {
+  const handleFlip = useCallback((): void => {
     if (autoFlip) return
-    setIsFlipped(!isFlipped)
-  }
 
-  const handleReveal = (): void => {
+    // Track flip start time for response tracking
+    if (!isFlipped && !flipStartTime) {
+      setFlipStartTime(Date.now())
+    }
+
+    setIsFlipped(!isFlipped)
+
+    // Optional sound feedback
+    if (enableSound && !isFlipped) {
+      // Could integrate with Web Audio API for card flip sound
+      console.log('🔊 Card flip sound')
+    }
+  }, [autoFlip, isFlipped, flipStartTime, enableSound])
+
+  const handleReveal = useCallback((): void => {
     setIsRevealing(true)
+    setFlipStartTime(Date.now())
+
     setTimeout(() => {
       setIsFlipped(true)
       setIsRevealing(false)
     }, 300)
-  }
 
-  const handleAnswer = (isCorrect: boolean): void => {
-    if (onAnswer) {
-      onAnswer(card.id, isCorrect)
+    // Optional sound feedback
+    if (enableSound) {
+      console.log('🔊 Card reveal sound')
     }
-    // Start transitioning state to hide content
-    setIsTransitioning(true)
-    // Reset card for next question
-    setTimeout(() => {
-      setIsFlipped(false)
-      // Clear transitioning state after flip completes
+  }, [enableSound])
+
+  const handleAnswer = useCallback(
+    (isCorrect: boolean): void => {
+      const responseTime = flipStartTime
+        ? Date.now() - flipStartTime
+        : undefined
+
+      if (onAnswer) {
+        onAnswer(card.id, isCorrect, responseTime)
+      }
+
+      // Visual feedback animation
+      if (cardRef.current) {
+        cardRef.current.classList.add(
+          isCorrect ? 'flashcard--success' : 'flashcard--error'
+        )
+        setTimeout(() => {
+          cardRef.current?.classList.remove(
+            'flashcard--success',
+            'flashcard--error'
+          )
+        }, 1000)
+      }
+
+      // Optional sound feedback
+      if (enableSound) {
+        console.log(`🔊 ${isCorrect ? 'Success' : 'Error'} sound`)
+      }
+
+      // Start transitioning state to hide content
+      setIsTransitioning(true)
+      // Reset card for next question
       setTimeout(() => {
-        setIsTransitioning(false)
-      }, 600) // Wait for flip animation to complete
-    }, 1000)
-  }
+        setIsFlipped(false)
+        setFlipStartTime(null)
+        // Clear transitioning state after flip completes
+        setTimeout(() => {
+          setIsTransitioning(false)
+        }, 600) // Wait for flip animation to complete
+      }, 1000)
+    },
+    [card.id, onAnswer, flipStartTime, enableSound]
+  )
 
   const getDifficultyClass = (difficulty: DifficultyLevel): string => {
     switch (difficulty) {
@@ -83,12 +136,15 @@ function FlashCard({
 
   return (
     <div
+      ref={cardRef}
       className={`flashcard ${getDifficultyClass(card.difficulty)} ${getSizeClass(size)} ${
         isFlipped ? 'flashcard--flipped' : ''
       } ${isRevealing ? 'flashcard--revealing' : ''} ${
         isTransitioning ? 'flashcard--transitioning' : ''
-      }`}
+      } ${isHovered ? 'flashcard--hovered' : ''}`}
       onClick={handleFlip}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       role="button"
       tabIndex={0}
       onKeyDown={e => {
@@ -116,12 +172,29 @@ function FlashCard({
           </div>
 
           <div className="flashcard__footer">
-            <div className="flashcard__tags">
-              {card.tags.slice(0, 2).map((tag, index) => (
-                <span key={index} className="flashcard__tag">
-                  {tag}
-                </span>
-              ))}
+            <div className="flashcard__meta">
+              <div className="flashcard__tags">
+                {card.tags.slice(0, 2).map((tag, index) => (
+                  <span key={index} className="flashcard__tag">
+                    #{tag}
+                  </span>
+                ))}
+              </div>
+              {showStats && (
+                <div className="flashcard__stats">
+                  <span className="flashcard__stat">
+                    ✅ {card.correctCount}
+                  </span>
+                  <span className="flashcard__stat">
+                    ❌ {card.incorrectCount}
+                  </span>
+                  {card.timesReviewed > 0 && (
+                    <span className="flashcard__stat">
+                      🔄 {card.timesReviewed}
+                    </span>
+                  )}
+                </div>
+              )}
             </div>
             {!autoFlip && (
               <button
@@ -197,4 +270,4 @@ function FlashCard({
   )
 }
 
-export default FlashCard
+export default React.memo(FlashCard)

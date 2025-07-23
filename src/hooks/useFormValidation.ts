@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react'
 
-interface ValidationRules<T> {
+type ValidationRules<T> = {
   [K in keyof T]?: (value: T[K]) => string | undefined
 }
 

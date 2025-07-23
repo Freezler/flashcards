@@ -128,7 +128,6 @@ const generateId = (): string => {
   return Date.now().toString(36) + Math.random().toString(36).substring(2)
 }
 
-
 interface CardProviderProps {
   children: React.ReactNode
 }
@@ -148,8 +147,8 @@ export function CardProvider({
       // Force clear all localStorage and load fresh Dutch data
       localStorage.removeItem('flashcard-decks')
       localStorage.removeItem('flashcard-data-version')
-      
-      console.log('Loading fresh Dutch flashcard data...')
+
+      console.log('Loading fresh Dutch flashcard data...', testDecks.length, 'decks')
       dispatch({ type: 'SET_DECKS', payload: testDecks })
       localStorage.setItem('flashcard-data-version', '2.1-nl')
     } catch (error) {

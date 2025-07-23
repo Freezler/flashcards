@@ -7,6 +7,9 @@ const DecksPage = React.memo(function DecksPage(): React.JSX.Element {
   const { state } = useCards()
   const { decks, loading, error } = state
   const navigate = useNavigate()
+  
+  // Debug logging
+  console.log('DecksPage - loading:', loading, 'error:', error, 'decks:', decks.length)
 
   const handleCreateNewDeck = useCallback(() => {
     navigate('/decks/new')
