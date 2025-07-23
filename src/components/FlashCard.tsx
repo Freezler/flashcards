@@ -62,6 +62,7 @@ const FlashCard = function FlashCard({
 
     // Optional sound feedback
     if (enableSound) {
+      // Sound implementation placeholder
     }
   }, [enableSound])
 
@@ -90,6 +91,7 @@ const FlashCard = function FlashCard({
 
       // Optional sound feedback
       if (enableSound) {
+        // Sound implementation placeholder
       }
 
       // Start transitioning state to hide content

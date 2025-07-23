@@ -1919,13 +1919,25 @@ button:focus-visible {
   height: auto;
   min-width: unset;
   aspect-ratio: unset;
-  padding: var(--space-2xs) !important;
   font-size: var(--step--2) !important;
   justify-content: center;
   align-items: center;
   min-height: auto !important;
   text-align: center;
   border-radius: var(--radius-3) !important;
+  
+  /* Subtle styling - just border, no background */
+  background: transparent !important;
+  color: var(--text-3) !important;
+  border: 1px solid var(--border-2) !important;
+  transition: all 0.2s var(--ease-out-2);
+}
+
+.deck-actions .btn-danger:hover {
+  background: var(--surface-2) !important;
+  color: var(--error-500) !important;
+  border-color: var(--error-500) !important;
+  transform: translateY(-1px);
 }
 
 @media (min-width: 768px) {

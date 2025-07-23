@@ -41,7 +41,7 @@ export const AuthProvider = React.memo(function AuthProvider({
       try {
         const userData = JSON.parse(storedUser)
         setUser(userData)
-      } catch (error) {
+      } catch (_error) {
         localStorage.removeItem('user')
       }
     } else {
