@@ -1,9 +1,11 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { getTestDeckStats } from '../data'
 import { useAuth } from '../contexts/AuthContext'
 import { useCards } from '../contexts/CardContext'
 import { useState, useEffect, useMemo } from 'react'
 import { useSEO } from '../hooks/useSEO'
+import { useSearch } from '../hooks/useSearch'
+import { FlashCard } from '../types'
 
 interface DashboardStats {
   totalDecks: number
@@ -22,7 +24,26 @@ interface StudyReminder {
 function Dashboard(): React.JSX.Element {
   const { isFirstLogin, user } = useAuth()
   const { state } = useCards()
+  const navigate = useNavigate()
   const [currentTime, setCurrentTime] = useState(new Date())
+
+  // Get all cards for search
+  const allCards = useMemo(() => {
+    return state.decks.flatMap(deck => deck.cards)
+  }, [state.decks])
+
+  // Initialize search hook
+  const {
+    state: searchState,
+    search,
+    clearSearch,
+    searchHistory,
+  } = useSearch(allCards, {
+    threshold: 0.3,
+    maxResults: 6, // Show top 6 results in dashboard
+    enableSuggestions: true,
+    searchFields: ['front', 'back', 'category', 'difficulty', 'tags'],
+  })
 
   // Memoize stats to prevent infinite re-renders
   const stats: DashboardStats = useMemo(() => getTestDeckStats(), [])
@@ -76,6 +97,25 @@ function Dashboard(): React.JSX.Element {
     if (hour < 12) return 'Goedemorgen'
     if (hour < 17) return 'Goedemiddag'
     return 'Goedenavond'
+  }
+
+  // Handle card selection from search results
+  const handleCardSelect = (card: FlashCard) => {
+    // Find the deck this card belongs to
+    const deck = state.decks.find(d => d.cards.some(c => c.id === card.id))
+    if (deck) {
+      navigate(`/deck/${deck.id}`)
+    }
+  }
+
+  // Handle starting study with selected card
+  const handleStartStudy = (card: FlashCard) => {
+    const deck = state.decks.find(d => d.cards.some(c => c.id === card.id))
+    if (deck) {
+      navigate(`/deck/${deck.id}/study`, {
+        state: { startWithCard: card.id },
+      })
+    }
   }
 
   // SEO optimalisatie voor homepage
@@ -148,6 +188,176 @@ function Dashboard(): React.JSX.Element {
           </section>
         )}
       </header>
+
+      {/* Search Hero Section */}
+      <section className="search-hero" aria-labelledby="search-title">
+        <div className="search-hero__header">
+          <h2 id="search-title" className="search-hero__title">
+            🔍 Zoek in al je flashcards
+          </h2>
+          <p className="search-hero__subtitle">
+            Vind snel de kaarten die je zoekt met intelligente fuzzy search
+          </p>
+        </div>
+
+        <div className="search-hero__input">
+          <div className="search-input-container">
+            <input
+              type="text"
+              className="search-input search-input--hero"
+              placeholder="Zoek naar vraag, antwoord, categorie, moeilijkheidsgraad..."
+              value={searchState.query}
+              onChange={e => search(e.target.value)}
+              autoComplete="off"
+            />
+            {searchState.query && (
+              <button
+                className="search-clear"
+                onClick={clearSearch}
+                aria-label="Clear search"
+              >
+                ✕
+              </button>
+            )}
+            {searchState.isSearching && (
+              <div className="search-loading" aria-hidden="true">
+                ⏳
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Search Results */}
+        {searchState.hasSearched && (
+          <div className="search-hero__results">
+            {searchState.results.length > 0 ? (
+              <>
+                <div className="search-results-header">
+                  <span className="search-results-count">
+                    {searchState.totalResults} resultaten gevonden
+                  </span>
+                  {searchState.totalResults > searchState.results.length && (
+                    <button
+                      className="search-view-all-link"
+                      onClick={() =>
+                        navigate(
+                          `/search?q=${encodeURIComponent(searchState.query)}`
+                        )
+                      }
+                    >
+                      Bekijk alle resultaten →
+                    </button>
+                  )}
+                </div>
+
+                <div className="search-results-grid">
+                  {searchState.results.map((result, index) => (
+                    <div
+                      key={`${result.item.id}-${index}`}
+                      className="search-result-card"
+                      onClick={() => handleCardSelect(result.item)}
+                    >
+                      <div className="search-result-content">
+                        <div className="search-result-question">
+                          {result.item.front}
+                        </div>
+                        <div className="search-result-answer">
+                          {result.item.back}
+                        </div>
+                        <div className="search-result-meta">
+                          <span
+                            className={`search-result-difficulty difficulty--${result.item.difficulty.toLowerCase()}`}
+                          >
+                            {result.item.difficulty}
+                          </span>
+                          <span className="search-result-category">
+                            {result.item.category}
+                          </span>
+                          {result.score !== undefined && (
+                            <span className="search-result-score">
+                              {Math.round((1 - result.score) * 100)}% match
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                      <div className="search-result-actions">
+                        <button
+                          className="search-result-study"
+                          onClick={e => {
+                            e.stopPropagation()
+                            handleStartStudy(result.item)
+                          }}
+                          aria-label="Start study"
+                          title="Begin studie met deze kaart"
+                        >
+                          📚
+                        </button>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </>
+            ) : searchState.query.length > 0 ? (
+              <div className="search-no-results">
+                <div className="search-no-results-icon">📭</div>
+                <div className="search-no-results-text">
+                  Geen resultaten gevonden voor "{searchState.query}"
+                </div>
+                <p className="search-no-results-suggestion">
+                  Probeer andere zoektermen of controleer je spelling
+                </p>
+              </div>
+            ) : null}
+          </div>
+        )}
+
+        {/* Search History */}
+        {!searchState.hasSearched && searchHistory.length > 0 && (
+          <div className="search-history">
+            <div className="search-history-header">Recente zoekopdrachten</div>
+            <div className="search-history-list">
+              {searchHistory.slice(0, 4).map((query, index) => (
+                <button
+                  key={index}
+                  className="search-history-item"
+                  onClick={() => search(query)}
+                >
+                  🕒 {query}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Search Tips */}
+        {!searchState.hasSearched && searchHistory.length === 0 && (
+          <div className="search-tips">
+            <div className="search-tips-grid">
+              <div className="search-tip">
+                <span className="search-tip-icon">💡</span>
+                <div>
+                  <strong>Fuzzy search:</strong>
+                  <p>Kleine typfouten worden automatisch gecorrigeerd</p>
+                </div>
+              </div>
+              <div className="search-tip">
+                <span className="search-tip-icon">🎯</span>
+                <div>
+                  <strong>Categorieën:</strong>
+                  <p>Zoek op "grammatica", "geschiedenis", "geografie"</p>
+                </div>
+              </div>
+              <div className="search-tip">
+                <span className="search-tip-icon">⚡</span>
+                <div>
+                  <strong>Moeilijkheid:</strong>
+                  <p>Zoek op "easy", "medium", "hard", "makkelijk", of "moeilijk"</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </section>
 
       <section className="stats-grid" aria-labelledby="stats-title">
         <h3 id="stats-title" className="sr-only">
