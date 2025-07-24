@@ -1,5 +1,7 @@
 @import 'tailwindcss';
 
+/* Cache bust - Updated: 2025-01-24 22:30 UTC - Unified flashcard styling */
+
 /* === ACCESSIBILITY & SKIP LINKS === */
 .skip-link {
   position: absolute;
@@ -2491,25 +2493,25 @@ button:focus-visible {
 .flashcard--easy {
   --difficulty-color: oklch(70% 0.15 150);
   --difficulty-glow: oklch(70% 0.25 150);
-  --difficulty-bg: var(--surface-1);
+  --difficulty-bg: var(--surface-1, oklch(100% 0 0));
   --difficulty-border: oklch(70% 0.15 150 / 0.3);
-  --difficulty-text: var(--text-1);
+  --difficulty-text: var(--text-1, oklch(15% 0.02 240));
 }
 
 .flashcard--medium {
   --difficulty-color: oklch(65% 0.18 45);
   --difficulty-glow: oklch(65% 0.28 45);
-  --difficulty-bg: var(--surface-1);
+  --difficulty-bg: var(--surface-1, oklch(100% 0 0));
   --difficulty-border: oklch(65% 0.18 45 / 0.3);
-  --difficulty-text: var(--text-1);
+  --difficulty-text: var(--text-1, oklch(15% 0.02 240));
 }
 
 .flashcard--hard {
   --difficulty-color: oklch(60% 0.22 10);
   --difficulty-glow: oklch(60% 0.32 10);
-  --difficulty-bg: var(--surface-1);
+  --difficulty-bg: var(--surface-1, oklch(100% 0 0));
   --difficulty-border: oklch(60% 0.22 10 / 0.3);
-  --difficulty-text: var(--text-1);
+  --difficulty-text: var(--text-1, oklch(15% 0.02 240));
 }
 
 /* The magical 3D flip container */
