@@ -133,7 +133,7 @@ const Navigation = function Navigation(): React.JSX.Element {
 
         <div className="nav-user desktop-nav">
           <div className="desktop-theme-toggle">
-            <ThemeToggle />
+            <ThemeToggle showAccentToggle={false} />
           </div>
           {user ? (
             <div className="user-dropdown-hover">
@@ -207,7 +207,7 @@ const Navigation = function Navigation(): React.JSX.Element {
                 ) : null}
 
                 <div className="mobile-actions">
-                  <ThemeToggle />
+                  <ThemeToggle showAccentToggle={false} />
                   {user ? (
                     <button
                       className="logout-button mobile-logout"

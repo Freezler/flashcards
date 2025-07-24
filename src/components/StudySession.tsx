@@ -282,11 +282,11 @@ function StudySession({
 
   if (showSessionComplete) {
     return (
-      <div className="study-session-complete">
+      <div className="study-session-complete glass-container">
         <div className="session-complete-content">
           <div className="session-complete-header">
-            <div className="session-complete-icon">🎉</div>
-            <h2 className="session-complete-title">Sessie Voltooid!</h2>
+            <div className="session-complete-icon magical-glow">🎉</div>
+            <h2 className="session-complete-title gradient-text">Sessie Voltooid!</h2>
             <div className="session-complete-subtitle">
               Geweldig werk! Hier zijn je resultaten:
             </div>
@@ -294,18 +294,18 @@ function StudySession({
 
           <div className="session-results-grid">
             <div
-              className="result-item"
+              className="result-item glass-card hover-lift"
               style={{ '--index': 1 } as React.CSSProperties}
             >
               <div className="result-icon">📚</div>
-              <div className="result-number">
+              <div className="result-number theme-accent">
                 {sessionState.results.cardsStudied}
               </div>
               <div className="result-label">Kaarten bestudeerd</div>
             </div>
 
             <div
-              className="result-item result-item--success"
+              className="result-item result-item--success glass-card hover-lift"
               style={{ '--index': 2 } as React.CSSProperties}
             >
               <div className="result-icon">✅</div>
@@ -316,7 +316,7 @@ function StudySession({
             </div>
 
             <div
-              className="result-item result-item--error"
+              className="result-item result-item--error glass-card hover-lift"
               style={{ '--index': 3 } as React.CSSProperties}
             >
               <div className="result-icon">❌</div>
@@ -327,22 +327,22 @@ function StudySession({
             </div>
 
             <div
-              className="result-item"
+              className="result-item glass-card hover-lift"
               style={{ '--index': 4 } as React.CSSProperties}
             >
               <div className="result-icon">⏱️</div>
-              <div className="result-number">
+              <div className="result-number theme-accent">
                 {formatTime(sessionState.results.sessionDuration)}
               </div>
               <div className="result-label">Studietijd</div>
             </div>
 
             <div
-              className="result-item"
+              className="result-item glass-card hover-lift"
               style={{ '--index': 5 } as React.CSSProperties}
             >
               <div className="result-icon">🎯</div>
-              <div className="result-number">
+              <div className="result-number theme-accent">
                 {sessionState.results.cardsStudied > 0
                   ? Math.round(
                       (sessionState.results.correctAnswers /
@@ -356,11 +356,11 @@ function StudySession({
             </div>
 
             <div
-              className="result-item"
+              className="result-item glass-card hover-lift"
               style={{ '--index': 6 } as React.CSSProperties}
             >
               <div className="result-icon">🚀</div>
-              <div className="result-number">
+              <div className="result-number theme-accent">
                 {sessionState.results.cardsGraduated}
               </div>
               <div className="result-label">Verbeterd</div>
@@ -369,13 +369,13 @@ function StudySession({
 
           <div className="session-complete-actions">
             <button
-              className="btn-primary"
+              className="btn-primary magical-glow"
               onClick={() => window.location.reload()}
             >
               Nieuwe Sessie
             </button>
             <button
-              className="btn-secondary"
+              className="btn-secondary glass-button"
               onClick={() => window.history.back()}
             >
               Terug naar Deck
@@ -389,13 +389,13 @@ function StudySession({
   if (!sessionState.isSessionActive || !currentCard) {
     return (
       <div className="study-session-empty">
-        <div className="empty-state">
-          <div className="empty-icon">📚</div>
-          <h3>Geen kaarten om te bestuderen</h3>
+        <div className="empty-state glass-card">
+          <div className="empty-icon magical-glow">📚</div>
+          <h3 className="gradient-text">Geen kaarten om te bestuderen</h3>
           <p>
             Er zijn momenteel geen kaarten beschikbaar voor deze studie sessie.
           </p>
-          <button className="btn-primary" onClick={() => window.history.back()}>
+          <button className="btn-primary magical-glow" onClick={() => window.history.back()}>
             Terug naar Deck
           </button>
         </div>
@@ -405,29 +405,35 @@ function StudySession({
 
   return (
     <div className="study-session">
-      <div className="study-session-header">
+      <div className="study-session-header glass-card">
         <div className="session-progress">
-          <div className="progress-bar">
-            <div className="progress-fill" style={{ width: `${progress}%` }} />
+          <div className="progress-bar glass-border">
+            <div
+              className="progress-fill magical-gradient"
+              style={{ width: `${progress}%` }}
+            />
+          </div>
+          <div className="progress-text theme-accent">
+            {sessionState.currentCardIndex + 1} van {sessionState.cards.length}
           </div>
         </div>
 
         <div className="session-stats">
-          <div className="stat">
+          <div className="stat glass-button hover-lift">
             <span className="stat-icon">✅</span>
-            <span className="stat-value">
+            <span className="stat-value theme-accent">
               {sessionState.results.correctAnswers}
             </span>
           </div>
-          <div className="stat">
+          <div className="stat glass-button hover-lift">
             <span className="stat-icon">❌</span>
-            <span className="stat-value">
+            <span className="stat-value theme-accent">
               {sessionState.results.incorrectAnswers}
             </span>
           </div>
-          <div className="stat">
+          <div className="stat glass-button hover-lift">
             <span className="stat-icon">⏱️</span>
-            <span className="stat-value">
+            <span className="stat-value theme-accent">
               {formatTime(
                 Math.floor(
                   (Date.now() - sessionState.sessionStartTime.getTime()) / 1000
@@ -452,9 +458,9 @@ function StudySession({
         )}
       </div>
 
-      <div className="study-session-controls">
+      <div className="study-session-controls glass-card">
         <button
-          className="session-control-btn session-control-btn--secondary"
+          className="session-control-btn session-control-btn--secondary glass-button hover-lift"
           onClick={handlePreviousCard}
           disabled={sessionState.currentCardIndex === 0}
         >
@@ -462,14 +468,14 @@ function StudySession({
         </button>
 
         <button
-          className="session-control-btn session-control-btn--neutral"
+          className="session-control-btn session-control-btn--neutral glass-button hover-lift"
           onClick={handleSkipCard}
         >
           Overslaan
         </button>
 
         <button
-          className="session-control-btn session-control-btn--primary session-control-btn--wide"
+          className="session-control-btn session-control-btn--primary session-control-btn--wide magical-glow"
           onClick={handleSessionComplete}
         >
           Sessie Beëindigen
