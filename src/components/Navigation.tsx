@@ -136,7 +136,7 @@ const Navigation = function Navigation(): React.JSX.Element {
             <ThemeToggle showAccentToggle={false} />
           </div>
           {user ? (
-            <div className="user-dropdown-hover">
+            <div className="user-dropdown">
               <div className="user-avatar-icon">
                 <span className="user-icon">👤</span>
               </div>

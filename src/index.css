@@ -70,6 +70,7 @@ article.flashcard.flashcard.flashcard,
 .flashcard.flashcard.flashcard.flashcard {
   background: var(--difficulty-bg, var(--surface-raised)) !important;
   border: 2px solid var(--difficulty-border, var(--border-2)) !important;
+  border-radius: var(--radius-xl) !important;
   color: var(--difficulty-text, var(--text-1)) !important;
 }
 
@@ -615,8 +616,8 @@ body {
   white-space: nowrap;
 }
 
-/* Hover-based user popover */
-.user-dropdown-hover {
+/* User dropdown with popover API */
+.user-dropdown {
   position: relative;
   display: inline-block;
 }
@@ -625,26 +626,62 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.5rem;
+  min-width: 2.5rem;
   height: 2.5rem;
-  background: var(--surface-2);
-  border: 1px solid var(--border-1);
   border-radius: 50%;
+  background: var(--surface-1);
+  border: 1px solid var(--border-1);
   cursor: pointer;
-  transition: all 0.2s var(--ease-out-2);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: center;
+  line-height: 1;
+  padding: var(--space-2xs);
+  margin: 0;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.user-icon {
+  font-size: 1.25rem;
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.user-avatar-icon::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--brand-primary);
+  opacity: 0;
+  border-radius: 50%;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.user-avatar-icon:hover::before {
+  opacity: 0.05;
 }
 
 .user-avatar-icon:hover {
-  background: var(--surface-3);
   border-color: var(--brand-primary);
   transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.user-avatar-icon:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-xs);
 }
 
 .user-popover {
   position: absolute;
-  top: calc(100% + 0.25rem);
+  top: calc(100% + 0.5rem);
   right: 0;
-  min-width: 200px;
+  width: 200px;
+  max-width: calc(100vw - 2rem);
+  transform: translateX(calc(-100% + 2.5rem));
   background: var(--surface-1);
   border: 1px solid var(--border-2);
   border-radius: var(--radius-2);
@@ -654,48 +691,26 @@ body {
   z-index: 1000;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-0.5rem);
-  transition: all 0.3s var(--ease-out-2);
-  pointer-events: none;
+  transition: all 0.2s ease-out;
 }
 
-/* Add invisible bridge area to prevent popover from disappearing */
-.user-popover::before {
-  content: '';
-  position: absolute;
-  top: -0.5rem;
-  left: 0;
-  right: 0;
-  height: 0.5rem;
-  background: transparent;
-  opacity: 0;
-  pointer-events: none;
-  z-index: -1;
-}
-
-.user-dropdown-hover:hover .user-popover,
+.user-dropdown:hover .user-popover,
 .user-popover:hover {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0);
-  pointer-events: auto;
-  transition-delay: 0.1s;
 }
 
-.user-dropdown-hover .user-popover {
-  transition-delay: 0s;
-}
-
-@keyframes dropdownSlide {
+@keyframes popoverSlideIn {
   from {
     opacity: 0;
-    transform: translateY(-8px);
+    transform: translateY(-0.5rem);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
+
 
 .user-popover .user-info {
   padding: var(--space-xs);
@@ -1025,44 +1040,6 @@ body {
   --shadow-glow: 0 0 20px oklch(68% 0.15 240 / 0.4);
 
   /* Dark mode gradient colors - replace white with dark blue */
-<<<<<<< HEAD
-  --gradient-from: oklch(12% 0.02 240); /* Deep dark blue */
-  --gradient-to: oklch(16% 0.025 240); /* Slightly lighter dark blue */
-  --gradient-accent: oklch(14% 0.02 220); /* Purple-tinted dark blue */
-}
-
-/* Simple navigation with clean glass effect */
-.navigation {
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-}
-
-/* Elegant fallback when backdrop-filter doesn't work */
-@supports not (backdrop-filter: blur(1px)) {
-  .navigation {
-    /* Just make it more opaque instead of ugly blur tricks */
-    background: rgba(255, 255, 255, 0.95) !important;
-    box-shadow:
-      0 4px 20px rgba(0, 0, 0, 0.08),
-      0 1px 0 rgba(255, 255, 255, 0.5) inset;
-  }
-}
-
-/* Dark mode - clean and simple */
-@media (prefers-color-scheme: dark) {
-  .navigation {
-    background: rgba(18, 18, 25, 0.85) !important;
-  }
-
-  @supports not (backdrop-filter: blur(1px)) {
-    .navigation {
-      background: rgba(18, 18, 25, 0.95) !important;
-      box-shadow:
-        0 4px 20px rgba(0, 0, 0, 0.3),
-        0 1px 0 rgba(255, 255, 255, 0.1) inset;
-    }
-  }
-=======
   --gradient-from: oklch(12% 0.02 240);           /* Deep dark blue */
   --gradient-to: oklch(16% 0.025 240);            /* Slightly lighter dark blue */
   --gradient-accent: oklch(14% 0.02 220);         /* Purple-tinted dark blue */
@@ -1082,7 +1059,6 @@ body {
   --gradient-glass-2: linear-gradient(135deg, 
     oklch(25% 0.015 240 / 0.2) 0%, 
     oklch(30% 0.02 240 / 0.3) 100%);
->>>>>>> development
 }
 
 /* === AUTO DARK MODE (FALLBACK) === */
@@ -1197,6 +1173,22 @@ body {
   }
 }
 
+/* === EXPLICIT DARK THEME NAVIGATION === */
+[data-theme='dark'] .navigation,
+.dark-theme .navigation {
+  background: linear-gradient(135deg, 
+    oklch(18% 0.08 240 / 0.85) 0%,
+    oklch(15% 0.06 250 / 0.9) 50%,
+    oklch(12% 0.04 220 / 0.88) 100%) !important;
+  backdrop-filter: blur(20px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(150%) !important;
+  -moz-backdrop-filter: blur(20px) saturate(150%) !important;
+  border-bottom: 1px solid oklch(35% 0.08 240 / 0.4) !important;
+  box-shadow: 
+    0 4px 32px oklch(8% 0.15 240 / 0.6),
+    0 1px 0 oklch(25% 0.05 240 / 0.3) inset !important;
+}
+
 /* Light mode navigation transparency - explicit light mode */
 .light-theme .navigation,
 :root:not(.dark-theme):not([data-theme='dark']) .navigation {
@@ -1214,6 +1206,22 @@ body {
 }
 
 @media (max-width: 1024px) {
+  /* Dark theme mobile navigation */
+  [data-theme='dark'] .navigation,
+  .dark-theme .navigation {
+    background: linear-gradient(135deg, 
+      oklch(16% 0.06 240 / 0.9) 0%,
+      oklch(13% 0.05 250 / 0.92) 50%,
+      oklch(10% 0.03 220 / 0.9) 100%) !important;
+    backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    border-bottom: 1px solid oklch(30% 0.06 240 / 0.5) !important;
+    box-shadow: 
+      0 4px 32px oklch(6% 0.12 240 / 0.7),
+      0 1px 0 oklch(22% 0.04 240 / 0.25) inset !important;
+  }
+
+  /* Light theme mobile navigation */
   .light-theme .navigation,
   :root:not(.dark-theme):not([data-theme='dark']) .navigation {
     background: oklch(98% 0.008 240 / 0.85) !important;
@@ -1228,6 +1236,8 @@ body {
   --radius-2: 0.5rem;
   --radius-3: 0.75rem;
   --radius-4: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-2xl: 2rem;
   --radius-pill: 9999px;
 
   --ease-out-2: cubic-bezier(0, 0, 0.2, 1);
@@ -1533,7 +1543,7 @@ button:focus-visible {
   .nav-items,
   .nav-user,
   .desktop-theme-toggle,
-  .user-dropdown-hover,
+  .user-dropdown,
   .user-avatar-icon {
     display: none;
   }
@@ -1788,6 +1798,7 @@ button:focus-visible {
   align-items: center;
   gap: var(--space-xs);
   margin-top: var(--space-2xs);
+  position: relative;
 }
 
 @media (min-width: 768px) {
@@ -1926,7 +1937,7 @@ button:focus-visible {
 @media (min-width: 768px) {
   .stat-card {
     padding: var(--space-l);
-    border-radius: var(--radius-4);
+    border-radius: var(--radius-xl);
     gap: var(--space-s);
   }
 }
@@ -2042,7 +2053,7 @@ button:focus-visible {
 .action-card {
   background: var(--surface-1);
   padding: var(--space-l);
-  border-radius: var(--radius-4);
+  border-radius: var(--radius-xl);
   border: 1px solid var(--border-1);
   text-decoration: none;
   color: inherit;
@@ -2108,7 +2119,7 @@ button:focus-visible {
   grid-area: activity;
   background: var(--surface-1);
   padding: var(--space-xl);
-  border-radius: var(--radius-4);
+  border-radius: var(--radius-xl);
   border: 1px solid var(--border-1);
 }
 
@@ -2161,19 +2172,12 @@ button:focus-visible {
 }
 
 .deck-card {
-<<<<<<< HEAD
-  background:
-    linear-gradient(135deg, var(--gradient-from) 0%, var(--gradient-to) 100%),
-    var(--surface-1);
-  border: 1px solid var(--border-1);
-=======
   /* === GLASSMORPHISM DESIGN === */
   background: var(--gradient-glass-1);
   backdrop-filter: var(--blur-md);
   -webkit-backdrop-filter: var(--blur-md);
   border: 1px solid var(--glass-2);
->>>>>>> development
-  border-radius: var(--radius-4);
+  border-radius: var(--radius-xl);
   padding: var(--space-l);
   position: relative;
   width: 100%;
@@ -2185,16 +2189,11 @@ button:focus-visible {
   animation: var(--animation-scale-up);
   animation-delay: calc(var(--index, 0) * 0.1s + 0.6s);
   animation-fill-mode: both;
-<<<<<<< HEAD
-
-=======
   
   /* === MODERN SHADOWS === */
   box-shadow: 
     var(--shadow-lg),
     0 0 0 1px var(--glass-1) inset;
-  
->>>>>>> development
   /* CSS Subgrid for perfect internal alignment */
   display: grid;
   grid-template-rows: subgrid;
@@ -2766,7 +2765,7 @@ button:focus-visible {
   text-align: center;
   transition: transform var(--flip-duration) var(--ease-out-2);
   transform-style: preserve-3d;
-  border-radius: var(--radius-4);
+  border-radius: var(--radius-xl);
   
   /* === GLASSMORPHISM ENHANCEMENT === */
   backdrop-filter: var(--blur-sm);
@@ -2794,26 +2793,14 @@ button:focus-visible {
   transition: opacity 0.2s ease-out;
 }
 
-<<<<<<< HEAD
-/* Ensure back side content is visible and properly styled */
-.flashcard--transitioning .flashcard__back .flashcard__content,
-.flashcard--transitioning .flashcard__back .flashcard__answer {
-  opacity: 1 !important;
-  visibility: visible !important;
-  display: block !important;
-}
-
-/* Card sides with Jhey's depth mastery */
-=======
 /* === GLASSMORPHISM CARD SIDES === */
->>>>>>> development
 .flashcard__front,
 .flashcard__back {
   position: absolute;
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  border-radius: var(--radius-4);
+  border-radius: var(--radius-xl);
   padding: var(--space-l) var(--space-l) var(--space-xl) var(--space-l);
   display: flex;
   flex-direction: column;
@@ -2827,23 +2814,10 @@ button:focus-visible {
   
   /* === ENHANCED SHADOWS === */
   box-shadow:
-<<<<<<< HEAD
-    0 1px 0 oklch(100% 0 0 / 0.8) inset,
-    0 -1px 0 oklch(88% 0.01 240) inset,
-    0 4px 8px oklch(25% 0.03 240 / 0.1),
-    0 8px 24px oklch(25% 0.03 240 / 0.08),
-    0 16px 48px oklch(25% 0.03 240 / 0.04),
-    0 0 0 1px var(--difficulty-color) / 0.1;
-
-  background: var(--difficulty-bg);
-  border: 2px solid var(--difficulty-border);
-=======
     var(--shadow-lg),
     var(--shadow-colored),
     0 0 0 1px var(--glass-1) inset,
     0 0 0 2px var(--difficulty-color) / 0.1;
-  
->>>>>>> development
   overflow: hidden;
 }
 
@@ -2855,7 +2829,6 @@ button:focus-visible {
 
 .flashcard__back {
   transform: rotateY(180deg);
-<<<<<<< HEAD
 }
 
 /* Both sides have identical content visibility */
@@ -2875,6 +2848,15 @@ button:focus-visible {
 .flashcard--flipped .flashcard__back,
 .flashcard--revealing .flashcard__back {
   transform: rotateY(0deg) scaleX(-1);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Hide front side when flipped */
+.flashcard--flipped .flashcard__front,
+.flashcard--revealing .flashcard__front {
+  opacity: 0;
+  pointer-events: none;
 }
 
 .flashcard--flipped .flashcard__back .flashcard__content,
@@ -2935,13 +2917,14 @@ button:focus-visible {
   flex-shrink: 0;
 }
 
-/* Clean back side text */
-.flashcard__back .flashcard__answer {
-  opacity: 1 !important;
-  visibility: visible !important;
-  display: block !important;
-  color: var(--difficulty-text) !important;
-  font-weight: 600 !important;
+/* Clean back side text - more specific selectors instead of !important */
+.flashcard.flashcard--flipped .flashcard__back .flashcard__answer,
+.flashcard.flashcard--revealing .flashcard__back .flashcard__answer {
+  opacity: 1;
+  visibility: visible;
+  display: block;
+  color: var(--difficulty-text);
+  font-weight: 600;
 }
 
 /* Ensure back side answer is always visible regardless of state */
@@ -2955,12 +2938,10 @@ button:focus-visible {
   /* Force hardware acceleration and proper rendering */
   transform: translateZ(0);
   will-change: auto;
-=======
   background: var(--gradient-glass-1);
   backdrop-filter: var(--blur-md);
   -webkit-backdrop-filter: var(--blur-md);
   border: 1px solid var(--glass-2);
->>>>>>> development
 }
 
 /* Header with floating difficulty badge */
@@ -3038,26 +3019,26 @@ button:focus-visible {
   text-wrap: balance;
 }
 
-.flashcard__answer {
+/* Back side answer hidden by default */
+.flashcard .flashcard__back .flashcard__answer {
   font-weight: 600;
-  color: var(--difficulty-text) !important;
-  opacity: 1 !important;
-  display: block !important;
-  font-size: var(--step-1) !important;
-  line-height: 1.4 !important;
+  color: var(--difficulty-text);
+  opacity: 0;
+  display: none;
+  font-size: var(--step-1);
+  line-height: 1.4;
 }
 
-/* Ensure back side answer is always visible regardless of state */
-.flashcard--flipped .flashcard__back .flashcard__answer,
-.flashcard--revealing .flashcard__back .flashcard__answer,
-.flashcard--transitioning .flashcard__back .flashcard__answer,
-.flashcard--hovered .flashcard__back .flashcard__answer,
-.flashcard__back .flashcard__answer {
-  opacity: 1 !important;
-  visibility: visible !important;
-  display: block !important;
-  color: var(--difficulty-text) !important;
-  font-weight: 600 !important;
+/* Ensure back side answer visibility in specific states - more specific selectors */
+.flashcard.flashcard--flipped .flashcard__back .flashcard__answer,
+.flashcard.flashcard--revealing .flashcard__back .flashcard__answer,
+.flashcard.flashcard--transitioning .flashcard__back .flashcard__answer,
+.flashcard.flashcard--hovered .flashcard__back .flashcard__answer {
+  opacity: 1;
+  visibility: visible;
+  display: block;
+  color: var(--difficulty-text);
+  font-weight: 600;
   /* Force hardware acceleration and proper rendering */
   transform: translateZ(0);
   will-change: auto;
@@ -3181,7 +3162,7 @@ button:focus-visible {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  border-radius: var(--radius-4);
+  border-radius: var(--radius-xl);
   overflow: hidden;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -3244,7 +3225,7 @@ button:focus-visible {
     transparent 70%,
     var(--difficulty-glow) / 0.3
   );
-  border-radius: calc(var(--radius-4) + 4px);
+  border-radius: calc(var(--radius-xl) + 4px);
   opacity: var(--glow-opacity);
   animation: rotateGlow 3s linear infinite;
   transition: opacity 0.3s ease;
@@ -3853,7 +3834,7 @@ button:focus-visible {
   max-width: calc(100vw - var(--space-m));
   width: 100%;
   background: var(--surface-1);
-  border-radius: var(--radius-4);
+  border-radius: var(--radius-xl);
   padding: var(--space-m);
   border: 1px solid var(--border-1);
   text-align: center;
@@ -4272,7 +4253,7 @@ button:focus-visible {
 
 .card-form {
   background: var(--surface-1);
-  border-radius: var(--radius-4);
+  border-radius: var(--radius-xl);
   box-shadow: var(--shadow-2xl);
   width: 100%;
   max-width: 600px;
@@ -5074,7 +5055,7 @@ button:focus-visible {
 .deck-form {
   background: var(--surface-1);
   border: 1px solid var(--border-1);
-  border-radius: var(--radius-4);
+  border-radius: var(--radius-xl);
   padding: var(--space-xl);
   box-shadow: var(--shadow-md);
 }
@@ -5130,7 +5111,7 @@ button:focus-visible {
 
 .login-container {
   background: var(--surface-1);
-  border-radius: var(--radius-4);
+  border-radius: var(--radius-xl);
   border: 1px solid var(--border-1);
   box-shadow: var(--shadow-2xl);
   width: 100%;
@@ -5556,7 +5537,7 @@ button:focus-visible {
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  border-radius: var(--radius-4);
+  border-radius: var(--radius-xl);
   padding: var(--space-l);
   display: flex;
   align-items: center;
@@ -5655,7 +5636,7 @@ button:focus-visible {
 
 .cta-section {
   background: var(--surface-2);
-  border-radius: var(--radius-4);
+  border-radius: var(--radius-xl);
   padding: var(--space-2xl);
   text-align: center;
   margin-bottom: var(--space-xl);
@@ -5704,7 +5685,6 @@ button:focus-visible {
   }
 }
 
-<<<<<<< HEAD
 /* === ENHANCED FLASHCARD FEATURES === */
 
 /* Enhanced Hover State */
@@ -7179,7 +7159,7 @@ textarea,
 .search-tips {
   background: linear-gradient(135deg, var(--surface-1), var(--surface-2));
   border: 2px solid var(--border-1);
-  border-radius: var(--radius-4);
+  border-radius: var(--radius-xl);
   padding: var(--space-l);
 }
 
@@ -7639,7 +7619,7 @@ textarea,
 .search-hero {
   background: var(--surface-1);
   border: 1px solid var(--border-1);
-  border-radius: var(--radius-4);
+  border-radius: var(--radius-xl);
   padding: var(--space-xl);
   margin-bottom: var(--space-xl);
   position: relative;
@@ -7653,7 +7633,7 @@ textarea,
   inset: 0;
   background: var(--brand-primary);
   opacity: 0;
-  border-radius: var(--radius-4);
+  border-radius: var(--radius-xl);
   transition: opacity 0.2s var(--ease-out-2);
   pointer-events: none;
 }
@@ -8065,7 +8045,6 @@ textarea,
 }
 
 /* === END DASHBOARD SEARCH HERO SECTION === */
-=======
 /* === THEME-AWARE COMPONENT CLASSES === */
 .theme-primary {
   background: var(--theme-accent-gradient);
@@ -8116,4 +8095,3 @@ textarea,
 .action-card {
   transition: var(--theme-transition);
 }
->>>>>>> development
