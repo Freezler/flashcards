@@ -1,6 +1,45 @@
 @import 'tailwindcss';
 
-/* Cache bust - Updated: 2025-01-24 22:30 UTC - Unified flashcard styling */
+/* Cache bust - Updated: 2025-01-24 22:45 UTC - Production CSS fix */
+
+/* === PRODUCTION-SPECIFIC OVERRIDES === */
+/* Ensure flashcard styling works in production build */
+article.flashcard.flashcard {
+  background: var(--difficulty-bg, oklch(100% 0 0)) !important;
+  border: 2px solid var(--difficulty-border, oklch(70% 0.15 150 / 0.3)) !important;
+}
+
+.flashcard.flashcard--easy {
+  --difficulty-bg: var(--surface-1, oklch(100% 0 0)) !important;
+  --difficulty-border: oklch(70% 0.15 150 / 0.3) !important;
+  --difficulty-text: var(--text-1, oklch(15% 0.02 240)) !important;
+}
+
+.flashcard.flashcard--medium {
+  --difficulty-bg: var(--surface-1, oklch(100% 0 0)) !important;
+  --difficulty-border: oklch(65% 0.18 45 / 0.3) !important;
+  --difficulty-text: var(--text-1, oklch(15% 0.02 240)) !important;
+}
+
+.flashcard.flashcard--hard {
+  --difficulty-bg: var(--surface-1, oklch(100% 0 0)) !important;
+  --difficulty-border: oklch(60% 0.22 10 / 0.3) !important;
+  --difficulty-text: var(--text-1, oklch(15% 0.02 240)) !important;
+}
+
+/* Production-specific button overrides */
+.flashcard__action.flashcard__action--reveal {
+  background: linear-gradient(135deg, var(--difficulty-color, oklch(65% 0.18 240)), oklch(60% 0.18 240)) !important;
+  border: 2px solid var(--difficulty-border, oklch(65% 0.18 240 / 0.3)) !important;
+  color: white !important;
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: var(--space-2xs) var(--space-xs) !important;
+  font-weight: 700 !important;
+  font-size: var(--step--1) !important;
+}
 
 /* === ACCESSIBILITY & SKIP LINKS === */
 .skip-link {
