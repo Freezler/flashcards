@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { Fade as Hamburger } from 'hamburger-react'
-import React, { useCallback, useEffect, useMemo, useState } from 'react'
+import React, { useCallback, useMemo, useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { useCards } from '../contexts/CardContext'
@@ -24,8 +24,6 @@ const Navigation = function Navigation(): React.JSX.Element {
   const { user, logout } = useAuth()
   const { state } = useCards()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [isSearchOpen, setIsSearchOpen] = useState(false)
-  const [searchQuery, setSearchQuery] = useState('')
 
   // Use actual deck count from CardContext
   const totalDecks = state.decks.length
@@ -94,34 +92,6 @@ const Navigation = function Navigation(): React.JSX.Element {
     return crumbs
   }, [location.pathname])
 
-  // Close search when clicking outside
-  useEffect(() => {
-    const handleClickOutside = () => {
-      if (isSearchOpen) {
-        setIsSearchOpen(false)
-        setSearchQuery('')
-      }
-    }
-
-    if (isSearchOpen) {
-      document.addEventListener('click', handleClickOutside)
-      return () => document.removeEventListener('click', handleClickOutside)
-    }
-  }, [isSearchOpen])
-
-  const handleSearchToggle = useCallback(
-    (e: React.MouseEvent) => {
-      e.stopPropagation()
-      setIsSearchOpen(!isSearchOpen)
-      if (!isSearchOpen) {
-        // Focus search input after animation
-        setTimeout(() => {
-          document.getElementById('nav-search-input')?.focus()
-        }, 100)
-      }
-    },
-    [isSearchOpen]
-  )
 
   return (
     <>
@@ -162,50 +132,6 @@ const Navigation = function Navigation(): React.JSX.Element {
         </ul>
 
         <div className="nav-user desktop-nav">
-          {/* Search functionality */}
-          <div
-            className={`nav-search ${isSearchOpen ? 'nav-search--open' : ''}`}
-          >
-            <button
-              className="search-toggle"
-              onClick={handleSearchToggle}
-              aria-label="Toggle search"
-              title="Zoeken"
-            >
-              🔍
-            </button>
-            {isSearchOpen && (
-              <div
-                className="search-input-container"
-                onClick={e => e.stopPropagation()}
-              >
-                <input
-                  id="nav-search-input"
-                  type="text"
-                  className="search-input"
-                  placeholder="Zoek in decks..."
-                  value={searchQuery}
-                  onChange={e => setSearchQuery(e.target.value)}
-                  onKeyDown={e => {
-                    if (e.key === 'Escape') {
-                      setIsSearchOpen(false)
-                      setSearchQuery('')
-                    }
-                  }}
-                />
-                {searchQuery && (
-                  <button
-                    className="search-clear"
-                    onClick={() => setSearchQuery('')}
-                    aria-label="Clear search"
-                  >
-                    ✕
-                  </button>
-                )}
-              </div>
-            )}
-          </div>
-
           <div className="desktop-theme-toggle">
             <ThemeToggle />
           </div>
