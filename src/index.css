@@ -63,36 +63,41 @@
 }
 
 /* === FLASHCARD COMPONENT STYLES === */
-/* Following component guidelines: minimal !important, proper layout patterns */
+/* Higher specificity selectors for deployment CSS cascade issues */
 
-/* Base flashcard styling - clean approach */
-.flashcard {
+/* Base flashcard styling with higher specificity */
+article.flashcard,
+.flashcard.flashcard {
   background: var(--difficulty-bg, var(--surface-raised));
   border: 2px solid var(--difficulty-border, var(--border-2));
   color: var(--difficulty-text, var(--text-1));
 }
 
-/* Difficulty variants using CSS custom properties pattern */
-.flashcard--easy {
+/* Difficulty variants with higher specificity for deployment */
+article.flashcard.flashcard--easy,
+.flashcard.flashcard.flashcard--easy {
   --difficulty-bg: var(--surface-raised);
   --difficulty-border: oklch(70% 0.15 150 / 0.3);
   --difficulty-text: var(--text-1);
 }
 
-.flashcard--medium {
+article.flashcard.flashcard--medium,
+.flashcard.flashcard.flashcard--medium {
   --difficulty-bg: var(--surface-raised);
   --difficulty-border: oklch(65% 0.18 45 / 0.3);
   --difficulty-text: var(--text-1);
 }
 
-.flashcard--hard {
+article.flashcard.flashcard--hard,
+.flashcard.flashcard.flashcard--hard {
   --difficulty-bg: var(--surface-raised);
   --difficulty-border: oklch(60% 0.22 10 / 0.3);
   --difficulty-text: var(--text-1);
 }
 
-/* Reveal button following component patterns */
-.flashcard__action--reveal {
+/* Reveal button with higher specificity */
+.flashcard .flashcard__action--reveal,
+.flashcard__action.flashcard__action--reveal {
   background: linear-gradient(135deg, var(--difficulty-color, var(--brand-primary)), var(--brand-primary-hover));
   border: 2px solid var(--difficulty-border, var(--border-focus));
   color: var(--text-inverse);
