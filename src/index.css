@@ -1,44 +1,108 @@
 @import 'tailwindcss';
 
-/* Cache bust - Updated: 2025-01-24 22:45 UTC - Production CSS fix */
+/* Cache bust - Updated: 2025-01-24 23:45 UTC - Modern CSS anchor positioning implementation */
 
-/* === PRODUCTION-SPECIFIC OVERRIDES === */
-/* Ensure flashcard styling works in production build */
-article.flashcard.flashcard {
-  background: var(--difficulty-bg, oklch(100% 0 0)) !important;
-  border: 2px solid var(--difficulty-border, oklch(70% 0.15 150 / 0.3)) !important;
+/* === MODERN CSS ANCHOR POSITIONING === */
+/* Progressive enhancement - fallback to existing positioning */
+@supports (anchor-name: --anchor) {
+  
+  /* User dropdown with anchor positioning */
+  .user-avatar-icon {
+    anchor-name: --user-avatar;
+  }
+  
+  .user-popover {
+    position: absolute;
+    position-anchor: --user-avatar;
+    top: anchor(bottom);
+    left: anchor(left);
+    margin-block-start: var(--space-3xs);
+  }
+  
+  /* Search input with anchor positioning */
+  .search-toggle {
+    anchor-name: --search-button;
+  }
+  
+  .search-input-container {
+    position: absolute;
+    position-anchor: --search-button;
+    top: anchor(bottom);
+    right: anchor(right);
+    margin-block-start: var(--space-3xs);
+  }
+  
+  /* Flashcard tooltips for difficulty indicators */
+  .flashcard__difficulty-badge {
+    anchor-name: --difficulty-badge;
+  }
+  
+  .difficulty-tooltip {
+    position: absolute;
+    position-anchor: --difficulty-badge;
+    bottom: anchor(top);
+    left: anchor(center);
+    transform: translateX(-50%);
+    margin-block-end: var(--space-2xs);
+    background: var(--text-1);
+    color: var(--text-inverse);
+    padding: var(--space-3xs) var(--space-2xs);
+    border-radius: var(--space-3xs);
+    font-size: var(--step--2);
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s var(--ease-out-2);
+    z-index: 1000;
+  }
+  
+  .flashcard__difficulty-badge:hover + .difficulty-tooltip,
+  .flashcard__difficulty-badge:focus + .difficulty-tooltip {
+    opacity: 1;
+  }
 }
 
-.flashcard.flashcard--easy {
-  --difficulty-bg: var(--surface-1, oklch(100% 0 0)) !important;
-  --difficulty-border: oklch(70% 0.15 150 / 0.3) !important;
-  --difficulty-text: var(--text-1, oklch(15% 0.02 240)) !important;
+/* === FLASHCARD COMPONENT STYLES === */
+/* Following component guidelines: minimal !important, proper layout patterns */
+
+/* Base flashcard styling - clean approach */
+.flashcard {
+  background: var(--difficulty-bg, var(--surface-raised));
+  border: 2px solid var(--difficulty-border, var(--border-2));
+  color: var(--difficulty-text, var(--text-1));
 }
 
-.flashcard.flashcard--medium {
-  --difficulty-bg: var(--surface-1, oklch(100% 0 0)) !important;
-  --difficulty-border: oklch(65% 0.18 45 / 0.3) !important;
-  --difficulty-text: var(--text-1, oklch(15% 0.02 240)) !important;
+/* Difficulty variants using CSS custom properties pattern */
+.flashcard--easy {
+  --difficulty-bg: var(--surface-raised);
+  --difficulty-border: oklch(70% 0.15 150 / 0.3);
+  --difficulty-text: var(--text-1);
 }
 
-.flashcard.flashcard--hard {
-  --difficulty-bg: var(--surface-1, oklch(100% 0 0)) !important;
-  --difficulty-border: oklch(60% 0.22 10 / 0.3) !important;
-  --difficulty-text: var(--text-1, oklch(15% 0.02 240)) !important;
+.flashcard--medium {
+  --difficulty-bg: var(--surface-raised);
+  --difficulty-border: oklch(65% 0.18 45 / 0.3);
+  --difficulty-text: var(--text-1);
 }
 
-/* Production-specific button overrides */
-.flashcard__action.flashcard__action--reveal {
-  background: linear-gradient(135deg, var(--difficulty-color, oklch(65% 0.18 240)), oklch(60% 0.18 240)) !important;
-  border: 2px solid var(--difficulty-border, oklch(65% 0.18 240 / 0.3)) !important;
-  color: white !important;
-  width: 100% !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  padding: var(--space-2xs) var(--space-xs) !important;
-  font-weight: 700 !important;
-  font-size: var(--step--1) !important;
+.flashcard--hard {
+  --difficulty-bg: var(--surface-raised);
+  --difficulty-border: oklch(60% 0.22 10 / 0.3);
+  --difficulty-text: var(--text-1);
+}
+
+/* Reveal button following component patterns */
+.flashcard__action--reveal {
+  background: linear-gradient(135deg, var(--difficulty-color, var(--brand-primary)), var(--brand-primary-hover));
+  border: 2px solid var(--difficulty-border, var(--border-focus));
+  color: var(--text-inverse);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2xs) var(--space-xs);
+  font-weight: 700;
+  font-size: var(--step--1);
 }
 
 /* === ACCESSIBILITY & SKIP LINKS === */
