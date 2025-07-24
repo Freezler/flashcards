@@ -2,10 +2,31 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
+import { visualizer } from 'rollup-plugin-visualizer'
+import compression from 'vite-plugin-compression'
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
+  plugins: [
+    react(), 
+    tailwindcss(),
+    // Compress assets for production
+    compression({
+      algorithm: 'gzip',
+      ext: '.gz',
+    }),
+    compression({
+      algorithm: 'brotliCompress',
+      ext: '.br',
+    }),
+    // Bundle analyzer (only in analyze mode)
+    process.env.ANALYZE && visualizer({
+      filename: 'dist/stats.html',
+      open: true,
+      gzipSize: true,
+      brotliSize: true,
+    }),
+  ].filter(Boolean),
 
   // SEO optimalisaties
   define: {
@@ -22,14 +43,41 @@ export default defineConfig({
     // Optimize chunk sizes
     rollupOptions: {
       output: {
-        // Manual chunk splitting for better caching
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom'],
-          router: ['react-router-dom'],
-          contexts: [
-            './src/contexts/CardContext.tsx',
-            './src/contexts/AuthContext.tsx',
-          ],
+        // Enhanced manual chunk splitting for better caching
+        manualChunks: id => {
+          // Vendor chunks
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom')) {
+              return 'react-vendor'
+            }
+            if (id.includes('react-router')) {
+              return 'router'
+            }
+            if (id.includes('fuse.js')) {
+              return 'search-vendor'
+            }
+            return 'vendor'
+          }
+          
+          // Context chunks
+          if (id.includes('/src/contexts/')) {
+            return 'contexts'
+          }
+          
+          // Component chunks
+          if (id.includes('/src/components/')) {
+            return 'components'
+          }
+          
+          // Page chunks
+          if (id.includes('/src/pages/')) {
+            return 'pages'
+          }
+          
+          // Utils chunks
+          if (id.includes('/src/utils/') || id.includes('/src/hooks/')) {
+            return 'utils'
+          }
         },
         // Optimize asset file names
         assetFileNames: assetInfo => {
@@ -47,12 +95,15 @@ export default defineConfig({
         entryFileNames: 'assets/js/[name]-[hash].js',
       },
     },
-    // Minimize for production
+    // Enhanced minification
     minify: 'esbuild',
-    // Source maps for debugging
+    // Source maps for debugging (disabled for production)
     sourcemap: false,
     // Target modern browsers for smaller bundles
     target: 'esnext',
+    // Additional optimizations
+    reportCompressedSize: true,
+    chunkSizeWarningLimit: 1000,
   },
 
   // Development server optimizations

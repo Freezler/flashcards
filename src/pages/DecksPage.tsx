@@ -83,6 +83,7 @@ const DecksPage = React.memo(function DecksPage(): React.JSX.Element {
                     onClick={() => handleDeleteDeck(deck.id)}
                     className="btn-danger btn-danger--outline"
                     title="Dit deck verwijderen"
+                    aria-label="Dit deck verwijderen"
                   >
                     🗑️
                   </button>

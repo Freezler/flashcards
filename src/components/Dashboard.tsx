@@ -351,7 +351,9 @@ function Dashboard(): React.JSX.Element {
                 <span className="search-tip-icon">⚡</span>
                 <div>
                   <strong>Moeilijkheid:</strong>
-                  <p>Zoek op "easy", "medium", "hard", "makkelijk", of "moeilijk"</p>
+                  <p>
+                    Zoek op "easy", "medium", "hard", "makkelijk", of "moeilijk"
+                  </p>
                 </div>
               </div>
             </div>
