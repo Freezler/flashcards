@@ -36,12 +36,67 @@
 
 /* === TEXT WRAP OPTIMIZATION === */
 
-/* Apply text-wrap: pretty globally for better typography */
+/* === ENHANCED GLOBAL TYPOGRAPHY === */
 * {
   text-wrap: pretty;
+  /* Ensure consistent font rendering across browsers */
+  -webkit-font-smoothing: inherit;
+  -moz-osx-font-smoothing: inherit;
+  text-rendering: inherit;
 }
 
-/* Specific elements that benefit most from pretty text wrapping */
+/* === VIEWPORT & FONT CONSISTENCY FIXES === */
+html {
+  font-size: 100%;
+  /* Prevent font scaling issues in deployment */
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  /* Force hardware acceleration for smoother text */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  /* Better font rendering foundation */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Ensure consistent viewport behavior across environments */
+@viewport {
+  width: device-width;
+  zoom: 1.0;
+}
+
+/* Meta viewport enforcement through CSS */
+@media screen {
+  :root {
+    /* Force 1:1 pixel ratio */
+    --viewport-scale: 1;
+    /* Prevent zoom-related font size changes */
+    font-size: calc(1rem * var(--viewport-scale));
+  }
+}
+
+/* Prevent horizontal overflow on mobile devices */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Additional aggressive mobile overflow prevention */
+@media (max-width: 768px) {
+  * {
+    max-width: 100vw;
+    box-sizing: border-box;
+  }
+  
+  /* Force breadcrumb container to never exceed viewport */
+  .breadcrumb-container {
+    max-width: 100vw !important;
+    overflow: hidden !important;
+  }
+}
+
+/* === FANCY TYPOGRAPHY ENHANCEMENTS === */
 h1,
 h2,
 h3,
@@ -60,6 +115,72 @@ li,
 .dashboard-title,
 .dashboard-subtitle {
   text-wrap: pretty;
+  /* Enhanced text contrast and readability */
+  text-shadow: 0 0 1px transparent;
+  /* Subtle kerning improvements */
+  font-kerning: auto;
+  letter-spacing: -0.01em;
+}
+
+/* Fancy heading enhancements */
+h1, h2, h3, .dashboard-title, .nav-title, .section-title {
+  /* Subtle text shadow for depth */
+  text-shadow: 0 1px 2px oklch(0% 0 0 / 0.1);
+  /* Better optical alignment */
+  font-feature-settings: 'liga' 1, 'kern' 1, 'calt' 1, 'case' 1;
+  /* Tighter letter spacing for headings */
+  letter-spacing: -0.025em;
+}
+
+/* Enhanced body text readability */
+p, .flashcard__question, .flashcard__answer, .deck-description {
+  /* Optimal line height for reading */
+  line-height: 1.65;
+  /* Subtle text shadows for better contrast */
+  text-shadow: 0 0.5px 1px oklch(0% 0 0 / 0.05);
+  /* Hanging punctuation for better alignment */
+  hanging-punctuation: first last;
+}
+
+/* === FONT LOADING & FALLBACK OPTIMIZATION === */
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial'), local('Helvetica'), local('system-ui');
+  font-display: swap;
+  size-adjust: 100.06%;
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+
+/* Ensure smooth font transitions */
+.font-loading {
+  font-family: 'Inter Fallback', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  visibility: visible;
+}
+
+.font-loaded {
+  font-family: 'Inter', 'Inter Fallback', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+}
+
+/* === FANCY TEXT EFFECTS === */
+.gradient-text {
+  background: linear-gradient(135deg, var(--brand-primary), var(--accent-sage));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  /* Fallback for browsers that don't support background-clip: text */
+  color: var(--brand-primary);
+  /* Subtle glow effect */
+  filter: drop-shadow(0 0 2px oklch(65% 0.15 240 / 0.3));
+}
+
+/* Enhanced button text */
+.btn-primary, .btn-secondary {
+  /* Subtle text shadow for depth */
+  text-shadow: 0 1px 2px oklch(0% 0 0 / 0.2);
+  /* Better kerning for buttons */
+  font-feature-settings: 'liga' 1, 'kern' 1;
 }
 
 /* Prevent text-wrap on elements where it's not needed */
@@ -920,18 +1041,36 @@ body {
   --animation-slide-from-bottom: slide-from-bottom 0.7s var(--ease-out-2);
   --animation-scale-up: scale-up 0.5s var(--ease-out-2);
 
-  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  /* === ENHANCED TYPOGRAPHY SYSTEM === */
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  line-height: 1.6;
   font-weight: 400;
+  font-feature-settings: 'liga' 1, 'kern' 1, 'calt' 1;
+  font-variant-ligatures: common-ligatures contextual;
+  font-kerning: auto;
+  font-optical-sizing: auto;
 
   color-scheme: light dark;
   color: var(--text-1);
   background-color: var(--surface-1);
 
+  /* === ENHANCED FONT RENDERING === */
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  
+  /* Better subpixel rendering for crisp text */
+  -webkit-font-feature-settings: 'liga', 'kern';
+  -moz-font-feature-settings: 'liga', 'kern';
+  font-feature-settings: 'liga', 'kern';
+  
+  /* Improve text contrast on Retina displays */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 /* OKLCH color definitions */
@@ -5532,6 +5671,9 @@ button:focus-visible {
   border-bottom: 1px solid var(--border-1);
   padding: var(--space-s) var(--space-l);
   animation: breadcrumbSlideIn 0.3s var(--ease-out-2);
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 @keyframes breadcrumbSlideIn {
@@ -5552,12 +5694,17 @@ button:focus-visible {
   font-size: var(--text-sm);
   max-width: var(--container-max-width);
   margin: 0 auto;
+  flex-wrap: wrap;
+  overflow: hidden;
 }
 
 .breadcrumb-item {
   display: flex;
   align-items: center;
   gap: var(--space-xs);
+  flex-shrink: 1;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .breadcrumb-link {
@@ -5566,6 +5713,12 @@ button:focus-visible {
   padding: var(--space-xs) var(--space-s);
   border-radius: var(--radius-2);
   transition: all 0.2s var(--ease-out-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+  flex-shrink: 1;
+  min-width: 0;
 }
 
 .breadcrumb-link:hover {
@@ -5586,6 +5739,12 @@ button:focus-visible {
   padding: var(--space-xs) var(--space-s);
   background: var(--surface-2);
   border-radius: var(--radius-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+  flex-shrink: 1;
+  min-width: 0;
 }
 
 /* Mobile search enhancements */
@@ -5596,15 +5755,137 @@ button:focus-visible {
 
   .breadcrumb-container {
     padding: var(--space-xs) var(--space-s);
+    overflow-x: hidden;
   }
 
   .breadcrumb {
     font-size: var(--text-xs);
+    gap: 2px;
+    flex-wrap: wrap;
   }
 
   .breadcrumb-link,
   .breadcrumb-current {
     padding: 2px var(--space-xs);
+    font-size: var(--text-xs);
+    max-width: 120px;
+  }
+  
+  .breadcrumb-separator {
+    font-size: 10px;
+    margin: 0 1px;
+  }
+  
+  /* Hide intermediate breadcrumbs on very small screens */
+  @media (max-width: 480px) {
+    .breadcrumb-item:not(:first-child):not(:last-child) {
+      display: none;
+    }
+    
+    .breadcrumb-item:nth-last-child(2) .breadcrumb-separator {
+      display: none;
+    }
+    
+    .breadcrumb-item:nth-last-child(2)::after {
+      content: '...';
+      color: var(--text-3);
+      padding: 0 var(--space-xs);
+    }
+    
+    .breadcrumb-link,
+    .breadcrumb-current {
+      max-width: 80px;
+      font-size: 11px;
+    }
+  }
+  
+  /* iPhone SE specific (375px and smaller) */
+  @media (max-width: 375px) {
+    .breadcrumb-container {
+      padding: var(--space-xs) var(--space-xs);
+      position: relative;
+      max-width: 280px; /* Hard limit */
+      overflow: hidden;
+    }
+    
+    /* Add a fade gradient to show truncation */
+    .breadcrumb-container::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 20px;
+      height: 100%;
+      background: linear-gradient(to right, transparent, var(--surface-1));
+      pointer-events: none;
+    }
+    
+    .breadcrumb {
+      gap: 1px;
+      flex-wrap: nowrap;
+      overflow: hidden;
+      width: 100%;
+      max-width: 260px; /* Even harder limit */
+    }
+    
+    .breadcrumb-item {
+      flex-shrink: 1;
+      overflow: hidden;
+    }
+    
+    .breadcrumb-link,
+    .breadcrumb-current {
+      max-width: 180px; /* Much smaller */
+      font-size: 10px;
+      padding: 1px 4px;
+      flex-shrink: 1;
+      min-width: 0;
+      display: block;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    
+    .breadcrumb-separator {
+      font-size: 8px;
+      margin: 0;
+      flex-shrink: 0;
+    }
+    
+    /* Show only last breadcrumb on iPhone SE */
+    .breadcrumb-item:not(:last-child) {
+      display: none;
+    }
+    
+    /* Add back arrow before last breadcrumb */
+    .breadcrumb-item:last-child::before {
+      content: '← ';
+      color: var(--text-3);
+      font-size: 10px;
+      margin-right: 2px;
+      flex-shrink: 0;
+    }
+  }
+  
+  /* Extra small screens (iPhone SE in portrait) */
+  @media (max-width: 320px) {
+    .breadcrumb-container {
+      padding: 2px 4px;
+      max-width: 220px; /* Even smaller hard limit */
+    }
+    
+    .breadcrumb {
+      max-width: 200px;
+    }
+    
+    .breadcrumb-link,
+    .breadcrumb-current {
+      max-width: 120px; /* Smaller limit */
+      font-size: 9px;
+      padding: 1px 2px;
+      flex-shrink: 1;
+      min-width: 0;
+    }
   }
 }
 

@@ -41,15 +41,19 @@ export const AuthProvider = React.memo(function AuthProvider({
     if (userData) {
       setUser(userData)
     } else {
-      // For development, auto-login a test user
-      const testUser = {
-        id: 'test-user-1',
-        name: 'Test Gebruiker',
-        email: 'test@example.com',
-        isFirstLogin: false,
+      // Check if user explicitly logged out
+      const hasLoggedOut = secureStorage.getItem('user-logged-out')
+      if (!hasLoggedOut) {
+        // For development, auto-login a test user only if never logged out
+        const testUser = {
+          id: 'test-user-1',
+          name: 'Test Gebruiker',
+          email: 'test@example.com',
+          isFirstLogin: false,
+        }
+        setUser(testUser)
+        secureStorage.setItem('user', testUser)
       }
-      setUser(testUser)
-      secureStorage.setItem('user', testUser)
     }
     setIsLoading(false)
   }, [])
@@ -74,11 +78,15 @@ export const AuthProvider = React.memo(function AuthProvider({
 
     setUser(userWithLoginStatus)
     secureStorage.setItem('user', userWithLoginStatus)
+    // Clear logout flag when user logs in
+    secureStorage.removeItem('user-logged-out')
   }
 
   const logout = () => {
     setUser(null)
     secureStorage.removeItem('user')
+    // Set flag to prevent auto-login after logout
+    secureStorage.setItem('user-logged-out', 'true')
   }
 
   const value: AuthContextType = {
