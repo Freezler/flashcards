@@ -82,16 +82,22 @@ function Dashboard(): React.JSX.Element {
   useSEO({
     title: 'Dashboard',
     description: `Persoonlijk dashboard voor Nederlandse flashcards. ${stats.totalDecks} decks beschikbaar met ${stats.totalCards} kaarten. Start je leertraject vandaag!`,
-    keywords: 'dashboard, persoonlijk, leren, voortgang, nederlandse flashcards, spaced repetition',
-    url: 'https://nederlandse-flashcards.vercel.app/'
+    keywords:
+      'dashboard, persoonlijk, leren, voortgang, nederlandse flashcards, spaced repetition',
+    url: 'https://nederlandse-flashcards.vercel.app/',
   })
 
   return (
-    <main className="dashboard-container" role="main" aria-labelledby="dashboard-title">
+    <main
+      className="dashboard-container"
+      role="main"
+      aria-labelledby="dashboard-title"
+    >
       <header className="dashboard-header">
         <div className="dashboard-greeting">
           <h1 id="dashboard-title" className="dashboard-title">
-            {getTimeBasedGreeting()}, {user?.name || 'Student'}! <span aria-hidden="true">👋</span>
+            {getTimeBasedGreeting()}, {user?.name || 'Student'}!{' '}
+            <span aria-hidden="true">👋</span>
           </h1>
           <h2 className="dashboard-subtitle-main">
             {isFirstLogin ? 'Welkom bij' : 'Welkom terug bij'}{' '}
@@ -106,14 +112,21 @@ function Dashboard(): React.JSX.Element {
 
         {/* Study Reminders */}
         {studyReminders.length > 0 && (
-          <section className="study-reminders" aria-labelledby="reminders-title">
-            <h3 id="reminders-title" className="sr-only">Studie herinneringen</h3>
+          <section
+            className="study-reminders"
+            aria-labelledby="reminders-title"
+          >
+            <h3 id="reminders-title" className="sr-only">
+              Studie herinneringen
+            </h3>
             {studyReminders.map(reminder => (
               <div
                 key={reminder.id}
                 className={`study-reminder study-reminder--${reminder.type}`}
                 role={reminder.priority === 'high' ? 'alert' : 'status'}
-                aria-live={reminder.priority === 'high' ? 'assertive' : 'polite'}
+                aria-live={
+                  reminder.priority === 'high' ? 'assertive' : 'polite'
+                }
               >
                 <div className="reminder-icon" aria-hidden="true">
                   {reminder.type === 'overdue' && '⏰'}
@@ -122,7 +135,11 @@ function Dashboard(): React.JSX.Element {
                 </div>
                 <span className="reminder-message">{reminder.message}</span>
                 {reminder.type === 'overdue' && (
-                  <Link to="/decks" className="reminder-action" aria-label="Ga naar decks om te studeren">
+                  <Link
+                    to="/decks"
+                    className="reminder-action"
+                    aria-label="Ga naar decks om te studeren"
+                  >
                     Ga studeren →
                   </Link>
                 )}
@@ -133,30 +150,52 @@ function Dashboard(): React.JSX.Element {
       </header>
 
       <section className="stats-grid" aria-labelledby="stats-title">
-        <h3 id="stats-title" className="sr-only">Studie statistieken</h3>
-        
-        <Link 
-          to="/decks" 
+        <h3 id="stats-title" className="sr-only">
+          Studie statistieken
+        </h3>
+
+        <Link
+          to="/decks"
           className="stat-card stat-card--interactive"
           aria-label={`${stats.totalDecks} decks beschikbaar. Klik om alle decks te bekijken.`}
         >
-          <div className="stat-icon" aria-hidden="true">📚</div>
+          <div className="stat-icon" aria-hidden="true">
+            📚
+          </div>
           <div className="stat-content">
-            <div className="stat-number" role="text">{stats.totalDecks}</div>
+            <div className="stat-number" role="text">
+              {stats.totalDecks}
+            </div>
             <div className="stat-label">Decks</div>
             <div className="stat-detail">Alle collecties</div>
           </div>
-          <div className="stat-trend stat-trend--neutral" aria-hidden="true">→</div>
+          <div className="stat-trend stat-trend--neutral" aria-hidden="true">
+            →
+          </div>
         </Link>
 
-        <div className="stat-card" role="status" aria-label={`${stats.totalCards} kaarten totaal beschikbaar`}>
-          <div className="stat-icon" aria-hidden="true">🎯</div>
+        <div
+          className="stat-card"
+          role="status"
+          aria-label={`${stats.totalCards} kaarten totaal beschikbaar`}
+        >
+          <div className="stat-icon" aria-hidden="true">
+            🎯
+          </div>
           <div className="stat-content">
-            <div className="stat-number" role="text">{stats.totalCards}</div>
+            <div className="stat-number" role="text">
+              {stats.totalCards}
+            </div>
             <div className="stat-label">Kaarten</div>
             <div className="stat-detail">Totaal beschikbaar</div>
           </div>
-          <div className="stat-progress" role="progressbar" aria-valuenow={stats.totalCards} aria-valuemax={100} aria-label="Voortgang kaarten collectie">
+          <div
+            className="stat-progress"
+            role="progressbar"
+            aria-valuenow={stats.totalCards}
+            aria-valuemax={100}
+            aria-label="Voortgang kaarten collectie"
+          >
             <div
               className="stat-progress-bar"
               style={
@@ -184,7 +223,7 @@ function Dashboard(): React.JSX.Element {
             </div>
           </div>
           {stats.studyStreak >= 7 && (
-            <div 
+            <div
               className="stat-badge"
               role="status"
               aria-label={`Prestatie badge: Hot streak! Je hebt ${stats.studyStreak} dagen op rij gestudeerd`}
@@ -212,7 +251,9 @@ function Dashboard(): React.JSX.Element {
 
       <section className="quick-actions" aria-labelledby="actions-title">
         <div className="section-header">
-          <h2 id="actions-title" className="section-title">Snelle acties</h2>
+          <h2 id="actions-title" className="section-title">
+            Snelle acties
+          </h2>
           <div className="section-subtitle">Start direct met leren</div>
         </div>
 
@@ -225,7 +266,7 @@ function Dashboard(): React.JSX.Element {
               <p className="action-description">
                 {stats.cardsToReview} kaarten klaar voor herhaling
               </p>
-              <div 
+              <div
                 className="action-badge"
                 role="status"
                 aria-label={`Urgentie indicator: ${stats.cardsToReview} kaarten wachten op herhaling`}
@@ -262,9 +303,15 @@ function Dashboard(): React.JSX.Element {
         </div>
       </section>
 
-      <section className="recent-activity" aria-labelledby="activity-title" role="region">
+      <section
+        className="recent-activity"
+        aria-labelledby="activity-title"
+        role="region"
+      >
         <div className="section-header">
-          <h2 id="activity-title" className="section-title">Beschikbare Decks</h2>
+          <h2 id="activity-title" className="section-title">
+            Beschikbare Decks
+          </h2>
           <div className="section-subtitle">
             Kies een deck om mee te starten
           </div>

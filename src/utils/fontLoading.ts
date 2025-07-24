@@ -1,6 +1,6 @@
 /**
  * Font Loading Optimization Utilities
- * 
+ *
  * Implements advanced font loading strategies to eliminate render-blocking
  * and improve LCP (Largest Contentful Paint) performance.
  */
@@ -22,41 +22,40 @@ export const preloadFonts = async (): Promise<void> => {
   return Promise.resolve()
 }
 
-
 /**
  * Load fonts asynchronously without blocking render
  */
 export const loadFontsAsync = (options: FontLoadingOptions): Promise<void> => {
   return new Promise((resolve, reject) => {
     const { family, weights, display = 'swap', timeout = 3000 } = options
-    
+
     // Create font CSS URL
     const weightsStr = weights.join(';')
     const fontUrl = `https://fonts.googleapis.com/css2?family=${family}:wght@${weightsStr}&display=${display}`
-    
+
     // Create link element
     const link = document.createElement('link')
     link.rel = 'stylesheet'
     link.href = fontUrl
-    
+
     // Set up timeout
     const timeoutId = setTimeout(() => {
       reject(new Error(`Font loading timeout: ${family}`))
     }, timeout)
-    
+
     // Handle successful load
     link.onload = () => {
       clearTimeout(timeoutId)
       console.log(`✅ Font loaded: ${family}`)
       resolve()
     }
-    
+
     // Handle error
     link.onerror = () => {
       clearTimeout(timeoutId)
       reject(new Error(`Failed to load font: ${family}`))
     }
-    
+
     // Add to document
     document.head.appendChild(link)
   })
@@ -108,7 +107,9 @@ export const optimizeFontLoading = async (): Promise<void> => {
     }
   `
   // Add nonce for CSP if available
-  const nonce = document.querySelector('meta[name="csp-nonce"]')?.getAttribute('content')
+  const nonce = document
+    .querySelector('meta[name="csp-nonce"]')
+    ?.getAttribute('content')
   if (nonce) {
     style.setAttribute('nonce', nonce)
   }
@@ -122,7 +123,7 @@ export const optimizeFontLoading = async (): Promise<void> => {
     await loadFontsAsync({
       family: 'Inter',
       weights: [300, 400, 500, 600, 700],
-      display: 'swap'
+      display: 'swap',
     })
 
     // Wait for fonts to be fully ready
@@ -131,7 +132,6 @@ export const optimizeFontLoading = async (): Promise<void> => {
     // Switch to loaded fonts
     document.documentElement.classList.remove('font-loading')
     document.documentElement.classList.add('fonts-loaded')
-
   } catch (error) {
     console.warn('Font loading failed, using fallback:', error)
     // Keep using fallback fonts
@@ -205,7 +205,9 @@ export const injectCriticalCSS = (): void => {
   const style = document.createElement('style')
   style.textContent = criticalCSS
   // Add nonce for CSP if available
-  const nonce = document.querySelector('meta[name="csp-nonce"]')?.getAttribute('content')
+  const nonce = document
+    .querySelector('meta[name="csp-nonce"]')
+    ?.getAttribute('content')
   if (nonce) {
     style.setAttribute('nonce', nonce)
   }

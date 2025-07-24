@@ -27,7 +27,8 @@ const decrypt = (encrypted: string): string => {
     let result = ''
     for (let i = 0; i < text.length; i++) {
       result += String.fromCharCode(
-        text.charCodeAt(i) ^ ENCRYPTION_KEY.charCodeAt(i % ENCRYPTION_KEY.length)
+        text.charCodeAt(i) ^
+          ENCRYPTION_KEY.charCodeAt(i % ENCRYPTION_KEY.length)
       )
     }
     return result
@@ -66,7 +67,10 @@ class SecureStorage {
    * Get current total storage size
    */
   private getTotalSize(): number {
-    return Array.from(this.sizeTracker.values()).reduce((sum, size) => sum + size, 0)
+    return Array.from(this.sizeTracker.values()).reduce(
+      (sum, size) => sum + size,
+      0
+    )
   }
 
   /**
@@ -77,15 +81,15 @@ class SecureStorage {
     if (!data || typeof data !== 'string') return false
     if (data.length > MAX_DATA_SIZE) return false
     if (this.getTotalSize() + data.length > MAX_TOTAL_SIZE) return false
-    
+
     // Check for suspicious patterns
     const suspiciousPatterns = [
       /<script/i,
       /javascript:/i,
       /on\w+\s*=/i,
-      /data:(?!image\/[a-z]+;base64,)/i
+      /data:(?!image\/[a-z]+;base64,)/i,
     ]
-    
+
     return !suspiciousPatterns.some(pattern => pattern.test(data))
   }
 
@@ -94,19 +98,22 @@ class SecureStorage {
    */
   setItem(key: string, value: any): boolean {
     try {
-      const stringValue = typeof value === 'string' ? value : JSON.stringify(value)
-      
+      const stringValue =
+        typeof value === 'string' ? value : JSON.stringify(value)
+
       if (!this.validateData(key, stringValue)) {
         console.warn('SecureStorage: Invalid data rejected for key:', key)
         return false
       }
 
-      const shouldEncrypt = SENSITIVE_KEYS.some(sensitiveKey => key.includes(sensitiveKey))
+      const shouldEncrypt = SENSITIVE_KEYS.some(sensitiveKey =>
+        key.includes(sensitiveKey)
+      )
       const finalValue = shouldEncrypt ? encrypt(stringValue) : stringValue
-      
+
       localStorage.setItem(key, finalValue)
       this.sizeTracker.set(key, finalValue.length)
-      
+
       return true
     } catch (error) {
       console.error('SecureStorage: Failed to set item:', error)
@@ -122,7 +129,9 @@ class SecureStorage {
       const value = localStorage.getItem(key)
       if (!value) return null
 
-      const shouldDecrypt = SENSITIVE_KEYS.some(sensitiveKey => key.includes(sensitiveKey))
+      const shouldDecrypt = SENSITIVE_KEYS.some(sensitiveKey =>
+        key.includes(sensitiveKey)
+      )
       return shouldDecrypt ? decrypt(value) : value
     } catch (error) {
       console.error('SecureStorage: Failed to get item:', error)
@@ -174,7 +183,7 @@ class SecureStorage {
     return {
       totalSize: this.getTotalSize(),
       itemCount: this.sizeTracker.size,
-      items: Array.from(this.sizeTracker.keys())
+      items: Array.from(this.sizeTracker.keys()),
     }
   }
 

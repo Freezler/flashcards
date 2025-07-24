@@ -11,7 +11,7 @@ const HTML_ENTITIES: Record<string, string> = {
   "'": '&#39;',
   '/': '&#x2F;',
   '`': '&#x60;',
-  '=': '&#x3D;'
+  '=': '&#x3D;',
 }
 
 /**
@@ -23,8 +23,8 @@ export const escapeHtml = (unsafe: string): string => {
   if (typeof unsafe !== 'string') {
     return String(unsafe)
   }
-  
-  return unsafe.replace(/[&<>"'`=\/]/g, (match) => HTML_ENTITIES[match] || match)
+
+  return unsafe.replace(/[&<>"'`=\/]/g, match => HTML_ENTITIES[match] || match)
 }
 
 /**
@@ -75,10 +75,12 @@ export const sanitizeTags = (tags: string[]): string[] => {
 
   return tags
     .filter(tag => typeof tag === 'string' && tag.trim().length > 0)
-    .map(tag => tag
-      .replace(/[<>"'&]/g, '') // Remove HTML-dangerous characters
-      .trim()
-      .substring(0, 50) // Reasonable limit for tags
+    .map(
+      tag =>
+        tag
+          .replace(/[<>"'&]/g, '') // Remove HTML-dangerous characters
+          .trim()
+          .substring(0, 50) // Reasonable limit for tags
     )
     .filter(tag => tag.length > 0)
     .slice(0, 10) // Limit number of tags
@@ -95,8 +97,9 @@ export const isValidEmail = (email: string): boolean => {
   }
 
   // Simple but secure email validation
-  const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
-  
+  const emailRegex =
+    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
+
   return emailRegex.test(email) && email.length <= 254 // RFC 5321 limit
 }
 
@@ -133,7 +136,7 @@ export const validateUserInput = (input: string): boolean => {
     /<meta/i,
     /data:(?!image\/[a-z]+;base64,)/i,
     /vbscript:/i,
-    /expression\s*\(/i
+    /expression\s*\(/i,
   ]
 
   return !suspiciousPatterns.some(pattern => pattern.test(input))
@@ -158,7 +161,7 @@ export class RateLimiter {
 
     // Remove old attempts outside the window
     const recentAttempts = attempts.filter(time => now - time < this.windowMs)
-    
+
     if (recentAttempts.length >= this.maxAttempts) {
       return false
     }

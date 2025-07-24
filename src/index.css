@@ -2487,23 +2487,29 @@ button:focus-visible {
   --card-height: 620px;
 }
 
-/* Difficulty Variants with Jhey's signature color magic */
+/* === UNIFORM FLASHCARD COLORS FOR LIGHT/DARK MODE === */
 .flashcard--easy {
-  --difficulty-color: oklch(75% 0.15 160);
-  --difficulty-glow: oklch(75% 0.25 160);
-  --difficulty-bg: oklch(98% 0.03 160);
+  --difficulty-color: oklch(70% 0.15 150);
+  --difficulty-glow: oklch(70% 0.25 150);
+  --difficulty-bg: var(--surface-1);
+  --difficulty-border: oklch(70% 0.15 150 / 0.3);
+  --difficulty-text: var(--text-1);
 }
 
 .flashcard--medium {
-  --difficulty-color: oklch(70% 0.18 45);
-  --difficulty-glow: oklch(70% 0.28 45);
-  --difficulty-bg: oklch(98% 0.03 45);
+  --difficulty-color: oklch(65% 0.18 45);
+  --difficulty-glow: oklch(65% 0.28 45);
+  --difficulty-bg: var(--surface-1);
+  --difficulty-border: oklch(65% 0.18 45 / 0.3);
+  --difficulty-text: var(--text-1);
 }
 
 .flashcard--hard {
-  --difficulty-color: oklch(65% 0.22 0);
-  --difficulty-glow: oklch(65% 0.32 0);
-  --difficulty-bg: oklch(98% 0.03 0);
+  --difficulty-color: oklch(60% 0.22 10);
+  --difficulty-glow: oklch(60% 0.32 10);
+  --difficulty-bg: var(--surface-1);
+  --difficulty-border: oklch(60% 0.22 10 / 0.3);
+  --difficulty-text: var(--text-1);
 }
 
 /* The magical 3D flip container */
@@ -2568,56 +2574,26 @@ button:focus-visible {
     0 16px 48px oklch(25% 0.03 240 / 0.04),
     0 0 0 1px var(--difficulty-color) / 0.1;
 
-  background:
-    radial-gradient(
-      ellipse at top left,
-      var(--difficulty-bg) 0%,
-      oklch(11.481% 0.02207 331.711) 40%
-    ),
-    linear-gradient(
-      135deg,
-      oklch(8.011% 0.01642 326.946) 0%,
-      oklch(98% 0.008 240) 100%
-    );
-
-  border: 2px solid var(--difficulty-color) / 0.2;
+  background: var(--difficulty-bg);
+  border: 2px solid var(--difficulty-border);
   overflow: hidden;
 }
 
+/* Remove individual card side borders - main card provides unified border */
+
 .flashcard__front {
   transform: rotateY(0deg);
 }
 
 .flashcard__back {
   transform: rotateY(180deg);
-  background: var(--surface-1);
-  border: 1px solid var(--border-1);
 }
 
-/* Dead simple, bulletproof card flip */
-.flashcard__front {
-  transform: rotateY(0deg);
-}
-
-.flashcard__back {
-  transform: rotateY(180deg);
-  background: var(--surface-1);
-  border: 1px solid var(--border-1);
-}
-
-/* Keep card structure visible, only fade text content */
+/* Both sides have identical content visibility */
 .flashcard__front .flashcard__content,
 .flashcard__back .flashcard__content {
-  transition: opacity 0.15s ease-in-out;
-}
-
-/* Show front content by default, hide back content */
-.flashcard__front .flashcard__content {
   opacity: 1;
-}
-
-.flashcard__back .flashcard__content {
-  opacity: 0;
+  transition: opacity 0.15s ease-in-out;
 }
 
 /* Front→Back flip: fade content at the right time */
@@ -2695,7 +2671,7 @@ button:focus-visible {
   opacity: 1 !important;
   visibility: visible !important;
   display: block !important;
-  color: var(--difficulty-color, var(--text-1)) !important;
+  color: var(--difficulty-text) !important;
   font-weight: 600 !important;
 }
 
@@ -2776,7 +2752,7 @@ button:focus-visible {
   font-size: var(--step-1);
   font-weight: 500;
   line-height: 1.4;
-  color: var(--text-1);
+  color: var(--difficulty-text);
   max-width: 100%;
   word-wrap: break-word;
   text-wrap: pretty;
@@ -2789,7 +2765,7 @@ button:focus-visible {
 
 .flashcard__answer {
   font-weight: 600;
-  color: var(--difficulty-color, #333333) !important;
+  color: var(--difficulty-text) !important;
   opacity: 1 !important;
   display: block !important;
   font-size: var(--step-1) !important;
@@ -2805,7 +2781,7 @@ button:focus-visible {
   opacity: 1 !important;
   visibility: visible !important;
   display: block !important;
-  color: var(--difficulty-color, var(--text-1)) !important;
+  color: var(--difficulty-text) !important;
   font-weight: 600 !important;
   /* Force hardware acceleration and proper rendering */
   transform: translateZ(0);
@@ -2829,10 +2805,7 @@ button:focus-visible {
   text-align: center;
 }
 
-.flashcard__flip-hint {
-  align-self: center;
-  width: fit-content;
-}
+/* Removed - now using flashcard__action--reveal */
 
 .flashcard__tags {
   display: flex;
@@ -2855,43 +2828,7 @@ button:focus-visible {
   color: var(--difficulty-color);
 }
 
-/* Reveal button with Jhey's playful style */
-.flashcard__flip-hint {
-  display: flex;
-  align-items: center;
-  gap: var(--space-3xs);
-  background: none;
-  border: 2px solid var(--difficulty-color) / 0.3;
-  color: var(--difficulty-color);
-  padding: var(--space-3xs) var(--space-2xs);
-  border-radius: var(--radius-pill);
-  font-size: var(--step--2);
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-  overflow: hidden;
-}
-
-.flashcard__flip-hint::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--difficulty-color);
-  transform: translateX(-100%);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: -1;
-}
-
-.flashcard__flip-hint:hover {
-  color: white;
-  border-color: var(--difficulty-color);
-  transform: translateY(-1px);
-}
-
-.flashcard__flip-hint:hover::before {
-  transform: translateX(0);
-}
+/* Removed - now using flashcard__action--reveal for consistency */
 
 .flashcard__flip-icon {
   animation: blink 2s ease-in-out infinite;
@@ -2946,6 +2883,14 @@ button:focus-visible {
   border: 2px solid oklch(60% 0.24 0);
   color: white;
   text-shadow: 0 1px 2px oklch(0% 0 0 / 0.3);
+}
+
+.flashcard__action--reveal {
+  background: linear-gradient(135deg, var(--difficulty-color), oklch(60% 0.18 240));
+  border: 2px solid var(--difficulty-border);
+  color: white;
+  text-shadow: 0 1px 2px oklch(0% 0 0 / 0.3);
+  width: 100%;
 }
 
 .flashcard__action:hover {
@@ -3091,13 +3036,28 @@ button:focus-visible {
   }
 }
 
-/* High contrast mode support */
+/* High contrast mode support - keep unified appearance */
 @media (prefers-contrast: high) {
-  .flashcard__front,
-  .flashcard__back {
+  .flashcard {
     border-width: 3px;
-    background: var(--surface-1);
   }
+}
+
+/* === ACCESSIBILITY-COMPLIANT CARD VISIBILITY === */
+
+/* Hidden sides - focus management only, content stays visible for animation */
+.flashcard__front--hidden button,
+.flashcard__back--hidden button {
+  /* Ensure buttons are not focusable when hidden */
+  pointer-events: none;
+  opacity: 0;
+}
+
+/* Visible sides - ensure proper focus management */
+.flashcard__front:not(.flashcard__front--hidden) button,
+.flashcard__back:not(.flashcard__back--hidden) button {
+  pointer-events: auto;
+  opacity: 1;
 }
 
 /* === STUDY INTERFACE STYLING === */

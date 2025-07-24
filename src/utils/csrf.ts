@@ -37,7 +37,7 @@ class CSRFManager {
    */
   getToken(): string {
     const now = Date.now()
-    
+
     // Check if current token is still valid
     if (this.currentToken && now < this.tokenExpiry) {
       return this.currentToken
@@ -127,10 +127,12 @@ export const addCSRFToken = (formData: FormData): FormData => {
 /**
  * Add CSRF token to request headers
  */
-export const addCSRFHeaders = (headers: Record<string, string> = {}): Record<string, string> => {
+export const addCSRFHeaders = (
+  headers: Record<string, string> = {}
+): Record<string, string> => {
   return {
     ...headers,
-    'X-CSRF-Token': csrfManager.getToken()
+    'X-CSRF-Token': csrfManager.getToken(),
   }
 }
 
@@ -149,7 +151,7 @@ export const validateCSRFFromRequest = (request: {
   // Check form data
   if (request.body) {
     let token: string | null = null
-    
+
     if (request.body instanceof FormData) {
       token = request.body.get('csrf_token') as string
     } else if (typeof request.body === 'object' && request.body.csrf_token) {

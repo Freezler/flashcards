@@ -1,6 +1,6 @@
 /**
  * Resource Preloading Utilities
- * 
+ *
  * Advanced resource preloading strategies to eliminate render-blocking
  * requests and improve LCP, FCP, and overall page performance.
  */
@@ -36,7 +36,7 @@ export class ResourcePreloader {
       link.rel = 'preload'
       link.href = url
       link.as = as
-      
+
       if (type) link.type = type
       if (crossOrigin) link.crossOrigin = crossOrigin
       if (priority === 'high') link.setAttribute('fetchpriority', 'high')
@@ -45,7 +45,7 @@ export class ResourcePreloader {
         console.log(`✅ Preloaded: ${url}`)
         resolve()
       }
-      
+
       link.onerror = () => {
         console.warn(`⚠️ Failed to preload: ${url}`)
         reject(new Error(`Failed to preload: ${url}`))
@@ -56,7 +56,7 @@ export class ResourcePreloader {
 
     this.preloadedResources.add(url)
     this.preloadPromises.set(url, promise)
-    
+
     return promise
   }
 
@@ -64,7 +64,7 @@ export class ResourcePreloader {
    * Preload multiple resources in parallel
    */
   async preloadAll(resources: PreloadResource[]): Promise<void> {
-    const promises = resources.map(resource => 
+    const promises = resources.map(resource =>
       this.preload(resource).catch(error => {
         console.warn('Resource preload failed:', error)
         return Promise.resolve() // Don't fail the entire batch
@@ -85,7 +85,7 @@ export class ResourcePreloader {
     link.rel = 'prefetch'
     link.href = url
     document.head.appendChild(link)
-    
+
     this.preloadedResources.add(url)
     console.log(`📦 Prefetched: ${url}`)
   }
@@ -133,8 +133,8 @@ export const preloadCriticalResources = async (): Promise<void> => {
     {
       url: '/brainBulb.svg',
       as: 'image',
-      priority: 'high'
-    }
+      priority: 'high',
+    },
   ]
 
   try {
@@ -192,31 +192,51 @@ export const reportPerformanceMetrics = (): void => {
   // Wait for navigation to complete
   window.addEventListener('load', () => {
     setTimeout(() => {
-      const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming
+      const navigation = performance.getEntriesByType(
+        'navigation'
+      )[0] as PerformanceNavigationTiming
       const paint = performance.getEntriesByType('paint')
-      
+
       const metrics = {
-        'DNS Lookup': Math.round(navigation.domainLookupEnd - navigation.domainLookupStart),
-        'TCP Connect': Math.round(navigation.connectEnd - navigation.connectStart),
-        'Request': Math.round(navigation.responseStart - navigation.requestStart),
-        'Response': Math.round(navigation.responseEnd - navigation.responseStart),
-        'DOM Parse': Math.round(navigation.domContentLoadedEventStart - navigation.responseEnd),
-        'Resource Load': Math.round(navigation.loadEventStart - navigation.domContentLoadedEventEnd),
-        'Total Load Time': Math.round(navigation.loadEventEnd - navigation.navigationStart),
-        'First Paint': Math.round(paint.find(p => p.name === 'first-paint')?.startTime || 0),
-        'First Contentful Paint': Math.round(paint.find(p => p.name === 'first-contentful-paint')?.startTime || 0)
+        'DNS Lookup': Math.round(
+          navigation.domainLookupEnd - navigation.domainLookupStart
+        ),
+        'TCP Connect': Math.round(
+          navigation.connectEnd - navigation.connectStart
+        ),
+        Request: Math.round(navigation.responseStart - navigation.requestStart),
+        Response: Math.round(navigation.responseEnd - navigation.responseStart),
+        'DOM Parse': Math.round(
+          navigation.domContentLoadedEventStart - navigation.responseEnd
+        ),
+        'Resource Load': Math.round(
+          navigation.loadEventStart - navigation.domContentLoadedEventEnd
+        ),
+        'Total Load Time': Math.round(
+          navigation.loadEventEnd - navigation.navigationStart
+        ),
+        'First Paint': Math.round(
+          paint.find(p => p.name === 'first-paint')?.startTime || 0
+        ),
+        'First Contentful Paint': Math.round(
+          paint.find(p => p.name === 'first-contentful-paint')?.startTime || 0
+        ),
       }
 
       console.table(metrics)
-      
+
       // Report potential improvements
       if (metrics['First Contentful Paint'] > 1500) {
-        console.warn('⚠️ FCP is slow (>1.5s). Consider optimizing critical resources.')
+        console.warn(
+          '⚠️ FCP is slow (>1.5s). Consider optimizing critical resources.'
+        )
       }
       if (metrics['Total Load Time'] > 3000) {
-        console.warn('⚠️ Total load time is slow (>3s). Consider code splitting.')
+        console.warn(
+          '⚠️ Total load time is slow (>3s). Consider code splitting.'
+        )
       }
-      
+
       console.log('🎯 Performance target: FCP < 1.8s, LCP < 2.5s')
     }, 0)
   })

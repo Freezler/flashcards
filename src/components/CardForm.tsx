@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 import { FlashCard, DifficultyLevel } from '../types'
-import { 
-  sanitizeFlashcardContent, 
-  sanitizeCategory, 
-  sanitizeTags, 
+import {
+  sanitizeFlashcardContent,
+  sanitizeCategory,
+  sanitizeTags,
   validateUserInput,
-  formSubmissionLimiter
+  formSubmissionLimiter,
 } from '../utils/security'
 import { useCSRF } from '../utils/csrf'
 

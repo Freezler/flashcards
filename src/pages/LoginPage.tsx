@@ -2,7 +2,12 @@ import React, { useState, useCallback } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useFormValidation, validationRules } from '../hooks'
 import { useAuth } from '../contexts/AuthContext'
-import { isValidEmail, validateUserInput, loginAttemptLimiter, generateSecureToken } from '../utils/security'
+import {
+  isValidEmail,
+  validateUserInput,
+  loginAttemptLimiter,
+  generateSecureToken,
+} from '../utils/security'
 
 interface LoginFormData {
   email: string
@@ -25,12 +30,14 @@ const LoginPage = React.memo(function LoginPage(): React.JSX.Element {
   const loginValidationRules = {
     email: (value: string) => {
       if (!value?.trim()) return 'E-mail is verplicht'
-      if (!validateUserInput(value)) return 'E-mail bevat niet-toegestane tekens'
+      if (!validateUserInput(value))
+        return 'E-mail bevat niet-toegestane tekens'
       return !isValidEmail(value) ? 'Ongeldig e-mailadres' : undefined
     },
     password: (value: string) => {
       if (!value?.trim()) return 'Wachtwoord is verplicht'
-      if (!validateUserInput(value)) return 'Wachtwoord bevat niet-toegestane tekens'
+      if (!validateUserInput(value))
+        return 'Wachtwoord bevat niet-toegestane tekens'
       return undefined
     },
   }
@@ -81,7 +88,8 @@ const LoginPage = React.memo(function LoginPage(): React.JSX.Element {
       setAuthError(null)
 
       // Rate limiting protection
-      const clientIdentifier = 'login-' + (localStorage.getItem('client-id') || generateSecureToken())
+      const clientIdentifier =
+        'login-' + (localStorage.getItem('client-id') || generateSecureToken())
       if (!loginAttemptLimiter.isAllowed(clientIdentifier)) {
         setAuthError('Te veel inlogpogingen. Probeer over 5 minuten opnieuw.')
         return
@@ -203,10 +211,17 @@ const LoginPage = React.memo(function LoginPage(): React.JSX.Element {
                 disabled={isLoading}
                 required
                 aria-invalid={!!registerErrors.name}
-                aria-describedby={registerErrors.name ? "name-error" : undefined}
+                aria-describedby={
+                  registerErrors.name ? 'name-error' : undefined
+                }
               />
               {registerErrors.name && (
-                <span id="name-error" className="form-error" role="alert" aria-live="polite">
+                <span
+                  id="name-error"
+                  className="form-error"
+                  role="alert"
+                  aria-live="polite"
+                >
                   {registerErrors.name}
                 </span>
               )}

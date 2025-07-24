@@ -155,79 +155,141 @@ const FlashCard = function FlashCard({
     >
       <div className="flashcard__inner">
         {/* Front Side */}
-        <div className="flashcard__front" aria-hidden={isFlipped}>
+        <div
+          className={`flashcard__front ${isFlipped ? 'flashcard__front--hidden' : ''}`}
+        >
           <header className="flashcard__header">
-            <div className="flashcard__difficulty" role="status" aria-label={`Moeilijkheidsgraad: ${card.difficulty}`}>
+            <div
+              className="flashcard__difficulty"
+              role="status"
+              aria-label={`Moeilijkheidsgraad: ${card.difficulty}`}
+            >
               <span className="flashcard__difficulty-text">
                 {card.difficulty}
               </span>
             </div>
-            <div className="flashcard__category" role="status" aria-label={`Categorie: ${card.category}`}>{card.category}</div>
+            <div
+              className="flashcard__category"
+              role="status"
+              aria-label={`Categorie: ${card.category}`}
+            >
+              {card.category}
+            </div>
           </header>
 
           <main className="flashcard__content">
-            <h3 className="flashcard__question" id={`question-${card.id}`}>{card.front}</h3>
+            <h3 className="flashcard__question" id={`question-${card.id}`}>
+              {card.front}
+            </h3>
           </main>
 
-          <footer className="flashcard__footer">
-            <div className="flashcard__meta">
-              <div className="flashcard__tags" role="list" aria-label="Tags">
-                {card.tags.slice(0, 2).map((tag, index) => (
-                  <span key={index} className="flashcard__tag" role="listitem" aria-label={`Tag: ${tag}`}>
-                    #{tag}
-                  </span>
-                ))}
-              </div>
-              {showStats && (
-                <div className="flashcard__stats" role="status" aria-label="Kaart statistieken">
-                  <span className="flashcard__stat" aria-label={`${card.correctCount} keer goed beantwoord`}>
-                    ✅ {card.correctCount}
-                  </span>
-                  <span className="flashcard__stat" aria-label={`${card.incorrectCount} keer fout beantwoord`}>
-                    ❌ {card.incorrectCount}
-                  </span>
-                  {card.timesReviewed > 0 && (
-                    <span className="flashcard__stat" aria-label={`${card.timesReviewed} keer bekeken`}>
-                      🔄 {card.timesReviewed}
-                    </span>
-                  )}
-                </div>
-              )}
-            </div>
-            {!autoFlip && (
+          {!autoFlip && !isFlipped && (
+            <footer
+              className="flashcard__actions"
+              role="group"
+              aria-labelledby={`question-${card.id}`}
+              aria-label="Toon antwoord"
+            >
               <button
-                className="flashcard__flip-hint"
+                className="flashcard__action flashcard__action--reveal"
                 onClick={e => {
                   e.stopPropagation()
                   handleReveal()
                 }}
                 aria-label="Toon antwoord"
                 aria-describedby={`question-${card.id}`}
+                tabIndex={isFlipped ? -1 : 0}
               >
-                <span className="flashcard__flip-icon" aria-hidden="true">👁️</span>
+                <span className="flashcard__action-icon" aria-hidden="true">
+                  👁️
+                </span>
                 Reveal
               </button>
-            )}
+            </footer>
+          )}
+
+          <footer className="flashcard__footer">
+            <div className="flashcard__meta">
+              <div className="flashcard__tags" role="list" aria-label="Tags">
+                {card.tags.slice(0, 2).map((tag, index) => (
+                  <span
+                    key={index}
+                    className="flashcard__tag"
+                    role="listitem"
+                    aria-label={`Tag: ${tag}`}
+                  >
+                    #{tag}
+                  </span>
+                ))}
+              </div>
+              {showStats && (
+                <div
+                  className="flashcard__stats"
+                  role="status"
+                  aria-label="Kaart statistieken"
+                >
+                  <span
+                    className="flashcard__stat"
+                    aria-label={`${card.correctCount} keer goed beantwoord`}
+                  >
+                    ✅ {card.correctCount}
+                  </span>
+                  <span
+                    className="flashcard__stat"
+                    aria-label={`${card.incorrectCount} keer fout beantwoord`}
+                  >
+                    ❌ {card.incorrectCount}
+                  </span>
+                  {card.timesReviewed > 0 && (
+                    <span
+                      className="flashcard__stat"
+                      aria-label={`${card.timesReviewed} keer bekeken`}
+                    >
+                      🔄 {card.timesReviewed}
+                    </span>
+                  )}
+                </div>
+              )}
+            </div>
           </footer>
         </div>
 
         {/* Back Side */}
-        <div className="flashcard__back" aria-hidden={!isFlipped}>
+        <div
+          className={`flashcard__back ${!isFlipped ? 'flashcard__back--hidden' : ''}`}
+        >
           <header className="flashcard__header">
-            <div className="flashcard__difficulty" role="status" aria-label={`Moeilijkheidsgraad: ${card.difficulty}`}>
+            <div
+              className="flashcard__difficulty"
+              role="status"
+              aria-label={`Moeilijkheidsgraad: ${card.difficulty}`}
+            >
               <span className="flashcard__difficulty-text">
                 {card.difficulty}
               </span>
             </div>
-            <div className="flashcard__category" role="status" aria-label={`Categorie: ${card.category}`}>{card.category}</div>
+            <div
+              className="flashcard__category"
+              role="status"
+              aria-label={`Categorie: ${card.category}`}
+            >
+              {card.category}
+            </div>
           </header>
 
           <main className="flashcard__content">
-            <h3 className="flashcard__answer" id={`answer-${card.id}`}>{card.back}</h3>
+            <h3 className="flashcard__answer" id={`answer-${card.id}`}>
+              {card.back}
+            </h3>
           </main>
 
-          {showActions && (
-            <footer className="flashcard__actions" role="group" aria-labelledby={`answer-${card.id}`} aria-label="Beoordeel je antwoord">
+          {showActions && isFlipped && (
+            <footer
+              className="flashcard__actions"
+              role="group"
+              aria-labelledby={`answer-${card.id}`}
+              aria-label="Beoordeel je antwoord"
+            >
               <button
                 className="flashcard__action flashcard__action--incorrect"
                 onClick={e => {
@@ -236,8 +298,11 @@ const FlashCard = function FlashCard({
                 }}
                 aria-label="Markeer als fout beantwoord"
                 aria-describedby={`answer-${card.id}`}
+                tabIndex={!isFlipped ? -1 : 0}
               >
-                <span className="flashcard__action-icon" aria-hidden="true">❌</span>
+                <span className="flashcard__action-icon" aria-hidden="true">
+                  ❌
+                </span>
                 Fout
               </button>
               <button
@@ -248,8 +313,11 @@ const FlashCard = function FlashCard({
                 }}
                 aria-label="Markeer als goed beantwoord"
                 aria-describedby={`answer-${card.id}`}
+                tabIndex={!isFlipped ? -1 : 0}
               >
-                <span className="flashcard__action-icon" aria-hidden="true">✅</span>
+                <span className="flashcard__action-icon" aria-hidden="true">
+                  ✅
+                </span>
                 Goed
               </button>
             </footer>
