@@ -6,7 +6,14 @@ const LandingPage = React.memo(function LandingPage(): React.JSX.Element {
     <div className="landing-page">
       <div className="landing-container">
         <header className="landing-header">
-          <div className="landing-logo">📚 FlashCards</div>
+          <div className="landing-logo">
+            <img 
+              src="/brainBulb.svg" 
+              alt="FlashCards Logo" 
+              className="logo-svg"
+            />
+            <span className="logo-text">FlashCards</span>
+          </div>
           <nav className="landing-nav">
             <Link to="/login" className="btn-secondary">
               Inloggen
@@ -35,15 +42,13 @@ const LandingPage = React.memo(function LandingPage(): React.JSX.Element {
               </div>
             </div>
             <div className="hero-visual">
-              <div className="demo-card">
-                <div className="demo-card-front">
-                  <h3>Wat is React?</h3>
-                </div>
-                <div className="demo-card-back">
-                  <p>
-                    Een JavaScript library voor het bouwen van user interfaces
-                  </p>
-                </div>
+              <div className="hero-logo-container">
+                <img 
+                  src="/brainBulb.svg" 
+                  alt="FlashCards Brain Logo" 
+                  className="hero-logo"
+                />
+                <div className="hero-logo-glow"></div>
               </div>
             </div>
           </section>

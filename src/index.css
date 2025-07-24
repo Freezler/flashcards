@@ -280,6 +280,65 @@ html {
   --gradient-to: oklch(99.5% 0.002 240);            /* Whisper blue-white */
   --gradient-accent: oklch(99% 0.005 240);          /* Very light blue */
 
+  /* === GLASSMORPHISM SYSTEM === */
+  --glass-1: oklch(100% 0 0 / 0.1);                   /* Ultra light glass */
+  --glass-2: oklch(100% 0 0 / 0.2);                   /* Light glass */
+  --glass-3: oklch(100% 0 0 / 0.3);                   /* Medium glass */
+  --glass-4: oklch(100% 0 0 / 0.4);                   /* Strong glass */
+  --glass-tint: oklch(98% 0.005 240 / 0.8);           /* Tinted glass */
+  --glass-backdrop: oklch(95% 0.01 240 / 0.9);        /* Backdrop glass */
+  
+  /* Glass blur levels */
+  --blur-xs: blur(2px);
+  --blur-sm: blur(4px);
+  --blur-md: blur(8px);
+  --blur-lg: blur(12px);
+  --blur-xl: blur(16px);
+  --blur-2xl: blur(24px);
+
+  /* === MODERN GRADIENTS === */
+  --gradient-glass-1: linear-gradient(135deg, 
+    oklch(100% 0 0 / 0.1) 0%, 
+    oklch(98% 0.005 240 / 0.2) 100%);
+  --gradient-glass-2: linear-gradient(135deg, 
+    oklch(100% 0 0 / 0.2) 0%, 
+    oklch(96% 0.01 240 / 0.3) 100%);
+  --gradient-brand: linear-gradient(135deg, 
+    var(--brand-400) 0%, 
+    var(--brand-600) 100%);
+  --gradient-accent: linear-gradient(135deg, 
+    var(--accent-400) 0%, 
+    var(--accent-600) 100%);
+  --gradient-success: linear-gradient(135deg, 
+    var(--success-400) 0%, 
+    var(--success-600) 100%);
+
+  /* === ADVANCED MICRO-INTERACTIONS === */
+  --ease-in-1: cubic-bezier(0.25, 0, 1, 1);
+  --ease-out-1: cubic-bezier(0, 0, 0.75, 1);
+  --ease-in-out-1: cubic-bezier(0.25, 0, 0.75, 1);
+  --ease-in-2: cubic-bezier(0.5, 0, 1, 1);
+  --ease-out-2: cubic-bezier(0, 0, 0.5, 1);
+  --ease-in-out-2: cubic-bezier(0.5, 0, 0.5, 1);
+  --ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  --ease-bounce: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+  
+  /* Transition durations */
+  --duration-xs: 150ms;
+  --duration-sm: 200ms;
+  --duration-md: 300ms;
+  --duration-lg: 500ms;
+  --duration-xl: 700ms;
+
+  /* === THEME ACCENT SYSTEM === */
+  --theme-accent: var(--brand-500);
+  --theme-accent-hover: var(--brand-600);
+  --theme-accent-light: var(--brand-100);
+  --theme-accent-dark: var(--brand-700);
+  --theme-accent-gradient: var(--gradient-brand);
+  --theme-secondary: var(--accent-500);
+  --theme-secondary-gradient: var(--gradient-accent);
+
   /* Legacy aliases for backwards compatibility */
   --brand-primary: var(--brand-500);
   --brand-primary-hover: var(--brand-600);
@@ -355,6 +414,22 @@ html {
   --gradient-from: oklch(12% 0.02 240);           /* Deep dark blue */
   --gradient-to: oklch(16% 0.025 240);            /* Slightly lighter dark blue */
   --gradient-accent: oklch(14% 0.02 220);         /* Purple-tinted dark blue */
+
+  /* === DARK MODE GLASSMORPHISM === */
+  --glass-1: oklch(20% 0.01 240 / 0.1);          /* Ultra light dark glass */
+  --glass-2: oklch(25% 0.015 240 / 0.2);         /* Light dark glass */
+  --glass-3: oklch(30% 0.02 240 / 0.3);          /* Medium dark glass */
+  --glass-4: oklch(35% 0.025 240 / 0.4);         /* Strong dark glass */
+  --glass-tint: oklch(18% 0.015 240 / 0.8);      /* Tinted dark glass */
+  --glass-backdrop: oklch(12% 0.01 240 / 0.9);   /* Backdrop dark glass */
+
+  /* Dark mode glass gradients */
+  --gradient-glass-1: linear-gradient(135deg, 
+    oklch(20% 0.01 240 / 0.1) 0%, 
+    oklch(25% 0.015 240 / 0.2) 100%);
+  --gradient-glass-2: linear-gradient(135deg, 
+    oklch(25% 0.015 240 / 0.2) 0%, 
+    oklch(30% 0.02 240 / 0.3) 100%);
 }
 
 /* === AUTO DARK MODE (FALLBACK) === */
@@ -1318,20 +1393,28 @@ button:focus-visible {
 }
 
 .deck-card {
-  background: 
-    linear-gradient(135deg, var(--gradient-from) 0%, var(--gradient-to) 100%),
-    var(--surface-1);
-  border: 1px solid var(--border-1);
+  /* === GLASSMORPHISM DESIGN === */
+  background: var(--gradient-glass-1);
+  backdrop-filter: var(--blur-md);
+  -webkit-backdrop-filter: var(--blur-md);
+  border: 1px solid var(--glass-2);
   border-radius: var(--radius-4);
   padding: var(--space-l);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   width: 100%;
   max-width: 100%;
   overflow: hidden;
+  
+  /* === SMOOTH MICRO-INTERACTIONS === */
+  transition: all var(--duration-md) var(--ease-out-2);
   animation: var(--animation-scale-up);
   animation-delay: calc(var(--index, 0) * 0.1s + 0.6s);
   animation-fill-mode: both;
+  
+  /* === MODERN SHADOWS === */
+  box-shadow: 
+    var(--shadow-lg),
+    0 0 0 1px var(--glass-1) inset;
   
   /* CSS Subgrid for perfect internal alignment */
   display: grid;
@@ -1374,19 +1457,22 @@ button:focus-visible {
 }
 
 .deck-card:hover::before {
-  opacity: 0.03;
+  opacity: 0.05;
 }
 
 .deck-card:hover {
-  transform: translateY(-6px) scale(1.02);
+  /* === MODERN 3D HOVER EFFECT === */
+  transform: translateY(-8px) scale(1.02);
+  background: var(--gradient-glass-2);
+  border-color: var(--glass-3);
+  backdrop-filter: var(--blur-lg);
+  -webkit-backdrop-filter: var(--blur-lg);
+  
+  /* === ENHANCED SHADOWS === */
   box-shadow:
-    0 1px 0 oklch(100% 0 0 / 0.9) inset,
-    0 -1px 0 oklch(88% 0.01 240 / 0.2) inset,
-    0 8px 16px oklch(25% 0.03 240 / 0.08),
-    0 16px 32px oklch(25% 0.03 240 / 0.12),
-    0 24px 48px oklch(25% 0.03 240 / 0.08),
-    0 0 0 1px var(--brand-primary) / 0.1;
-  border-color: var(--brand-primary) / 0.3;
+    var(--shadow-xl),
+    var(--shadow-glow),
+    0 0 0 1px var(--glass-2) inset;
 }
 
 .deck-card:nth-child(1) {
@@ -1505,6 +1591,7 @@ button:focus-visible {
   gap: var(--space-3xs);
   cursor: pointer;
   position: relative;
+  white-space: nowrap;
 
   /* Jhey's signature multi-layer shadows */
   box-shadow:
@@ -1514,8 +1601,10 @@ button:focus-visible {
     0 4px 8px var(--btn-shadow) / 0.1,
     0 8px 16px var(--btn-shadow) / 0.05;
 
-  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--duration-sm) var(--ease-out-2);
   transform-style: preserve-3d;
+  backdrop-filter: var(--blur-xs);
+  -webkit-backdrop-filter: var(--blur-xs);
 }
 
 .btn-primary::before {
@@ -1600,6 +1689,7 @@ button:focus-visible {
   gap: var(--space-3xs);
   cursor: pointer;
   position: relative;
+  white-space: nowrap;
 
   /* Multi-layer depth */
   box-shadow:
@@ -1609,8 +1699,10 @@ button:focus-visible {
     0 4px 8px var(--btn-shadow) / 0.05,
     0 0 0 1px oklch(85% 0.01 240);
 
-  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all var(--duration-sm) var(--ease-out-2);
   transform-style: preserve-3d;
+  backdrop-filter: var(--blur-xs);
+  -webkit-backdrop-filter: var(--blur-xs);
 }
 
 .btn-secondary::before {
@@ -1698,23 +1790,29 @@ button:focus-visible {
   padding: var(--space-2xs) var(--space-xs);
   font-size: var(--step--2);
   font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @media (min-width: 768px) {
   .deck-actions .btn-primary,
   .deck-actions .btn-secondary {
     font-size: var(--step--1);
+    white-space: nowrap;
   }
 }
 
 /* === JHEY TOMPKINS SIGNATURE FLASHCARD COMPONENT === */
 .flashcard {
+  /* === ENHANCED 3D CARD SYSTEM === */
   --card-width: 350px;
   --card-height: 520px;
-  --card-perspective: 1000px;
-  --flip-duration: 0.8s;
-  --hover-lift: -8px;
+  --card-perspective: 1200px;
+  --flip-duration: 0.6s;
+  --hover-lift: -12px;
   --glow-opacity: 0;
+  --glass-opacity: 0.1;
 
   position: relative;
   width: var(--card-width);
@@ -1722,16 +1820,31 @@ button:focus-visible {
   perspective: var(--card-perspective);
   cursor: pointer;
   margin: 0 auto;
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* === SMOOTH MODERN TRANSITIONS === */
+  transition: all var(--duration-md) var(--ease-out-2);
+  transform-style: preserve-3d;
 }
 
 .flashcard:hover {
-  transform: translateY(var(--hover-lift)) rotateX(2deg) rotateY(2deg);
-  --glow-opacity: 0.6;
+  /* === ENHANCED 3D HOVER === */
+  transform: translateY(var(--hover-lift)) rotateX(3deg) rotateY(4deg) scale(1.02);
+  --glow-opacity: 0.8;
+  --glass-opacity: 0.2;
+  
+  /* Add subtle rotation animation */
+  animation: cardFloat 2s ease-in-out infinite alternate;
 }
 
 .flashcard:active {
-  transform: translateY(-2px) scale(0.98);
+  transform: translateY(-4px) scale(0.98) rotateX(5deg);
+  transition: all var(--duration-xs) var(--ease-bounce);
+}
+
+/* === FLOATING ANIMATION === */
+@keyframes cardFloat {
+  0% { transform: translateY(var(--hover-lift)) rotateX(3deg) rotateY(4deg) scale(1.02); }
+  100% { transform: translateY(calc(var(--hover-lift) - 4px)) rotateX(2deg) rotateY(5deg) scale(1.02); }
 }
 
 /* Size Variants */
@@ -1764,15 +1877,19 @@ button:focus-visible {
   --difficulty-bg: oklch(98% 0.03 0);
 }
 
-/* The magical 3D flip container */
+/* === ENHANCED 3D FLIP CONTAINER === */
 .flashcard__inner {
   position: relative;
   width: 100%;
   height: 100%;
   text-align: center;
-  transition: transform var(--flip-duration) cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform var(--flip-duration) var(--ease-out-2);
   transform-style: preserve-3d;
   border-radius: var(--radius-4);
+  
+  /* === GLASSMORPHISM ENHANCEMENT === */
+  backdrop-filter: var(--blur-sm);
+  -webkit-backdrop-filter: var(--blur-sm);
 }
 
 .flashcard--flipped .flashcard__inner {
@@ -1793,7 +1910,7 @@ button:focus-visible {
   transition: opacity 0.2s ease-out;
 }
 
-/* Card sides with Jhey's depth mastery */
+/* === GLASSMORPHISM CARD SIDES === */
 .flashcard__front,
 .flashcard__back {
   position: absolute;
@@ -1806,31 +1923,28 @@ button:focus-visible {
   flex-direction: column;
   gap: var(--space-s);
 
-  /* Jhey's signature multi-layer shadows */
+  /* === MODERN GLASSMORPHISM === */
+  background: var(--gradient-glass-1);
+  backdrop-filter: var(--blur-md);
+  -webkit-backdrop-filter: var(--blur-md);
+  border: 1px solid var(--glass-2);
+  
+  /* === ENHANCED SHADOWS === */
   box-shadow:
-    0 1px 0 oklch(100% 0 0 / 0.8) inset,
-    0 -1px 0 oklch(88% 0.01 240) inset,
-    0 4px 8px oklch(25% 0.03 240 / 0.1),
-    0 8px 24px oklch(25% 0.03 240 / 0.08),
-    0 16px 48px oklch(25% 0.03 240 / 0.04),
-    0 0 0 1px var(--difficulty-color) / 0.1;
-
-  background:
-    radial-gradient(
-      ellipse at top left,
-      var(--difficulty-bg) 0%,
-      var(--surface-1) 40%
-    ),
-    linear-gradient(135deg, var(--gradient-from) 0%, var(--gradient-accent) 100%);
-
-  border: 2px solid var(--difficulty-color) / 0.2;
+    var(--shadow-lg),
+    var(--shadow-colored),
+    0 0 0 1px var(--glass-1) inset,
+    0 0 0 2px var(--difficulty-color) / 0.1;
+  
   overflow: hidden;
 }
 
 .flashcard__back {
   transform: rotateY(180deg);
-  background: var(--surface-1);
-  border: 1px solid var(--border-1);
+  background: var(--gradient-glass-1);
+  backdrop-filter: var(--blur-md);
+  -webkit-backdrop-filter: var(--blur-md);
+  border: 1px solid var(--glass-2);
 }
 
 /* Header with floating difficulty badge */
@@ -3637,9 +3751,37 @@ button:focus-visible {
 }
 
 .landing-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
   font-size: var(--step-1);
   font-weight: 700;
   color: var(--brand-primary);
+}
+
+.logo-svg {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--theme-accent);
+  transition: all var(--duration-sm) var(--ease-out-2);
+}
+
+.logo-text {
+  background: var(--theme-accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.landing-logo:hover .logo-svg {
+  transform: scale(1.1) rotate(5deg);
+  filter: drop-shadow(0 4px 8px var(--theme-accent) / 0.3);
+}
+
+.landing-logo:hover .logo-text {
+  transform: translateY(-1px);
 }
 
 .landing-nav {
@@ -3759,6 +3901,73 @@ button:focus-visible {
   }
   50% {
     transform: translateY(-10px) rotateX(5deg);
+  }
+}
+
+/* === HERO LOGO STYLING === */
+.hero-logo-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--space-xl);
+}
+
+.hero-logo {
+  width: 200px;
+  height: 200px;
+  color: var(--theme-accent);
+  animation: heroFloat 4s ease-in-out infinite;
+  transition: all var(--duration-lg) var(--ease-out-2);
+  filter: drop-shadow(0 8px 24px var(--theme-accent) / 0.2);
+}
+
+.hero-logo-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(
+    circle,
+    var(--theme-accent) / 0.1 0%,
+    var(--theme-accent) / 0.05 30%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  animation: pulse 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.hero-logo-container:hover .hero-logo {
+  transform: scale(1.1) rotate(5deg);
+  filter: drop-shadow(0 12px 32px var(--theme-accent) / 0.4);
+}
+
+@keyframes heroFloat {
+  0%, 100% {
+    transform: translateY(0px) rotateZ(0deg);
+  }
+  25% {
+    transform: translateY(-8px) rotateZ(1deg);
+  }
+  50% {
+    transform: translateY(-12px) rotateZ(0deg);
+  }
+  75% {
+    transform: translateY(-8px) rotateZ(-1deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1.2);
   }
 }
 
@@ -3914,4 +4123,55 @@ button:focus-visible {
     width: 100%;
     max-width: 280px;
   }
+}
+
+/* === THEME-AWARE COMPONENT CLASSES === */
+.theme-primary {
+  background: var(--theme-accent-gradient);
+  color: var(--text-inverse);
+  border: 1px solid var(--theme-accent);
+}
+
+.theme-secondary {
+  background: var(--theme-secondary-gradient);
+  color: var(--text-inverse);
+  border: 1px solid var(--theme-secondary);
+}
+
+.theme-glass {
+  background: var(--gradient-glass-1);
+  backdrop-filter: var(--blur-md);
+  -webkit-backdrop-filter: var(--blur-md);
+  border: 1px solid var(--glass-2);
+}
+
+.theme-accent-border {
+  border-color: var(--theme-accent);
+}
+
+.theme-accent-glow {
+  box-shadow: 
+    var(--shadow-lg),
+    0 0 20px var(--theme-accent) / 0.3;
+}
+
+/* === SMOOTH THEME TRANSITIONS === */
+:root {
+  --theme-transition: background-color var(--duration-md) var(--ease-out-2),
+                      border-color var(--duration-md) var(--ease-out-2),
+                      color var(--duration-md) var(--ease-out-2),
+                      box-shadow var(--duration-md) var(--ease-out-2),
+                      backdrop-filter var(--duration-md) var(--ease-out-2);
+}
+
+/* Apply theme transitions to major components */
+.deck-card,
+.flashcard__front,
+.flashcard__back,
+.btn-primary,
+.btn-secondary,
+.navigation,
+.stat-card,
+.action-card {
+  transition: var(--theme-transition);
 }
