@@ -162,20 +162,12 @@ export function useSearchWithFallback(
   fallbackOptions?: UseSearchOptions
 ): SearchContextType {
   const context = useContext(SearchContext)
+
+  // Always call hooks at the top level - moved before conditional returns
   const fallbackSearch = useSearch(fallbackData || [], fallbackOptions || {})
-
-  if (context) {
-    return context
-  }
-
-  if (!fallbackData) {
-    throw new Error(
-      'useSearchWithFallback requires either SearchProvider or fallbackData'
-    )
-  }
-
-  // Create context-like interface from fallback search
-  return useMemo(
+  
+  // Memoize fallback context to prevent unnecessary re-renders
+  const fallbackContext = useMemo(
     (): SearchContextType => ({
       state: fallbackSearch.state,
       search: fallbackSearch.search,
@@ -193,6 +185,18 @@ export function useSearchWithFallback(
     }),
     [fallbackSearch, fallbackOptions]
   )
+
+  if (context) {
+    return context
+  }
+
+  if (!fallbackData) {
+    throw new Error(
+      'useSearchWithFallback requires either SearchProvider or fallbackData'
+    )
+  }
+
+  return fallbackContext
 }
 
 export default SearchProvider
