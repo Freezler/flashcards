@@ -5602,6 +5602,20 @@ button:focus-visible {
   filter: drop-shadow(0 12px 32px var(--theme-accent) / 0.4);
 }
 
+/* Auto mode: Use same gorgeous gradient as navigation */
+:root:not([data-theme]) .hero-logo-container {
+  background: linear-gradient(135deg, 
+    oklch(18% 0.08 240 / 0.85) 0%,
+    oklch(15% 0.06 250 / 0.9) 50%,
+    oklch(12% 0.04 220 / 0.88) 100%) !important;
+  backdrop-filter: blur(20px) saturate(150%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(150%) !important;
+  border: 1px solid oklch(35% 0.08 240 / 0.4);
+  box-shadow: 
+    0 8px 32px oklch(8% 0.15 240 / 0.6),
+    0 1px 0 oklch(25% 0.05 240 / 0.3) inset;
+}
+
 /* Dark mode specific enhancements */
 [data-theme='dark'] .hero-logo-container {
   background: radial-gradient(
@@ -5614,6 +5628,21 @@ button:focus-visible {
   box-shadow: 
     0 8px 32px oklch(0% 0 0 / 0.3),
     inset 0 1px 0 var(--surface-3) / 0.2;
+}
+
+/* Auto mode hover: Enhanced navigation-style gradient */
+:root:not([data-theme]) .hero-logo-container:hover {
+  background: linear-gradient(135deg, 
+    oklch(20% 0.10 240 / 0.9) 0%,
+    oklch(17% 0.08 250 / 0.95) 50%,
+    oklch(14% 0.06 220 / 0.92) 100%) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border-color: oklch(40% 0.10 240 / 0.6);
+  box-shadow: 
+    0 16px 48px oklch(6% 0.18 240 / 0.8),
+    0 1px 0 oklch(30% 0.07 240 / 0.4) inset,
+    0 0 0 3px var(--theme-accent) / 0.3;
 }
 
 [data-theme='dark'] .hero-logo-container:hover {
