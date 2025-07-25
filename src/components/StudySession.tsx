@@ -286,7 +286,9 @@ function StudySession({
         <div className="session-complete-content">
           <div className="session-complete-header">
             <div className="session-complete-icon magical-glow">🎉</div>
-            <h2 className="session-complete-title gradient-text">Sessie Voltooid!</h2>
+            <h2 className="session-complete-title gradient-text">
+              Sessie Voltooid!
+            </h2>
             <div className="session-complete-subtitle">
               Geweldig werk! Hier zijn je resultaten:
             </div>
@@ -395,7 +397,10 @@ function StudySession({
           <p>
             Er zijn momenteel geen kaarten beschikbaar voor deze studie sessie.
           </p>
-          <button className="btn-primary magical-glow" onClick={() => window.history.back()}>
+          <button
+            className="btn-primary magical-glow"
+            onClick={() => window.history.back()}
+          >
             Terug naar Deck
           </button>
         </div>

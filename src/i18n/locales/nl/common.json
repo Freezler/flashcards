@@ -1,0 +1,146 @@
+{
+  "navigation": {
+    "dashboard": "Dashboard",
+    "decks": "Mijn Decks",
+    "newDeck": "Nieuw Deck",
+    "logout": "Uitloggen"
+  },
+  "languages": {
+    "dutch": "Nederlands",
+    "english": "English", 
+    "german": "Deutsch",
+    "spanish": "Español"
+  },
+  "user": {
+    "selectLanguage": "Taal selecteren"
+  },
+  "greetings": {
+    "morning": "Goedemorgen",
+    "afternoon": "Goedemiddag",
+    "evening": "Goedenavond"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcomeNew": "Welkom bij",
+    "welcomeBack": "Welkom terug bij",
+    "subtitleNew": "Klaar om je kennis te vergroten? Start vandaag met leren!",
+    "subtitleReturning": "Klaar om verder te gaan met leren? Zet je studie voort!",
+    "studyReminders": "Studie herinneringen",
+    "searchTitle": "🔍 Zoek in al je flashcards",
+    "searchSubtitle": "Vind snel de kaarten die je zoekt met intelligente fuzzy search",
+    "searchPlaceholder": "Zoek naar vraag, antwoord, categorie, moeilijkheidsgraad...",
+    "clearSearch": "Clear search",
+    "resultsFound": "resultaten gevonden",
+    "viewAllResults": "Bekijk alle resultaten →",
+    "noResultsTitle": "Geen resultaten gevonden voor",
+    "noResultsSuggestion": "Probeer andere zoektermen of controleer je spelling",
+    "recentSearches": "Recente zoekopdrachten",
+    "searchTips": "Zoektips",
+    "studyStatistics": "Studie statistieken"
+  },
+  "reminders": {
+    "overdue": "kaarten wachten op herhaling",
+    "streak": "Geweldig! {{days}} dagen op rij gestudeerd!",
+    "daily": "🎯 Tijd om te studeren! Start je dagelijkse sessie",
+    "goStudy": "Ga studeren →"
+  },
+  "searchTips": {
+    "fuzzyTitle": "Fuzzy search:",
+    "fuzzyDescription": "Kleine typfouten worden automatisch gecorrigeerd",
+    "categoriesTitle": "Categorieën:",
+    "categoriesDescription": "Zoek op \"grammatica\", \"geschiedenis\", \"geografie\"",
+    "difficultyTitle": "Moeilijkheid:",
+    "difficultyDescription": "Zoek op \"easy\", \"medium\", \"hard\", \"makkelijk\", of \"moeilijk\""
+  },
+  "stats": {
+    "decks": "Decks",
+    "allCollections": "Alle collecties",
+    "cards": "Kaarten", 
+    "totalAvailable": "Totaal beschikbaar",
+    "dayStreak": "Dag streak",
+    "startStreak": "Start je streak!",
+    "keepGoing": "Ga zo door!",
+    "fantastic": "Fantastisch! 🎉",
+    "hotStreak": "Hot streak!",
+    "toReview": "Te herhalen",
+    "allUpdated": "Alles bijgewerkt!",
+    "waitingForYou": "Wacht op jou",
+    "progressCards": "Voortgang kaarten collectie"
+  },
+  "quickActions": {
+    "title": "Snelle acties",
+    "subtitle": "Start direct met leren",
+    "quickStudy": "Snelle Studie",
+    "quickStudyDescription": "{{count}} kaarten klaar voor herhaling",
+    "urgent": "Urgent",
+    "newDeck": "Nieuw Deck",
+    "newDeckDescription": "Maak een nieuwe set kaarten om mee te leren",
+    "myDecks": "Mijn Decks",
+    "myDecksDescription": "Bekijk en beheer al je bestaande decks",
+    "progress": "Voortgang",
+    "progressDescription": "Analyseer je leerresultaten en prestaties"
+  },
+  "recentActivity": {
+    "title": "Beschikbare Decks",
+    "subtitle": "Kies een deck om mee te starten",
+    "cards": "kaarten",
+    "study": "Studeren",
+    "viewDetails": "Bekijk details"
+  },
+  "categories": {
+    "frontend": "⚛️ Frontend",
+    "backend": "🔧 Backend", 
+    "fundamentals": "🌐 Fundamenten",
+    "devops": "🚀 DevOps",
+    "general": "💻 Algemeen"
+  },
+  "actions": {
+    "startStudy": "Start study",
+    "beginStudyWith": "Begin studie met deze kaart",
+    "goToDecks": "Ga naar decks om te studeren",
+    "achievementBadge": "Prestatie badge: Hot streak! Je hebt {{days}} dagen op rij gestudeerd"
+  },
+  "decksPage": {
+    "title": "Mijn Decks",
+    "subtitle": "Beheer al je flashcard decks op één plek",
+    "actions": "Deck acties",
+    "createNew": "➕ Nieuw Deck Maken",
+    "createNewLabel": "Nieuw flashcard deck maken",
+    "noDecksTitle": "Geen decks gevonden",
+    "noDecksDescription": "Je hebt nog geen flashcard decks. Maak je eerste deck aan om te beginnen!",
+    "createFirst": "➕ Eerste Deck Maken",
+    "deckListTitle": "Beschikbare flashcard decks",
+    "cards": "kaarten",
+    "created": "Gemaakt:",
+    "reviewed": "bestudeerd",
+    "startStudy": "Start studie",
+    "viewCards": "Bekijk kaarten",
+    "deleteTitle": "Dit deck verwijderen",
+    "deleteConfirmTitle": "Deck verwijderen",
+    "deleteConfirmMessage": "Weet je zeker dat je dit deck wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
+    "deleteWarning": "Alle kaarten in dit deck worden permanent verwijderd.",
+    "cancel": "Annuleren",
+    "delete": "🗑️ Verwijderen"
+  },
+  "deckPage": {
+    "notFoundTitle": "Deck niet gevonden",
+    "notFoundMessage": "Het deck dat je zoekt bestaat niet of is verwijderd.",
+    "backToDecks": "Terug naar decks",
+    "deckInfo": "Deck informatie en acties",
+    "deckStats": "Deck statistieken",
+    "totalCards": "Totaal kaarten:",
+    "studiedCards": "Bestudeerd:",
+    "createdDate": "Gemaakt:",
+    "deckActions": "Deck acties",
+    "startStudy": "🎯 Start studie",
+    "startStudyLabel": "Start studie voor {{name}}",
+    "newCard": "➕ Nieuwe kaart",
+    "newCardLabel": "Nieuwe flashcard toevoegen",
+    "backToDecksList": "← Terug naar decks",
+    "backToDecksLabel": "Ga terug naar alle decks",
+    "cardsInDeck": "Flashcards in dit deck"
+  },
+  "common": {
+    "match": "match"
+  }
+}

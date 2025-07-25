@@ -1,0 +1,146 @@
+{
+  "navigation": {
+    "dashboard": "Dashboard",
+    "decks": "My Decks",
+    "newDeck": "New Deck",
+    "logout": "Logout"
+  },
+  "languages": {
+    "dutch": "Nederlands",
+    "english": "English", 
+    "german": "Deutsch",
+    "spanish": "Español"
+  },
+  "user": {
+    "selectLanguage": "Select Language"
+  },
+  "greetings": {
+    "morning": "Good morning",
+    "afternoon": "Good afternoon",
+    "evening": "Good evening"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcomeNew": "Welcome to",
+    "welcomeBack": "Welcome back to",
+    "subtitleNew": "Ready to expand your knowledge? Start learning today!",
+    "subtitleReturning": "Ready to continue learning? Keep up your studies!",
+    "studyReminders": "Study reminders",
+    "searchTitle": "🔍 Search all your flashcards",
+    "searchSubtitle": "Quickly find the cards you're looking for with intelligent fuzzy search",
+    "searchPlaceholder": "Search for question, answer, category, difficulty...",
+    "clearSearch": "Clear search",
+    "resultsFound": "results found",
+    "viewAllResults": "View all results →",
+    "noResultsTitle": "No results found for",
+    "noResultsSuggestion": "Try different search terms or check your spelling",
+    "recentSearches": "Recent searches",
+    "searchTips": "Search tips",
+    "studyStatistics": "Study statistics"
+  },
+  "reminders": {
+    "overdue": "cards waiting for review",
+    "streak": "Great! {{days}} days studied in a row!",
+    "daily": "🎯 Time to study! Start your daily session",
+    "goStudy": "Go study →"
+  },
+  "searchTips": {
+    "fuzzyTitle": "Fuzzy search:",
+    "fuzzyDescription": "Small typos are automatically corrected",
+    "categoriesTitle": "Categories:",
+    "categoriesDescription": "Search for \"grammar\", \"history\", \"geography\"",
+    "difficultyTitle": "Difficulty:",
+    "difficultyDescription": "Search for \"easy\", \"medium\", \"hard\""
+  },
+  "stats": {
+    "decks": "Decks",
+    "allCollections": "All collections",
+    "cards": "Cards", 
+    "totalAvailable": "Total available",
+    "dayStreak": "Day streak",
+    "startStreak": "Start your streak!",
+    "keepGoing": "Keep it up!",
+    "fantastic": "Fantastic! 🎉",
+    "hotStreak": "Hot streak!",
+    "toReview": "To review",
+    "allUpdated": "All up to date!",
+    "waitingForYou": "Waiting for you",
+    "progressCards": "Card collection progress"
+  },
+  "quickActions": {
+    "title": "Quick actions",
+    "subtitle": "Start learning right away",
+    "quickStudy": "Quick Study",
+    "quickStudyDescription": "{{count}} cards ready for review",
+    "urgent": "Urgent",
+    "newDeck": "New Deck",
+    "newDeckDescription": "Create a new set of cards to study",
+    "myDecks": "My Decks",
+    "myDecksDescription": "View and manage all your existing decks",
+    "progress": "Progress",
+    "progressDescription": "Analyze your learning results and performance"
+  },
+  "recentActivity": {
+    "title": "Available Decks",
+    "subtitle": "Choose a deck to start with",
+    "cards": "cards",
+    "study": "Study",
+    "viewDetails": "View details"
+  },
+  "categories": {
+    "frontend": "⚛️ Frontend",
+    "backend": "🔧 Backend", 
+    "fundamentals": "🌐 Fundamentals",
+    "devops": "🚀 DevOps",
+    "general": "💻 General"
+  },
+  "actions": {
+    "startStudy": "Start study",
+    "beginStudyWith": "Begin study with this card",
+    "goToDecks": "Go to decks to study",
+    "achievementBadge": "Achievement badge: Hot streak! You've studied {{days}} days in a row"
+  },
+  "decksPage": {
+    "title": "My Decks",
+    "subtitle": "Manage all your flashcard decks in one place",
+    "actions": "Deck actions",
+    "createNew": "➕ Create New Deck",
+    "createNewLabel": "Create new flashcard deck",
+    "noDecksTitle": "No decks found",
+    "noDecksDescription": "You don't have any flashcard decks yet. Create your first deck to get started!",
+    "createFirst": "➕ Create First Deck",
+    "deckListTitle": "Available flashcard decks",
+    "cards": "cards",
+    "created": "Created:",
+    "reviewed": "studied",
+    "startStudy": "Start study",
+    "viewCards": "View cards",
+    "deleteTitle": "Delete this deck",
+    "deleteConfirmTitle": "Delete Deck",
+    "deleteConfirmMessage": "Are you sure you want to delete this deck? This action cannot be undone.",
+    "deleteWarning": "All cards in this deck will be permanently deleted.",
+    "cancel": "Cancel",
+    "delete": "🗑️ Delete"
+  },
+  "deckPage": {
+    "notFoundTitle": "Deck not found",
+    "notFoundMessage": "The deck you're looking for doesn't exist or has been deleted.",
+    "backToDecks": "Back to decks",
+    "deckInfo": "Deck information and actions",
+    "deckStats": "Deck statistics",
+    "totalCards": "Total cards:",
+    "studiedCards": "Studied:",
+    "createdDate": "Created:",
+    "deckActions": "Deck actions",
+    "startStudy": "🎯 Start study",
+    "startStudyLabel": "Start study for {{name}}",
+    "newCard": "➕ New card",
+    "newCardLabel": "Add new flashcard",
+    "backToDecksList": "← Back to decks",
+    "backToDecksLabel": "Go back to all decks",
+    "cardsInDeck": "Flashcards in this deck"
+  },
+  "common": {
+    "match": "match"
+  }
+}

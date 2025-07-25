@@ -1,6 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { Fade as Hamburger } from 'hamburger-react'
 import React, { useCallback, useMemo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { useCards } from '../contexts/CardContext'
@@ -24,6 +25,7 @@ const Navigation = function Navigation(): React.JSX.Element {
   const { user, logout } = useAuth()
   const { state } = useCards()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const { t, i18n } = useTranslation('common')
 
   // Use actual deck count from CardContext
   const totalDecks = state.decks.length
@@ -31,32 +33,36 @@ const Navigation = function Navigation(): React.JSX.Element {
   const navItems: NavItem[] = useMemo(
     () => [
       {
-        name: 'Dashboard',
+        name: t('navigation.dashboard'),
         path: '/',
         icon: '🏠',
         tooltip: 'Ga naar dashboard',
       },
       {
-        name: 'Mijn Decks',
+        name: t('navigation.decks'),
         path: '/decks',
         icon: '📚',
         badge: totalDecks,
         tooltip: `${totalDecks} decks beschikbaar`,
       },
       {
-        name: 'Nieuw Deck',
+        name: t('navigation.newDeck'),
         path: '/decks/new',
         icon: '➕',
         tooltip: 'Maak een nieuw deck aan',
       },
     ],
-    [totalDecks]
+    [totalDecks, t]
   )
 
   const handleLogout = useCallback(() => {
     logout()
     setIsMobileMenuOpen(false)
   }, [logout])
+
+  const handleLanguageChange = useCallback((language: string) => {
+    i18n.changeLanguage(language)
+  }, [i18n])
 
   // Generate breadcrumbs based on current path
   const breadcrumbs = useMemo((): BreadcrumbItem[] => {
@@ -104,7 +110,7 @@ const Navigation = function Navigation(): React.JSX.Element {
               alt=""
               role="presentation"
             />
-            <span className="nav-title">FlashCards</span>
+            <span className="nav-title">CogniCraft</span>
           </Link>
         </div>
 
@@ -146,8 +152,42 @@ const Navigation = function Navigation(): React.JSX.Element {
                   <div className="user-email">{user.email}</div>
                 </div>
                 <hr className="user-menu-divider" />
+                <div className="language-selector">
+                  <div className="language-label">{t('user.selectLanguage')}</div>
+                  <div className="language-options">
+                    <button
+                      className={`language-option ${i18n.language === 'nl' ? 'active' : ''}`}
+                      onClick={() => handleLanguageChange('nl')}
+                      aria-label={t('languages.dutch')}
+                    >
+                      🇳🇱 NL
+                    </button>
+                    <button
+                      className={`language-option ${i18n.language === 'en' ? 'active' : ''}`}
+                      onClick={() => handleLanguageChange('en')}
+                      aria-label={t('languages.english')}
+                    >
+                      🇬🇧 EN
+                    </button>
+                    <button
+                      className={`language-option ${i18n.language === 'de' ? 'active' : ''}`}
+                      onClick={() => handleLanguageChange('de')}
+                      aria-label={t('languages.german')}
+                    >
+                      🇩🇪 DE
+                    </button>
+                    <button
+                      className={`language-option ${i18n.language === 'es' ? 'active' : ''}`}
+                      onClick={() => handleLanguageChange('es')}
+                      aria-label={t('languages.spanish')}
+                    >
+                      🇪🇸 ES
+                    </button>
+                  </div>
+                </div>
+                <hr className="user-menu-divider" />
                 <button className="logout-button" onClick={handleLogout}>
-                  🚪 Uitloggen
+                  🚪 {t('navigation.logout')}
                 </button>
               </div>
             </div>

@@ -1,17 +1,18 @@
-import React, { useState, useCallback } from 'react'
+import React, { useCallback, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { useFormValidation, validationRules } from '../hooks'
 import { useAuth } from '../contexts/AuthContext'
+import { useFormValidation, validationRules } from '../hooks'
 import {
-  isValidEmail,
-  validateUserInput,
-  loginAttemptLimiter,
   generateSecureToken,
+  isValidEmail,
+  loginAttemptLimiter,
+  validateUserInput,
 } from '../utils/security'
 
 interface LoginFormData {
   email: string
   password: string
+  [key: string]: string
 }
 
 interface RegisterFormData extends LoginFormData {
@@ -171,7 +172,7 @@ const LoginPage = React.memo(function LoginPage(): React.JSX.Element {
       <div className="login-container">
         <div className="login-header">
           <Link to="/" className="login-logo">
-            📚 FlashCards
+            📚 CogniCraft
           </Link>
           <h1 className="login-title">
             {isRegister ? 'Account aanmaken' : 'Inloggen'}

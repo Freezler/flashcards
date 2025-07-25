@@ -7,12 +7,12 @@ const LandingPage = React.memo(function LandingPage(): React.JSX.Element {
       <div className="landing-container">
         <header className="landing-header">
           <div className="landing-logo">
-            <img 
-              src="/brainBulb.svg" 
-              alt="FlashCards Logo" 
+            <img
+              src="/brainBulb.svg"
+              alt="FlashCards Logo"
               className="logo-svg"
             />
-            <span className="logo-text">FlashCards</span>
+            <span className="logo-text">CogniCraft</span>
           </div>
           <nav className="landing-nav">
             <Link to="/login" className="btn-secondary">
@@ -26,7 +26,7 @@ const LandingPage = React.memo(function LandingPage(): React.JSX.Element {
             <div className="hero-content">
               <h1 className="hero-title">
                 Leer slimmer met
-                <span className="hero-highlight"> FlashCards</span>
+                <span className="hero-highlight"> CogniCraft</span>
               </h1>
               <p className="hero-subtitle">
                 Gebruik spaced repetition om effectiever te leren. Onthoud meer
@@ -43,9 +43,9 @@ const LandingPage = React.memo(function LandingPage(): React.JSX.Element {
             </div>
             <div className="hero-visual">
               <div className="hero-logo-container">
-                <img 
-                  src="/brainBulb.svg" 
-                  alt="FlashCards Brain Logo" 
+                <img
+                  src="/brainBulb.svg"
+                  alt="FlashCards Brain Logo"
                   className="hero-logo"
                 />
                 <div className="hero-logo-glow"></div>

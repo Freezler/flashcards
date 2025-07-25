@@ -1,0 +1,186 @@
+{
+  "frontend": {
+    "name": "Frontend Development",
+    "description": "Master modern frontend technologies including React, JavaScript, CSS, and TypeScript",
+    "cards": {
+      "react-basics": {
+        "front": "What is React?",
+        "back": "React is a JavaScript library for building user interfaces, developed by Facebook. It uses a component-based architecture and virtual DOM for efficient rendering."
+      },
+      "js-variables": {
+        "front": "What is the difference between let, const, and var in JavaScript?",
+        "back": "var: function-scoped, hoisted, can be redeclared. let: block-scoped, hoisted but not initialized, cannot be redeclared. const: block-scoped, must be initialized, immutable reference."
+      },
+      "css-grid": {
+        "front": "What is CSS Grid?",
+        "back": "CSS Grid is a 2-dimensional layout system that allows you to create complex layouts with rows and columns. It provides precise control over item placement and sizing."
+      },
+      "virtual-dom": {
+        "front": "What is the Virtual DOM?",
+        "back": "The Virtual DOM is a JavaScript representation of the actual DOM. React uses it to optimize rendering by comparing changes and updating only what needs to be modified."
+      },
+      "typescript": {
+        "front": "What is TypeScript?",
+        "back": "TypeScript is a strongly typed superset of JavaScript that compiles to plain JavaScript. It adds static type definitions and helps catch errors at development time."
+      },
+      "js-equality": {
+        "front": "What is the difference between == and === in JavaScript?",
+        "back": "== performs type coercion and compares values after conversion. === performs strict comparison without type conversion, comparing both value and type."
+      },
+      "css-flexbox": {
+        "front": "What is CSS Flexbox?",
+        "back": "Flexbox is a 1-dimensional layout method that distributes space along a single axis. It's ideal for component layouts and aligning items within containers."
+      },
+      "react-hooks": {
+        "front": "What are React Hooks?",
+        "back": "React Hooks are functions that let you use state and lifecycle features in functional components. Common hooks include useState, useEffect, and useContext."
+      },
+      "null-undefined": {
+        "front": "What is the difference between null and undefined?",
+        "back": "undefined: variable declared but not assigned a value. null: intentional absence of value, explicitly assigned. typeof null is \"object\" (JavaScript quirk)."
+      },
+      "event-delegation": {
+        "front": "What is event delegation in JavaScript?",
+        "back": "Event delegation uses event bubbling to handle events at a parent level instead of individual elements. It's efficient for dynamic content and reduces memory usage."
+      },
+      "css-box-model": {
+        "front": "What is the CSS Box Model?",
+        "back": "The box model consists of: content (innermost), padding, border, and margin (outermost). Total width = content + padding + border + margin."
+      },
+      "js-closure": {
+        "front": "What is a closure in JavaScript?",
+        "back": "A closure is a function that has access to variables in its outer scope even after the outer function has returned. It \"closes over\" variables from its lexical environment."
+      }
+    }
+  },
+  "backend": {
+    "name": "Backend Development",
+    "description": "Learn server-side development with APIs, databases, authentication, and Node.js",
+    "cards": {
+      "rest-api": {
+        "front": "What is REST API?",
+        "back": "REST (Representational State Transfer) is an architectural style for web services using HTTP methods (GET, POST, PUT, DELETE) and stateless communication."
+      },
+      "sql-nosql": {
+        "front": "What is the difference between SQL and NoSQL databases?",
+        "back": "SQL: structured, relational, ACID compliance, fixed schema. NoSQL: flexible schema, horizontal scaling, document/key-value/graph structures, eventual consistency."
+      },
+      "nodejs": {
+        "front": "What is Node.js?",
+        "back": "Node.js is a JavaScript runtime built on Chrome's V8 engine that allows JavaScript to run on servers. It's event-driven and non-blocking for scalable applications."
+      },
+      "http-status": {
+        "front": "What are HTTP status codes?",
+        "back": "1xx: Information, 2xx: Success (200 OK), 3xx: Redirection (301 Moved), 4xx: Client Error (404 Not Found), 5xx: Server Error (500 Internal Error)."
+      },
+      "middleware": {
+        "front": "What is middleware in Express.js?",
+        "back": "Middleware are functions that execute during request-response cycle. They have access to req, res, and next() function. Used for authentication, logging, parsing, etc."
+      },
+      "auth-authz": {
+        "front": "What is authentication vs authorization?",
+        "back": "Authentication: verifying who you are (login credentials). Authorization: verifying what you can access (permissions). Authentication comes before authorization."
+      },
+      "jwt": {
+        "front": "What is a JWT token?",
+        "back": "JSON Web Token is a compact, URL-safe token format for secure information transmission. Contains header, payload, and signature. Stateless and self-contained."
+      },
+      "normalization": {
+        "front": "What is database normalization?",
+        "back": "Process of organizing data to reduce redundancy and improve integrity. 1NF: atomic values, 2NF: no partial dependencies, 3NF: no transitive dependencies."
+      },
+      "put-patch": {
+        "front": "What is the difference between PUT and PATCH?",
+        "back": "PUT: replaces entire resource (idempotent), sends complete representation. PATCH: partial update (may not be idempotent), sends only changes."
+      },
+      "cors": {
+        "front": "What is CORS?",
+        "back": "Cross-Origin Resource Sharing allows web pages to access resources from different domains. Browsers enforce same-origin policy; CORS headers enable controlled access."
+      }
+    }
+  },
+  "fundamentals": {
+    "name": "Web Development Fundamentals",
+    "description": "Essential web development concepts including HTTP, Git, responsive design, and web standards",
+    "cards": {
+      "git": {
+        "front": "What is Git?",
+        "back": "Git is a distributed version control system that tracks changes in source code. It enables collaboration, branching, merging, and maintains project history."
+      },
+      "get-post": {
+        "front": "What is the difference between GET and POST requests?",
+        "back": "GET: retrieves data, parameters in URL, cacheable, idempotent. POST: sends data, parameters in body, not cacheable, can modify server state."
+      },
+      "https": {
+        "front": "What is HTTPS?",
+        "back": "HTTPS (HTTP Secure) is HTTP with SSL/TLS encryption. It provides authentication, data integrity, and confidentiality between client and server."
+      },
+      "responsive": {
+        "front": "What is responsive web design?",
+        "back": "Design approach that makes web pages render well on various devices and screen sizes using flexible layouts, images, and CSS media queries."
+      },
+      "storage": {
+        "front": "What is the difference between cookies and localStorage?",
+        "back": "Cookies: sent with HTTP requests, 4KB limit, has expiration. localStorage: client-side only, 5-10MB limit, persists until cleared, no expiration."
+      },
+      "cdn": {
+        "front": "What is a CDN?",
+        "back": "Content Delivery Network distributes content across multiple geographic servers to reduce latency, improve load times, and provide redundancy."
+      },
+      "semantic-html": {
+        "front": "What is semantic HTML?",
+        "back": "HTML that uses meaningful elements to describe content structure (header, nav, main, article, section, aside, footer) for better accessibility and SEO."
+      },
+      "rendering": {
+        "front": "What is the difference between client-side and server-side rendering?",
+        "back": "Client-side: JavaScript renders content in browser, faster navigation, SEO challenges. Server-side: HTML generated on server, better SEO, slower navigation."
+      },
+      "pwa": {
+        "front": "What is Progressive Web App (PWA)?",
+        "back": "Web application that uses modern web capabilities to provide native app-like experience. Features: offline support, push notifications, installable."
+      },
+      "accessibility": {
+        "front": "What is web accessibility (a11y)?",
+        "back": "Practice of making websites usable by people with disabilities. Includes proper HTML semantics, ARIA labels, keyboard navigation, and screen reader support."
+      }
+    }
+  },
+  "devops": {
+    "name": "DevOps & Tools",
+    "description": "Development tools and DevOps practices including Docker, CI/CD, build tools, and deployment",
+    "cards": {
+      "docker": {
+        "front": "What is Docker?",
+        "back": "Docker is a containerization platform that packages applications and dependencies into lightweight, portable containers that run consistently across environments."
+      },
+      "cicd": {
+        "front": "What is CI/CD?",
+        "back": "Continuous Integration/Continuous Deployment. CI: automated testing when code is pushed. CD: automated deployment to production after successful CI."
+      },
+      "webpack": {
+        "front": "What is webpack?",
+        "back": "Webpack is a module bundler that takes modules with dependencies and generates static assets. It handles JS, CSS, images, and other assets."
+      },
+      "npm": {
+        "front": "What is npm?",
+        "back": "Node Package Manager is the default package manager for Node.js. It manages dependencies, scripts, and publishing packages to the npm registry."
+      },
+      "npm-install": {
+        "front": "What is the difference between npm install and npm ci?",
+        "back": "npm install: reads package.json, updates package-lock.json, installs dependencies. npm ci: reads package-lock.json exactly, faster, for production builds."
+      },
+      "kubernetes": {
+        "front": "What is Kubernetes?",
+        "back": "Kubernetes is a container orchestration platform that automates deployment, scaling, and management of containerized applications across clusters."
+      },
+      "env-vars": {
+        "front": "What is environment variable?",
+        "back": "External configuration values stored outside the code. Used for API keys, database URLs, and settings that change between environments (dev/prod)."
+      },
+      "load-balancing": {
+        "front": "What is load balancing?",
+        "back": "Distributing incoming requests across multiple servers to prevent overload, improve response times, and provide redundancy for high availability."
+      }
+    }
+  }
+}

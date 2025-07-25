@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react'
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { FlashCard } from '../types'
 import { useCards } from '../contexts/CardContext'
 import CardForm from './CardForm'
@@ -20,6 +21,7 @@ const CardItem = React.memo(function CardItem({
   onEdit,
   onDelete,
 }: CardItemProps): React.JSX.Element {
+  const { t } = useTranslation(['common', 'decks'])
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
 
   const handleDeleteClick = (): void => {
@@ -52,10 +54,10 @@ const CardItem = React.memo(function CardItem({
     <div className="card-item">
       <div className="card-item__content">
         <div className="card-item__front">
-          <strong>Q:</strong> {card.front}
+          <strong>Q:</strong> {t(card.front, { ns: 'decks' })}
         </div>
         <div className="card-item__back">
-          <strong>A:</strong> {card.back}
+          <strong>A:</strong> {t(card.back, { ns: 'decks' })}
         </div>
         <div className="card-item__meta">
           <span className="card-item__category">{card.category}</span>

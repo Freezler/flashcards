@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
 import { SearchResult } from '../hooks/useSearch'
 import { FlashCard, DifficultyLevel } from '../types'
 import { getTextSnippets } from '../utils/searchUtils'
@@ -34,6 +35,8 @@ export function SearchResults({
   emptyStateMessage = 'Geen resultaten gevonden',
   loadingMessage = 'Zoeken...',
 }: SearchResultsProps): React.JSX.Element {
+  const { t } = useTranslation(['common', 'decks'])
+  
   // Handle card selection
   const handleCardClick = useCallback(
     (card: FlashCard) => {
@@ -163,7 +166,7 @@ export function SearchResults({
                   handleCardClick(card)
                 }
               }}
-              aria-label={`Flashcard: ${card.front}`}
+              aria-label={`Flashcard: ${t(card.front, { ns: 'decks' })}`}
             >
               {/* Card Header */}
               <header className="search-result__header">
@@ -203,14 +206,14 @@ export function SearchResults({
                 <div className="search-result__question">
                   <strong className="search-result__label">Vraag:</strong>
                   <div className="search-result__text">
-                    {renderHighlightedText(card.front, matches, 'front')}
+                    {renderHighlightedText(t(card.front, { ns: 'decks' }), matches, 'front')}
                   </div>
                 </div>
 
                 <div className="search-result__answer">
                   <strong className="search-result__label">Antwoord:</strong>
                   <div className="search-result__text">
-                    {renderHighlightedText(card.back, matches, 'back')}
+                    {renderHighlightedText(t(card.back, { ns: 'decks' }), matches, 'back')}
                   </div>
                 </div>
               </div>

@@ -759,6 +759,63 @@ body {
   color: var(--text-1);
 }
 
+/* Language Selector */
+.language-selector {
+  padding: var(--space-xs);
+}
+
+.language-label {
+  font-size: var(--step--2);
+  font-weight: 500;
+  color: var(--text-2);
+  margin-bottom: var(--space-2xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.language-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3xs);
+}
+
+.language-option {
+  padding: var(--space-3xs) var(--space-2xs);
+  background: var(--surface-2);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius-1);
+  font-size: var(--step--2);
+  color: var(--text-2);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3xs);
+  font-weight: 500;
+}
+
+.language-option:hover {
+  background: var(--surface-3);
+  border-color: var(--border-2);
+  color: var(--text-1);
+  transform: translateY(-1px);
+}
+
+.language-option.active {
+  background: var(--brand-primary);
+  border-color: var(--brand-primary);
+  color: white;
+  box-shadow: 0 2px 8px oklch(var(--brand-primary-l) var(--brand-primary-c) var(--brand-primary-h) / 0.3);
+}
+
+.language-option.active:hover {
+  background: var(--brand-primary);
+  border-color: var(--brand-primary);
+  color: white;
+  transform: translateY(-1px);
+}
+
 :root {
   /* === FLUID TYPOGRAPHY === */
   --step--2: clamp(0.69rem, 0.66rem + 0.18vw, 0.8rem);

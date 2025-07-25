@@ -1,0 +1,186 @@
+{
+  "frontend": {
+    "name": "Desarrollo Frontend",
+    "description": "Domina las tecnologías frontend modernas incluyendo React, JavaScript, CSS y TypeScript",
+    "cards": {
+      "react-basics": {
+        "front": "¿Qué es React?",
+        "back": "React es una biblioteca de JavaScript para construir interfaces de usuario, desarrollada por Facebook. Usa una arquitectura basada en componentes y DOM virtual para renderizado eficiente."
+      },
+      "js-variables": {
+        "front": "¿Cuál es la diferencia entre let, const y var en JavaScript?",
+        "back": "var: ámbito de función, elevado, puede ser redeclarado. let: ámbito de bloque, elevado pero no inicializado, no puede ser redeclarado. const: ámbito de bloque, debe ser inicializado, referencia inmutable."
+      },
+      "css-grid": {
+        "front": "¿Qué es CSS Grid?",
+        "back": "CSS Grid es un sistema de diseño 2-dimensional que permite crear diseños complejos con filas y columnas. Proporciona control preciso sobre la colocación y tamaño de elementos."
+      },
+      "virtual-dom": {
+        "front": "¿Qué es el DOM Virtual?",
+        "back": "El DOM Virtual es una representación JavaScript del DOM real. React lo usa para optimizar el renderizado comparando cambios y actualizando solo lo que necesita ser modificado."
+      },
+      "typescript": {
+        "front": "¿Qué es TypeScript?",
+        "back": "TypeScript es un superconjunto fuertemente tipado de JavaScript que compila a JavaScript plano. Añade definiciones de tipos estáticos y ayuda a detectar errores en tiempo de desarrollo."
+      },
+      "js-equality": {
+        "front": "¿Cuál es la diferencia entre == y === en JavaScript?",
+        "back": "== realiza coerción de tipos y compara valores después de la conversión. === realiza comparación estricta sin conversión de tipos, comparando tanto valor como tipo."
+      },
+      "css-flexbox": {
+        "front": "¿Qué es CSS Flexbox?",
+        "back": "Flexbox es un método de diseño 1-dimensional que distribuye espacio a lo largo de un solo eje. Es ideal para diseños de componentes y alinear elementos dentro de contenedores."
+      },
+      "react-hooks": {
+        "front": "¿Qué son los React Hooks?",
+        "back": "Los React Hooks son funciones que te permiten usar estado y características del ciclo de vida en componentes funcionales. Hooks comunes incluyen useState, useEffect y useContext."
+      },
+      "null-undefined": {
+        "front": "¿Cuál es la diferencia entre null y undefined?",
+        "back": "undefined: variable declarada pero no asignada un valor. null: ausencia intencional de valor, asignado explícitamente. typeof null es \"object\" (peculiaridad de JavaScript)."
+      },
+      "event-delegation": {
+        "front": "¿Qué es la delegación de eventos en JavaScript?",
+        "back": "La delegación de eventos usa event bubbling para manejar eventos a nivel padre en lugar de elementos individuales. Es eficiente para contenido dinámico y reduce el uso de memoria."
+      },
+      "css-box-model": {
+        "front": "¿Qué es el Modelo de Caja CSS?",
+        "back": "El modelo de caja consiste en: contenido (más interno), padding, border y margin (más externo). Ancho total = contenido + padding + border + margin."
+      },
+      "js-closure": {
+        "front": "¿Qué es un closure en JavaScript?",
+        "back": "Un closure es una función que tiene acceso a variables en su ámbito externo incluso después de que la función externa haya retornado. \"Cierra\" variables de su entorno léxico."
+      }
+    }
+  },
+  "backend": {
+    "name": "Desarrollo Backend",
+    "description": "Aprende desarrollo del lado del servidor con APIs, bases de datos, autenticación y Node.js",
+    "cards": {
+      "rest-api": {
+        "front": "¿Qué es una API REST?",
+        "back": "REST (Representational State Transfer) es un estilo arquitectónico para servicios web usando métodos HTTP (GET, POST, PUT, DELETE) y comunicación sin estado."
+      },
+      "sql-nosql": {
+        "front": "¿Cuál es la diferencia entre bases de datos SQL y NoSQL?",
+        "back": "SQL: estructurada, relacional, cumplimiento ACID, esquema fijo. NoSQL: esquema flexible, escalado horizontal, estructuras documento/clave-valor/grafo, consistencia eventual."
+      },
+      "nodejs": {
+        "front": "¿Qué es Node.js?",
+        "back": "Node.js es un runtime de JavaScript construido sobre el motor V8 de Chrome que permite ejecutar JavaScript en servidores. Es event-driven y no-bloqueante para aplicaciones escalables."
+      },
+      "http-status": {
+        "front": "¿Qué son los códigos de estado HTTP?",
+        "back": "1xx: Información, 2xx: Éxito (200 OK), 3xx: Redirección (301 Moved), 4xx: Error del Cliente (404 Not Found), 5xx: Error del Servidor (500 Internal Error)."
+      },
+      "middleware": {
+        "front": "¿Qué es middleware en Express.js?",
+        "back": "Middleware son funciones que se ejecutan durante el ciclo request-response. Tienen acceso a req, res y función next(). Usado para autenticación, logging, parsing, etc."
+      },
+      "auth-authz": {
+        "front": "¿Qué es autenticación vs autorización?",
+        "back": "Autenticación: verificar quién eres (credenciales de login). Autorización: verificar a qué puedes acceder (permisos). La autenticación viene antes de la autorización."
+      },
+      "jwt": {
+        "front": "¿Qué es un token JWT?",
+        "back": "JSON Web Token es un formato de token compacto y seguro para URL para transmisión segura de información. Contiene header, payload y signature. Sin estado y autocontenido."
+      },
+      "normalization": {
+        "front": "¿Qué es la normalización de base de datos?",
+        "back": "Proceso de organizar datos para reducir redundancia y mejorar integridad. 1NF: valores atómicos, 2NF: sin dependencias parciales, 3NF: sin dependencias transitivas."
+      },
+      "put-patch": {
+        "front": "¿Cuál es la diferencia entre PUT y PATCH?",
+        "back": "PUT: reemplaza recurso completo (idempotente), envía representación completa. PATCH: actualización parcial (puede no ser idempotente), envía solo cambios."
+      },
+      "cors": {
+        "front": "¿Qué es CORS?",
+        "back": "Cross-Origin Resource Sharing permite a páginas web acceder a recursos de diferentes dominios. Los navegadores aplican same-origin policy; headers CORS permiten acceso controlado."
+      }
+    }
+  },
+  "fundamentals": {
+    "name": "Fundamentos de Desarrollo Web",
+    "description": "Conceptos esenciales de desarrollo web incluyendo HTTP, Git, diseño responsivo y estándares web",
+    "cards": {
+      "git": {
+        "front": "¿Qué es Git?",
+        "back": "Git es un sistema de control de versiones distribuido que rastrea cambios en código fuente. Permite colaboración, branching, merging y mantiene historial del proyecto."
+      },
+      "get-post": {
+        "front": "¿Cuál es la diferencia entre requests GET y POST?",
+        "back": "GET: recupera datos, parámetros en URL, cacheable, idempotente. POST: envía datos, parámetros en body, no cacheable, puede modificar estado del servidor."
+      },
+      "https": {
+        "front": "¿Qué es HTTPS?",
+        "back": "HTTPS (HTTP Secure) es HTTP con cifrado SSL/TLS. Proporciona autenticación, integridad de datos y confidencialidad entre cliente y servidor."
+      },
+      "responsive": {
+        "front": "¿Qué es el diseño web responsivo?",
+        "back": "Enfoque de diseño que hace que las páginas web se rendericen bien en varios dispositivos y tamaños de pantalla usando layouts flexibles, imágenes y CSS media queries."
+      },
+      "storage": {
+        "front": "¿Cuál es la diferencia entre cookies y localStorage?",
+        "back": "Cookies: enviadas con requests HTTP, límite 4KB, tiene expiración. localStorage: solo del lado del cliente, límite 5-10MB, persiste hasta ser eliminado, sin expiración."
+      },
+      "cdn": {
+        "front": "¿Qué es un CDN?",
+        "back": "Content Delivery Network distribuye contenido a través de múltiples servidores geográficos para reducir latencia, mejorar tiempos de carga y proporcionar redundancia."
+      },
+      "semantic-html": {
+        "front": "¿Qué es HTML semántico?",
+        "back": "HTML que usa elementos significativos para describir la estructura del contenido (header, nav, main, article, section, aside, footer) para mejor accesibilidad y SEO."
+      },
+      "rendering": {
+        "front": "¿Cuál es la diferencia entre renderizado del lado del cliente y del servidor?",
+        "back": "Cliente: JavaScript renderiza contenido en navegador, navegación más rápida, desafíos SEO. Servidor: HTML generado en servidor, mejor SEO, navegación más lenta."
+      },
+      "pwa": {
+        "front": "¿Qué es una Progressive Web App (PWA)?",
+        "back": "Aplicación web que usa capacidades web modernas para proporcionar experiencia similar a app nativa. Características: soporte offline, notificaciones push, instalable."
+      },
+      "accessibility": {
+        "front": "¿Qué es la accesibilidad web (a11y)?",
+        "back": "Práctica de hacer sitios web utilizables por personas con discapacidades. Incluye semántica HTML apropiada, etiquetas ARIA, navegación por teclado y soporte de lector de pantalla."
+      }
+    }
+  },
+  "devops": {
+    "name": "DevOps y Herramientas",
+    "description": "Herramientas de desarrollo y prácticas DevOps incluyendo Docker, CI/CD, herramientas de build y deployment",
+    "cards": {
+      "docker": {
+        "front": "¿Qué es Docker?",
+        "back": "Docker es una plataforma de containerización que empaqueta aplicaciones y dependencias en contenedores ligeros y portables que corren consistentemente a través de entornos."
+      },
+      "cicd": {
+        "front": "¿Qué es CI/CD?",
+        "back": "Continuous Integration/Continuous Deployment. CI: pruebas automatizadas cuando se push código. CD: deployment automatizado a producción después de CI exitoso."
+      },
+      "webpack": {
+        "front": "¿Qué es webpack?",
+        "back": "Webpack es un empaquetador de módulos que toma módulos con dependencias y genera assets estáticos. Maneja JS, CSS, imágenes y otros assets."
+      },
+      "npm": {
+        "front": "¿Qué es npm?",
+        "back": "Node Package Manager es el gestor de paquetes por defecto para Node.js. Gestiona dependencias, scripts y publicación de paquetes al registro npm."
+      },
+      "npm-install": {
+        "front": "¿Cuál es la diferencia entre npm install y npm ci?",
+        "back": "npm install: lee package.json, actualiza package-lock.json, instala dependencias. npm ci: lee package-lock.json exactamente, más rápido, para builds de producción."
+      },
+      "kubernetes": {
+        "front": "¿Qué es Kubernetes?",
+        "back": "Kubernetes es una plataforma de orquestación de contenedores que automatiza deployment, escalado y gestión de aplicaciones containerizadas a través de clusters."
+      },
+      "env-vars": {
+        "front": "¿Qué es una variable de entorno?",
+        "back": "Valores de configuración externos almacenados fuera del código. Usado para API keys, URLs de base de datos y configuraciones que cambian entre entornos (dev/prod)."
+      },
+      "load-balancing": {
+        "front": "¿Qué es el balanceado de carga?",
+        "back": "Distribución de requests entrantes a través de múltiples servidores para prevenir sobrecarga, mejorar tiempos de respuesta y proporcionar redundancia para alta disponibilidad."
+      }
+    }
+  }
+}

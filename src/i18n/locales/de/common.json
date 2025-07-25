@@ -1,0 +1,146 @@
+{
+  "navigation": {
+    "dashboard": "Dashboard",
+    "decks": "Meine Decks",
+    "newDeck": "Neues Deck",
+    "logout": "Abmelden"
+  },
+  "languages": {
+    "dutch": "Nederlands",
+    "english": "English", 
+    "german": "Deutsch",
+    "spanish": "Español"
+  },
+  "user": {
+    "selectLanguage": "Sprache wählen"
+  },
+  "greetings": {
+    "morning": "Guten Morgen",
+    "afternoon": "Guten Tag",
+    "evening": "Guten Abend"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcomeNew": "Willkommen bei",
+    "welcomeBack": "Willkommen zurück bei",
+    "subtitleNew": "Bereit, Ihr Wissen zu erweitern? Beginnen Sie heute mit dem Lernen!",
+    "subtitleReturning": "Bereit, mit dem Lernen fortzufahren? Setzen Sie Ihr Studium fort!",
+    "studyReminders": "Lernerinnerungen",
+    "searchTitle": "🔍 Durchsuchen Sie alle Ihre Lernkarten",
+    "searchSubtitle": "Finden Sie schnell die Karten, die Sie suchen, mit intelligenter Fuzzy-Suche",
+    "searchPlaceholder": "Suche nach Frage, Antwort, Kategorie, Schwierigkeit...",
+    "clearSearch": "Suche löschen",
+    "resultsFound": "Ergebnisse gefunden",
+    "viewAllResults": "Alle Ergebnisse anzeigen →",
+    "noResultsTitle": "Keine Ergebnisse gefunden für",
+    "noResultsSuggestion": "Versuchen Sie andere Suchbegriffe oder überprüfen Sie Ihre Rechtschreibung",
+    "recentSearches": "Kürzliche Suchanfragen",
+    "searchTips": "Suchtipps",
+    "studyStatistics": "Lernstatistiken"
+  },
+  "reminders": {
+    "overdue": "Karten warten auf Wiederholung",
+    "streak": "Großartig! {{days}} Tage in Folge gelernt!",
+    "daily": "🎯 Zeit zu lernen! Starten Sie Ihre tägliche Session",
+    "goStudy": "Lernen gehen →"
+  },
+  "searchTips": {
+    "fuzzyTitle": "Fuzzy-Suche:",
+    "fuzzyDescription": "Kleine Tippfehler werden automatisch korrigiert",
+    "categoriesTitle": "Kategorien:",
+    "categoriesDescription": "Suchen Sie nach \"Grammatik\", \"Geschichte\", \"Geografie\"",
+    "difficultyTitle": "Schwierigkeit:",
+    "difficultyDescription": "Suchen Sie nach \"easy\", \"medium\", \"hard\""
+  },
+  "stats": {
+    "decks": "Decks",
+    "allCollections": "Alle Sammlungen",
+    "cards": "Karten", 
+    "totalAvailable": "Insgesamt verfügbar",
+    "dayStreak": "Tage-Streak",
+    "startStreak": "Starten Sie Ihren Streak!",
+    "keepGoing": "Weiter so!",
+    "fantastic": "Fantastisch! 🎉",
+    "hotStreak": "Heißer Streak!",
+    "toReview": "Zu wiederholen",
+    "allUpdated": "Alles auf dem neuesten Stand!",
+    "waitingForYou": "Wartet auf Sie",
+    "progressCards": "Kartensammlungsfortschritt"
+  },
+  "quickActions": {
+    "title": "Schnelle Aktionen",
+    "subtitle": "Sofort mit dem Lernen beginnen",
+    "quickStudy": "Schnelles Lernen",
+    "quickStudyDescription": "{{count}} Karten bereit zur Wiederholung",
+    "urgent": "Dringend",
+    "newDeck": "Neues Deck",
+    "newDeckDescription": "Erstellen Sie ein neues Set von Karten zum Lernen",
+    "myDecks": "Meine Decks",
+    "myDecksDescription": "Alle Ihre bestehenden Decks anzeigen und verwalten",
+    "progress": "Fortschritt",
+    "progressDescription": "Analysieren Sie Ihre Lernergebnisse und Leistung"
+  },
+  "recentActivity": {
+    "title": "Verfügbare Decks",
+    "subtitle": "Wählen Sie ein Deck zum Beginnen",
+    "cards": "Karten",
+    "study": "Lernen",
+    "viewDetails": "Details anzeigen"
+  },
+  "categories": {
+    "frontend": "⚛️ Frontend",
+    "backend": "🔧 Backend", 
+    "fundamentals": "🌐 Grundlagen",
+    "devops": "🚀 DevOps",
+    "general": "💻 Allgemein"
+  },
+  "actions": {
+    "startStudy": "Lernen starten",
+    "beginStudyWith": "Lernen mit dieser Karte beginnen",
+    "goToDecks": "Zu den Decks gehen zum Lernen",
+    "achievementBadge": "Erfolgs-Abzeichen: Heißer Streak! Sie haben {{days}} Tage in Folge gelernt"
+  },
+  "decksPage": {
+    "title": "Meine Decks",
+    "subtitle": "Verwalten Sie alle Ihre Lernkarten-Decks an einem Ort",
+    "actions": "Deck-Aktionen",
+    "createNew": "➕ Neues Deck erstellen",
+    "createNewLabel": "Neues Lernkarten-Deck erstellen",
+    "noDecksTitle": "Keine Decks gefunden",
+    "noDecksDescription": "Sie haben noch keine Lernkarten-Decks. Erstellen Sie Ihr erstes Deck, um zu beginnen!",
+    "createFirst": "➕ Erstes Deck erstellen",
+    "deckListTitle": "Verfügbare Lernkarten-Decks",
+    "cards": "Karten",
+    "created": "Erstellt:",
+    "reviewed": "gelernt",
+    "startStudy": "Lernen starten",
+    "viewCards": "Karten anzeigen",
+    "deleteTitle": "Dieses Deck löschen",
+    "deleteConfirmTitle": "Deck löschen",
+    "deleteConfirmMessage": "Sind Sie sicher, dass Sie dieses Deck löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
+    "deleteWarning": "Alle Karten in diesem Deck werden dauerhaft gelöscht.",
+    "cancel": "Abbrechen",
+    "delete": "🗑️ Löschen"
+  },
+  "deckPage": {
+    "notFoundTitle": "Deck nicht gefunden",
+    "notFoundMessage": "Das Deck, das Sie suchen, existiert nicht oder wurde gelöscht.",
+    "backToDecks": "Zurück zu den Decks",
+    "deckInfo": "Deck-Informationen und Aktionen",
+    "deckStats": "Deck-Statistiken",
+    "totalCards": "Gesamte Karten:",
+    "studiedCards": "Gelernt:",
+    "createdDate": "Erstellt:",
+    "deckActions": "Deck-Aktionen",
+    "startStudy": "🎯 Lernen starten",
+    "startStudyLabel": "Lernen für {{name}} starten",
+    "newCard": "➕ Neue Karte",
+    "newCardLabel": "Neue Lernkarte hinzufügen",
+    "backToDecksList": "← Zurück zu den Decks",
+    "backToDecksLabel": "Zurück zu allen Decks gehen",
+    "cardsInDeck": "Lernkarten in diesem Deck"
+  },
+  "common": {
+    "match": "Übereinstimmung"
+  }
+}
