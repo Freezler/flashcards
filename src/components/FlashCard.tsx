@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FlashCard as FlashCardType, DifficultyLevel } from '../types'
+import ScrollReveal from './ScrollReveal'
 
 interface FlashCardProps {
   card: FlashCardType
@@ -133,13 +134,17 @@ const FlashCard = function FlashCard({
   }
 
   return (
-    <article
-      ref={cardRef}
-      className={`flashcard ${getDifficultyClass(card.difficulty)} ${getSizeClass(size)} ${
-        isFlipped ? 'flashcard--flipped' : ''
-      } ${isRevealing ? 'flashcard--revealing' : ''} ${
-        isTransitioning ? 'flashcard--transitioning' : ''
-      } ${isHovered ? 'flashcard--hovered' : ''}`}
+    <ScrollReveal 
+      animationType="card-reveal"
+      className="scroll-glow"
+    >
+      <article
+        ref={cardRef}
+        className={`flashcard ${getDifficultyClass(card.difficulty)} ${getSizeClass(size)} ${
+          isFlipped ? 'flashcard--flipped' : ''
+        } ${isRevealing ? 'flashcard--revealing' : ''} ${
+          isTransitioning ? 'flashcard--transitioning' : ''
+        } ${isHovered ? 'flashcard--hovered' : ''}`}
       onClick={handleFlip}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -338,6 +343,7 @@ const FlashCard = function FlashCard({
       {/* Magical glow effect */}
       <div className="flashcard__glow" aria-hidden="true"></div>
     </article>
+    </ScrollReveal>
   )
 }
 
