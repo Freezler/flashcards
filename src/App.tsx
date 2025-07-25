@@ -13,6 +13,8 @@ const LandingPage = lazy(() => import('./pages/LandingPage'))
 const LoginPage = lazy(() => import('./pages/LoginPage'))
 const NewDeckPage = lazy(() => import('./pages/NewDeckPage'))
 const StudyPage = lazy(() => import('./pages/StudyPage'))
+const Design2025Demo = lazy(() => import('./pages/Design2025Demo'))
+const CSSMastersDemo = lazy(() => import('./pages/CSSMastersDemo'))
 
 function AppContent(): React.JSX.Element {
   const { isAuthenticated, isLoading } = useAuth()
@@ -36,6 +38,8 @@ function AppContent(): React.JSX.Element {
             <Routes>
               <Route path="/" element={<LandingPage />} />
               <Route path="/login" element={<LoginPage />} />
+              <Route path="/design-2025" element={<Design2025Demo />} />
+              <Route path="/css-masters" element={<CSSMastersDemo />} />
               <Route path="*" element={<LandingPage />} />
             </Routes>
           ) : (
@@ -51,6 +55,8 @@ function AppContent(): React.JSX.Element {
                   <Route path="/decks/new" element={<NewDeckPage />} />
                   <Route path="/deck/:deckId" element={<DeckPage />} />
                   <Route path="/deck/:deckId/study" element={<StudyPage />} />
+                  <Route path="/design-2025" element={<Design2025Demo />} />
+                  <Route path="/css-masters" element={<CSSMastersDemo />} />
                   <Route path="*" element={<Dashboard />} />
                 </Routes>
               </main>
