@@ -1,6 +1,6 @@
-# Nederlandse Flashcards App - Development Roadmap
+# Web Development Flashcards App - Development Roadmap
 
-Dit document visualiseert de ontwikkelingsfasen en voltooide features van de Nederlandse Flashcards App, met een overzicht van de architectuur en toekomstige uitbreidingsmogelijkheden.
+Dit document visualiseert de ontwikkelingsfasen en voltooide features van de Web Development Flashcards App, met een overzicht van de architectuur en toekomstige uitbreidingsmogelijkheden.
 
 ## 🏗️ Project Architectuur
 
@@ -26,13 +26,11 @@ graph TB
         C4["Navigation + Dashboard"]
     end
 
-    subgraph "Nederlandse Content"
-        D1["Grammatica Deck (18 kaarten)"]
-        D2["Geschiedenis Deck (18 kaarten)"]
-        D3["Geografie Deck (18 kaarten)"]
-        D4["Cultuur Deck (20 kaarten)"]
-        D5["Literatuur Deck (10 kaarten)"]
-        D6["Sport Deck (10 kaarten)"]
+    subgraph "Web Development Content"
+        D1["Frontend Development (12 kaarten)"]
+        D2["Backend Development (10 kaarten)"]
+        D3["Web Fundamentals (10 kaarten)"]
+        D4["DevOps & Tools (9 kaarten)"]
     end
 
     A1 --> C1
@@ -75,7 +73,7 @@ graph LR
 
     subgraph "✅ VOLTOOID - Performance"
         D1["React.memo Optimizations"]
-        D2["262KB Bundle Size"]
+        D2["604KB Bundle Size (165KB gzipped)"]
         D3["LocalStorage Caching"]
         D4["Lighthouse 95+ Score"]
     end
@@ -159,7 +157,7 @@ graph TD
 | Feature Category        | Status      | Progress | Notes                              |
 | ----------------------- | ----------- | -------- | ---------------------------------- |
 | **Core Flashcards**     | ✅ Complete | 100%     | 3D animations, difficulty styling  |
-| **Nederlandse Content** | ✅ Complete | 100%     | 6 decks, 94+ kaarten               |
+| **Web Development Content** | ✅ Complete | 100%     | 4 decks, 41 kaarten               |
 | **Spaced Repetition**   | ✅ Complete | 100%     | SM-2 algorithm implemented         |
 | **Responsive Design**   | ✅ Complete | 100%     | Mobile-first, clamp() typography   |
 | **CRUD Operations**     | ✅ Complete | 100%     | Create, edit, delete cards/decks   |
@@ -217,8 +215,8 @@ graph TD
 
 | Metric                   | Target  | Current | Status       |
 | ------------------------ | ------- | ------- | ------------ |
-| Bundle Size              | < 300KB | 262KB   | ✅ Excellent |
-| Gzipped Size             | < 100KB | 82KB    | ✅ Excellent |
+| Bundle Size              | < 400KB | 604KB   | ⚠️ Needs Optimization |
+| Gzipped Size             | < 100KB | 165KB   | ⚠️ Above Target |
 | First Paint              | < 1.5s  | < 1s    | ✅ Excellent |
 | Lighthouse Performance   | > 90    | 95+     | ✅ Excellent |
 | Lighthouse Accessibility | 100     | 100     | ✅ Perfect   |
@@ -226,4 +224,4 @@ graph TD
 
 ---
 
-- _Last Updated: July 2025 - Nederlandse Flashcards App v2.0_
+- _Last Updated: July 2025 - Web Development Flashcards App v1.0_

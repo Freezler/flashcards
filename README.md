@@ -1,6 +1,6 @@
-# 🧠 Nederlandse Flashcards App
+# 🧠 Web Development Flashcards App
 
-Een moderne, intelligente flashcard applicatie gebouwd met React 19 en TypeScript voor het leren van Nederlandse taal, geschiedenis, geografie en cultuur.
+Een moderne, intelligente flashcard applicatie gebouwd met React 19 en TypeScript voor het leren van web development concepten, frontend/backend technologieën en DevOps tools.
 
 ![React](https://img.shields.io/badge/React-19.1.0-61dafb?style=for-the-badge&logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178c6?style=for-the-badge&logo=typescript)
@@ -11,7 +11,7 @@ Een moderne, intelligente flashcard applicatie gebouwd met React 19 en TypeScrip
 
 ### 🎯 Core Functionaliteit
 
-- **6 Uitgebreide Nederlandse Decks** - 94+ kaarten over grammatica, geschiedenis, geografie, cultuur, literatuur en sport
+- **4 Web Development Decks** - 41 kaarten over frontend development, backend development, web fundamentals en DevOps
 - **Intelligente Spaced Repetition** - SM-2 algoritme voor optimaal geheugen
 - **Interactieve Flashcards** - 3D flip animaties met difficulty-based styling
 - **Geavanceerde Study Sessions** - Progress tracking, response time analysis en session analytics
@@ -32,29 +32,27 @@ Een moderne, intelligente flashcard applicatie gebouwd met React 19 en TypeScrip
 
 - **React 19 Latest Features** - Met strict TypeScript en moderne hooks
 - **Code Splitting & Lazy Loading** - Optimized bundle met dynamische imports
-- **Optimized Bundle Size** - 259KB main + kleine page chunks (84KB gzipped)
+- **Bundle Size** - 604KB total bundle met code splitting (165KB gzipped)
 - **Security Hardened** - CSRF tokens, input sanitization, rate limiting
 - **Production Ready** - CSP headers, secure storage, accessibility compliant
 - **Comprehensive Test Suite** - Vitest met Testing Library
 - **ESLint + Prettier** - Automatische code formatting en linting
 - **Git Workflow** - Feature branches met protected main branch
 
-## 📚 Nederlandse Content
+## 📚 Web Development Content
 
-### 🇳🇱 Beschikbare Decks
+### 💻 Beschikbare Decks
 
-1. **Nederlandse Grammatica** (18 kaarten) - Woordsoorten, spelling, werkwoorden
-2. **Geschiedenis van Nederland** (18 kaarten) - Van Gouden Eeuw tot moderne tijd
-3. **Nederlandse Geografie** (18 kaarten) - Provincies, steden, natuurgebieden
-4. **Nederlandse Cultuur** (20 kaarten) - Kunst, tradities, feestdagen
-5. **Nederlandse Literatuur** (10 kaarten) - Belangrijke schrijvers en werken
-6. **Nederlandse Sport** (10 kaarten) - Sporters, prestaties en geschiedenis
+1. **Frontend Development** (12 kaarten) - React, JavaScript, CSS, TypeScript fundamentals
+2. **Backend Development** (10 kaarten) - REST APIs, databases, Node.js, authentication
+3. **Web Development Fundamentals** (10 kaarten) - Git, HTTP, responsive design, accessibility
+4. **DevOps & Tools** (9 kaarten) - Docker, CI/CD, webpack, build tools
 
 ### 📊 Leerstatistieken
 
-- **94 Totale Kaarten** verdeeld over 3 moeilijkheidsgraden
-- **Balanced Content** - Van basis grammatica tot gevorderde cultuurkennis
-- **Educational Quality** - Nauwkeurige, feitelijk correcte Nederlandse inhoud
+- **41 Totale Kaarten** verdeeld over 3 moeilijkheidsgraden (Easy/Medium/Hard)
+- **Tech-Focused Content** - Van basis web concepten tot gevorderde development topics
+- **Educational Quality** - Praktische web development kennis voor interviews en werk
 
 ## 🛠️ Tech Stack
 
@@ -152,13 +150,13 @@ flash-cards/
 
 ## 🎯 Performance Metrics
 
-- **Bundle Size**: 259KB main + separate chunks (84KB gzipped total)
+- **Bundle Size**: 604KB total met code splitting (165KB gzipped total)
 - **Code Splitting**: 8 lazy-loaded page chunks (2-13KB each)
 - **First Contentful Paint**: < 1s
 - **React.memo Optimized** - Prevented unnecessary re-renders
 - **Console-free Production** - All debug statements removed
 - **Lighthouse Score**: 95+ Performance, 100 Accessibility, 100 Best Practices
-- **Mobile Responsive** - Optimized voor alle schermgroottes
+- **Mobile Responsive** - Responsive design voor alle schermgroottes (in development)
 
 ## 📱 Responsive Design
 
@@ -254,7 +252,7 @@ Dit project is gelicenseerd onder de MIT License - zie het [LICENSE](LICENSE) be
 ---
 
 <p align="center">
-  <strong>Gemaakt met ❤️ voor Nederlandse taalleerders</strong>
+  <strong>Gemaakt met ❤️ voor web developers en tech studenten</strong>
 </p>
 
 <p align="center">

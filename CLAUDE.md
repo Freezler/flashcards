@@ -33,8 +33,8 @@ Een moderne, intelligente React 19 flashcard applicatie gebouwd met TypeScript, 
 - **Branch**: `main` (production ready)
 - **Status**: Complete CRUD functionaliteit, security hardening, accessibility compliance
 - **Completed**: Nederlandse content migration, React.memo optimization, responsive layouts, security enhancements
-- **Bundle Size**: 259KB main + separate chunks (84KB gzipped total) - code splitting implemented
-- **Features**: 6 Nederlandse decks, 94+ kaarten, spaced repetition, mobile-first design, WCAG AA accessibility
+- **Bundle Size**: 604KB total bundle (165KB gzipped) - code splitting implemented
+- **Features**: 4 web development decks, 41 kaarten, spaced repetition, responsive design, internationalization (i18n)
 - **Security**: CSP headers, input sanitization, CSRF protection, secure storage
 
 ## Git Workflow
@@ -120,12 +120,13 @@ Een moderne, intelligente React 19 flashcard applicatie gebouwd met TypeScript, 
 
 ## Key Features (Current)
 
-### ✅ Nederlandse Content & Education
+### ✅ Web Development Content & Education
 
-- **6 Uitgebreide Nederlandse Decks** - 94+ kaarten over grammatica, geschiedenis, geografie, cultuur, literatuur en sport
-- **Educatieve Kwaliteit** - Nauwkeurige, feitelijk correcte Nederlandse inhoud
-- **Balanced Content** - Van basis grammatica tot gevorderde cultuurkennis
+- **4 Web Development Decks** - 41 kaarten over frontend, backend, web fundamentals en DevOps
+- **Educatieve Kwaliteit** - Praktische web development kennis voor interviews en werk
+- **Tech-Focused Content** - Van basis web concepten tot gevorderde development topics
 - **3 Moeilijkheidsgraden** - Easy, Medium, Hard voor progressive learning
+- **Internationalization** - Nederlandse UI met i18next, content in translation keys
 
 ### ✅ Core Functionality
 
@@ -142,7 +143,7 @@ Een moderne, intelligente React 19 flashcard applicatie gebouwd met TypeScript, 
 
 - **React.memo** on all major components to prevent unnecessary re-renders
 - **Memoized context values** and action functions
-- **Bundle size optimization** - 262KB (82KB gzipped)
+- **Bundle size** - 604KB total (165KB gzipped) with room for optimization
 - **Loading boundaries** and error handling
 - **Component code splitting** ready for implementation
 
@@ -185,10 +186,11 @@ Een moderne, intelligente React 19 flashcard applicatie gebouwd met TypeScript, 
 
 ### High Priority (Performance & Polish)
 
-- [ ] **Code splitting** - Implement lazy loading for pages (262KB → ~200KB target)
+- [ ] **Bundle optimization** - Reduce from 604KB to ~400KB target with better code splitting and tree shaking
 - [ ] **Advanced study analytics** - Visual progress charts and learning insights
 - [ ] **Deck import/export** - JSON/CSV data portability
-- [ ] **Offline support** - Service worker for offline functionality
+- [ ] **Complete CRUD implementation** - Full create/edit/delete functionality
+- [ ] **Security hardening** - Implement proper CSRF protection and CSP headers
 
 ### Medium Priority (Enhanced Features)
 
