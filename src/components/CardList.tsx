@@ -89,6 +89,7 @@ const CardItem = React.memo(function CardItem({
           className="card-action-btn card-action-btn--edit"
           onClick={() => onEdit(card)}
           title="Bewerk kaart"
+          aria-label="Bewerk deze kaart"
         >
           ✏️
         </button>
@@ -96,6 +97,7 @@ const CardItem = React.memo(function CardItem({
           className="card-action-btn card-action-btn--delete"
           onClick={handleDeleteClick}
           title="Verwijder kaart"
+          aria-label="Verwijder deze kaart"
         >
           🗑️
         </button>

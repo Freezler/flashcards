@@ -226,4 +226,4 @@ graph TD
 
 ---
 
-- _Last Updated: January 2025 - Nederlandse Flashcards App v1.0_
+- _Last Updated: July 2025 - Nederlandse Flashcards App v2.0_
