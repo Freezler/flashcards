@@ -1,9 +1,28 @@
 @import 'tailwindcss';
-@import url('./styles/css-masters-2025.css');
 
-/* ===== CSS MASTERS 2025 EDITION ===== */
-/* Inspired by CSS-Tricks, Kevin Powell, Jhey Tompkins, and Wes Bos */
-/* Cutting-edge design system with glassmorphism, depth, and modern interactions */
+/* ===== CSS MASTERS 2025 - PHASE 1 ===== */
+/* Gradually implementing advanced CSS techniques from industry experts */
+/* Sources: CSS-Tricks, Kevin Powell, Jhey Tompkins, Wes Bos */
+
+/* === MODERN CSS CUSTOM PROPERTIES === */
+/* Type-safe CSS custom properties for animations */
+@property --gradient-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@property --glow-opacity {
+  syntax: '<number>';
+  initial-value: 0;
+  inherits: false;
+}
+
+@property --card-scale {
+  syntax: '<number>';
+  initial-value: 1;
+  inherits: false;
+}
 
 /* === COLOR SYSTEM 2025 === */
 :root {
@@ -47,6 +66,25 @@
   --shadow-2xl: 
     0 25px 50px -12px oklch(0 0 0 / 0.25),
     0 10px 20px -8px oklch(0 0 0 / 0.1);
+
+  /* === MODERN EASING FUNCTIONS === */
+  /* Professional easing from Jhey Tompkins */
+  --ease-spring: linear(
+    0 0%, 0.0036 9.62%, 0.0185 16.66%, 0.0489 23.03%, 0.0962 28.86%,
+    0.1705 34.93%, 0.269 40.66%, 0.3867 45.89%, 0.5833 52.95%,
+    0.683 57.05%, 0.7829 62.14%, 0.8621 67.46%, 0.8991 70.68%,
+    0.9299 74.03%, 0.9545 77.52%, 0.9735 81.21%, 0.9865 85%,
+    0.9949 89.15%, 1 100%
+  );
+
+  --ease-bounce: linear(
+    0, 0.004, 0.016, 0.035, 0.063, 0.098, 0.141, 0.191, 0.25, 0.316,
+    0.391, 0.473, 0.563, 0.661, 0.766, 0.879, 1, 0.945 91.01%,
+    0.883 92.81%, 0.814 94.69%, 0.739 96.67%, 0.658 98.73%, 0.571,
+    0.479, 0.381, 0.278, 0.17, 0.058, 0.959 99.23%, 1
+  );
+
+  --ease-elastic: cubic-bezier(0.68, -0.55, 0.265, 1.55);
   
   /* Glassmorphism Shadows */
   --shadow-glass: 
@@ -117,6 +155,13 @@
   opacity: 0.05;
 }
 
+/* === CONTAINER QUERIES - MODERN RESPONSIVE DESIGN === */
+/* Container-based responsive design from Wes Bos techniques */
+.flashcard-container {
+  container-type: inline-size;
+  container-name: flashcard;
+}
+
 /* Flashcard Modern Design */
 .flashcard-2025 {
   background: var(--glass-white);
@@ -174,6 +219,40 @@
 /* Micro-interactions */
 .flashcard-2025:active {
   transform: scale(0.98);
+}
+
+/* === CONTAINER-BASED RESPONSIVE FLASHCARDS === */
+/* Small containers - mobile/sidebar */
+@container flashcard (width < 300px) {
+  .flashcard-2025 {
+    min-height: 150px;
+    font-size: 0.875rem;
+  }
+  
+  .flashcard-2025__front,
+  .flashcard-2025__back {
+    padding: 1rem;
+  }
+}
+
+/* Medium containers - tablet */
+@container flashcard ((width >= 300px) and (width < 500px)) {
+  .flashcard-2025 {
+    min-height: 200px;
+    font-size: 1rem;
+  }
+}
+
+/* Large containers - desktop */
+@container flashcard (width >= 500px) {
+  .flashcard-2025 {
+    min-height: 250px;
+    font-size: 1.125rem;
+  }
+
+  .flashcard-2025:hover {
+    transform: translateY(-4px) scale(1.03);
+  }
 }
 
 /* Difficulty Indicators - Modern Pills */
@@ -2780,7 +2859,7 @@ button:focus-visible {
     0 4px 8px var(--btn-shadow) / 0.1,
     0 8px 16px var(--btn-shadow) / 0.05;
 
-  transition: all var(--duration-sm) var(--ease-out-2);
+  transition: all var(--duration-sm) var(--ease-spring);
   transform-style: preserve-3d;
   backdrop-filter: var(--blur-xs);
   -webkit-backdrop-filter: var(--blur-xs);
@@ -2878,7 +2957,7 @@ button:focus-visible {
     0 4px 8px var(--btn-shadow) / 0.05,
     0 0 0 1px oklch(85% 0.01 240);
 
-  transition: all var(--duration-sm) var(--ease-out-2);
+  transition: all var(--duration-sm) var(--ease-spring);
   transform-style: preserve-3d;
   backdrop-filter: var(--blur-xs);
   -webkit-backdrop-filter: var(--blur-xs);
@@ -5655,7 +5734,7 @@ button:focus-visible {
   width: 2.5rem;
   height: 2.5rem;
   color: var(--theme-accent);
-  transition: all var(--duration-sm) var(--ease-out-2);
+  transition: all var(--duration-sm) var(--ease-spring);
 }
 
 .logo-text {
@@ -8703,7 +8782,7 @@ textarea,
   text-decoration: none;
   border-radius: var(--radius-md);
   font-weight: 500;
-  transition: all var(--duration-sm) var(--ease-out-2);
+  transition: all var(--duration-sm) var(--ease-spring);
   border: 1px solid var(--brand-500);
 }
 
@@ -8738,3 +8817,166 @@ textarea,
   pointer-events: none;
   z-index: 1;
 }
+
+/* ===== ADDITIONAL CSS MASTERS TECHNIQUES ===== */
+/* Advanced features for future implementation */
+
+/* === ADVANCED GRID LAYOUTS === */
+/* Kevin Powell's modern grid techniques */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+  gap: var(--space-6);
+  align-items: start;
+}
+
+/* Masonry-style layout for cards */
+.cards-masonry {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-auto-rows: masonry; /* Future CSS */
+  gap: var(--space-4);
+}
+
+/* Fallback for browsers without masonry */
+@supports not (grid-auto-rows: masonry) {
+  .cards-masonry {
+    columns: 280px;
+    column-gap: var(--space-4);
+    column-fill: balance;
+  }
+
+  .cards-masonry > * {
+    break-inside: avoid;
+    margin-bottom: var(--space-4);
+  }
+}
+
+/* === CSS LOGICAL PROPERTIES === */
+/* International layout support */
+.card-content-logical {
+  padding-block: var(--space-4);
+  padding-inline: var(--space-6);
+  margin-block-end: var(--space-3);
+}
+
+/* === UTILITY CLASSES === */
+.gradient-text {
+  background: linear-gradient(45deg, var(--primary-500), var(--primary-700));
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  background-size: 200% 200%;
+  animation: gradient-shift 3s var(--ease-spring) infinite;
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.glass-blur {
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+}
+
+.animate-in {
+  animation: animate-in 0.6s var(--ease-spring);
+}
+
+@keyframes animate-in {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* === PERFORMANCE OPTIMIZATIONS === */
+.gpu-optimized {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform, opacity;
+}
+
+/* === FUTURE CSS FEATURES === */
+/* Uncomment these as browser support improves */
+
+/* Scroll-driven animations (Chrome 115+) */
+/*
+@supports (animation-timeline: scroll()) {
+  .scroll-progress {
+    --progress-value: 0%;
+    animation: scroll-progress linear;
+    animation-timeline: scroll(root block);
+    animation-range: 0% 100%;
+  }
+
+  @keyframes scroll-progress {
+    from { --progress-value: 0%; }
+    to { --progress-value: 100%; }
+  }
+
+  .scroll-progress::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--progress-value);
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-500), var(--primary-700));
+    z-index: 1000;
+  }
+}
+*/
+
+/* View Transitions (Chrome 111+) */
+/*
+@supports (view-transition-name: auto) {
+  .page-transition {
+    view-transition-name: main-content;
+  }
+
+  ::view-transition-old(main-content) {
+    animation: slide-out 0.3s var(--ease-out);
+  }
+
+  ::view-transition-new(main-content) {
+    animation: slide-in 0.3s var(--ease-out);
+  }
+
+  @keyframes slide-out {
+    from { transform: translateX(0); }
+    to { transform: translateX(-100%); }
+  }
+
+  @keyframes slide-in {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+  }
+}
+*/
+
+/* Anchor Positioning (Chrome 125+) */
+/*
+@supports (anchor-name: --trigger) {
+  .tooltip-trigger {
+    anchor-name: --trigger;
+  }
+
+  .tooltip {
+    position: absolute;
+    position-anchor: --trigger;
+    bottom: anchor(top);
+    left: anchor(center);
+    translate: -50% -8px;
+  }
+}
+*/
+
+/* === END CSS MASTERS TECHNIQUES === */
+EOF < /dev/null
