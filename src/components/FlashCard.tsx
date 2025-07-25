@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { FlashCard as FlashCardType, DifficultyLevel } from '../types'
-import ScrollReveal from './ScrollReveal'
 
 interface FlashCardProps {
   card: FlashCardType
@@ -29,6 +28,7 @@ const FlashCard = function FlashCard({
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [flipStartTime, setFlipStartTime] = useState<number | null>(null)
   const [isHovered, setIsHovered] = useState(false)
+  const [isInView, setIsInView] = useState(false)
   const cardRef = useRef<HTMLDivElement>(null)
 
   // Reset flip state when card changes
@@ -37,6 +37,39 @@ const FlashCard = function FlashCard({
     setIsRevealing(false)
     setIsTransitioning(false)
   }, [card.id])
+
+  // Intersection Observer for scroll animations (fallback for older browsers)
+  useEffect(() => {
+    const element = cardRef.current
+    if (!element) return
+
+    // Check if browser supports scroll-driven animations
+    const supportsScrollTimeline = CSS.supports('animation-timeline', 'scroll()')
+    
+    // For browsers with scroll-driven animation support, CSS handles everything
+    if (supportsScrollTimeline) return
+
+    // Fallback: Use Intersection Observer for older browsers
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsInView(true)
+          }
+        })
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+      }
+    )
+
+    observer.observe(element)
+
+    return () => {
+      observer.unobserve(element)
+    }
+  }, [])
 
   const handleFlip = useCallback((): void => {
     if (autoFlip) return
@@ -134,17 +167,15 @@ const FlashCard = function FlashCard({
   }
 
   return (
-    <ScrollReveal 
-      animationType="card-reveal"
-      className="scroll-glow"
-    >
       <article
         ref={cardRef}
-        className={`flashcard ${getDifficultyClass(card.difficulty)} ${getSizeClass(size)} ${
+        className={`flashcard card-reveal scroll-glow ${getDifficultyClass(card.difficulty)} ${getSizeClass(size)} ${
           isFlipped ? 'flashcard--flipped' : ''
         } ${isRevealing ? 'flashcard--revealing' : ''} ${
           isTransitioning ? 'flashcard--transitioning' : ''
-        } ${isHovered ? 'flashcard--hovered' : ''}`}
+        } ${isHovered ? 'flashcard--hovered' : ''} ${
+          isInView ? 'in-view' : ''
+        }`}
       onClick={handleFlip}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -343,7 +374,6 @@ const FlashCard = function FlashCard({
       {/* Magical glow effect */}
       <div className="flashcard__glow" aria-hidden="true"></div>
     </article>
-    </ScrollReveal>
   )
 }
 
