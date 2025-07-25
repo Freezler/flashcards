@@ -687,6 +687,11 @@ pre,
   outline-offset: 2px;
 }
 
+/* Remove outline for elements that have custom focus styles */
+.flashcard:focus {
+  outline: none;
+}
+
 /* Custom focus styles for interactive elements */
 button:focus,
 a:focus,
@@ -697,9 +702,16 @@ select:focus,
 .stat-card:focus,
 .action-card:focus,
 .flashcard:focus {
-  outline: 2px solid var(--primary-500, #2563eb);
-  outline-offset: 2px;
-  box-shadow: 0 0 0 4px oklch(from var(--primary-500, #2563eb) l c h / 0.2);
+  outline: none;
+}
+
+/* Only show focus glow when navigating with keyboard */
+.action-card:focus-visible,
+.flashcard:focus-visible {
+  /* Use subtle glow instead of hard outline */
+  box-shadow: 
+    0 0 0 3px var(--primary-500) / 0.3,
+    var(--shadow-elevation-3);
 }
 
 /* Focus styles for badge elements */
