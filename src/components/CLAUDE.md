@@ -72,7 +72,7 @@ const { formData, errors, updateField, validateAll } = useFormValidation(
 )
 ```
 
-# Component Patterns
+## Component Patterns
 
 ## Component Standards
 
