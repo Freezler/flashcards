@@ -138,7 +138,8 @@ function SearchPageContent({
               <div className="search-tip">
                 <strong>Basis zoeken:</strong>
                 <p>
-                  Type gewoon wat je zoekt, zoals "werkwoord", "geschiedenis", of "easy"
+                  Type gewoon wat je zoekt, zoals "werkwoord", "geschiedenis",
+                  of "easy"
                 </p>
               </div>
               <div className="search-tip">

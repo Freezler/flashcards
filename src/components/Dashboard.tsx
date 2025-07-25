@@ -1,8 +1,9 @@
+import { useEffect, useMemo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Link, useNavigate } from 'react-router-dom'
-import { getTestDeckStats } from '../data'
 import { useAuth } from '../contexts/AuthContext'
 import { useCards } from '../contexts/CardContext'
-import { useState, useEffect, useMemo } from 'react'
+import { getTestDeckStats } from '../data'
 import { useSEO } from '../hooks/useSEO'
 import { useSearch } from '../hooks/useSearch'
 import { FlashCard } from '../types'
@@ -26,6 +27,7 @@ function Dashboard(): React.JSX.Element {
   const { state } = useCards()
   const navigate = useNavigate()
   const [currentTime, setCurrentTime] = useState(new Date())
+  const { t } = useTranslation(['common', 'decks'])
 
   // Get all cards for search
   const allCards = useMemo(() => {
@@ -66,7 +68,7 @@ function Dashboard(): React.JSX.Element {
     if (stats.cardsToReview > 0) {
       reminders.push({
         id: 'overdue',
-        message: `${stats.cardsToReview} kaarten wachten op herhaling`,
+        message: `${stats.cardsToReview} ${t('reminders.overdue')}`,
         type: 'overdue',
         priority: 'high',
       })
@@ -75,7 +77,7 @@ function Dashboard(): React.JSX.Element {
     if (stats.studyStreak >= 7) {
       reminders.push({
         id: 'streak',
-        message: `Geweldig! ${stats.studyStreak} dagen op rij gestudeerd!`,
+        message: t('reminders.streak', { days: stats.studyStreak }),
         type: 'streak',
         priority: 'medium',
       })
@@ -84,19 +86,19 @@ function Dashboard(): React.JSX.Element {
     // Always show daily encouragement
     reminders.push({
       id: 'daily',
-      message: '🎯 Tijd om te studeren! Start je dagelijkse sessie',
+      message: t('reminders.daily'),
       type: 'daily',
       priority: 'medium',
     })
 
     return reminders
-  }, [])
+  }, [t, stats.cardsToReview, stats.studyStreak])
 
   const getTimeBasedGreeting = (): string => {
     const hour = currentTime.getHours()
-    if (hour < 12) return 'Goedemorgen'
-    if (hour < 17) return 'Goedemiddag'
-    return 'Goedenavond'
+    if (hour < 12) return t('greetings.morning')
+    if (hour < 17) return t('greetings.afternoon')
+    return t('greetings.evening')
   }
 
   // Handle card selection from search results
@@ -120,8 +122,8 @@ function Dashboard(): React.JSX.Element {
 
   // SEO optimalisatie voor homepage
   useSEO({
-    title: 'Dashboard',
-    description: `Persoonlijk dashboard voor Nederlandse flashcards. ${stats.totalDecks} decks beschikbaar met ${stats.totalCards} kaarten. Start je leertraject vandaag!`,
+    title: t('dashboard.title'),
+    description: `${t('dashboard.title')} voor Nederlandse flashcards. ${stats.totalDecks} ${t('stats.decks')} beschikbaar met ${stats.totalCards} ${t('stats.cards')}. ${t('dashboard.subtitleNew')}`,
     keywords:
       'dashboard, persoonlijk, leren, voortgang, nederlandse flashcards, spaced repetition',
     url: 'https://nederlandse-flashcards.vercel.app/',
@@ -140,13 +142,15 @@ function Dashboard(): React.JSX.Element {
             <span aria-hidden="true">👋</span>
           </h1>
           <h2 className="dashboard-subtitle-main">
-            {isFirstLogin ? 'Welkom bij' : 'Welkom terug bij'}{' '}
-            <span className="gradient-text">FlashCards</span>
+            {isFirstLogin
+              ? t('dashboard.welcomeNew')
+              : t('dashboard.welcomeBack')}{' '}
+            <span className="gradient-text">CogniCraft</span>
           </h2>
           <p className="dashboard-subtitle">
             {isFirstLogin
-              ? 'Klaar om je kennis te vergroten? Start vandaag met leren!'
-              : 'Klaar om verder te gaan met leren? Zet je studie voort!'}
+              ? t('dashboard.subtitleNew')
+              : t('dashboard.subtitleReturning')}
           </p>
         </div>
 
@@ -157,7 +161,7 @@ function Dashboard(): React.JSX.Element {
             aria-labelledby="reminders-title"
           >
             <h3 id="reminders-title" className="sr-only">
-              Studie herinneringen
+              {t('dashboard.studyReminders')}
             </h3>
             {studyReminders.map(reminder => (
               <div
@@ -178,9 +182,9 @@ function Dashboard(): React.JSX.Element {
                   <Link
                     to="/decks"
                     className="reminder-action"
-                    aria-label="Ga naar decks om te studeren"
+                    aria-label={t('actions.goToDecks')}
                   >
-                    Ga studeren →
+                    {t('reminders.goStudy')}
                   </Link>
                 )}
               </div>
@@ -193,10 +197,10 @@ function Dashboard(): React.JSX.Element {
       <section className="search-hero" aria-labelledby="search-title">
         <div className="search-hero__header">
           <h2 id="search-title" className="search-hero__title">
-            🔍 Zoek in al je flashcards
+            {t('dashboard.searchTitle')}
           </h2>
           <p className="search-hero__subtitle">
-            Vind snel de kaarten die je zoekt met intelligente fuzzy search
+            {t('dashboard.searchSubtitle')}
           </p>
         </div>
 
@@ -205,7 +209,7 @@ function Dashboard(): React.JSX.Element {
             <input
               type="text"
               className="search-input search-input--hero"
-              placeholder="Zoek naar vraag, antwoord, categorie, moeilijkheidsgraad..."
+              placeholder={t('dashboard.searchPlaceholder')}
               value={searchState.query}
               onChange={e => search(e.target.value)}
               autoComplete="off"
@@ -214,7 +218,7 @@ function Dashboard(): React.JSX.Element {
               <button
                 className="search-clear"
                 onClick={clearSearch}
-                aria-label="Clear search"
+                aria-label={t('dashboard.clearSearch')}
               >
                 ✕
               </button>
@@ -234,7 +238,7 @@ function Dashboard(): React.JSX.Element {
               <>
                 <div className="search-results-header">
                   <span className="search-results-count">
-                    {searchState.totalResults} resultaten gevonden
+                    {searchState.totalResults} {t('dashboard.resultsFound')}
                   </span>
                   {searchState.totalResults > searchState.results.length && (
                     <button
@@ -245,14 +249,14 @@ function Dashboard(): React.JSX.Element {
                         )
                       }
                     >
-                      Bekijk alle resultaten →
+                      {t('dashboard.viewAllResults')}
                     </button>
                   )}
                 </div>
 
                 <div className="search-results-grid">
                   {searchState.results.map((result, index) => (
-                    <div
+                    <article
                       key={`${result.item.id}-${index}`}
                       className="search-result-card"
                       onClick={() => handleCardSelect(result.item)}
@@ -275,7 +279,8 @@ function Dashboard(): React.JSX.Element {
                           </span>
                           {result.score !== undefined && (
                             <span className="search-result-score">
-                              {Math.round((1 - result.score) * 100)}% match
+                              {Math.round((1 - result.score) * 100)}%{' '}
+                              {t('common.match')}
                             </span>
                           )}
                         </div>
@@ -287,13 +292,13 @@ function Dashboard(): React.JSX.Element {
                             e.stopPropagation()
                             handleStartStudy(result.item)
                           }}
-                          aria-label="Start study"
-                          title="Begin studie met deze kaart"
+                          aria-label={t('actions.startStudy')}
+                          title={t('actions.beginStudyWith')}
                         >
                           📚
                         </button>
                       </div>
-                    </div>
+                    </article>
                   ))}
                 </div>
               </>
@@ -301,10 +306,10 @@ function Dashboard(): React.JSX.Element {
               <div className="search-no-results">
                 <div className="search-no-results-icon">📭</div>
                 <div className="search-no-results-text">
-                  Geen resultaten gevonden voor "{searchState.query}"
+                  {t('dashboard.noResultsTitle')} "{searchState.query}"
                 </div>
                 <p className="search-no-results-suggestion">
-                  Probeer andere zoektermen of controleer je spelling
+                  {t('dashboard.noResultsSuggestion')}
                 </p>
               </div>
             ) : null}
@@ -314,7 +319,9 @@ function Dashboard(): React.JSX.Element {
         {/* Search History */}
         {!searchState.hasSearched && searchHistory.length > 0 && (
           <div className="search-history">
-            <div className="search-history-header">Recente zoekopdrachten</div>
+            <div className="search-history-header">
+              {t('dashboard.recentSearches')}
+            </div>
             <div className="search-history-list">
               {searchHistory.slice(0, 4).map((query, index) => (
                 <button
@@ -331,43 +338,52 @@ function Dashboard(): React.JSX.Element {
 
         {/* Search Tips */}
         {!searchState.hasSearched && searchHistory.length === 0 && (
-          <div className="search-tips">
+          <aside className="search-tips" aria-labelledby="search-tips-title">
+            <h3 id="search-tips-title" className="sr-only">
+              {t('dashboard.searchTips')}
+            </h3>
             <div className="search-tips-grid">
-              <div className="search-tip">
-                <span className="search-tip-icon">💡</span>
+              <article className="search-tip">
+                <span className="search-tip-icon" aria-hidden="true">
+                  💡
+                </span>
                 <div>
-                  <strong>Fuzzy search:</strong>
-                  <p>Kleine typfouten worden automatisch gecorrigeerd</p>
+                  <h4>{t('searchTips.fuzzyTitle')}</h4>
+                  <p>{t('searchTips.fuzzyDescription')}</p>
                 </div>
-              </div>
-              <div className="search-tip">
-                <span className="search-tip-icon">🎯</span>
+              </article>
+              <article className="search-tip">
+                <span className="search-tip-icon" aria-hidden="true">
+                  🎯
+                </span>
                 <div>
-                  <strong>Categorieën:</strong>
-                  <p>Zoek op "grammatica", "geschiedenis", "geografie"</p>
+                  <h4>{t('searchTips.categoriesTitle')}</h4>
+                  <p>{t('searchTips.categoriesDescription')}</p>
                 </div>
-              </div>
-              <div className="search-tip">
-                <span className="search-tip-icon">⚡</span>
+              </article>
+              <article className="search-tip">
+                <span className="search-tip-icon" aria-hidden="true">
+                  ⚡
+                </span>
                 <div>
-                  <strong>Moeilijkheid:</strong>
-                  <p>Zoek op "easy", "medium", "hard", "makkelijk", of "moeilijk"</p>
+                  <h4>{t('searchTips.difficultyTitle')}</h4>
+                  <p>{t('searchTips.difficultyDescription')}</p>
                 </div>
-              </div>
+              </article>
             </div>
-          </div>
+          </aside>
         )}
       </section>
 
       <section className="stats-grid" aria-labelledby="stats-title">
         <h3 id="stats-title" className="sr-only">
-          Studie statistieken
+          {t('dashboard.studyStatistics')}
         </h3>
 
         <Link
           to="/decks"
           className="stat-card stat-card--interactive"
-          aria-label={`${stats.totalDecks} decks beschikbaar. Klik om alle decks te bekijken.`}
+          aria-label={`${stats.totalDecks} ${t('stats.decks')} beschikbaar. Klik om alle decks te bekijken.`}
         >
           <div className="stat-icon" aria-hidden="true">
             📚
@@ -376,8 +392,8 @@ function Dashboard(): React.JSX.Element {
             <div className="stat-number" role="text">
               {stats.totalDecks}
             </div>
-            <div className="stat-label">Decks</div>
-            <div className="stat-detail">Alle collecties</div>
+            <div className="stat-label">{t('stats.decks')}</div>
+            <div className="stat-detail">{t('stats.allCollections')}</div>
           </div>
           <div className="stat-trend stat-trend--neutral" aria-hidden="true">
             →
@@ -387,7 +403,7 @@ function Dashboard(): React.JSX.Element {
         <div
           className="stat-card"
           role="status"
-          aria-label={`${stats.totalCards} kaarten totaal beschikbaar`}
+          aria-label={`${stats.totalCards} ${t('stats.cards')} totaal beschikbaar`}
         >
           <div className="stat-icon" aria-hidden="true">
             🎯
@@ -396,15 +412,15 @@ function Dashboard(): React.JSX.Element {
             <div className="stat-number" role="text">
               {stats.totalCards}
             </div>
-            <div className="stat-label">Kaarten</div>
-            <div className="stat-detail">Totaal beschikbaar</div>
+            <div className="stat-label">{t('stats.cards')}</div>
+            <div className="stat-detail">{t('stats.totalAvailable')}</div>
           </div>
           <div
             className="stat-progress"
             role="progressbar"
             aria-valuenow={stats.totalCards}
             aria-valuemax={100}
-            aria-label="Voortgang kaarten collectie"
+            aria-label={t('stats.progressCards')}
           >
             <div
               className="stat-progress-bar"
@@ -423,22 +439,24 @@ function Dashboard(): React.JSX.Element {
           <div className="stat-icon">🔥</div>
           <div className="stat-content">
             <h3 className="stat-number">{stats.studyStreak}</h3>
-            <p className="stat-label">Dag streak</p>
+            <p className="stat-label">{t('stats.dayStreak')}</p>
             <div className="stat-detail">
               {stats.studyStreak === 0
-                ? 'Start je streak!'
+                ? t('stats.startStreak')
                 : stats.studyStreak < 7
-                  ? 'Ga zo door!'
-                  : 'Fantastisch! 🎉'}
+                  ? t('stats.keepGoing')
+                  : t('stats.fantastic')}
             </div>
           </div>
           {stats.studyStreak >= 7 && (
             <div
               className="stat-badge"
               role="status"
-              aria-label={`Prestatie badge: Hot streak! Je hebt ${stats.studyStreak} dagen op rij gestudeerd`}
+              aria-label={t('actions.achievementBadge', {
+                days: stats.studyStreak,
+              })}
             >
-              Hot streak!
+              {t('stats.hotStreak')}
             </div>
           )}
         </div>
@@ -450,9 +468,11 @@ function Dashboard(): React.JSX.Element {
           <div className="stat-icon">⏰</div>
           <div className="stat-content">
             <h3 className="stat-number">{stats.cardsToReview}</h3>
-            <p className="stat-label">Te herhalen</p>
+            <p className="stat-label">{t('stats.toReview')}</p>
             <div className="stat-detail">
-              {stats.cardsToReview === 0 ? 'Alles bijgewerkt!' : 'Wacht op jou'}
+              {stats.cardsToReview === 0
+                ? t('stats.allUpdated')
+                : t('stats.waitingForYou')}
             </div>
           </div>
           {stats.cardsToReview > 0 && <div className="stat-pulse"></div>}
@@ -462,9 +482,9 @@ function Dashboard(): React.JSX.Element {
       <section className="quick-actions" aria-labelledby="actions-title">
         <div className="section-header">
           <h2 id="actions-title" className="section-title">
-            Snelle acties
+            {t('quickActions.title')}
           </h2>
-          <div className="section-subtitle">Start direct met leren</div>
+          <div className="section-subtitle">{t('quickActions.subtitle')}</div>
         </div>
 
         <div className="actions-grid">
@@ -472,42 +492,46 @@ function Dashboard(): React.JSX.Element {
           {stats.cardsToReview > 0 && (
             <Link to="/decks" className="action-card action-card--featured">
               <div className="action-icon action-icon--pulse">⚡</div>
-              <h3 className="action-title">Snelle Studie</h3>
+              <h3 className="action-title">{t('quickActions.quickStudy')}</h3>
               <p className="action-description">
-                {stats.cardsToReview} kaarten klaar voor herhaling
+                {t('quickActions.quickStudyDescription', {
+                  count: stats.cardsToReview,
+                })}
               </p>
               <div
                 className="action-badge"
                 role="status"
                 aria-label={`Urgentie indicator: ${stats.cardsToReview} kaarten wachten op herhaling`}
               >
-                Urgent
+                {t('quickActions.urgent')}
               </div>
             </Link>
           )}
 
           <Link to="/decks/new" className="action-card">
             <div className="action-icon">➕</div>
-            <h3 className="action-title">Nieuw Deck</h3>
+            <h3 className="action-title">{t('quickActions.newDeck')}</h3>
             <p className="action-description">
-              Maak een nieuwe set kaarten om mee te leren
+              {t('quickActions.newDeckDescription')}
             </p>
           </Link>
 
           <Link to="/decks" className="action-card">
             <div className="action-icon">📖</div>
-            <h3 className="action-title">Mijn Decks</h3>
+            <h3 className="action-title">{t('quickActions.myDecks')}</h3>
             <p className="action-description">
-              Bekijk en beheer al je bestaande decks
+              {t('quickActions.myDecksDescription')}
             </p>
-            <div className="action-meta">{stats.totalDecks} decks</div>
+            <div className="action-meta">
+              {stats.totalDecks} {t('stats.decks')}
+            </div>
           </Link>
 
           <Link to="/progress" className="action-card">
             <div className="action-icon">📊</div>
-            <h3 className="action-title">Voortgang</h3>
+            <h3 className="action-title">{t('quickActions.progress')}</h3>
             <p className="action-description">
-              Analyseer je leerresultaten en prestaties
+              {t('quickActions.progressDescription')}
             </p>
           </Link>
         </div>
@@ -520,11 +544,9 @@ function Dashboard(): React.JSX.Element {
       >
         <div className="section-header">
           <h2 id="activity-title" className="section-title">
-            Beschikbare Decks
+            {t('recentActivity.title')}
           </h2>
-          <div className="section-subtitle">
-            Kies een deck om mee te starten
-          </div>
+          <div className="section-subtitle">{t('recentActivity.subtitle')}</div>
         </div>
 
         <div className="deck-grid">
@@ -542,24 +564,24 @@ function Dashboard(): React.JSX.Element {
               <div key={deck.id} className="deck-card deck-card--enhanced">
                 <div className="deck-header">
                   <div className="deck-info">
-                    <h3 className="deck-title">{deck.name}</h3>
+                    <h3 className="deck-title">
+                      {t(deck.name, { ns: 'decks' })}
+                    </h3>
                     <div className="deck-meta">
                       <span className="deck-count">
-                        {deck.totalCards} kaarten
+                        {deck.totalCards} {t('recentActivity.cards')}
                       </span>
                       <span className="deck-dot">•</span>
                       <span className="deck-category">
-                        {deck.name.includes('Grammatica')
-                          ? '📝 Grammatica'
-                          : deck.name.includes('Geschiedenis')
-                            ? '🏛️ Geschiedenis'
-                            : deck.name.includes('Geografie')
-                              ? '🌍 Geografie'
-                              : deck.name.includes('Cultuur')
-                                ? '🎭 Cultuur'
-                                : deck.name.includes('Literatuur')
-                                  ? '📚 Literatuur'
-                                  : '⚽ Sport'}
+                        {deck.name.includes('frontend')
+                          ? t('categories.frontend')
+                          : deck.name.includes('backend')
+                            ? t('categories.backend')
+                            : deck.name.includes('fundamentals')
+                              ? t('categories.fundamentals')
+                              : deck.name.includes('devops')
+                                ? t('categories.devops')
+                                : t('categories.general')}
                       </span>
                     </div>
                   </div>
@@ -590,7 +612,9 @@ function Dashboard(): React.JSX.Element {
                   </div>
                 </div>
 
-                <p className="deck-description">{deck.description}</p>
+                <p className="deck-description">
+                  {t(deck.description, { ns: 'decks' })}
+                </p>
 
                 <div className="deck-stats">
                   <div className="deck-stat">
@@ -615,13 +639,13 @@ function Dashboard(): React.JSX.Element {
                     className="btn-primary btn-primary--full"
                   >
                     <span className="btn-icon">🚀</span>
-                    Start studie
+                    {t('recentActivity.study')}
                   </Link>
                   <Link
                     to={`/deck/${deck.id}`}
-                    className="btn-secondary btn-secondary--outline"
+                    className="btn-secondary--outline btn-secondary"
                   >
-                    Bekijk kaarten
+                    {t('recentActivity.viewDetails')}
                   </Link>
                 </div>
               </div>

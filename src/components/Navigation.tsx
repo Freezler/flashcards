@@ -1,9 +1,11 @@
 /* eslint-disable prettier/prettier */
 import { Fade as Hamburger } from 'hamburger-react'
 import React, { useCallback, useMemo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
 import { useAuth } from '../contexts/AuthContext'
 import { useCards } from '../contexts/CardContext'
+import { useTheme, getLogoThemeClass } from '../hooks'
 import ThemeToggle from './ThemeToggle'
 
 interface NavItem {
@@ -24,6 +26,8 @@ const Navigation = function Navigation(): React.JSX.Element {
   const { user, logout } = useAuth()
   const { state } = useCards()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const { t, i18n } = useTranslation('common')
+  const themeState = useTheme()
 
   // Use actual deck count from CardContext
   const totalDecks = state.decks.length
@@ -31,32 +35,36 @@ const Navigation = function Navigation(): React.JSX.Element {
   const navItems: NavItem[] = useMemo(
     () => [
       {
-        name: 'Dashboard',
+        name: t('navigation.dashboard'),
         path: '/',
         icon: '🏠',
         tooltip: 'Ga naar dashboard',
       },
       {
-        name: 'Mijn Decks',
+        name: t('navigation.decks'),
         path: '/decks',
         icon: '📚',
         badge: totalDecks,
         tooltip: `${totalDecks} decks beschikbaar`,
       },
       {
-        name: 'Nieuw Deck',
+        name: t('navigation.newDeck'),
         path: '/decks/new',
         icon: '➕',
         tooltip: 'Maak een nieuw deck aan',
       },
     ],
-    [totalDecks]
+    [totalDecks, t]
   )
 
   const handleLogout = useCallback(() => {
     logout()
     setIsMobileMenuOpen(false)
   }, [logout])
+
+  const handleLanguageChange = useCallback((language: string) => {
+    i18n.changeLanguage(language)
+  }, [i18n])
 
   // Generate breadcrumbs based on current path
   const breadcrumbs = useMemo((): BreadcrumbItem[] => {
@@ -100,11 +108,11 @@ const Navigation = function Navigation(): React.JSX.Element {
           <Link to="/" className="brand-link" aria-label="FlashCards - Ga naar dashboard">
             <img
               src="/brainBulb.svg"
-              className="nav-logo"
+              className={`nav-logo ${getLogoThemeClass(themeState)}`}
               alt=""
               role="presentation"
             />
-            <span className="nav-title">FlashCards</span>
+            <span className="nav-title">CogniCraft</span>
           </Link>
         </div>
 
@@ -133,10 +141,10 @@ const Navigation = function Navigation(): React.JSX.Element {
 
         <div className="nav-user desktop-nav">
           <div className="desktop-theme-toggle">
-            <ThemeToggle />
+            <ThemeToggle showAccentToggle={false} />
           </div>
           {user ? (
-            <div className="user-dropdown-hover">
+            <div className="user-dropdown">
               <div className="user-avatar-icon">
                 <span className="user-icon">👤</span>
               </div>
@@ -146,15 +154,96 @@ const Navigation = function Navigation(): React.JSX.Element {
                   <div className="user-email">{user.email}</div>
                 </div>
                 <hr className="user-menu-divider" />
+                <div className="language-selector">
+                  <div className="language-label">{t('user.selectLanguage')}</div>
+                  <div className="language-options">
+                    <button
+                      className={`language-option ${i18n.language === 'nl' ? 'active' : ''}`}
+                      onClick={() => handleLanguageChange('nl')}
+                      aria-label={t('languages.dutch')}
+                    >
+                      🇳🇱 NL
+                    </button>
+                    <button
+                      className={`language-option ${i18n.language === 'en' ? 'active' : ''}`}
+                      onClick={() => handleLanguageChange('en')}
+                      aria-label={t('languages.english')}
+                    >
+                      🇬🇧 EN
+                    </button>
+                    <button
+                      className={`language-option ${i18n.language === 'de' ? 'active' : ''}`}
+                      onClick={() => handleLanguageChange('de')}
+                      aria-label={t('languages.german')}
+                    >
+                      🇩🇪 DE
+                    </button>
+                    <button
+                      className={`language-option ${i18n.language === 'es' ? 'active' : ''}`}
+                      onClick={() => handleLanguageChange('es')}
+                      aria-label={t('languages.spanish')}
+                    >
+                      🇪🇸 ES
+                    </button>
+                  </div>
+                </div>
+                <hr className="user-menu-divider" />
                 <button className="logout-button" onClick={handleLogout}>
-                  🚪 Uitloggen
+                  🚪 {t('navigation.logout')}
                 </button>
               </div>
             </div>
           ) : (
-            <Link to="/login" className="btn-secondary">
-              Inloggen
-            </Link>
+            <div className="user-dropdown">
+              <div className="user-avatar-icon guest-user">
+                <span className="user-icon">👤</span>
+                <span className="guest-strike">🚫</span>
+              </div>
+              <div className="user-popover">
+                <div className="user-info guest-info">
+                  <div className="user-name">{t('auth.guestUser')}</div>
+                  <div className="user-email">{t('auth.notLoggedIn')}</div>
+                </div>
+                <hr className="user-menu-divider" />
+                <div className="language-selector">
+                  <div className="language-label">{t('user.selectLanguage')}</div>
+                  <div className="language-options">
+                    <button
+                      className={`language-option ${i18n.language === 'nl' ? 'active' : ''}`}
+                      onClick={() => handleLanguageChange('nl')}
+                      aria-label={t('languages.dutch')}
+                    >
+                      🇳🇱 NL
+                    </button>
+                    <button
+                      className={`language-option ${i18n.language === 'en' ? 'active' : ''}`}
+                      onClick={() => handleLanguageChange('en')}
+                      aria-label={t('languages.english')}
+                    >
+                      🇬🇧 EN
+                    </button>
+                    <button
+                      className={`language-option ${i18n.language === 'de' ? 'active' : ''}`}
+                      onClick={() => handleLanguageChange('de')}
+                      aria-label={t('languages.german')}
+                    >
+                      🇩🇪 DE
+                    </button>
+                    <button
+                      className={`language-option ${i18n.language === 'es' ? 'active' : ''}`}
+                      onClick={() => handleLanguageChange('es')}
+                      aria-label={t('languages.spanish')}
+                    >
+                      🇪🇸 ES
+                    </button>
+                  </div>
+                </div>
+                <hr className="user-menu-divider" />
+                <Link to="/login" className="login-button">
+                  🚪 {t('auth.signIn')}
+                </Link>
+              </div>
+            </div>
           )}
         </div>
 
@@ -194,34 +283,37 @@ const Navigation = function Navigation(): React.JSX.Element {
 
             <div className="mobile-menu-footer">
               <div className="mobile-user-section">
-                {user ? (
-                  <div className="mobile-user-info">
-                    <div className="user-avatar-mobile">
-                      <span className="user-icon">👤</span>
+                <div className="mobile-user-info">
+                  <div className={`user-avatar-mobile ${!user ? 'guest-user' : ''}`}>
+                    <span className="user-icon">👤</span>
+                    {!user && <span className="guest-strike">🚫</span>}
+                  </div>
+                  <div className="user-details">
+                    <div className="user-name">
+                      {user ? user.name : t('auth.guestUser')}
                     </div>
-                    <div className="user-details">
-                      <div className="user-name">{user.name}</div>
-                      <div className="user-email">{user.email}</div>
+                    <div className="user-email">
+                      {user ? user.email : t('auth.notLoggedIn')}
                     </div>
                   </div>
-                ) : null}
+                </div>
 
                 <div className="mobile-actions">
-                  <ThemeToggle />
+                  <ThemeToggle showAccentToggle={false} />
                   {user ? (
                     <button
                       className="logout-button mobile-logout"
                       onClick={handleLogout}
                     >
-                      🚪 Uitloggen
+                      🚪 {t('navigation.logout')}
                     </button>
                   ) : (
                     <Link
                       to="/login"
-                      className="btn-secondary"
+                      className="login-button"
                       onClick={() => setIsMobileMenuOpen(false)}
                     >
-                      Inloggen
+                      🚪 {t('auth.signIn')}
                     </Link>
                   )}
                 </div>

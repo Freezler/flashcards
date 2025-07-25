@@ -1,0 +1,209 @@
+{
+  "navigation": {
+    "dashboard": "Dashboard",
+    "decks": "Mijn Decks",
+    "newDeck": "Nieuw Deck",
+    "logout": "Uitloggen"
+  },
+  "languages": {
+    "dutch": "Nederlands",
+    "english": "English", 
+    "german": "Deutsch",
+    "spanish": "Español"
+  },
+  "user": {
+    "selectLanguage": "Taal selecteren"
+  },
+  "greetings": {
+    "morning": "Goedemorgen",
+    "afternoon": "Goedemiddag",
+    "evening": "Goedenavond"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcomeNew": "Welkom bij",
+    "welcomeBack": "Welkom terug bij",
+    "subtitleNew": "Klaar om je kennis te vergroten? Start vandaag met leren!",
+    "subtitleReturning": "Klaar om verder te gaan met leren? Zet je studie voort!",
+    "studyReminders": "Studie herinneringen",
+    "searchTitle": "🔍 Zoek in al je flashcards",
+    "searchSubtitle": "Vind snel de kaarten die je zoekt met intelligente fuzzy search",
+    "searchPlaceholder": "Zoek naar vraag, antwoord, categorie, moeilijkheidsgraad...",
+    "clearSearch": "Clear search",
+    "resultsFound": "resultaten gevonden",
+    "viewAllResults": "Bekijk alle resultaten →",
+    "noResultsTitle": "Geen resultaten gevonden voor",
+    "noResultsSuggestion": "Probeer andere zoektermen of controleer je spelling",
+    "recentSearches": "Recente zoekopdrachten",
+    "searchTips": "Zoektips",
+    "studyStatistics": "Studie statistieken"
+  },
+  "reminders": {
+    "overdue": "kaarten wachten op herhaling",
+    "streak": "Geweldig! {{days}} dagen op rij gestudeerd!",
+    "daily": "🎯 Tijd om te studeren! Start je dagelijkse sessie",
+    "goStudy": "Ga studeren →"
+  },
+  "searchTips": {
+    "fuzzyTitle": "Fuzzy search:",
+    "fuzzyDescription": "Kleine typfouten worden automatisch gecorrigeerd",
+    "categoriesTitle": "Categorieën:",
+    "categoriesDescription": "Zoek op \"grammatica\", \"geschiedenis\", \"geografie\"",
+    "difficultyTitle": "Moeilijkheid:",
+    "difficultyDescription": "Zoek op \"easy\", \"medium\", \"hard\", \"makkelijk\", of \"moeilijk\""
+  },
+  "stats": {
+    "decks": "Decks",
+    "allCollections": "Alle collecties",
+    "cards": "Kaarten", 
+    "totalAvailable": "Totaal beschikbaar",
+    "dayStreak": "Dag streak",
+    "startStreak": "Start je streak!",
+    "keepGoing": "Ga zo door!",
+    "fantastic": "Fantastisch! 🎉",
+    "hotStreak": "Hot streak!",
+    "toReview": "Te herhalen",
+    "allUpdated": "Alles bijgewerkt!",
+    "waitingForYou": "Wacht op jou",
+    "progressCards": "Voortgang kaarten collectie"
+  },
+  "quickActions": {
+    "title": "Snelle acties",
+    "subtitle": "Start direct met leren",
+    "quickStudy": "Snelle Studie",
+    "quickStudyDescription": "{{count}} kaarten klaar voor herhaling",
+    "urgent": "Urgent",
+    "newDeck": "Nieuw Deck",
+    "newDeckDescription": "Maak een nieuwe set kaarten om mee te leren",
+    "myDecks": "Mijn Decks",
+    "myDecksDescription": "Bekijk en beheer al je bestaande decks",
+    "progress": "Voortgang",
+    "progressDescription": "Analyseer je leerresultaten en prestaties"
+  },
+  "recentActivity": {
+    "title": "Beschikbare Decks",
+    "subtitle": "Kies een deck om mee te starten",
+    "cards": "kaarten",
+    "study": "Studeren",
+    "viewDetails": "Bekijk details"
+  },
+  "categories": {
+    "frontend": "⚛️ Frontend",
+    "backend": "🔧 Backend", 
+    "fundamentals": "🌐 Fundamenten",
+    "devops": "🚀 DevOps",
+    "general": "💻 Algemeen"
+  },
+  "actions": {
+    "startStudy": "Start study",
+    "beginStudyWith": "Begin studie met deze kaart",
+    "goToDecks": "Ga naar decks om te studeren",
+    "achievementBadge": "Prestatie badge: Hot streak! Je hebt {{days}} dagen op rij gestudeerd"
+  },
+  "decksPage": {
+    "title": "Mijn Decks",
+    "subtitle": "Beheer al je flashcard decks op één plek",
+    "actions": "Deck acties",
+    "createNew": "➕ Nieuw Deck Maken",
+    "createNewLabel": "Nieuw flashcard deck maken",
+    "noDecksTitle": "Geen decks gevonden",
+    "noDecksDescription": "Je hebt nog geen flashcard decks. Maak je eerste deck aan om te beginnen!",
+    "createFirst": "➕ Eerste Deck Maken",
+    "deckListTitle": "Beschikbare flashcard decks",
+    "cards": "kaarten",
+    "created": "Gemaakt:",
+    "reviewed": "bestudeerd",
+    "startStudy": "Start studie",
+    "viewCards": "Bekijk kaarten",
+    "deleteTitle": "Dit deck verwijderen",
+    "deleteConfirmTitle": "Deck verwijderen",
+    "deleteConfirmMessage": "Weet je zeker dat je dit deck wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
+    "deleteWarning": "Alle kaarten in dit deck worden permanent verwijderd.",
+    "cancel": "Annuleren",
+    "delete": "🗑️ Verwijderen"
+  },
+  "deckPage": {
+    "notFoundTitle": "Deck niet gevonden",
+    "notFoundMessage": "Het deck dat je zoekt bestaat niet of is verwijderd.",
+    "backToDecks": "Terug naar decks",
+    "deckInfo": "Deck informatie en acties",
+    "deckStats": "Deck statistieken",
+    "totalCards": "Totaal kaarten:",
+    "studiedCards": "Bestudeerd:",
+    "createdDate": "Gemaakt:",
+    "deckActions": "Deck acties",
+    "startStudy": "🎯 Start studie",
+    "startStudyLabel": "Start studie voor {{name}}",
+    "newCard": "➕ Nieuwe kaart",
+    "newCardLabel": "Nieuwe flashcard toevoegen",
+    "backToDecksList": "← Terug naar decks",
+    "backToDecksLabel": "Ga terug naar alle decks",
+    "cardsInDeck": "Flashcards in dit deck"
+  },
+  "auth": {
+    "signIn": "Inloggen",
+    "createAccount": "Account aanmaken",
+    "signInSubtitle": "Log in om verder te gaan met leren",
+    "createAccountSubtitle": "Maak een account aan om je voortgang op te slaan",
+    "nameLabel": "Naam",
+    "emailLabel": "E-mailadres",
+    "passwordLabel": "Wachtwoord",
+    "confirmPasswordLabel": "Bevestig wachtwoord",
+    "namePlaceholder": "Je naam",
+    "emailPlaceholder": "je@email.nl",
+    "passwordPlaceholder": "Je wachtwoord",
+    "passwordPlaceholderRegister": "Minimaal 6 karakters",
+    "confirmPasswordPlaceholder": "Herhaal je wachtwoord",
+    "emailRequired": "E-mail is verplicht",
+    "emailInvalidChars": "E-mail bevat niet-toegestane tekens",
+    "emailInvalid": "Ongeldig e-mailadres",
+    "passwordRequired": "Wachtwoord is verplicht",
+    "passwordInvalidChars": "Wachtwoord bevat niet-toegestane tekens",
+    "passwordMinLength": "Wachtwoord moet minimaal 6 karakters bevatten",
+    "confirmPasswordRequired": "Bevestig wachtwoord",
+    "tooManyAttempts": "Te veel inlogpogingen. Probeer over 5 minuten opnieuw.",
+    "invalidCredentials": "Ongeldig e-mailadres of wachtwoord",
+    "loginError": "Er is een fout opgetreden bij het inloggen",
+    "passwordMismatch": "Wachtwoorden komen niet overeen",
+    "registerError": "Er is een fout opgetreden bij het registreren",
+    "haveAccount": "Heb je al een account?",
+    "noAccount": "Nog geen account?",
+    "demoAccountTitle": "Demo account:",
+    "demoUser": "Demo Gebruiker",
+    "guestUser": "Gast",
+    "notLoggedIn": "Niet ingelogd"
+  },
+  "landing": {
+    "heroTitle": "Leer slimmer met",
+    "heroSubtitle": "Gebruik spaced repetition om effectiever te leren. Onthoud meer in minder tijd met onze intelligente flashcard app.",
+    "getStarted": "🚀 Gratis beginnen",
+    "learnMore": "📖 Meer info",
+    "whyTitle": "Waarom CogniCraft?",
+    "features": {
+      "spaced": {
+        "title": "Spaced Repetition",
+        "description": "Wetenschappelijk bewezen leeralgoritme voor optimaal geheugen"
+      },
+      "tracking": {
+        "title": "Voortgang Tracking",
+        "description": "Zie je leervooruitgang en identificeer zwakke punten"
+      },
+      "personalized": {
+        "title": "Gepersonaliseerd",
+        "description": "Intelligente aanpassing aan jouw leertempo en niveau"
+      },
+      "anywhere": {
+        "title": "Overal Beschikbaar",
+        "description": "Leer waar en wanneer je wilt, op elk apparaat"
+      }
+    },
+    "cta": {
+      "title": "Klaar om te beginnen?",
+      "description": "Maak gratis een account aan en start vandaag nog met effectief leren"
+    },
+    "footer": "© 2024 CogniCraft. Gemaakt met ❤️ voor betere leerresultaten."
+  },
+  "common": {
+    "match": "match"
+  }
+}

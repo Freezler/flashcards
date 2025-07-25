@@ -1,0 +1,209 @@
+{
+  "navigation": {
+    "dashboard": "Dashboard",
+    "decks": "Meine Decks",
+    "newDeck": "Neues Deck",
+    "logout": "Abmelden"
+  },
+  "languages": {
+    "dutch": "Nederlands",
+    "english": "English", 
+    "german": "Deutsch",
+    "spanish": "Español"
+  },
+  "user": {
+    "selectLanguage": "Sprache wählen"
+  },
+  "greetings": {
+    "morning": "Guten Morgen",
+    "afternoon": "Guten Tag",
+    "evening": "Guten Abend"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcomeNew": "Willkommen bei",
+    "welcomeBack": "Willkommen zurück bei",
+    "subtitleNew": "Bereit, Ihr Wissen zu erweitern? Beginnen Sie heute mit dem Lernen!",
+    "subtitleReturning": "Bereit, mit dem Lernen fortzufahren? Setzen Sie Ihr Studium fort!",
+    "studyReminders": "Lernerinnerungen",
+    "searchTitle": "🔍 Durchsuchen Sie alle Ihre Lernkarten",
+    "searchSubtitle": "Finden Sie schnell die Karten, die Sie suchen, mit intelligenter Fuzzy-Suche",
+    "searchPlaceholder": "Suche nach Frage, Antwort, Kategorie, Schwierigkeit...",
+    "clearSearch": "Suche löschen",
+    "resultsFound": "Ergebnisse gefunden",
+    "viewAllResults": "Alle Ergebnisse anzeigen →",
+    "noResultsTitle": "Keine Ergebnisse gefunden für",
+    "noResultsSuggestion": "Versuchen Sie andere Suchbegriffe oder überprüfen Sie Ihre Rechtschreibung",
+    "recentSearches": "Kürzliche Suchanfragen",
+    "searchTips": "Suchtipps",
+    "studyStatistics": "Lernstatistiken"
+  },
+  "reminders": {
+    "overdue": "Karten warten auf Wiederholung",
+    "streak": "Großartig! {{days}} Tage in Folge gelernt!",
+    "daily": "🎯 Zeit zu lernen! Starten Sie Ihre tägliche Session",
+    "goStudy": "Lernen gehen →"
+  },
+  "searchTips": {
+    "fuzzyTitle": "Fuzzy-Suche:",
+    "fuzzyDescription": "Kleine Tippfehler werden automatisch korrigiert",
+    "categoriesTitle": "Kategorien:",
+    "categoriesDescription": "Suchen Sie nach \"Grammatik\", \"Geschichte\", \"Geografie\"",
+    "difficultyTitle": "Schwierigkeit:",
+    "difficultyDescription": "Suchen Sie nach \"easy\", \"medium\", \"hard\""
+  },
+  "stats": {
+    "decks": "Decks",
+    "allCollections": "Alle Sammlungen",
+    "cards": "Karten", 
+    "totalAvailable": "Insgesamt verfügbar",
+    "dayStreak": "Tage-Streak",
+    "startStreak": "Starten Sie Ihren Streak!",
+    "keepGoing": "Weiter so!",
+    "fantastic": "Fantastisch! 🎉",
+    "hotStreak": "Heißer Streak!",
+    "toReview": "Zu wiederholen",
+    "allUpdated": "Alles auf dem neuesten Stand!",
+    "waitingForYou": "Wartet auf Sie",
+    "progressCards": "Kartensammlungsfortschritt"
+  },
+  "quickActions": {
+    "title": "Schnelle Aktionen",
+    "subtitle": "Sofort mit dem Lernen beginnen",
+    "quickStudy": "Schnelles Lernen",
+    "quickStudyDescription": "{{count}} Karten bereit zur Wiederholung",
+    "urgent": "Dringend",
+    "newDeck": "Neues Deck",
+    "newDeckDescription": "Erstellen Sie ein neues Set von Karten zum Lernen",
+    "myDecks": "Meine Decks",
+    "myDecksDescription": "Alle Ihre bestehenden Decks anzeigen und verwalten",
+    "progress": "Fortschritt",
+    "progressDescription": "Analysieren Sie Ihre Lernergebnisse und Leistung"
+  },
+  "recentActivity": {
+    "title": "Verfügbare Decks",
+    "subtitle": "Wählen Sie ein Deck zum Beginnen",
+    "cards": "Karten",
+    "study": "Lernen",
+    "viewDetails": "Details anzeigen"
+  },
+  "categories": {
+    "frontend": "⚛️ Frontend",
+    "backend": "🔧 Backend", 
+    "fundamentals": "🌐 Grundlagen",
+    "devops": "🚀 DevOps",
+    "general": "💻 Allgemein"
+  },
+  "actions": {
+    "startStudy": "Lernen starten",
+    "beginStudyWith": "Lernen mit dieser Karte beginnen",
+    "goToDecks": "Zu den Decks gehen zum Lernen",
+    "achievementBadge": "Erfolgs-Abzeichen: Heißer Streak! Sie haben {{days}} Tage in Folge gelernt"
+  },
+  "decksPage": {
+    "title": "Meine Decks",
+    "subtitle": "Verwalten Sie alle Ihre Lernkarten-Decks an einem Ort",
+    "actions": "Deck-Aktionen",
+    "createNew": "➕ Neues Deck erstellen",
+    "createNewLabel": "Neues Lernkarten-Deck erstellen",
+    "noDecksTitle": "Keine Decks gefunden",
+    "noDecksDescription": "Sie haben noch keine Lernkarten-Decks. Erstellen Sie Ihr erstes Deck, um zu beginnen!",
+    "createFirst": "➕ Erstes Deck erstellen",
+    "deckListTitle": "Verfügbare Lernkarten-Decks",
+    "cards": "Karten",
+    "created": "Erstellt:",
+    "reviewed": "gelernt",
+    "startStudy": "Lernen starten",
+    "viewCards": "Karten anzeigen",
+    "deleteTitle": "Dieses Deck löschen",
+    "deleteConfirmTitle": "Deck löschen",
+    "deleteConfirmMessage": "Sind Sie sicher, dass Sie dieses Deck löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.",
+    "deleteWarning": "Alle Karten in diesem Deck werden dauerhaft gelöscht.",
+    "cancel": "Abbrechen",
+    "delete": "🗑️ Löschen"
+  },
+  "deckPage": {
+    "notFoundTitle": "Deck nicht gefunden",
+    "notFoundMessage": "Das Deck, das Sie suchen, existiert nicht oder wurde gelöscht.",
+    "backToDecks": "Zurück zu den Decks",
+    "deckInfo": "Deck-Informationen und Aktionen",
+    "deckStats": "Deck-Statistiken",
+    "totalCards": "Gesamte Karten:",
+    "studiedCards": "Gelernt:",
+    "createdDate": "Erstellt:",
+    "deckActions": "Deck-Aktionen",
+    "startStudy": "🎯 Lernen starten",
+    "startStudyLabel": "Lernen für {{name}} starten",
+    "newCard": "➕ Neue Karte",
+    "newCardLabel": "Neue Lernkarte hinzufügen",
+    "backToDecksList": "← Zurück zu den Decks",
+    "backToDecksLabel": "Zurück zu allen Decks gehen",
+    "cardsInDeck": "Lernkarten in diesem Deck"
+  },
+  "auth": {
+    "signIn": "Anmelden",
+    "createAccount": "Konto erstellen",
+    "signInSubtitle": "Anmelden, um weiter zu lernen",
+    "createAccountSubtitle": "Erstellen Sie ein Konto, um Ihren Fortschritt zu speichern",
+    "nameLabel": "Name",
+    "emailLabel": "E-Mail",
+    "passwordLabel": "Passwort",
+    "confirmPasswordLabel": "Passwort bestätigen",
+    "namePlaceholder": "Ihr Name",
+    "emailPlaceholder": "ihre@email.de",
+    "passwordPlaceholder": "Ihr Passwort",
+    "passwordPlaceholderRegister": "Mindestens 6 Zeichen",
+    "confirmPasswordPlaceholder": "Passwort wiederholen",
+    "emailRequired": "E-Mail ist erforderlich",
+    "emailInvalidChars": "E-Mail enthält ungültige Zeichen",
+    "emailInvalid": "Ungültige E-Mail-Adresse",
+    "passwordRequired": "Passwort ist erforderlich",
+    "passwordInvalidChars": "Passwort enthält ungültige Zeichen",
+    "passwordMinLength": "Passwort muss mindestens 6 Zeichen haben",
+    "confirmPasswordRequired": "Passwort bestätigen",
+    "tooManyAttempts": "Zu viele Anmeldeversuche. Versuchen Sie es in 5 Minuten erneut.",
+    "invalidCredentials": "Ungültige E-Mail oder Passwort",
+    "loginError": "Ein Fehler ist beim Anmelden aufgetreten",
+    "passwordMismatch": "Passwörter stimmen nicht überein",
+    "registerError": "Ein Fehler ist bei der Registrierung aufgetreten",
+    "haveAccount": "Haben Sie bereits ein Konto?",
+    "noAccount": "Haben Sie noch kein Konto?",
+    "demoAccountTitle": "Demo-Konto:",
+    "demoUser": "Demo-Benutzer",
+    "guestUser": "Gast",
+    "notLoggedIn": "Nicht angemeldet"
+  },
+  "landing": {
+    "heroTitle": "Intelligenter lernen mit",
+    "heroSubtitle": "Nutzen Sie Spaced Repetition für effektiveres Lernen. Merken Sie sich mehr in weniger Zeit mit unserer intelligenten Lernkarten-App.",
+    "getStarted": "🚀 Kostenlos starten",
+    "learnMore": "📖 Mehr erfahren",
+    "whyTitle": "Warum CogniCraft?",
+    "features": {
+      "spaced": {
+        "title": "Spaced Repetition",
+        "description": "Wissenschaftlich bewiesener Lernalgorithmus für optimale Gedächtnisleistung"
+      },
+      "tracking": {
+        "title": "Fortschritt verfolgen",
+        "description": "Überwachen Sie Ihren Lernfortschritt und identifizieren Sie Schwachstellen"
+      },
+      "personalized": {
+        "title": "Personalisiert",
+        "description": "Intelligente Anpassung an Ihr Lerntempo und Niveau"
+      },
+      "anywhere": {
+        "title": "Überall verfügbar",
+        "description": "Lernen Sie wo und wann Sie wollen, auf jedem Gerät"
+      }
+    },
+    "cta": {
+      "title": "Bereit anzufangen?",
+      "description": "Erstellen Sie ein kostenloses Konto und beginnen Sie heute effektiv zu lernen"
+    },
+    "footer": "© 2024 CogniCraft. Mit ❤️ für bessere Lernergebnisse gemacht."
+  },
+  "common": {
+    "match": "Übereinstimmung"
+  }
+}

@@ -1,11 +1,13 @@
 import { useParams, Link } from 'react-router-dom'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useCards } from '../contexts/CardContext'
 import CardList from '../components/CardList'
 import CardForm from '../components/CardForm'
 import { FlashCard } from '../types'
 
 function DeckPage(): React.JSX.Element {
+  const { t } = useTranslation(['common', 'decks'])
   const { deckId } = useParams<{ deckId: string }>()
   const { getDeck, addCard } = useCards()
   const [showCreateForm, setShowCreateForm] = useState(false)
@@ -14,60 +16,100 @@ function DeckPage(): React.JSX.Element {
 
   if (!deck) {
     return (
-      <div className="dashboard-container">
-        <div className="error-message">
-          <h2>Deck niet gevonden</h2>
-          <p>Het deck dat je zoekt bestaat niet of is verwijderd.</p>
-          <Link to="/decks" className="btn-primary">
-            Terug naar decks
+      <main className="dashboard-container" role="main">
+        <section
+          className="error-message"
+          role="alert"
+          aria-labelledby="error-title"
+        >
+          <h1 id="error-title">{t('deckPage.notFoundTitle')}</h1>
+          <p>{t('deckPage.notFoundMessage')}</p>
+          <Link
+            to="/decks"
+            className="btn-primary"
+            aria-label={t('deckPage.backToDecksLabel')}
+          >
+            {t('deckPage.backToDecks')}
           </Link>
-        </div>
-      </div>
+        </section>
+      </main>
     )
   }
 
   return (
-    <div className="dashboard-container">
+    <main
+      className="dashboard-container"
+      role="main"
+      aria-labelledby="deck-title"
+    >
       <header className="dashboard-header">
-        <h1 className="dashboard-title">{deck.name}</h1>
-        <p className="dashboard-subtitle">{deck.description}</p>
+        <h1 id="deck-title" className="dashboard-title">
+          {t(deck.name, { ns: 'decks' })}
+        </h1>
+        <p className="dashboard-subtitle">
+          {t(deck.description, { ns: 'decks' })}
+        </p>
       </header>
 
-      <div className="deck-info">
-        <div className="deck-stats">
-          <div className="stat-item">
-            <span className="stat-label">Totaal kaarten:</span>
-            <span className="stat-value">{deck.totalCards}</span>
-          </div>
-          <div className="stat-item">
-            <span className="stat-label">Bestudeerd:</span>
-            <span className="stat-value">{deck.reviewedCards}</span>
-          </div>
-          <div className="stat-item">
-            <span className="stat-label">Gemaakt:</span>
-            <span className="stat-value">
-              {deck.createdAt.toLocaleDateString('nl-NL')}
-            </span>
-          </div>
-        </div>
+      <section className="deck-info" aria-labelledby="deck-info-title">
+        <h2 id="deck-info-title" className="sr-only">
+          {t('deckPage.deckInfo')}
+        </h2>
+        <aside className="deck-stats" aria-labelledby="stats-title">
+          <h3 id="stats-title" className="sr-only">
+            {t('deckPage.deckStats')}
+          </h3>
+          <dl className="stat-items">
+            <div className="stat-item">
+              <dt className="stat-label">{t('deckPage.totalCards')}</dt>
+              <dd className="stat-value">{deck.totalCards}</dd>
+            </div>
+            <div className="stat-item">
+              <dt className="stat-label">{t('deckPage.studiedCards')}</dt>
+              <dd className="stat-value">{deck.reviewedCards}</dd>
+            </div>
+            <div className="stat-item">
+              <dt className="stat-label">{t('deckPage.createdDate')}</dt>
+              <dd className="stat-value">
+                <time dateTime={deck.createdAt.toISOString()}>
+                  {deck.createdAt.toLocaleDateString()}
+                </time>
+              </dd>
+            </div>
+          </dl>
+        </aside>
 
-        <div className="deck-actions">
-          <Link to={`/deck/${deck.id}/study`} className="btn-primary">
-            🎯 Start studie
+        <nav className="deck-actions" aria-label={t('deckPage.deckActions')}>
+          <Link
+            to={`/deck/${deck.id}/study`}
+            className="btn-primary"
+            aria-label={t('deckPage.startStudyLabel', {
+              name: t(deck.name, { ns: 'decks' }),
+            })}
+          >
+            {t('deckPage.startStudy')}
           </Link>
           <button
             className="btn-primary"
             onClick={() => setShowCreateForm(true)}
+            aria-label={t('deckPage.newCardLabel')}
           >
-            ➕ Nieuwe kaart
+            {t('deckPage.newCard')}
           </button>
-          <Link to="/decks" className="btn-secondary">
-            ← Terug naar decks
+          <Link
+            to="/decks"
+            className="btn-secondary"
+            aria-label={t('deckPage.backToDecksLabel')}
+          >
+            {t('deckPage.backToDecksList')}
           </Link>
-        </div>
-      </div>
+        </nav>
+      </section>
 
-      <section className="cards-section">
+      <section className="cards-section" aria-labelledby="cards-title">
+        <h2 id="cards-title" className="sr-only">
+          {t('deckPage.cardsInDeck')}
+        </h2>
         <CardList deckId={deck.id} cards={deck.cards} />
       </section>
 
@@ -81,7 +123,7 @@ function DeckPage(): React.JSX.Element {
           isEditing={false}
         />
       )}
-    </div>
+    </main>
   )
 }
 
