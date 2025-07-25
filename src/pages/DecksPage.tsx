@@ -29,19 +29,23 @@ const DecksPage = React.memo(function DecksPage(): React.JSX.Element {
   }, [])
 
   return (
-    <div className="dashboard-container">
+    <main className="dashboard-container" role="main" aria-labelledby="decks-title">
       <header className="dashboard-header">
-        <h1 className="dashboard-title">Mijn Decks</h1>
+        <h1 id="decks-title" className="dashboard-title">Mijn Decks</h1>
         <p className="dashboard-subtitle">
           Beheer al je flashcard decks op één plek
         </p>
       </header>
 
-      <div className="page-actions-top">
-        <Link to="/decks/new" className="btn-primary">
+      <section className="page-actions-top" aria-label="Deck acties">
+        <Link 
+          to="/decks/new" 
+          className="btn-primary"
+          aria-label="Nieuw flashcard deck maken"
+        >
           ➕ Nieuw Deck Maken
         </Link>
-      </div>
+      </section>
 
       <LoadingBoundary loading={loading} error={error}>
         {decks.length === 0 ? (
@@ -56,9 +60,10 @@ const DecksPage = React.memo(function DecksPage(): React.JSX.Element {
             }}
           />
         ) : (
-          <div className="deck-grid">
+          <section className="deck-grid" aria-labelledby="deck-list-title">
+            <h2 id="deck-list-title" className="sr-only">Beschikbare flashcard decks</h2>
             {decks.map(deck => (
-              <div key={deck.id} className="deck-card">
+              <article key={deck.id} className="deck-card">
                 <div className="deck-header">
                   <h3 className="deck-title">{deck.name}</h3>
                   <span className="deck-count">{deck.totalCards} kaarten</span>
@@ -87,9 +92,9 @@ const DecksPage = React.memo(function DecksPage(): React.JSX.Element {
                     🗑️
                   </button>
                 </div>
-              </div>
+              </article>
             ))}
-          </div>
+          </section>
         )}
       </LoadingBoundary>
 
@@ -121,7 +126,7 @@ const DecksPage = React.memo(function DecksPage(): React.JSX.Element {
           </div>
         </>
       )}
-    </div>
+    </main>
   )
 })
 

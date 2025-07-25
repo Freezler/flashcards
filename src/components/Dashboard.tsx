@@ -252,7 +252,7 @@ function Dashboard(): React.JSX.Element {
 
                 <div className="search-results-grid">
                   {searchState.results.map((result, index) => (
-                    <div
+                    <article
                       key={`${result.item.id}-${index}`}
                       className="search-result-card"
                       onClick={() => handleCardSelect(result.item)}
@@ -293,7 +293,7 @@ function Dashboard(): React.JSX.Element {
                           📚
                         </button>
                       </div>
-                    </div>
+                    </article>
                   ))}
                 </div>
               </>
@@ -331,31 +331,32 @@ function Dashboard(): React.JSX.Element {
 
         {/* Search Tips */}
         {!searchState.hasSearched && searchHistory.length === 0 && (
-          <div className="search-tips">
+          <aside className="search-tips" aria-labelledby="search-tips-title">
+            <h3 id="search-tips-title" className="sr-only">Zoektips</h3>
             <div className="search-tips-grid">
-              <div className="search-tip">
-                <span className="search-tip-icon">💡</span>
+              <article className="search-tip">
+                <span className="search-tip-icon" aria-hidden="true">💡</span>
                 <div>
-                  <strong>Fuzzy search:</strong>
+                  <h4>Fuzzy search:</h4>
                   <p>Kleine typfouten worden automatisch gecorrigeerd</p>
                 </div>
-              </div>
-              <div className="search-tip">
-                <span className="search-tip-icon">🎯</span>
+              </article>
+              <article className="search-tip">
+                <span className="search-tip-icon" aria-hidden="true">🎯</span>
                 <div>
-                  <strong>Categorieën:</strong>
+                  <h4>Categorieën:</h4>
                   <p>Zoek op "grammatica", "geschiedenis", "geografie"</p>
                 </div>
-              </div>
-              <div className="search-tip">
-                <span className="search-tip-icon">⚡</span>
+              </article>
+              <article className="search-tip">
+                <span className="search-tip-icon" aria-hidden="true">⚡</span>
                 <div>
-                  <strong>Moeilijkheid:</strong>
+                  <h4>Moeilijkheid:</h4>
                   <p>Zoek op "easy", "medium", "hard", "makkelijk", of "moeilijk"</p>
                 </div>
-              </div>
+              </article>
             </div>
-          </div>
+          </aside>
         )}
       </section>
 

@@ -540,6 +540,7 @@ html {
   scroll-behavior: smooth;
   overflow-x: hidden;
   height: 100%;
+  background: var(--surface-1);
   user-select: none;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -1810,7 +1811,7 @@ button:focus-visible {
 .main-content {
   flex: 1;
   padding: var(--space-xl) var(--space-s) var(--space-s);
-  background: var(--surface-2);
+  background: transparent;
   min-height: 0;
 }
 

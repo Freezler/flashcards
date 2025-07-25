@@ -14,60 +14,76 @@ function DeckPage(): React.JSX.Element {
 
   if (!deck) {
     return (
-      <div className="dashboard-container">
-        <div className="error-message">
-          <h2>Deck niet gevonden</h2>
+      <main className="dashboard-container" role="main">
+        <section className="error-message" role="alert" aria-labelledby="error-title">
+          <h1 id="error-title">Deck niet gevonden</h1>
           <p>Het deck dat je zoekt bestaat niet of is verwijderd.</p>
-          <Link to="/decks" className="btn-primary">
+          <Link to="/decks" className="btn-primary" aria-label="Ga terug naar alle decks">
             Terug naar decks
           </Link>
-        </div>
-      </div>
+        </section>
+      </main>
     )
   }
 
   return (
-    <div className="dashboard-container">
+    <main className="dashboard-container" role="main" aria-labelledby="deck-title">
       <header className="dashboard-header">
-        <h1 className="dashboard-title">{deck.name}</h1>
+        <h1 id="deck-title" className="dashboard-title">{deck.name}</h1>
         <p className="dashboard-subtitle">{deck.description}</p>
       </header>
 
-      <div className="deck-info">
-        <div className="deck-stats">
-          <div className="stat-item">
-            <span className="stat-label">Totaal kaarten:</span>
-            <span className="stat-value">{deck.totalCards}</span>
-          </div>
-          <div className="stat-item">
-            <span className="stat-label">Bestudeerd:</span>
-            <span className="stat-value">{deck.reviewedCards}</span>
-          </div>
-          <div className="stat-item">
-            <span className="stat-label">Gemaakt:</span>
-            <span className="stat-value">
-              {deck.createdAt.toLocaleDateString('nl-NL')}
-            </span>
-          </div>
-        </div>
+      <section className="deck-info" aria-labelledby="deck-info-title">
+        <h2 id="deck-info-title" className="sr-only">Deck informatie en acties</h2>
+        <aside className="deck-stats" aria-labelledby="stats-title">
+          <h3 id="stats-title" className="sr-only">Deck statistieken</h3>
+          <dl className="stat-items">
+            <div className="stat-item">
+              <dt className="stat-label">Totaal kaarten:</dt>
+              <dd className="stat-value">{deck.totalCards}</dd>
+            </div>
+            <div className="stat-item">
+              <dt className="stat-label">Bestudeerd:</dt>
+              <dd className="stat-value">{deck.reviewedCards}</dd>
+            </div>
+            <div className="stat-item">
+              <dt className="stat-label">Gemaakt:</dt>
+              <dd className="stat-value">
+                <time dateTime={deck.createdAt.toISOString()}>
+                  {deck.createdAt.toLocaleDateString('nl-NL')}
+                </time>
+              </dd>
+            </div>
+          </dl>
+        </aside>
 
-        <div className="deck-actions">
-          <Link to={`/deck/${deck.id}/study`} className="btn-primary">
+        <nav className="deck-actions" aria-label="Deck acties">
+          <Link 
+            to={`/deck/${deck.id}/study`} 
+            className="btn-primary"
+            aria-label={`Start studie voor ${deck.name}`}
+          >
             🎯 Start studie
           </Link>
           <button
             className="btn-primary"
             onClick={() => setShowCreateForm(true)}
+            aria-label="Nieuwe flashcard toevoegen"
           >
             ➕ Nieuwe kaart
           </button>
-          <Link to="/decks" className="btn-secondary">
+          <Link 
+            to="/decks" 
+            className="btn-secondary"
+            aria-label="Ga terug naar alle decks"
+          >
             ← Terug naar decks
           </Link>
-        </div>
-      </div>
+        </nav>
+      </section>
 
-      <section className="cards-section">
+      <section className="cards-section" aria-labelledby="cards-title">
+        <h2 id="cards-title" className="sr-only">Flashcards in dit deck</h2>
         <CardList deckId={deck.id} cards={deck.cards} />
       </section>
 
@@ -81,7 +97,7 @@ function DeckPage(): React.JSX.Element {
           isEditing={false}
         />
       )}
-    </div>
+    </main>
   )
 }
 
