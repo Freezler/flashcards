@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import { FlashCard as FlashCardType, DifficultyLevel } from '../types'
 
 interface FlashCardProps {
@@ -21,6 +22,7 @@ const FlashCard = function FlashCard({
   enableSound = false,
   showStats = false,
 }: FlashCardProps): React.JSX.Element {
+  const { t } = useTranslation(['common', 'decks'])
   const [isFlipped, setIsFlipped] = useState(false)
   const [isRevealing, setIsRevealing] = useState(false)
   const [isTransitioning, setIsTransitioning] = useState(false)
@@ -149,7 +151,7 @@ const FlashCard = function FlashCard({
           handleFlip()
         }
       }}
-      aria-label={`Flashcard vraag: ${card.front}. ${isFlipped ? 'Antwoord: ' + card.back + '. ' : ''}Druk op Enter of spatiebalk om ${isFlipped ? 'terug te draaien' : 'het antwoord te zien'}.`}
+      aria-label={`Flashcard vraag: ${t(card.front, { ns: 'decks' })}. ${isFlipped ? 'Antwoord: ' + t(card.back, { ns: 'decks' }) + '. ' : ''}Druk op Enter of spatiebalk om ${isFlipped ? 'terug te draaien' : 'het antwoord te zien'}.`}
       aria-live="polite"
       aria-expanded={isFlipped}
     >
@@ -179,7 +181,7 @@ const FlashCard = function FlashCard({
 
           <main className="flashcard__content">
             <h3 className="flashcard__question" id={`question-${card.id}`}>
-              {card.front}
+              {t(card.front, { ns: 'decks' })}
             </h3>
           </main>
 
@@ -279,7 +281,7 @@ const FlashCard = function FlashCard({
 
           <main className="flashcard__content">
             <h3 className="flashcard__answer" id={`answer-${card.id}`}>
-              {card.back}
+              {t(card.back, { ns: 'decks' })}
             </h3>
           </main>
 

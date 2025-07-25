@@ -1,0 +1,186 @@
+{
+  "frontend": {
+    "name": "Frontend Ontwikkeling",
+    "description": "Beheers moderne frontend technologieën zoals React, JavaScript, CSS en TypeScript",
+    "cards": {
+      "react-basics": {
+        "front": "Wat is React?",
+        "back": "React is een JavaScript-bibliotheek voor het bouwen van gebruikersinterfaces, ontwikkeld door Facebook. Het gebruikt een component-gebaseerde architectuur en virtual DOM voor efficiënte rendering."
+      },
+      "js-variables": {
+        "front": "Wat is het verschil tussen let, const en var in JavaScript?",
+        "back": "var: functie-scoped, gehoist, kan opnieuw gedeclareerd worden. let: blok-scoped, gehoist maar niet geïnitialiseerd, kan niet opnieuw gedeclareerd worden. const: blok-scoped, moet geïnitialiseerd worden, onveranderlijke referentie."
+      },
+      "css-grid": {
+        "front": "Wat is CSS Grid?",
+        "back": "CSS Grid is een 2-dimensionaal layout systeem dat complexe layouts met rijen en kolommen mogelijk maakt. Het biedt precieze controle over item plaatsing en grootte."
+      },
+      "virtual-dom": {
+        "front": "Wat is de Virtual DOM?",
+        "back": "De Virtual DOM is een JavaScript representatie van de werkelijke DOM. React gebruikt het om rendering te optimaliseren door wijzigingen te vergelijken en alleen te updaten wat gewijzigd moet worden."
+      },
+      "typescript": {
+        "front": "Wat is TypeScript?",
+        "back": "TypeScript is een sterk getypeerde superset van JavaScript die compileert naar gewone JavaScript. Het voegt statische type-definities toe en helpt fouten tijdens ontwikkeling op te vangen."
+      },
+      "js-equality": {
+        "front": "Wat is het verschil tussen == en === in JavaScript?",
+        "back": "== voert type-conversie uit en vergelijkt waarden na conversie. === voert strikte vergelijking uit zonder type-conversie, vergelijkt zowel waarde als type."
+      },
+      "css-flexbox": {
+        "front": "Wat is CSS Flexbox?",
+        "back": "Flexbox is een 1-dimensionale layout methode die ruimte verdeelt langs een enkele as. Het is ideaal voor component layouts en het uitlijnen van items in containers."
+      },
+      "react-hooks": {
+        "front": "Wat zijn React Hooks?",
+        "back": "React Hooks zijn functies die je state en lifecycle functies laten gebruiken in functionele componenten. Veelgebruikte hooks zijn useState, useEffect en useContext."
+      },
+      "null-undefined": {
+        "front": "Wat is het verschil tussen null en undefined?",
+        "back": "undefined: variabele gedeclareerd maar geen waarde toegewezen. null: opzettelijke afwezigheid van waarde, expliciet toegewezen. typeof null is \"object\" (JavaScript eigenaardigheid)."
+      },
+      "event-delegation": {
+        "front": "Wat is event delegation in JavaScript?",
+        "back": "Event delegation gebruikt event bubbling om events op een parent niveau af te handelen in plaats van individuele elementen. Het is efficiënt voor dynamische content en vermindert geheugengebruik."
+      },
+      "css-box-model": {
+        "front": "Wat is het CSS Box Model?",
+        "back": "Het box model bestaat uit: content (binnenste), padding, border en margin (buitenste). Totale breedte = content + padding + border + margin."
+      },
+      "js-closure": {
+        "front": "Wat is een closure in JavaScript?",
+        "back": "Een closure is een functie die toegang heeft tot variabelen in zijn buitenste scope, zelfs nadat de buitenste functie is geretourneerd. Het \"sluit\" variabelen in van zijn lexicale omgeving."
+      }
+    }
+  },
+  "backend": {
+    "name": "Backend Ontwikkeling",
+    "description": "Leer server-side ontwikkeling met APIs, databases, authenticatie en Node.js",
+    "cards": {
+      "rest-api": {
+        "front": "Wat is een REST API?",
+        "back": "REST (Representational State Transfer) is een architecturale stijl voor webservices die HTTP-methoden (GET, POST, PUT, DELETE) en stateless communicatie gebruikt."
+      },
+      "sql-nosql": {
+        "front": "Wat is het verschil tussen SQL en NoSQL databases?",
+        "back": "SQL: gestructureerd, relationeel, ACID compliance, vast schema. NoSQL: flexibel schema, horizontale schaalbaarheid, document/key-value/graph structuren, eventuele consistentie."
+      },
+      "nodejs": {
+        "front": "Wat is Node.js?",
+        "back": "Node.js is een JavaScript runtime gebouwd op Chrome's V8 engine die JavaScript op servers laat draaien. Het is event-driven en non-blocking voor schaalbare applicaties."
+      },
+      "http-status": {
+        "front": "Wat zijn HTTP status codes?",
+        "back": "1xx: Informatie, 2xx: Succes (200 OK), 3xx: Omleiding (301 Moved), 4xx: Client Fout (404 Not Found), 5xx: Server Fout (500 Internal Error)."
+      },
+      "middleware": {
+        "front": "Wat is middleware in Express.js?",
+        "back": "Middleware zijn functies die uitgevoerd worden tijdens de request-response cyclus. Ze hebben toegang tot req, res en next() functie. Gebruikt voor authenticatie, logging, parsing, etc."
+      },
+      "auth-authz": {
+        "front": "Wat is authenticatie versus autorisatie?",
+        "back": "Authenticatie: verifiëren wie je bent (login gegevens). Autorisatie: verifiëren waartoe je toegang hebt (permissies). Authenticatie komt voor autorisatie."
+      },
+      "jwt": {
+        "front": "Wat is een JWT token?",
+        "back": "JSON Web Token is een compact, URL-veilig token formaat voor veilige informatie overdracht. Bevat header, payload en signature. Stateless en zelfvoorzienend."
+      },
+      "normalization": {
+        "front": "Wat is database normalisatie?",
+        "back": "Proces van het organiseren van data om redundantie te verminderen en integriteit te verbeteren. 1NF: atomische waarden, 2NF: geen partiële afhankelijkheden, 3NF: geen transitieve afhankelijkheden."
+      },
+      "put-patch": {
+        "front": "Wat is het verschil tussen PUT en PATCH?",
+        "back": "PUT: vervangt volledige resource (idempotent), stuurt complete representatie. PATCH: gedeeltelijke update (mogelijk niet idempotent), stuurt alleen wijzigingen."
+      },
+      "cors": {
+        "front": "Wat is CORS?",
+        "back": "Cross-Origin Resource Sharing staat webpagina's toe om resources van verschillende domeinen te benaderen. Browsers handhaven same-origin policy; CORS headers maken gecontroleerde toegang mogelijk."
+      }
+    }
+  },
+  "fundamentals": {
+    "name": "Webontwikkeling Fundamenten",
+    "description": "Essentiële webontwikkeling concepten zoals HTTP, Git, responsive design en webstandaarden",
+    "cards": {
+      "git": {
+        "front": "Wat is Git?",
+        "back": "Git is een gedistribueerd versiebeheersysteem dat wijzigingen in broncode bijhoudt. Het maakt samenwerking, branching, merging mogelijk en houdt projectgeschiedenis bij."
+      },
+      "get-post": {
+        "front": "Wat is het verschil tussen GET en POST requests?",
+        "back": "GET: haalt data op, parameters in URL, cacheable, idempotent. POST: stuurt data, parameters in body, niet cacheable, kan server state wijzigen."
+      },
+      "https": {
+        "front": "Wat is HTTPS?",
+        "back": "HTTPS (HTTP Secure) is HTTP met SSL/TLS encryptie. Het biedt authenticatie, data integriteit en vertrouwelijkheid tussen client en server."
+      },
+      "responsive": {
+        "front": "Wat is responsive web design?",
+        "back": "Design benadering die webpagina's goed laat renderen op verschillende devices en schermgroottes met behulp van flexibele layouts, afbeeldingen en CSS media queries."
+      },
+      "storage": {
+        "front": "Wat is het verschil tussen cookies en localStorage?",
+        "back": "Cookies: meegestuurd met HTTP requests, 4KB limiet, heeft vervaldatum. localStorage: alleen client-side, 5-10MB limiet, blijft bestaan tot gewist, geen vervaldatum."
+      },
+      "cdn": {
+        "front": "Wat is een CDN?",
+        "back": "Content Delivery Network distribueert content over meerdere geografische servers om latency te verminderen, laadtijden te verbeteren en redundantie te bieden."
+      },
+      "semantic-html": {
+        "front": "Wat is semantische HTML?",
+        "back": "HTML die betekenisvolle elementen gebruikt om content structuur te beschrijven (header, nav, main, article, section, aside, footer) voor betere toegankelijkheid en SEO."
+      },
+      "rendering": {
+        "front": "Wat is het verschil tussen client-side en server-side rendering?",
+        "back": "Client-side: JavaScript rendert content in browser, snellere navigatie, SEO uitdagingen. Server-side: HTML gegenereerd op server, betere SEO, langzamere navigatie."
+      },
+      "pwa": {
+        "front": "Wat is een Progressive Web App (PWA)?",
+        "back": "Webapplicatie die moderne web mogelijkheden gebruikt om een native app-achtige ervaring te bieden. Features: offline ondersteuning, push notificaties, installeerbaar."
+      },
+      "accessibility": {
+        "front": "Wat is web toegankelijkheid (a11y)?",
+        "back": "Praktijk van het maken van websites bruikbaar voor mensen met beperkingen. Omvat juiste HTML semantiek, ARIA labels, toetsenbord navigatie en screen reader ondersteuning."
+      }
+    }
+  },
+  "devops": {
+    "name": "DevOps & Tools",
+    "description": "Ontwikkeltools en DevOps praktijken zoals Docker, CI/CD, build tools en deployment",
+    "cards": {
+      "docker": {
+        "front": "Wat is Docker?",
+        "back": "Docker is een containerisatie platform dat applicaties en afhankelijkheden verpakt in lichtgewicht, draagbare containers die consistent draaien over omgevingen."
+      },
+      "cicd": {
+        "front": "Wat is CI/CD?",
+        "back": "Continuous Integration/Continuous Deployment. CI: geautomatiseerd testen wanneer code gepusht wordt. CD: geautomatiseerde deployment naar productie na succesvolle CI."
+      },
+      "webpack": {
+        "front": "Wat is webpack?",
+        "back": "Webpack is een module bundler die modules met afhankelijkheden neemt en statische assets genereert. Het handelt JS, CSS, afbeeldingen en andere assets af."
+      },
+      "npm": {
+        "front": "Wat is npm?",
+        "back": "Node Package Manager is de standaard package manager voor Node.js. Het beheert afhankelijkheden, scripts en het publiceren van packages naar het npm registry."
+      },
+      "npm-install": {
+        "front": "Wat is het verschil tussen npm install en npm ci?",
+        "back": "npm install: leest package.json, update package-lock.json, installeert afhankelijkheden. npm ci: leest package-lock.json exact, sneller, voor productie builds."
+      },
+      "kubernetes": {
+        "front": "Wat is Kubernetes?",
+        "back": "Kubernetes is een container orchestratie platform dat deployment, scaling en beheer van gecontaineriseerde applicaties over clusters automatiseert."
+      },
+      "env-vars": {
+        "front": "Wat is een environment variable?",
+        "back": "Externe configuratiewaarden opgeslagen buiten de code. Gebruikt voor API keys, database URLs en instellingen die wijzigen tussen omgevingen (dev/prod)."
+      },
+      "load-balancing": {
+        "front": "Wat is load balancing?",
+        "back": "Het verdelen van inkomende requests over meerdere servers om overbelasting te voorkomen, responstijden te verbeteren en redundantie te bieden voor hoge beschikbaarheid."
+      }
+    }
+  }
+}

@@ -1,0 +1,209 @@
+{
+  "navigation": {
+    "dashboard": "Dashboard",
+    "decks": "Mis Mazos",
+    "newDeck": "Nuevo Mazo",
+    "logout": "Cerrar Sesión"
+  },
+  "languages": {
+    "dutch": "Nederlands",
+    "english": "English", 
+    "german": "Deutsch",
+    "spanish": "Español"
+  },
+  "user": {
+    "selectLanguage": "Seleccionar Idioma"
+  },
+  "greetings": {
+    "morning": "Buenos días",
+    "afternoon": "Buenas tardes",
+    "evening": "Buenas noches"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "welcomeNew": "Bienvenido a",
+    "welcomeBack": "Bienvenido de nuevo a",
+    "subtitleNew": "¿Listo para expandir tu conocimiento? ¡Comienza a aprender hoy!",
+    "subtitleReturning": "¿Listo para continuar aprendiendo? ¡Continúa con tus estudios!",
+    "studyReminders": "Recordatorios de estudio",
+    "searchTitle": "🔍 Busca en todas tus tarjetas",
+    "searchSubtitle": "Encuentra rápidamente las cartas que buscas con búsqueda inteligente difusa",
+    "searchPlaceholder": "Buscar por pregunta, respuesta, categoría, dificultad...",
+    "clearSearch": "Limpiar búsqueda",
+    "resultsFound": "resultados encontrados",
+    "viewAllResults": "Ver todos los resultados →",
+    "noResultsTitle": "No se encontraron resultados para",
+    "noResultsSuggestion": "Prueba otros términos de búsqueda o verifica tu ortografía",
+    "recentSearches": "Búsquedas recientes",
+    "searchTips": "Consejos de búsqueda",
+    "studyStatistics": "Estadísticas de estudio"
+  },
+  "reminders": {
+    "overdue": "cartas esperando revisión",
+    "streak": "¡Genial! ¡{{days}} días estudiados seguidos!",
+    "daily": "🎯 ¡Hora de estudiar! Comienza tu sesión diaria",
+    "goStudy": "Ir a estudiar →"
+  },
+  "searchTips": {
+    "fuzzyTitle": "Búsqueda difusa:",
+    "fuzzyDescription": "Los pequeños errores tipográficos se corrigen automáticamente",
+    "categoriesTitle": "Categorías:",
+    "categoriesDescription": "Busca por \"gramática\", \"historia\", \"geografía\"",
+    "difficultyTitle": "Dificultad:",
+    "difficultyDescription": "Busca por \"easy\", \"medium\", \"hard\""
+  },
+  "stats": {
+    "decks": "Mazos",
+    "allCollections": "Todas las colecciones",
+    "cards": "Cartas", 
+    "totalAvailable": "Total disponible",
+    "dayStreak": "Racha de días",
+    "startStreak": "¡Comienza tu racha!",
+    "keepGoing": "¡Sigue así!",
+    "fantastic": "¡Fantástico! 🎉",
+    "hotStreak": "¡Racha caliente!",
+    "toReview": "Para revisar",
+    "allUpdated": "¡Todo actualizado!",
+    "waitingForYou": "Esperándote",
+    "progressCards": "Progreso de colección de cartas"
+  },
+  "quickActions": {
+    "title": "Acciones rápidas",
+    "subtitle": "Comienza a aprender de inmediato",
+    "quickStudy": "Estudio Rápido",
+    "quickStudyDescription": "{{count}} cartas listas para revisar",
+    "urgent": "Urgente",
+    "newDeck": "Nuevo Mazo",
+    "newDeckDescription": "Crea un nuevo conjunto de cartas para estudiar",
+    "myDecks": "Mis Mazos",
+    "myDecksDescription": "Ver y gestionar todos tus mazos existentes",
+    "progress": "Progreso",
+    "progressDescription": "Analiza tus resultados de aprendizaje y rendimiento"
+  },
+  "recentActivity": {
+    "title": "Mazos Disponibles",
+    "subtitle": "Elige un mazo para comenzar",
+    "cards": "cartas",
+    "study": "Estudiar",
+    "viewDetails": "Ver detalles"
+  },
+  "categories": {
+    "frontend": "⚛️ Frontend",
+    "backend": "🔧 Backend", 
+    "fundamentals": "🌐 Fundamentos",
+    "devops": "🚀 DevOps",
+    "general": "💻 General"
+  },
+  "actions": {
+    "startStudy": "Comenzar estudio",
+    "beginStudyWith": "Comenzar estudio con esta carta",
+    "goToDecks": "Ir a mazos para estudiar",
+    "achievementBadge": "Insignia de logro: ¡Racha caliente! Has estudiado {{days}} días seguidos"
+  },
+  "decksPage": {
+    "title": "Mis Mazos",
+    "subtitle": "Gestiona todos tus mazos de tarjetas en un solo lugar",
+    "actions": "Acciones de mazo",
+    "createNew": "➕ Crear Nuevo Mazo",
+    "createNewLabel": "Crear nuevo mazo de tarjetas",
+    "noDecksTitle": "No se encontraron mazos",
+    "noDecksDescription": "Aún no tienes mazos de tarjetas. ¡Crea tu primer mazo para comenzar!",
+    "createFirst": "➕ Crear Primer Mazo",
+    "deckListTitle": "Mazos de tarjetas disponibles",
+    "cards": "cartas",
+    "created": "Creado:",
+    "reviewed": "estudiado",
+    "startStudy": "Comenzar estudio",
+    "viewCards": "Ver cartas",
+    "deleteTitle": "Eliminar este mazo",
+    "deleteConfirmTitle": "Eliminar Mazo",
+    "deleteConfirmMessage": "¿Estás seguro de que quieres eliminar este mazo? Esta acción no se puede deshacer.",
+    "deleteWarning": "Todas las cartas en este mazo se eliminarán permanentemente.",
+    "cancel": "Cancelar",
+    "delete": "🗑️ Eliminar"
+  },
+  "deckPage": {
+    "notFoundTitle": "Mazo no encontrado",
+    "notFoundMessage": "El mazo que buscas no existe o ha sido eliminado.",
+    "backToDecks": "Volver a los mazos",
+    "deckInfo": "Información y acciones del mazo",
+    "deckStats": "Estadísticas del mazo",
+    "totalCards": "Total de cartas:",
+    "studiedCards": "Estudiado:",
+    "createdDate": "Creado:",
+    "deckActions": "Acciones del mazo",
+    "startStudy": "🎯 Comenzar estudio",
+    "startStudyLabel": "Comenzar estudio para {{name}}",
+    "newCard": "➕ Nueva carta",
+    "newCardLabel": "Agregar nueva tarjeta",
+    "backToDecksList": "← Volver a los mazos",
+    "backToDecksLabel": "Volver a todos los mazos",
+    "cardsInDeck": "Tarjetas en este mazo"
+  },
+  "auth": {
+    "signIn": "Iniciar Sesión",
+    "createAccount": "Crear Cuenta",
+    "signInSubtitle": "Inicia sesión para continuar aprendiendo",
+    "createAccountSubtitle": "Crea una cuenta para guardar tu progreso",
+    "nameLabel": "Nombre",
+    "emailLabel": "Correo",
+    "passwordLabel": "Contraseña",
+    "confirmPasswordLabel": "Confirmar Contraseña",
+    "namePlaceholder": "Tu nombre",
+    "emailPlaceholder": "tu@email.es",
+    "passwordPlaceholder": "Tu contraseña",
+    "passwordPlaceholderRegister": "Al menos 6 caracteres",
+    "confirmPasswordPlaceholder": "Repite tu contraseña",
+    "emailRequired": "El correo es requerido",
+    "emailInvalidChars": "El correo contiene caracteres inválidos",
+    "emailInvalid": "Dirección de correo inválida",
+    "passwordRequired": "La contraseña es requerida",
+    "passwordInvalidChars": "La contraseña contiene caracteres inválidos",
+    "passwordMinLength": "La contraseña debe tener al menos 6 caracteres",
+    "confirmPasswordRequired": "Confirmar contraseña",
+    "tooManyAttempts": "Demasiados intentos de inicio de sesión. Intenta en 5 minutos.",
+    "invalidCredentials": "Correo o contraseña inválidos",
+    "loginError": "Ocurrió un error durante el inicio de sesión",
+    "passwordMismatch": "Las contraseñas no coinciden",
+    "registerError": "Ocurrió un error durante el registro",
+    "haveAccount": "¿Ya tienes una cuenta?",
+    "noAccount": "¿No tienes una cuenta?",
+    "demoAccountTitle": "Cuenta demo:",
+    "demoUser": "Usuario Demo",
+    "guestUser": "Invitado",
+    "notLoggedIn": "No conectado"
+  },
+  "landing": {
+    "heroTitle": "Aprende más inteligentemente con",
+    "heroSubtitle": "Usa repetición espaciada para aprender más efectivamente. Recuerda más en menos tiempo con nuestra app inteligente de tarjetas de estudio.",
+    "getStarted": "🚀 Empezar Gratis",
+    "learnMore": "📖 Más Información",
+    "whyTitle": "¿Por qué CogniCraft?",
+    "features": {
+      "spaced": {
+        "title": "Repetición Espaciada",
+        "description": "Algoritmo de aprendizaje científicamente probado para retención óptima de memoria"
+      },
+      "tracking": {
+        "title": "Seguimiento de Progreso",
+        "description": "Monitorea tu progreso de aprendizaje e identifica puntos débiles"
+      },
+      "personalized": {
+        "title": "Personalizado",
+        "description": "Adaptación inteligente a tu ritmo y nivel de aprendizaje"
+      },
+      "anywhere": {
+        "title": "Disponible en Cualquier Lugar",
+        "description": "Aprende donde y cuando quieras, en cualquier dispositivo"
+      }
+    },
+    "cta": {
+      "title": "¿Listo para empezar?",
+      "description": "Crea una cuenta gratuita y comienza a aprender efectivamente hoy"
+    },
+    "footer": "© 2024 CogniCraft. Hecho con ❤️ para mejores resultados de aprendizaje."
+  },
+  "common": {
+    "match": "coincidencia"
+  }
+}

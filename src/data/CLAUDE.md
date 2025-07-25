@@ -1,79 +1,88 @@
-# Nederlandse Test Data Context
+# Web Development Test Data Context
 
-## Overzicht
+## Overview
 
-Deze map bevat Nederlandse voorbeelddata voor ontwikkeling en testen. Alle data gebruikt de TypeScript interfaces gedefinieerd in `../types/`.
+This directory contains web development example data for development and testing. All data uses TypeScript interfaces defined in `../types/`.
 
-## Huidige Data Bestanden
+## Current Data Files
 
 ### testDecks.ts
 
-- **Doel**: Biedt realistische Nederlandse flashcard decks voor ontwikkeling en testen
-- **Inhoud**: 4 uitgebreide decks over Nederlandse onderwerpen
-- **Totaal Kaarten**: 20+ flashcards verdeeld over verschillende moeilijkheidsgraden
+- **Purpose**: Provides realistic web development flashcard decks for development and testing
+- **Content**: 4 comprehensive decks covering web development topics
+- **Total Cards**: 40+ flashcards distributed across different difficulty levels
 
-#### Beschikbare Decks:
+#### Available Decks:
 
-1. **Nederlandse Grammatica** (6 kaarten)
-   - Zelfstandige naamwoorden, lidwoorden, werkwoorden
-   - Spelling regels, dt-regel, hoofdletters
-   - Moeilijkheid: Makkelijk tot Moeilijk
+1. **Frontend Development** (12 cards)
+   - React, JavaScript, CSS, TypeScript fundamentals
+   - Virtual DOM, hooks, event handling, closures
+   - Difficulty: Easy to Hard
 
-2. **Geschiedenis van Nederland** (5 kaarten)
-   - Gouden Eeuw, Willem van Oranje, VOC
-   - Tweede Wereldoorlog, Watersnoodramp
-   - Moeilijkheid: Makkelijk tot Moeilijk
+2. **Backend Development** (10 cards)
+   - REST APIs, databases (SQL/NoSQL), Node.js
+   - Authentication, JWT, middleware, CORS
+   - Difficulty: Easy to Hard
 
-3. **Nederlandse Geografie** (5 kaarten)
-   - Hoofdstad, provincies, Waddeneilanden
-   - Hoogste punt, rivieren
-   - Moeilijkheid: Makkelijk tot Moeilijk
+3. **Web Development Fundamentals** (10 cards)
+   - Git, HTTP methods, HTTPS, responsive design
+   - Web storage, CDN, semantic HTML, PWA, accessibility
+   - Difficulty: Easy to Medium
 
-4. **Nederlandse Cultuur** (4 kaarten)
-   - Rembrandt, typisch Nederlands eten
-   - Koningsdag, nationale sport
-   - Moeilijkheid: Makkelijk tot Moeilijk
+4. **DevOps & Tools** (8 cards)
+   - Docker, CI/CD, webpack, npm, Kubernetes
+   - Environment variables, load balancing
+   - Difficulty: Easy to Hard
 
-## Geëxporteerde Functies
+## Exported Functions
 
-### Basis Data
+### Core Data
 
-- `testDecks`: Array van alle voorbeeld decks
-- `nederlandseGrammaticaDeck`, `geschiedenisNederlandDeck`, etc.: Individuele decks
+- `testDecks`: Array of all example decks
+- `frontendDevelopmentDeck`, `backendDevelopmentDeck`, etc.: Individual decks
 
-### Statistieken
+### Statistics
 
-- `getTestDeckStats()`: Retourneert dashboard statistieken object
-- `getCardsByDifficulty(difficulty)`: Filter kaarten op moeilijkheidsgraad
-- `getCardsByCategory(category)`: Filter kaarten op categorie
+- `getTestDeckStats()`: Returns dashboard statistics object
+- `getCardsByDifficulty(difficulty)`: Filter cards by difficulty level
+- `getCardsByCategory(category)`: Filter cards by category
 
-## Gebruik Voorbeelden
+## Usage Examples
 
 ```typescript
 import { testDecks, getTestDeckStats, getCardsByDifficulty } from '../data'
 
-// Krijg alle decks
-const alleDecks = testDecks
+// Get all decks
+const allDecks = testDecks
 
-// Krijg dashboard stats
+// Get dashboard stats
 const stats = getTestDeckStats()
 
-// Krijg alleen moeilijke kaarten
-const moeilijkeKaarten = getCardsByDifficulty(DifficultyLevel.HARD)
+// Get only hard cards
+const hardCards = getCardsByDifficulty(DifficultyLevel.HARD)
 ```
 
-## Data Kwaliteit
+## Data Quality
 
-- Alle flashcards volgen juiste TypeScript interfaces
-- Realistische Nederlandse educatieve inhoud
-- Gebalanceerde moeilijkheidsverdeling
-- Juiste categorisering en tagging
-- Timestamps en metadata inbegrepen
+- All flashcards follow proper TypeScript interfaces
+- Realistic web development educational content
+- Balanced difficulty distribution across Easy/Medium/Hard
+- Proper categorization and tagging (Frontend, Backend, General, DevOps)
+- Timestamps and metadata included
+- Interview-style questions for practical learning
 
-## Toekomstige Verbeteringen
+## Content Categories
 
-- [ ] Voeg meer diverse onderwerpen toe (wiskunde, natuurkunde, etc.)
-- [ ] Inclusief multimedia inhoud (afbeeldingen, voorbeelden)
-- [ ] Voeg spaced repetition planning data toe
-- [ ] Inclusief gebruikersinteractie geschiedenis
-- [ ] Voeg deck delen en community functies toe
+- **Frontend**: React, JavaScript, CSS, TypeScript, DOM manipulation
+- **Backend**: REST APIs, Node.js, databases, authentication, server concepts
+- **General**: Git, HTTP, web standards, accessibility, performance
+- **DevOps**: Docker, CI/CD, build tools, deployment, infrastructure
+
+## Future Improvements
+
+- [ ] Add more specialized topics (databases, security, testing)
+- [ ] Include multimedia content (code examples, diagrams)
+- [ ] Add spaced repetition scheduling data
+- [ ] Include user interaction history
+- [ ] Add community deck sharing features
+- [ ] Implement difficulty-based question algorithms
