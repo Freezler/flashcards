@@ -1,6 +1,8 @@
 @import 'tailwindcss';
+@import url('./styles/css-masters-2025.css');
 
-/* ===== 2025 MODERN DESIGN SYSTEM ===== */
+/* ===== CSS MASTERS 2025 EDITION ===== */
+/* Inspired by CSS-Tricks, Kevin Powell, Jhey Tompkins, and Wes Bos */
 /* Cutting-edge design system with glassmorphism, depth, and modern interactions */
 
 /* === COLOR SYSTEM 2025 === */
