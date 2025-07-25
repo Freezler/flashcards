@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react'
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import Dashboard from './components/Dashboard'
 import Navigation from './components/Navigation'
+import ScrollProgress from './components/ScrollProgress'
 import { ScrollToTop } from './components/common'
 import { AuthProvider, useAuth } from './contexts/AuthContext'
 import { CardProvider } from './contexts/CardContext'
@@ -29,6 +30,7 @@ function AppContent(): React.JSX.Element {
     <CardProvider>
       <Router>
         <ScrollToTop />
+        <ScrollProgress />
         <Suspense
           fallback={<div className="page-loading">Loading page...</div>}
         >
