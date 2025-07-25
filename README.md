@@ -1,6 +1,6 @@
 # 🧠 Web Development Flashcards App
 
-Een moderne, intelligente flashcard applicatie gebouwd met React 19 en TypeScript voor het leren van web development concepten, frontend/backend technologieën en DevOps tools.
+A modern, intelligent flashcard application built with React 19 and TypeScript for learning web development concepts, frontend/backend technologies and DevOps tools.
 
 ![React](https://img.shields.io/badge/React-19.1.0-61dafb?style=for-the-badge&logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178c6?style=for-the-badge&logo=typescript)
@@ -9,50 +9,52 @@ Een moderne, intelligente flashcard applicatie gebouwd met React 19 en TypeScrip
 
 ## ✨ Features
 
-### 🎯 Core Functionaliteit
+### 🎯 Core Functionality
 
-- **4 Web Development Decks** - 41 kaarten over frontend development, backend development, web fundamentals en DevOps
-- **Intelligente Spaced Repetition** - SM-2 algoritme voor optimaal geheugen
-- **Interactieve Flashcards** - 3D flip animaties met difficulty-based styling
-- **Geavanceerde Study Sessions** - Progress tracking, response time analysis en session analytics
-- **Complete CRUD Operations** - Maak, bewerk en verwijder je eigen kaarten en decks
-- **Comprehensive Security** - CSRF protection, input sanitization, en secure storage
-- **Full Accessibility** - WCAG AA compliant met screen reader support
+- **4 Web Development Decks** - 41 cards covering frontend development, backend development, web fundamentals and DevOps
+- **Intelligent Spaced Repetition** - SM-2 algorithm for optimal memory retention
+- **Interactive Flashcards** - Multiple UI variants (Original, Beautiful, Elite, 2025) with 3D flip animations
+- **Advanced Study Sessions** - Progress tracking, response time analysis and session analytics
+- **Complete CRUD Operations** - Create, edit and delete your own cards and decks
+- **Comprehensive Security** - CSRF protection, input sanitization, and secure storage
+- **Full Accessibility** - WCAG AA compliant with screen reader support
 
 ### 🎨 User Experience
 
-- **Volledig Responsive Design** - Geoptimaliseerd voor mobile, tablet en desktop
-- **Moderne CSS met OKLCH Colors** - Beautiful gradients en fluid typography
-- **Professional UI/UX** - Material Design-inspired interface met smooth animations
+- **Fully Responsive Design** - Optimized for mobile, tablet and desktop
+- **Modern CSS with OKLCH Colors** - Beautiful gradients and fluid typography
+- **Multiple UI Experiments** - Exploring different design approaches (Beautiful, Elite, 2025 variants)
+- **CSS Masters Implementation** - Phase 1 complete with @property declarations, professional easing, container queries
 - **Universal Accessibility** - Keyboard navigation, screen readers, high contrast support
-- **Security Headers** - CSP, X-Frame-Options, en comprehensive protection
-- **Offline-First** - Secure localStorage persistence voor offline gebruik
+- **Security Headers** - CSP, X-Frame-Options, and comprehensive protection
+- **Offline-First** - Secure localStorage persistence for offline use
 
 ### 🚀 Performance & Security
 
-- **React 19 Latest Features** - Met strict TypeScript en moderne hooks
-- **Code Splitting & Lazy Loading** - Optimized bundle met dynamische imports
-- **Bundle Size** - 604KB total bundle met code splitting (165KB gzipped)
+- **React 19 Latest Features** - With strict TypeScript and modern hooks
+- **Code Splitting & Lazy Loading** - Optimized bundle with dynamic imports (needs optimization)
+- **Bundle Size** - ~600KB+ total bundle (optimization in progress)
 - **Security Hardened** - CSRF tokens, input sanitization, rate limiting
-- **Production Ready** - CSP headers, secure storage, accessibility compliant
-- **Comprehensive Test Suite** - Vitest met Testing Library
-- **ESLint + Prettier** - Automatische code formatting en linting
-- **Git Workflow** - Feature branches met protected main branch
+- **Development Active** - Multiple experimental components and UI variants
+- **Comprehensive Test Suite** - Vitest with Testing Library
+- **ESLint + Prettier** - Automatic code formatting and linting
+- **Git Workflow** - Feature branches with protected main branch
 
 ## 📚 Web Development Content
 
-### 💻 Beschikbare Decks
+### 💻 Available Decks
 
-1. **Frontend Development** (12 kaarten) - React, JavaScript, CSS, TypeScript fundamentals
-2. **Backend Development** (10 kaarten) - REST APIs, databases, Node.js, authentication
-3. **Web Development Fundamentals** (10 kaarten) - Git, HTTP, responsive design, accessibility
-4. **DevOps & Tools** (9 kaarten) - Docker, CI/CD, webpack, build tools
+1. **Frontend Development** (12 cards) - React, JavaScript, CSS, TypeScript fundamentals
+2. **Backend Development** (10 cards) - REST APIs, databases, Node.js, authentication
+3. **Web Development Fundamentals** (10 cards) - Git, HTTP, responsive design, accessibility
+4. **DevOps & Tools** (9 cards) - Docker, CI/CD, webpack, build tools
 
-### 📊 Leerstatistieken
+### 📊 Learning Statistics
 
-- **41 Totale Kaarten** verdeeld over 3 moeilijkheidsgraden (Easy/Medium/Hard)
-- **Tech-Focused Content** - Van basis web concepten tot gevorderde development topics
-- **Educational Quality** - Praktische web development kennis voor interviews en werk
+- **41 Total Cards** distributed across 3 difficulty levels (Easy/Medium/Hard)
+- **Tech-Focused Content** - From basic web concepts to advanced development topics
+- **Educational Quality** - Practical web development knowledge for interviews and work
+- **Language Support** - i18n infrastructure with translation keys (content primarily English)
 
 ## 🛠️ Tech Stack
 
@@ -150,13 +152,13 @@ flash-cards/
 
 ## 🎯 Performance Metrics
 
-- **Bundle Size**: 604KB total met code splitting (165KB gzipped total)
-- **Code Splitting**: 8 lazy-loaded page chunks (2-13KB each)
-- **First Contentful Paint**: < 1s
+- **Bundle Size**: ~600KB+ total bundle (optimization needed)
+- **Code Splitting**: 8+ lazy-loaded page chunks with experimental components
+- **First Contentful Paint**: Varies (optimization in progress)
 - **React.memo Optimized** - Prevented unnecessary re-renders
-- **Console-free Production** - All debug statements removed
-- **Lighthouse Score**: 95+ Performance, 100 Accessibility, 100 Best Practices
-- **Mobile Responsive** - Responsive design voor alle schermgroottes (in development)
+- **Development Status** - Multiple UI variants causing bundle bloat
+- **CSS Masters Phase 1** - Modern CSS optimizations implemented
+- **Mobile Responsive** - Responsive design for all screen sizes (multiple variants)
 
 ## 📱 Responsive Design
 
