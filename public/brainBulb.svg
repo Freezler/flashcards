@@ -5,8 +5,61 @@
  width="1024.000000pt" height="1024.000000pt" viewBox="0 0 1024.000000 1024.000000"
  preserveAspectRatio="xMidYMid meet">
 
+<defs>
+  <!-- Light mode gradient -->
+  <linearGradient id="lightGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" style="stop-color:#1a1a1a;stop-opacity:1" />
+    <stop offset="50%" style="stop-color:#4a4a4a;stop-opacity:1" />
+    <stop offset="100%" style="stop-color:#2a2a2a;stop-opacity:1" />
+  </linearGradient>
+  
+  <!-- Dark mode gradient -->
+  <linearGradient id="darkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+    <stop offset="50%" style="stop-color:#f0f0f0;stop-opacity:1" />
+    <stop offset="100%" style="stop-color:#e0e0e0;stop-opacity:1" />
+  </linearGradient>
+  
+  <!-- Auto mode gradient (colorful) -->
+  <linearGradient id="autoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+    <stop offset="25%" style="stop-color:#764ba2;stop-opacity:1" />
+    <stop offset="50%" style="stop-color:#f093fb;stop-opacity:1" />
+    <stop offset="75%" style="stop-color:#f5576c;stop-opacity:1" />
+    <stop offset="100%" style="stop-color:#4facfe;stop-opacity:1" />
+  </linearGradient>
+</defs>
+
+<style>
+  .brain-bulb {
+    fill: #1a1a1a; /* Default dark for light mode */
+  }
+  
+  /* Dark mode - white fill */
+  @media (prefers-color-scheme: dark) {
+    .brain-bulb {
+      fill: #ffffff;
+    }
+  }
+  
+  /* Auto mode (system preference with gradient) */
+  .brain-bulb.auto-mode {
+    fill: url(#autoGradient);
+  }
+  
+  /* Explicit light mode */
+  .brain-bulb.light-mode {
+    fill: url(#lightGradient);
+  }
+  
+  /* Explicit dark mode */
+  .brain-bulb.dark-mode {
+    fill: url(#darkGradient);
+  }
+</style>
+
 <g transform="translate(0.000000,1024.000000) scale(0.100000,-0.100000)"
-fill="#000000" stroke="none">
+class="brain-bulb" stroke="none">
 <path d="M4900 9804 c-19 -2 -87 -9 -150 -15 -133 -12 -341 -49 -485 -85 -850
 -214 -1595 -743 -2078 -1476 -389 -590 -579 -1223 -580 -1928 0 -487 83 -910
 266 -1356 245 -596 690 -1151 1218 -1519 476 -331 809 -779 854 -1150 9 -68

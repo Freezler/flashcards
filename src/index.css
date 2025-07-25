@@ -8153,3 +8153,200 @@ textarea,
 .action-card {
   transition: var(--theme-transition);
 }
+
+/* === BRAIN BULB SVG THEME SUPPORT === */
+/* Default: Dark SVG for light mode */
+.logo-svg,
+.nav-logo,
+.hero-logo {
+  filter: none;
+  transition: filter var(--duration-md) var(--ease-out-2);
+}
+
+/* Dark mode: Invert to white */
+[data-theme='dark'] .logo-svg,
+[data-theme='dark'] .nav-logo,
+[data-theme='dark'] .hero-logo,
+.dark-theme .logo-svg,
+.dark-theme .nav-logo,
+.dark-theme .hero-logo {
+  filter: invert(1) brightness(1);
+}
+
+/* Auto mode: Beautiful gradient effect using hue-rotate and saturation */
+@media (prefers-color-scheme: dark) {
+  .logo-svg.auto-mode,
+  .nav-logo.auto-mode,
+  .hero-logo.auto-mode {
+    filter: invert(1) hue-rotate(45deg) saturate(1.5) brightness(1.1);
+    animation: logoGlow 4s ease-in-out infinite alternate;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .logo-svg.auto-mode,
+  .nav-logo.auto-mode,
+  .hero-logo.auto-mode {
+    filter: hue-rotate(45deg) saturate(1.5) brightness(0.9);
+    animation: logoGlow 4s ease-in-out infinite alternate;
+  }
+}
+
+/* Light mode specific: Gradient effect */
+[data-theme='light'] .logo-svg.light-mode,
+[data-theme='light'] .nav-logo.light-mode,
+[data-theme='light'] .hero-logo.light-mode,
+.light-theme .logo-svg.light-mode,
+.light-theme .nav-logo.light-mode,
+.light-theme .hero-logo.light-mode {
+  filter: hue-rotate(45deg) saturate(1.2) contrast(1.1);
+}
+
+/* Dark mode specific: Gradient effect */
+[data-theme='dark'] .logo-svg.dark-mode,
+[data-theme='dark'] .nav-logo.dark-mode,
+[data-theme='dark'] .hero-logo.dark-mode,
+.dark-theme .logo-svg.dark-mode,
+.dark-theme .nav-logo.dark-mode,
+.dark-theme .hero-logo.dark-mode {
+  filter: invert(1) hue-rotate(200deg) saturate(1.3) brightness(1.1);
+}
+
+/* Magical glow animation for auto mode */
+@keyframes logoGlow {
+  0% {
+    filter: hue-rotate(0deg) saturate(1.2) brightness(1);
+  }
+  25% {
+    filter: hue-rotate(90deg) saturate(1.5) brightness(1.1);
+  }
+  50% {
+    filter: hue-rotate(180deg) saturate(1.8) brightness(1.2);
+  }
+  75% {
+    filter: hue-rotate(270deg) saturate(1.5) brightness(1.1);
+  }
+  100% {
+    filter: hue-rotate(360deg) saturate(1.2) brightness(1);
+  }
+}
+
+/* Dark mode version of the glow animation */
+[data-theme='dark'] .logo-svg.auto-mode,
+[data-theme='dark'] .nav-logo.auto-mode,
+[data-theme='dark'] .hero-logo.auto-mode {
+  animation: logoGlowDark 4s ease-in-out infinite alternate;
+}
+
+@keyframes logoGlowDark {
+  0% {
+    filter: invert(1) hue-rotate(0deg) saturate(1.2) brightness(1.1);
+  }
+  25% {
+    filter: invert(1) hue-rotate(90deg) saturate(1.5) brightness(1.2);
+  }
+  50% {
+    filter: invert(1) hue-rotate(180deg) saturate(1.8) brightness(1.3);
+  }
+  75% {
+    filter: invert(1) hue-rotate(270deg) saturate(1.5) brightness(1.2);
+  }
+  100% {
+    filter: invert(1) hue-rotate(360deg) saturate(1.2) brightness(1.1);
+  }
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .logo-svg.auto-mode,
+  .nav-logo.auto-mode,
+  .hero-logo.auto-mode {
+    animation: none;
+    filter: hue-rotate(45deg) saturate(1.3);
+  }
+  
+  [data-theme='dark'] .logo-svg.auto-mode,
+  [data-theme='dark'] .nav-logo.auto-mode,
+  [data-theme='dark'] .hero-logo.auto-mode {
+    animation: none;
+    filter: invert(1) hue-rotate(45deg) saturate(1.3) brightness(1.1);
+  }
+}
+
+/* === GUEST USER STYLING === */
+.guest-user {
+  position: relative;
+  opacity: 0.8;
+}
+
+.guest-user .user-icon {
+  color: var(--text-2);
+}
+
+.guest-strike {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.2em;
+  color: oklch(60% 0.25 25); /* Red color */
+  text-shadow: 0 0 3px oklch(60% 0.25 25 / 0.5);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.guest-info .user-name {
+  color: var(--text-2);
+  font-style: italic;
+}
+
+.guest-info .user-email {
+  color: var(--text-3);
+  font-size: 0.85em;
+}
+
+.login-button {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  padding: var(--space-xs) var(--space-sm);
+  background: var(--brand-gradient);
+  color: white;
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  transition: all var(--duration-sm) var(--ease-out-2);
+  border: 1px solid var(--brand-500);
+}
+
+.login-button:hover {
+  background: var(--brand-700);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.login-button:active {
+  transform: translateY(0);
+}
+
+/* Mobile guest user styling */
+.user-avatar-mobile.guest-user {
+  position: relative;
+  opacity: 0.8;
+}
+
+.user-avatar-mobile.guest-user .user-icon {
+  color: var(--text-2);
+}
+
+.user-avatar-mobile .guest-strike {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.1em;
+  color: oklch(60% 0.25 25); /* Red color */
+  text-shadow: 0 0 3px oklch(60% 0.25 25 / 0.5);
+  pointer-events: none;
+  z-index: 1;
+}

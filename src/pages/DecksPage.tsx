@@ -5,7 +5,7 @@ import { useCards } from '../contexts/CardContext'
 import { LoadingBoundary, EmptyState } from '../components/common'
 
 const DecksPage = React.memo(function DecksPage(): React.JSX.Element {
-  const { t } = useTranslation('common')
+  const { t } = useTranslation(['common', 'decks'])
   const { state, deleteDeck } = useCards()
   const { decks, loading, error } = state
   const navigate = useNavigate()
@@ -73,12 +73,16 @@ const DecksPage = React.memo(function DecksPage(): React.JSX.Element {
             {decks.map(deck => (
               <article key={deck.id} className="deck-card">
                 <div className="deck-header">
-                  <h3 className="deck-title">{deck.name}</h3>
+                  <h3 className="deck-title">
+                    {t(deck.name, { ns: 'decks' })}
+                  </h3>
                   <span className="deck-count">
                     {deck.totalCards} {t('decksPage.cards')}
                   </span>
                 </div>
-                <p className="deck-description">{deck.description}</p>
+                <p className="deck-description">
+                  {t(deck.description, { ns: 'decks' })}
+                </p>
                 <div className="deck-meta">
                   <span className="deck-created">
                     {t('decksPage.created')}{' '}

@@ -140,6 +140,69 @@
     "backToDecksLabel": "Go back to all decks",
     "cardsInDeck": "Flashcards in this deck"
   },
+  "auth": {
+    "signIn": "Sign In",
+    "createAccount": "Create Account",
+    "signInSubtitle": "Sign in to continue learning",
+    "createAccountSubtitle": "Create an account to save your progress",
+    "nameLabel": "Name",
+    "emailLabel": "Email",
+    "passwordLabel": "Password",
+    "confirmPasswordLabel": "Confirm Password",
+    "namePlaceholder": "Your name",
+    "emailPlaceholder": "you@email.com",
+    "passwordPlaceholder": "Your password",
+    "passwordPlaceholderRegister": "At least 6 characters",
+    "confirmPasswordPlaceholder": "Repeat your password",
+    "emailRequired": "Email is required",
+    "emailInvalidChars": "Email contains invalid characters",
+    "emailInvalid": "Invalid email address",
+    "passwordRequired": "Password is required",
+    "passwordInvalidChars": "Password contains invalid characters",
+    "passwordMinLength": "Password must be at least 6 characters",
+    "confirmPasswordRequired": "Confirm password",
+    "tooManyAttempts": "Too many login attempts. Try again in 5 minutes.",
+    "invalidCredentials": "Invalid email or password",
+    "loginError": "An error occurred during login",
+    "passwordMismatch": "Passwords do not match",
+    "registerError": "An error occurred during registration",
+    "haveAccount": "Already have an account?",
+    "noAccount": "Don't have an account?",
+    "demoAccountTitle": "Demo account:",
+    "demoUser": "Demo User",
+    "guestUser": "Guest",
+    "notLoggedIn": "Not logged in"
+  },
+  "landing": {
+    "heroTitle": "Learn smarter with",
+    "heroSubtitle": "Use spaced repetition to learn more effectively. Remember more in less time with our intelligent flashcard app.",
+    "getStarted": "🚀 Get Started Free",
+    "learnMore": "📖 Learn More",
+    "whyTitle": "Why CogniCraft?",
+    "features": {
+      "spaced": {
+        "title": "Spaced Repetition",
+        "description": "Scientifically proven learning algorithm for optimal memory retention"
+      },
+      "tracking": {
+        "title": "Progress Tracking",
+        "description": "Monitor your learning progress and identify weak points"
+      },
+      "personalized": {
+        "title": "Personalized",
+        "description": "Intelligent adaptation to your learning pace and level"
+      },
+      "anywhere": {
+        "title": "Available Everywhere",
+        "description": "Learn where and when you want, on any device"
+      }
+    },
+    "cta": {
+      "title": "Ready to get started?",
+      "description": "Create a free account and start learning effectively today"
+    },
+    "footer": "© 2024 CogniCraft. Made with ❤️ for better learning results."
+  },
   "common": {
     "match": "match"
   }

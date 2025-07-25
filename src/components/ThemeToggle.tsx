@@ -69,6 +69,11 @@ function ThemeToggle({
     setThemeState(newThemeState)
     applyTheme(newThemeState)
     localStorage.setItem('theme-mode', newMode)
+
+    // Dispatch custom event for other components to sync
+    window.dispatchEvent(
+      new CustomEvent('themechange', { detail: newThemeState })
+    )
   }
 
   const cycleAccentColor = (): void => {
@@ -80,6 +85,11 @@ function ThemeToggle({
     setThemeState(newThemeState)
     applyTheme(newThemeState)
     localStorage.setItem('theme-accent', nextColor)
+
+    // Dispatch custom event for other components to sync
+    window.dispatchEvent(
+      new CustomEvent('themechange', { detail: newThemeState })
+    )
   }
 
   const getThemeIcon = (): string => {

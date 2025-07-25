@@ -140,6 +140,69 @@
     "backToDecksLabel": "Volver a todos los mazos",
     "cardsInDeck": "Tarjetas en este mazo"
   },
+  "auth": {
+    "signIn": "Iniciar Sesión",
+    "createAccount": "Crear Cuenta",
+    "signInSubtitle": "Inicia sesión para continuar aprendiendo",
+    "createAccountSubtitle": "Crea una cuenta para guardar tu progreso",
+    "nameLabel": "Nombre",
+    "emailLabel": "Correo",
+    "passwordLabel": "Contraseña",
+    "confirmPasswordLabel": "Confirmar Contraseña",
+    "namePlaceholder": "Tu nombre",
+    "emailPlaceholder": "tu@email.es",
+    "passwordPlaceholder": "Tu contraseña",
+    "passwordPlaceholderRegister": "Al menos 6 caracteres",
+    "confirmPasswordPlaceholder": "Repite tu contraseña",
+    "emailRequired": "El correo es requerido",
+    "emailInvalidChars": "El correo contiene caracteres inválidos",
+    "emailInvalid": "Dirección de correo inválida",
+    "passwordRequired": "La contraseña es requerida",
+    "passwordInvalidChars": "La contraseña contiene caracteres inválidos",
+    "passwordMinLength": "La contraseña debe tener al menos 6 caracteres",
+    "confirmPasswordRequired": "Confirmar contraseña",
+    "tooManyAttempts": "Demasiados intentos de inicio de sesión. Intenta en 5 minutos.",
+    "invalidCredentials": "Correo o contraseña inválidos",
+    "loginError": "Ocurrió un error durante el inicio de sesión",
+    "passwordMismatch": "Las contraseñas no coinciden",
+    "registerError": "Ocurrió un error durante el registro",
+    "haveAccount": "¿Ya tienes una cuenta?",
+    "noAccount": "¿No tienes una cuenta?",
+    "demoAccountTitle": "Cuenta demo:",
+    "demoUser": "Usuario Demo",
+    "guestUser": "Invitado",
+    "notLoggedIn": "No conectado"
+  },
+  "landing": {
+    "heroTitle": "Aprende más inteligentemente con",
+    "heroSubtitle": "Usa repetición espaciada para aprender más efectivamente. Recuerda más en menos tiempo con nuestra app inteligente de tarjetas de estudio.",
+    "getStarted": "🚀 Empezar Gratis",
+    "learnMore": "📖 Más Información",
+    "whyTitle": "¿Por qué CogniCraft?",
+    "features": {
+      "spaced": {
+        "title": "Repetición Espaciada",
+        "description": "Algoritmo de aprendizaje científicamente probado para retención óptima de memoria"
+      },
+      "tracking": {
+        "title": "Seguimiento de Progreso",
+        "description": "Monitorea tu progreso de aprendizaje e identifica puntos débiles"
+      },
+      "personalized": {
+        "title": "Personalizado",
+        "description": "Adaptación inteligente a tu ritmo y nivel de aprendizaje"
+      },
+      "anywhere": {
+        "title": "Disponible en Cualquier Lugar",
+        "description": "Aprende donde y cuando quieras, en cualquier dispositivo"
+      }
+    },
+    "cta": {
+      "title": "¿Listo para empezar?",
+      "description": "Crea una cuenta gratuita y comienza a aprender efectivamente hoy"
+    },
+    "footer": "© 2024 CogniCraft. Hecho con ❤️ para mejores resultados de aprendizaje."
+  },
   "common": {
     "match": "coincidencia"
   }

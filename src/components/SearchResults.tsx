@@ -36,7 +36,7 @@ export function SearchResults({
   loadingMessage = 'Zoeken...',
 }: SearchResultsProps): React.JSX.Element {
   const { t } = useTranslation(['common', 'decks'])
-  
+
   // Handle card selection
   const handleCardClick = useCallback(
     (card: FlashCard) => {
@@ -206,14 +206,22 @@ export function SearchResults({
                 <div className="search-result__question">
                   <strong className="search-result__label">Vraag:</strong>
                   <div className="search-result__text">
-                    {renderHighlightedText(t(card.front, { ns: 'decks' }), matches, 'front')}
+                    {renderHighlightedText(
+                      t(card.front, { ns: 'decks' }),
+                      matches,
+                      'front'
+                    )}
                   </div>
                 </div>
 
                 <div className="search-result__answer">
                   <strong className="search-result__label">Antwoord:</strong>
                   <div className="search-result__text">
-                    {renderHighlightedText(t(card.back, { ns: 'decks' }), matches, 'back')}
+                    {renderHighlightedText(
+                      t(card.back, { ns: 'decks' }),
+                      matches,
+                      'back'
+                    )}
                   </div>
                 </div>
               </div>

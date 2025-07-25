@@ -330,9 +330,8 @@ const devOpsToolsCards: FlashCard[] = [
 // Create decks
 export const frontendDevelopmentDeck: Deck = {
   id: 'frontend-dev-001',
-  name: 'Frontend Development',
-  description:
-    'Master modern frontend technologies including React, JavaScript, CSS, and TypeScript',
+  name: 'decks:frontend.name',
+  description: 'decks:frontend.description',
   cards: frontendDevelopmentCards,
   totalCards: frontendDevelopmentCards.length,
   isActive: true,
@@ -343,9 +342,8 @@ export const frontendDevelopmentDeck: Deck = {
 
 export const backendDevelopmentDeck: Deck = {
   id: 'backend-dev-001',
-  name: 'Backend Development',
-  description:
-    'Learn server-side development with APIs, databases, authentication, and Node.js',
+  name: 'decks:backend.name',
+  description: 'decks:backend.description',
   cards: backendDevelopmentCards,
   totalCards: backendDevelopmentCards.length,
   isActive: true,
@@ -356,9 +354,8 @@ export const backendDevelopmentDeck: Deck = {
 
 export const generalWebDevDeck: Deck = {
   id: 'general-webdev-001',
-  name: 'Web Development Fundamentals',
-  description:
-    'Essential web development concepts including HTTP, Git, responsive design, and web standards',
+  name: 'decks:fundamentals.name',
+  description: 'decks:fundamentals.description',
   cards: generalWebDevCards,
   totalCards: generalWebDevCards.length,
   isActive: true,
@@ -369,9 +366,8 @@ export const generalWebDevDeck: Deck = {
 
 export const devOpsToolsDeck: Deck = {
   id: 'devops-tools-001',
-  name: 'DevOps & Tools',
-  description:
-    'Development tools and DevOps practices including Docker, CI/CD, build tools, and deployment',
+  name: 'decks:devops.name',
+  description: 'decks:devops.description',
   cards: devOpsToolsCards,
   totalCards: devOpsToolsCards.length,
   isActive: true,

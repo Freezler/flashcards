@@ -140,6 +140,69 @@
     "backToDecksLabel": "Ga terug naar alle decks",
     "cardsInDeck": "Flashcards in dit deck"
   },
+  "auth": {
+    "signIn": "Inloggen",
+    "createAccount": "Account aanmaken",
+    "signInSubtitle": "Log in om verder te gaan met leren",
+    "createAccountSubtitle": "Maak een account aan om je voortgang op te slaan",
+    "nameLabel": "Naam",
+    "emailLabel": "E-mailadres",
+    "passwordLabel": "Wachtwoord",
+    "confirmPasswordLabel": "Bevestig wachtwoord",
+    "namePlaceholder": "Je naam",
+    "emailPlaceholder": "je@email.nl",
+    "passwordPlaceholder": "Je wachtwoord",
+    "passwordPlaceholderRegister": "Minimaal 6 karakters",
+    "confirmPasswordPlaceholder": "Herhaal je wachtwoord",
+    "emailRequired": "E-mail is verplicht",
+    "emailInvalidChars": "E-mail bevat niet-toegestane tekens",
+    "emailInvalid": "Ongeldig e-mailadres",
+    "passwordRequired": "Wachtwoord is verplicht",
+    "passwordInvalidChars": "Wachtwoord bevat niet-toegestane tekens",
+    "passwordMinLength": "Wachtwoord moet minimaal 6 karakters bevatten",
+    "confirmPasswordRequired": "Bevestig wachtwoord",
+    "tooManyAttempts": "Te veel inlogpogingen. Probeer over 5 minuten opnieuw.",
+    "invalidCredentials": "Ongeldig e-mailadres of wachtwoord",
+    "loginError": "Er is een fout opgetreden bij het inloggen",
+    "passwordMismatch": "Wachtwoorden komen niet overeen",
+    "registerError": "Er is een fout opgetreden bij het registreren",
+    "haveAccount": "Heb je al een account?",
+    "noAccount": "Nog geen account?",
+    "demoAccountTitle": "Demo account:",
+    "demoUser": "Demo Gebruiker",
+    "guestUser": "Gast",
+    "notLoggedIn": "Niet ingelogd"
+  },
+  "landing": {
+    "heroTitle": "Leer slimmer met",
+    "heroSubtitle": "Gebruik spaced repetition om effectiever te leren. Onthoud meer in minder tijd met onze intelligente flashcard app.",
+    "getStarted": "🚀 Gratis beginnen",
+    "learnMore": "📖 Meer info",
+    "whyTitle": "Waarom CogniCraft?",
+    "features": {
+      "spaced": {
+        "title": "Spaced Repetition",
+        "description": "Wetenschappelijk bewezen leeralgoritme voor optimaal geheugen"
+      },
+      "tracking": {
+        "title": "Voortgang Tracking",
+        "description": "Zie je leervooruitgang en identificeer zwakke punten"
+      },
+      "personalized": {
+        "title": "Gepersonaliseerd",
+        "description": "Intelligente aanpassing aan jouw leertempo en niveau"
+      },
+      "anywhere": {
+        "title": "Overal Beschikbaar",
+        "description": "Leer waar en wanneer je wilt, op elk apparaat"
+      }
+    },
+    "cta": {
+      "title": "Klaar om te beginnen?",
+      "description": "Maak gratis een account aan en start vandaag nog met effectief leren"
+    },
+    "footer": "© 2024 CogniCraft. Gemaakt met ❤️ voor betere leerresultaten."
+  },
   "common": {
     "match": "match"
   }

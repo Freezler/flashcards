@@ -7,7 +7,7 @@ import CardForm from '../components/CardForm'
 import { FlashCard } from '../types'
 
 function DeckPage(): React.JSX.Element {
-  const { t } = useTranslation('common')
+  const { t } = useTranslation(['common', 'decks'])
   const { deckId } = useParams<{ deckId: string }>()
   const { getDeck, addCard } = useCards()
   const [showCreateForm, setShowCreateForm] = useState(false)
@@ -44,9 +44,11 @@ function DeckPage(): React.JSX.Element {
     >
       <header className="dashboard-header">
         <h1 id="deck-title" className="dashboard-title">
-          {deck.name}
+          {t(deck.name, { ns: 'decks' })}
         </h1>
-        <p className="dashboard-subtitle">{deck.description}</p>
+        <p className="dashboard-subtitle">
+          {t(deck.description, { ns: 'decks' })}
+        </p>
       </header>
 
       <section className="deck-info" aria-labelledby="deck-info-title">
@@ -81,7 +83,9 @@ function DeckPage(): React.JSX.Element {
           <Link
             to={`/deck/${deck.id}/study`}
             className="btn-primary"
-            aria-label={t('deckPage.startStudyLabel', { name: deck.name })}
+            aria-label={t('deckPage.startStudyLabel', {
+              name: t(deck.name, { ns: 'decks' }),
+            })}
           >
             {t('deckPage.startStudy')}
           </Link>

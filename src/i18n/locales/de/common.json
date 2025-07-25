@@ -140,6 +140,69 @@
     "backToDecksLabel": "Zurück zu allen Decks gehen",
     "cardsInDeck": "Lernkarten in diesem Deck"
   },
+  "auth": {
+    "signIn": "Anmelden",
+    "createAccount": "Konto erstellen",
+    "signInSubtitle": "Anmelden, um weiter zu lernen",
+    "createAccountSubtitle": "Erstellen Sie ein Konto, um Ihren Fortschritt zu speichern",
+    "nameLabel": "Name",
+    "emailLabel": "E-Mail",
+    "passwordLabel": "Passwort",
+    "confirmPasswordLabel": "Passwort bestätigen",
+    "namePlaceholder": "Ihr Name",
+    "emailPlaceholder": "ihre@email.de",
+    "passwordPlaceholder": "Ihr Passwort",
+    "passwordPlaceholderRegister": "Mindestens 6 Zeichen",
+    "confirmPasswordPlaceholder": "Passwort wiederholen",
+    "emailRequired": "E-Mail ist erforderlich",
+    "emailInvalidChars": "E-Mail enthält ungültige Zeichen",
+    "emailInvalid": "Ungültige E-Mail-Adresse",
+    "passwordRequired": "Passwort ist erforderlich",
+    "passwordInvalidChars": "Passwort enthält ungültige Zeichen",
+    "passwordMinLength": "Passwort muss mindestens 6 Zeichen haben",
+    "confirmPasswordRequired": "Passwort bestätigen",
+    "tooManyAttempts": "Zu viele Anmeldeversuche. Versuchen Sie es in 5 Minuten erneut.",
+    "invalidCredentials": "Ungültige E-Mail oder Passwort",
+    "loginError": "Ein Fehler ist beim Anmelden aufgetreten",
+    "passwordMismatch": "Passwörter stimmen nicht überein",
+    "registerError": "Ein Fehler ist bei der Registrierung aufgetreten",
+    "haveAccount": "Haben Sie bereits ein Konto?",
+    "noAccount": "Haben Sie noch kein Konto?",
+    "demoAccountTitle": "Demo-Konto:",
+    "demoUser": "Demo-Benutzer",
+    "guestUser": "Gast",
+    "notLoggedIn": "Nicht angemeldet"
+  },
+  "landing": {
+    "heroTitle": "Intelligenter lernen mit",
+    "heroSubtitle": "Nutzen Sie Spaced Repetition für effektiveres Lernen. Merken Sie sich mehr in weniger Zeit mit unserer intelligenten Lernkarten-App.",
+    "getStarted": "🚀 Kostenlos starten",
+    "learnMore": "📖 Mehr erfahren",
+    "whyTitle": "Warum CogniCraft?",
+    "features": {
+      "spaced": {
+        "title": "Spaced Repetition",
+        "description": "Wissenschaftlich bewiesener Lernalgorithmus für optimale Gedächtnisleistung"
+      },
+      "tracking": {
+        "title": "Fortschritt verfolgen",
+        "description": "Überwachen Sie Ihren Lernfortschritt und identifizieren Sie Schwachstellen"
+      },
+      "personalized": {
+        "title": "Personalisiert",
+        "description": "Intelligente Anpassung an Ihr Lerntempo und Niveau"
+      },
+      "anywhere": {
+        "title": "Überall verfügbar",
+        "description": "Lernen Sie wo und wann Sie wollen, auf jedem Gerät"
+      }
+    },
+    "cta": {
+      "title": "Bereit anzufangen?",
+      "description": "Erstellen Sie ein kostenloses Konto und beginnen Sie heute effektiv zu lernen"
+    },
+    "footer": "© 2024 CogniCraft. Mit ❤️ für bessere Lernergebnisse gemacht."
+  },
   "common": {
     "match": "Übereinstimmung"
   }

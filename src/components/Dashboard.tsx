@@ -27,7 +27,7 @@ function Dashboard(): React.JSX.Element {
   const { state } = useCards()
   const navigate = useNavigate()
   const [currentTime, setCurrentTime] = useState(new Date())
-  const { t } = useTranslation('common')
+  const { t } = useTranslation(['common', 'decks'])
 
   // Get all cards for search
   const allCards = useMemo(() => {
@@ -564,20 +564,22 @@ function Dashboard(): React.JSX.Element {
               <div key={deck.id} className="deck-card deck-card--enhanced">
                 <div className="deck-header">
                   <div className="deck-info">
-                    <h3 className="deck-title">{deck.name}</h3>
+                    <h3 className="deck-title">
+                      {t(deck.name, { ns: 'decks' })}
+                    </h3>
                     <div className="deck-meta">
                       <span className="deck-count">
                         {deck.totalCards} {t('recentActivity.cards')}
                       </span>
                       <span className="deck-dot">•</span>
                       <span className="deck-category">
-                        {deck.name.includes('Frontend')
+                        {deck.name.includes('frontend')
                           ? t('categories.frontend')
-                          : deck.name.includes('Backend')
+                          : deck.name.includes('backend')
                             ? t('categories.backend')
-                            : deck.name.includes('Fundamentals')
+                            : deck.name.includes('fundamentals')
                               ? t('categories.fundamentals')
-                              : deck.name.includes('DevOps')
+                              : deck.name.includes('devops')
                                 ? t('categories.devops')
                                 : t('categories.general')}
                       </span>
@@ -610,7 +612,9 @@ function Dashboard(): React.JSX.Element {
                   </div>
                 </div>
 
-                <p className="deck-description">{deck.description}</p>
+                <p className="deck-description">
+                  {t(deck.description, { ns: 'decks' })}
+                </p>
 
                 <div className="deck-stats">
                   <div className="deck-stat">

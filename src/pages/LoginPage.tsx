@@ -1,5 +1,6 @@
 import React, { useCallback, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { useAuth } from '../contexts/AuthContext'
 import { useFormValidation, validationRules } from '../hooks'
 import {
@@ -21,44 +22,41 @@ interface RegisterFormData extends LoginFormData {
 }
 
 const LoginPage = React.memo(function LoginPage(): React.JSX.Element {
+  const { t } = useTranslation('common')
   const navigate = useNavigate()
   const { login } = useAuth()
   const [isRegister, setIsRegister] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [authError, setAuthError] = useState<string | null>(null)
 
-  // Validation rules voor login
+  // Validation rules for login
   const loginValidationRules = {
     email: (value: string) => {
-      if (!value?.trim()) return 'E-mail is verplicht'
-      if (!validateUserInput(value))
-        return 'E-mail bevat niet-toegestane tekens'
-      return !isValidEmail(value) ? 'Ongeldig e-mailadres' : undefined
+      if (!value?.trim()) return t('auth.emailRequired')
+      if (!validateUserInput(value)) return t('auth.emailInvalidChars')
+      return !isValidEmail(value) ? t('auth.emailInvalid') : undefined
     },
     password: (value: string) => {
-      if (!value?.trim()) return 'Wachtwoord is verplicht'
-      if (!validateUserInput(value))
-        return 'Wachtwoord bevat niet-toegestane tekens'
+      if (!value?.trim()) return t('auth.passwordRequired')
+      if (!validateUserInput(value)) return t('auth.passwordInvalidChars')
       return undefined
     },
   }
 
-  // Validation rules voor registratie
+  // Validation rules for registration
   const registerValidationRules = {
-    name: validationRules.required('Naam'),
+    name: validationRules.required(t('auth.nameLabel')),
     email: (value: string) => {
-      if (!value?.trim()) return 'E-mail is verplicht'
+      if (!value?.trim()) return t('auth.emailRequired')
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-      return !emailRegex.test(value) ? 'Ongeldig e-mailadres' : undefined
+      return !emailRegex.test(value) ? t('auth.emailInvalid') : undefined
     },
     password: (value: string) => {
-      if (!value?.trim()) return 'Wachtwoord is verplicht'
-      return value.length < 6
-        ? 'Wachtwoord moet minimaal 6 karakters bevatten'
-        : undefined
+      if (!value?.trim()) return t('auth.passwordRequired')
+      return value.length < 6 ? t('auth.passwordMinLength') : undefined
     },
     confirmPassword: (value: string) => {
-      if (!value?.trim()) return 'Bevestig wachtwoord'
+      if (!value?.trim()) return t('auth.confirmPasswordRequired')
       return undefined // We'll check this separately
     },
   }
@@ -92,7 +90,7 @@ const LoginPage = React.memo(function LoginPage(): React.JSX.Element {
       const clientIdentifier =
         'login-' + (localStorage.getItem('client-id') || generateSecureToken())
       if (!loginAttemptLimiter.isAllowed(clientIdentifier)) {
-        setAuthError('Te veel inlogpogingen. Probeer over 5 minuten opnieuw.')
+        setAuthError(t('auth.tooManyAttempts'))
         return
       }
 
@@ -103,28 +101,28 @@ const LoginPage = React.memo(function LoginPage(): React.JSX.Element {
         // Simuleer API call
         await new Promise(resolve => setTimeout(resolve, 1000))
 
-        // Mock login logic - in echte app zou dit een API call zijn
+        // Mock login logic - in real app this would be an API call
         if (
-          loginData.email === 'demo@flashcards.nl' &&
+          loginData.email === 'demo@cognicraft.dev' &&
           loginData.password === 'demo123'
         ) {
           const userData = {
             id: generateSecureToken(16),
-            name: 'Demo Gebruiker',
+            name: t('auth.demoUser'),
             email: loginData.email,
           }
           login(userData)
           navigate('/')
         } else {
-          setAuthError('Ongeldig e-mailadres of wachtwoord')
+          setAuthError(t('auth.invalidCredentials'))
         }
       } catch {
-        setAuthError('Er is een fout opgetreden bij het inloggen')
+        setAuthError(t('auth.loginError'))
       } finally {
         setIsLoading(false)
       }
     },
-    [loginData, validateLogin, navigate, login]
+    [loginData, validateLogin, navigate, login, t]
   )
 
   const handleRegister = useCallback(
@@ -136,7 +134,7 @@ const LoginPage = React.memo(function LoginPage(): React.JSX.Element {
 
       // Check password confirmation
       if (registerData.password !== registerData.confirmPassword) {
-        setAuthError('Wachtwoorden komen niet overeen')
+        setAuthError(t('auth.passwordMismatch'))
         return
       }
 
@@ -154,12 +152,12 @@ const LoginPage = React.memo(function LoginPage(): React.JSX.Element {
         login(userData)
         navigate('/')
       } catch {
-        setAuthError('Er is een fout opgetreden bij het registreren')
+        setAuthError(t('auth.registerError'))
       } finally {
         setIsLoading(false)
       }
     },
-    [registerData, validateRegister, navigate, login]
+    [registerData, validateRegister, navigate, login, t]
   )
 
   const toggleMode = useCallback(() => {
@@ -175,12 +173,12 @@ const LoginPage = React.memo(function LoginPage(): React.JSX.Element {
             📚 CogniCraft
           </Link>
           <h1 className="login-title">
-            {isRegister ? 'Account aanmaken' : 'Inloggen'}
+            {isRegister ? t('auth.createAccount') : t('auth.signIn')}
           </h1>
           <p className="login-subtitle">
             {isRegister
-              ? 'Maak een account aan om je voortgang op te slaan'
-              : 'Log in om verder te gaan met leren'}
+              ? t('auth.createAccountSubtitle')
+              : t('auth.signInSubtitle')}
           </p>
         </div>
 
@@ -200,7 +198,7 @@ const LoginPage = React.memo(function LoginPage(): React.JSX.Element {
           {isRegister && (
             <div className="form-group">
               <label htmlFor="name" className="form-label">
-                Naam *
+                {t('auth.nameLabel')} *
               </label>
               <input
                 type="text"
@@ -208,7 +206,7 @@ const LoginPage = React.memo(function LoginPage(): React.JSX.Element {
                 className={`form-input ${registerErrors.name ? 'error' : ''}`}
                 value={registerData.name}
                 onChange={e => updateRegisterField('name', e.target.value)}
-                placeholder="Je naam"
+                placeholder={t('auth.namePlaceholder')}
                 disabled={isLoading}
                 required
                 aria-invalid={!!registerErrors.name}
@@ -231,7 +229,7 @@ const LoginPage = React.memo(function LoginPage(): React.JSX.Element {
 
           <div className="form-group">
             <label htmlFor="email" className="form-label">
-              E-mailadres *
+              {t('auth.emailLabel')} *
             </label>
             <input
               type="email"
@@ -243,7 +241,7 @@ const LoginPage = React.memo(function LoginPage(): React.JSX.Element {
                   ? updateRegisterField('email', e.target.value)
                   : updateLoginField('email', e.target.value)
               }
-              placeholder="je@email.nl"
+              placeholder={t('auth.emailPlaceholder')}
               disabled={isLoading}
             />
             {(isRegister ? registerErrors.email : loginErrors.email) && (
@@ -255,7 +253,7 @@ const LoginPage = React.memo(function LoginPage(): React.JSX.Element {
 
           <div className="form-group">
             <label htmlFor="password" className="form-label">
-              Wachtwoord *
+              {t('auth.passwordLabel')} *
             </label>
             <input
               type="password"
@@ -268,7 +266,9 @@ const LoginPage = React.memo(function LoginPage(): React.JSX.Element {
                   : updateLoginField('password', e.target.value)
               }
               placeholder={
-                isRegister ? 'Minimaal 6 karakters' : 'Je wachtwoord'
+                isRegister
+                  ? t('auth.passwordPlaceholderRegister')
+                  : t('auth.passwordPlaceholder')
               }
               disabled={isLoading}
             />
@@ -282,7 +282,7 @@ const LoginPage = React.memo(function LoginPage(): React.JSX.Element {
           {isRegister && (
             <div className="form-group">
               <label htmlFor="confirmPassword" className="form-label">
-                Bevestig wachtwoord *
+                {t('auth.confirmPasswordLabel')} *
               </label>
               <input
                 type="password"
@@ -292,7 +292,7 @@ const LoginPage = React.memo(function LoginPage(): React.JSX.Element {
                 onChange={e =>
                   updateRegisterField('confirmPassword', e.target.value)
                 }
-                placeholder="Herhaal je wachtwoord"
+                placeholder={t('auth.confirmPasswordPlaceholder')}
                 disabled={isLoading}
               />
               {registerErrors.confirmPassword && (
@@ -311,30 +311,30 @@ const LoginPage = React.memo(function LoginPage(): React.JSX.Element {
             {isLoading ? (
               <span className="loading-spinner">⏳</span>
             ) : isRegister ? (
-              'Account aanmaken'
+              t('auth.createAccount')
             ) : (
-              'Inloggen'
+              t('auth.signIn')
             )}
           </button>
         </form>
 
         <div className="login-footer">
           <p>
-            {isRegister ? 'Heb je al een account?' : 'Nog geen account?'}{' '}
+            {isRegister ? t('auth.haveAccount') : t('auth.noAccount')}{' '}
             <button
               type="button"
               className="link-button"
               onClick={toggleMode}
               disabled={isLoading}
             >
-              {isRegister ? 'Inloggen' : 'Account aanmaken'}
+              {isRegister ? t('auth.signIn') : t('auth.createAccount')}
             </button>
           </p>
 
           {!isRegister && (
             <div className="demo-credentials">
-              <h4>Demo account:</h4>
-              <p>📧 demo@flashcards.nl</p>
+              <h4>{t('auth.demoAccountTitle')}</h4>
+              <p>📧 demo@cognicraft.dev</p>
               <p>🔒 demo123</p>
             </div>
           )}
