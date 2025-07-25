@@ -1,5 +1,3 @@
-Here’s a single, streamlined onboarding guide that merges the detailed information above with clear structure and focus. This document is tailored to help new contributors quickly understand, set up, and contribute effectively to the **CogniCraft Flashcards** app by Freezler.
-
 ---
 
 # 🎓 CogniCraft Flashcards – Developer Onboarding Guide
