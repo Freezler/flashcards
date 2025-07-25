@@ -1,10 +1,12 @@
 @import 'tailwindcss';
 
+
 /* ===== CSS MASTERS 2025 - PHASE 1 & 2 ===== */
 /* Gradually implementing advanced CSS techniques from industry experts */
 /* Sources: CSS-Tricks, Kevin Powell, Jhey Tompkins, Wes Bos */
 /* Phase 1 ✅: @property, easing functions, container queries */
 /* Phase 2 🚀: Scroll-driven animations, view transitions, advanced grids */
+
 
 /* === MODERN CSS CUSTOM PROPERTIES === */
 /* Type-safe CSS custom properties for animations */
@@ -8991,7 +8993,6 @@ textarea,
   }
 }
 */
-
 /* ===== CSS MASTERS PHASE 2: SCROLL-DRIVEN ANIMATIONS ===== */
 
 /* Scroll Progress Indicator with Advanced Animation */
@@ -9162,6 +9163,5 @@ html {
   }
 }
 
-/* ===== END CSS MASTERS PHASE 2 ===== */
 
-/* === END CSS MASTERS TECHNIQUES === */
+
